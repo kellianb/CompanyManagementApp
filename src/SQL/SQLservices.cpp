@@ -201,18 +201,18 @@ void SQLservices::SQL_deleteCustomerAddresses(int id)
 {
     System::String^ cmdString1 = "DELETE FROM Projet_POO_Livrable.has_billing_address WHERE id_customer = @id";
     System::String^ cmdString2 = "DELETE FROM Projet_POO_Livrable.has_delivery_address WHERE id_customer = @id";
-    //System::String^ cmdString3 = "DELETE FROM Projet_POO_Livrable.Addresses WHERE id_address IN (SELECT A.id_address FROM Projet_POO_Livrable.Addresses A LEFT JOIN Projet_POO_Livrable.has_billing_address B ON A.id_address = B.id_address LEFT JOIN Projet_POO_Livrable.has_delivery_address D ON A.id_address = D.id_address WHERE B.id_address IS NULL AND D.id_address IS NULL)";
+    System::String^ cmdString3 = "DELETE FROM Projet_POO_Livrable.Addresses WHERE id_address IN (SELECT A.id_address FROM Projet_POO_Livrable.Addresses A LEFT JOIN Projet_POO_Livrable.has_billing_address B ON A.id_address = B.id_address LEFT JOIN Projet_POO_Livrable.has_delivery_address D ON A.id_address = D.id_address WHERE B.id_address IS NULL AND D.id_address IS NULL)";
 
     System::Data::SqlClient::SqlCommand^ cmd1 = gcnew System::Data::SqlClient::SqlCommand(cmdString1);
     System::Data::SqlClient::SqlCommand^ cmd2 = gcnew System::Data::SqlClient::SqlCommand(cmdString2);
-    //System::Data::SqlClient::SqlCommand^ cmd3 = gcnew System::Data::SqlClient::SqlCommand(cmdString3);
+    System::Data::SqlClient::SqlCommand^ cmd3 = gcnew System::Data::SqlClient::SqlCommand(cmdString3);
     
     cmd1->Parameters->AddWithValue("@id", id);
     cmd2->Parameters->AddWithValue("@id", id);
 
     this->SQLadapter->sendQuery(cmd1);
     this->SQLadapter->sendQuery(cmd2);
-    // this->SQLadapter->sendQuery(cmd3, "Address"); TODO : Implement it at the end or else every addresses will be Deleted when testing
+    this->SQLadapter->sendQuery(cmd3);
 }
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -285,7 +285,6 @@ void SQLservices::SQL_deleteEmployeeAddresses(int id)
     cmd->Parameters->AddWithValue("@id", id);
 
     this->SQLadapter->sendQuery(cmd);
-    // this->SQLadapter->sendQuery(cmd3); TODO : Implement it at the end or else every addresses will be Deleted when testing
 }
 // ---------------------------------------------------------------------------------------------------------------------
 

@@ -3,6 +3,7 @@
 #include "../SQL/SQLservices.h"
 #include "../Customer.h"
 #include "createCustomerPrompt.h"
+#include "../Employee.h"
 
 
 namespace Projet
@@ -22,6 +23,7 @@ namespace Projet
     private:
         SQLservices^ SQLserver = gcnew SQLservices;
         Customer^ selected_customer;
+        Employee^ selected_employee;
 
     private:
         System::Windows::Forms::TextBox^ textBox_last_name_customer;
@@ -30,13 +32,28 @@ namespace Projet
         System::Windows::Forms::TextBox^ textBox_first_name_customer;
 
     private:
+        System::Windows::Forms::TextBox^ textBox_last_name_employee;
+
+    private:
+        System::Windows::Forms::TextBox^ textBox_first_name_employee;
+
+    private:
         System::Windows::Forms::GroupBox^ groupBox_customer;
+
+    private:
+        System::Windows::Forms::GroupBox^ groupBox_employee;
 
     private:
         System::Windows::Forms::Label^ label_last_name_customer;
 
     private:
         System::Windows::Forms::Label^ label_first_name_customer;
+
+    private:
+        System::Windows::Forms::Label^ label_last_name_employee;
+
+    private:
+        System::Windows::Forms::Label^ label_first_name_employee;
 
     private:
         System::Windows::Forms::Button^ button_delete_customer;
@@ -143,6 +160,7 @@ namespace Projet
             this->dataGridView_customer_orders = (gcnew System::Windows::Forms::DataGridView());
             this->button_customers_reload = (gcnew System::Windows::Forms::Button());
             this->groupBox_customer = (gcnew System::Windows::Forms::GroupBox());
+            this->groupBox_employee = (gcnew System::Windows::Forms::GroupBox()); 
             this->label_customer_birth_date = (gcnew System::Windows::Forms::Label());
             this->dateTimePicker_customer_birth_date = (gcnew System::Windows::Forms::DateTimePicker());
             this->button_delete_customer = (gcnew System::Windows::Forms::Button());
@@ -151,6 +169,10 @@ namespace Projet
             this->label_first_name_customer = (gcnew System::Windows::Forms::Label());
             this->textBox_first_name_customer = (gcnew System::Windows::Forms::TextBox());
             this->textBox_last_name_customer = (gcnew System::Windows::Forms::TextBox());
+            this->label_last_name_employee = (gcnew System::Windows::Forms::Label());
+            this->label_first_name_employee = (gcnew System::Windows::Forms::Label());
+            this->textBox_first_name_employee = (gcnew System::Windows::Forms::TextBox());
+            this->textBox_last_name_employee = (gcnew System::Windows::Forms::TextBox());
             this->dataGridView_customers = (gcnew System::Windows::Forms::DataGridView());
             this->tab_staff = (gcnew System::Windows::Forms::TabPage());
             this->dataGridView_staff = (gcnew System::Windows::Forms::DataGridView());
@@ -165,6 +187,7 @@ namespace Projet
             this->groupBox_customer_orders->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_orders))->BeginInit();
             this->groupBox_customer->SuspendLayout();
+            this->groupBox_employee->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customers))->BeginInit();
             this->tab_staff->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_staff))->BeginInit();
@@ -394,6 +417,7 @@ namespace Projet
             // tab_staff
             // 
             this->tab_staff->Controls->Add(this->dataGridView_staff);
+            this->tab_staff->Controls->Add(this->groupBox_employee);
             this->tab_staff->Location = System::Drawing::Point(4, 28);
             this->tab_staff->Name = L"tab_staff";
             this->tab_staff->Padding = System::Windows::Forms::Padding(3);
@@ -402,19 +426,76 @@ namespace Projet
             this->tab_staff->Text = L"Staff";
             this->tab_staff->UseVisualStyleBackColor = true;
             // 
+            // groupBox_customer
+            // 
+            this->groupBox_employee->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+                | System::Windows::Forms::AnchorStyles::Right));
+            // this->groupBox_employee->Controls->Add(this->label_employee_hiring_date);
+            // this->groupBox_employee->Controls->Add(this->dateTimePicker_employee_hiring_date);
+            // this->groupBox_employee->Controls->Add(this->button_delete_employee);
+            // this->groupBox_employee->Controls->Add(this->button_modify_employee);
+            this->groupBox_employee->Controls->Add(this->label_last_name_employee);
+            this->groupBox_employee->Controls->Add(this->label_first_name_employee);
+            this->groupBox_employee->Controls->Add(this->textBox_first_name_employee);
+            this->groupBox_employee->Controls->Add(this->textBox_last_name_employee);
+            this->groupBox_employee->Location = System::Drawing::Point(8, 201);
+            this->groupBox_employee->Name = L"groupBox_employee";
+            this->groupBox_employee->Size = System::Drawing::Size(539, 229);
+            this->groupBox_employee->TabIndex = 3;
+            this->groupBox_employee->TabStop = false;
+            this->groupBox_employee->Text = L"Employee Information";
+            // 
+            // label_last_name_employee
+            // 
+            this->label_last_name_employee->AutoSize = true;
+            this->label_last_name_employee->Location = System::Drawing::Point(24, 101);
+            this->label_last_name_employee->Name = L"label_last_name_employee";
+            this->label_last_name_employee->Size = System::Drawing::Size(97, 20);
+            this->label_last_name_employee->TabIndex = 4;
+            this->label_last_name_employee->Text = L"Last Name";
+            // 
+            // label_first_name_employee
+            // 
+            this->label_first_name_employee->AutoSize = true;
+            this->label_first_name_employee->Location = System::Drawing::Point(24, 30);
+            this->label_first_name_employee->Name = L"label_first_name_employee";
+            this->label_first_name_employee->Size = System::Drawing::Size(97, 20);
+            this->label_first_name_employee->TabIndex = 3;
+            this->label_first_name_employee->Text = L"First Name";
+            //
+            // textBox_first_name_employee
+            //
+            this->textBox_first_name_employee->Location = System::Drawing::Point(28, 53);
+            this->textBox_first_name_employee->Name = L"textBox_first_name_employee";
+            this->textBox_first_name_employee->Size = System::Drawing::Size(240, 27);
+            this->textBox_first_name_employee->TabIndex = 1;
+            // 
+            // textBox_last_name_customer
+            // 
+            this->textBox_last_name_employee->Location = System::Drawing::Point(28, 124);
+            this->textBox_last_name_employee->Name = L"textBox_last_name_employee";
+            this->textBox_last_name_employee->Size = System::Drawing::Size(240, 27);
+            this->textBox_last_name_employee->TabIndex = 2;
+            // 
             // dataGridView_staff
             // 
             this->dataGridView_staff->AllowUserToAddRows = false;
-            this->dataGridView_staff->BorderStyle = System::Windows::Forms::BorderStyle::None;
-            this->dataGridView_staff->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::Sunken;
+            this->dataGridView_staff->AllowUserToDeleteRows = false;
+            this->dataGridView_staff->AllowUserToOrderColumns = true;
+            this->dataGridView_staff->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+                | System::Windows::Forms::AnchorStyles::Right));
             this->dataGridView_staff->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-            this->dataGridView_staff->Location = System::Drawing::Point(8, 6);
+            this->dataGridView_staff->Location = System::Drawing::Point(8, 7);
+            this->dataGridView_staff->MinimumSize = System::Drawing::Size(999, 112);
+            this->dataGridView_staff->MultiSelect = false;
             this->dataGridView_staff->Name = L"dataGridView_staff";
             this->dataGridView_staff->ReadOnly = true;
-            this->dataGridView_staff->RowHeadersWidth = 51;
+            this->dataGridView_staff->RowHeadersWidth = 62;
+            this->dataGridView_staff->RowTemplate->Height = 28;
             this->dataGridView_staff->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_staff->Size = System::Drawing::Size(1228, 227);
+            this->dataGridView_staff->Size = System::Drawing::Size(1232, 188);
             this->dataGridView_staff->TabIndex = 0;
+            this->dataGridView_staff->SelectionChanged += gcnew System::EventHandler(this, &UserInterface::dataGridView_employee_selectionChanged);
             // 
             // tab_statistics
             // 
@@ -485,6 +566,8 @@ namespace Projet
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_orders))->EndInit();
             this->groupBox_customer->ResumeLayout(false);
             this->groupBox_customer->PerformLayout();
+            this->groupBox_employee->ResumeLayout(false);
+            this->groupBox_employee->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customers))->EndInit();
             this->tab_staff->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_staff))->EndInit();
@@ -646,6 +729,34 @@ namespace Projet
             this->dataGridView_staff->Columns["hiring_date"]->HeaderText = "Hiring date";
             this->dataGridView_staff->Columns["id_address"]->HeaderText = "Address ID";
             this->dataGridView_staff->Columns["id_manager"]->HeaderText = "Manager ID";
+        }
+
+    private:
+        void updateSelectedEmployee(int id)
+        {
+            selected_employee = gcnew Employee(id);
+
+            this->textBox_first_name_employee->Text = selected_employee->getFirstName();
+            this->textBox_last_name_employee->Text = selected_employee->getLastName();
+            //this->dateTimePicker_employee_hiring_date->Value = selected_employee->getHiringDate();
+        }
+
+        // Events
+    private:
+        void dataGridView_employee_selectionChanged(System::Object^ sender, System::EventArgs^ e)
+        {
+            // Return if no columns are selected
+            if (dataGridView_customers->SelectedRows->Count == 0)
+            {
+                return;
+            }
+            
+            String^ selectedIDstring = this->dataGridView_staff->SelectedRows[0]->Cells["id_person"]->Value->
+                ToString();
+
+            this->groupBox_employee->Text = "Employee " + selectedIDstring + " Information";
+
+            updateSelectedEmployee(System::Convert::ToInt32(selectedIDstring));
         }
 };
 }
