@@ -9,6 +9,62 @@ SQLservices::SQLservices()
 }
 // ---------------------------------------------------------------------------------------------------------------------
 
+// Orders Queries
+System::Data::DataTable^ SQLservices::SQL_addOrder(System::DateTime, System::DateTime, System::Decimal, System::Decimal,
+    int id_delivery_address, int id_billing_address, int id_customer)
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_getOrder(int id)
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_getOrderList()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_modifyOrder(int id_order, System::DateTime, System::DateTime, System::Decimal,
+    System::Decimal, int id_delivery_address, int id_billing_address, int id_customer)
+{
+    return nullptr;
+}
+
+void SQLservices::SQL_deleteOrder(int id)
+{
+    
+}
+// ---------------------------------------------------------------------------------------------------------------------
+
+// Inventory Queries
+System::Data::DataTable^ SQLservices::SQL_addProduct(System::String^, int amount, int reorder)
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_getProduct(int id)
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_getProductList()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_modifyProduct(int id, System::String^, int amount, int reorder)
+{
+    return nullptr;
+}
+
+void SQLservices::SQL_deleteProduct(int id)
+{
+    
+}
+// ---------------------------------------------------------------------------------------------------------------------
+
 // Person queries
 System::Data::DataTable^ SQLservices::SQL_addPerson(System::String^ first_name, System::String^ last_name)
 {
@@ -158,8 +214,6 @@ void SQLservices::SQL_deleteCustomerAddresses(int id)
     this->SQLadapter->sendQuery(cmd2);
     // this->SQLadapter->sendQuery(cmd3, "Address"); TODO : Implement it at the end or else every addresses will be Deleted when testing
 }
-
-
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Employee Queries
@@ -232,5 +286,52 @@ void SQLservices::SQL_deleteEmployeeAddresses(int id)
 
     this->SQLadapter->sendQuery(cmd);
     // this->SQLadapter->sendQuery(cmd3); TODO : Implement it at the end or else every addresses will be Deleted when testing
+}
+// ---------------------------------------------------------------------------------------------------------------------
+
+// Statistics Queries
+System::Data::DataTable^ SQLservices::SQL_calculateAverageBasketSize()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_calculateMonthlyTurnover(System::DateTime month)
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_identifyProductsBelowThreshold()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_calculateTotalPurchasesByCustomer(int customerId)
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_identifyTop10BestSellingItems()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_identifyTop10LeastSellingItems()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_calculateCommercialStockValue()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_calculatePurchaseStockValue()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_simulateStockValueVariations(array<System::String^>^ modifications)
+{
+    return nullptr;
 }
 // ---------------------------------------------------------------------------------------------------------------------
