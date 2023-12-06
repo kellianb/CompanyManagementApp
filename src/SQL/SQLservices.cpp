@@ -163,14 +163,16 @@ void SQLservices::SQL_deleteCustomerAddresses(int id)
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Employee Queries
-System::Data::DataSet^ SQLservices::SQL_addEmployee(int id, System::DateTime hiring_date)
+System::Data::DataSet^ SQLservices::SQL_addEmployee(int id_person, System::DateTime hiring_date, int id_address, int id_manager)
 {
-        System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Employees (id_person, hiring_date) OUTPUT inserted.id_person VALUES(@id, @hiringDate)";
+        System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Employees (id_person, hiring_date, id_address, id_manager) OUTPUT inserted.id_person VALUES(@idPerson, @hiringDate, @Address, @manager)";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
-    cmd->Parameters->AddWithValue("@id", id);
+    cmd->Parameters->AddWithValue("@idPerson", id_person);
     cmd->Parameters->AddWithValue("@hiringDate", hiring_date);
+    cmd->Parameters->AddWithValue("@address", id_address);
+    cmd->Parameters->AddWithValue("@Manager", id_manager);
 
     return this->SQLadapter->sendQuery(cmd, "addedEmployee");
 }
@@ -186,15 +188,49 @@ System::Data::DataSet^ SQLservices::SQL_getEmployeeList()
 
 System::Data::DataSet^ SQLservices::SQL_getEmployee(int id)
 {
-    return nullptr;
+    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Employee WHERE id_person = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+    
+    cmd->Parameters->AddWithValue("@id", id);
+
+    return this->SQLadapter->sendQuery(cmd, "Employee");
 }
 
-System::Data::DataSet^ SQLservices::SQL_modifyEmployee(int id, System::DateTime new_hiring_date)
+System::Data::DataSet^ SQLservices::SQL_modifyEmployee(int id_person, System::DateTime new_hiring_date, int id_address, int id_manager)
 {
-    return nullptr;
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Employees SET hiring_date = @hiringDate, id_address = @address WHERE id_person = @idPerson";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@idPerson", id_person);
+    cmd->Parameters->AddWithValue("@hiringDate", new_hiring_date);
+    cmd->Parameters->AddWithValue("@address", id_address);
+    cmd->Parameters->AddWithValue("@manager", id_manager);
+
+    return this->SQLadapter->sendQuery(cmd, "Employee");
 }
 
 void SQLservices::SQL_deleteEmployee(int id)
 {
+    System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.Employees WHERE id_person = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@id", id);
+
+    this->SQLadapter->sendQuery(cmd, "Employee");
+}
+
+void SQLservices::SQL_deleteEmployeeAddresses(int id)
+{
+    System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.Addresses WHERE id_address IN (SELECT A.id_address FROM Projet_POO_Livrable.Addresses A LEFT JOIN Projet_POO_Livrable.has_billing_address B ON A.id_address = B.id_address LEFT JOIN Projet_POO_Livrable.has_delivery_address D ON A.id_address = D.id_address WHERE B.id_address IS NULL AND D.id_address IS NULL)";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@id", id);
+
+    this->SQLadapter->sendQuery(cmd, "Employee");
+    // this->SQLadapter->sendQuery(cmd3, "Address"); TODO : Implement it at the end or else every addresses will be Deleted when testing
 }
 // ---------------------------------------------------------------------------------------------------------------------

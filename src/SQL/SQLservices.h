@@ -40,13 +40,15 @@ public:
     
 
     // Employee Queries
-    System::Data::DataSet^ SQL_addEmployee(int id, System::DateTime birth_date);
+    System::Data::DataSet^ SQL_addEmployee(int id_person, System::DateTime, int id_address, int id_manager);
 
     System::Data::DataSet^ SQL_getEmployeeList();
 
     System::Data::DataSet^ SQL_getEmployee(int id);
     
-    System::Data::DataSet^ SQL_modifyEmployee(int id, System::DateTime);
+    System::Data::DataSet^ SQL_modifyEmployee(int id_person, System::DateTime, int id_address, int id_manager);
 
     void SQL_deleteEmployee(int id);
+
+    void SQL_deleteEmployeeAddresses(int id);
 };
