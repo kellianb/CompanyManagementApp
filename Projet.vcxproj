@@ -122,6 +122,7 @@
   <ItemGroup>
     <ClCompile Include="src/UI/UserInterface.cpp" />
     <ClCompile Include="src\Customer.cpp" />
+    <ClCompile Include="src\Employee.cpp" />
     <ClCompile Include="src\Person.cpp" />
     <ClCompile Include="src\SQL\SQLdatabaseAdapter.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
@@ -273,6 +274,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="src\Customer.h" />
+    <ClInclude Include="src\Employee.h" />
     <ClInclude Include="src\Person.h" />
     <ClInclude Include="src\SQL\SQLdatabaseAdapter.h" />
     <ClInclude Include="src\SQL\SQLservices.h" />
