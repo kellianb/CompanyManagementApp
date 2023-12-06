@@ -79,5 +79,21 @@ public:
     void SQL_deleteEmployeeAddresses(int id);
 
     // Statistics Queries
-    
+    System::Data::DataTable^ SQL_calculateAverageBasketSize();
+
+    System::Data::DataTable^ SQL_calculateMonthlyTurnover(System::DateTime month);
+
+    System::Data::DataTable^ SQL_identifyProductsBelowThreshold();
+
+    System::Data::DataTable^ SQL_calculateTotalPurchasesByCustomer(int customerId);
+
+    System::Data::DataTable^ SQL_identifyTop10BestSellingItems();
+
+    System::Data::DataTable^ SQL_identifyTop10LeastSellingItems();
+
+    System::Data::DataTable^ SQL_calculateCommercialStockValue();
+
+    System::Data::DataTable^ SQL_calculatePurchaseStockValue();
+
+    System::Data::DataTable^ SQL_simulateStockValueVariations(array<System::String^>^ modifications);
 };
