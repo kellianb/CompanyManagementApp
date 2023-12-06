@@ -64,6 +64,10 @@ public:
 
     void SQL_deleteCustomerAddresses(int id);
 
+    System::Data::DataTable^ SQL_getCustomerBillingAddresses(int id);
+    
+    System::Data::DataTable^ SQL_getCustomerDeliveryAddresses(int id);
+
     
     // Employee Queries
     System::Data::DataTable^ SQL_addEmployee(int id_person, System::DateTime, int id_address, int id_manager);
