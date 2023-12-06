@@ -147,29 +147,29 @@ namespace Projet {
 			// 
 			// button_create
 			// 
+			this->button_create->DialogResult = System::Windows::Forms::DialogResult::OK;
 			this->button_create->Location = System::Drawing::Point(99, 176);
 			this->button_create->Name = L"button_create";
 			this->button_create->Size = System::Drawing::Size(75, 23);
 			this->button_create->TabIndex = 6;
 			this->button_create->Text = L"Create";
 			this->button_create->UseVisualStyleBackColor = true;
-			this->button_create->DialogResult = System::Windows::Forms::DialogResult::OK;
 			// 
 			// button_cancel
 			// 
+			this->button_cancel->DialogResult = System::Windows::Forms::DialogResult::Cancel;
 			this->button_cancel->Location = System::Drawing::Point(198, 176);
 			this->button_cancel->Name = L"button_cancel";
 			this->button_cancel->Size = System::Drawing::Size(75, 23);
 			this->button_cancel->TabIndex = 7;
 			this->button_cancel->Text = L"Cancel";
 			this->button_cancel->UseVisualStyleBackColor = true;
-			this->button_cancel->DialogResult = System::Windows::Forms::DialogResult::Cancel;
 			// 
 			// createCustomerPrompt
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(343, 231);
+			this->ClientSize = System::Drawing::Size(350, 230);
 			this->Controls->Add(this->button_cancel);
 			this->Controls->Add(this->button_create);
 			this->Controls->Add(this->label_birth_date);
@@ -178,6 +178,8 @@ namespace Projet {
 			this->Controls->Add(this->label_first_name);
 			this->Controls->Add(this->textBox_customer_last_name);
 			this->Controls->Add(this->textBox_customer_first_name);
+			this->MaximumSize = System::Drawing::Size(366, 269);
+			this->MinimumSize = System::Drawing::Size(366, 269);
 			this->Name = L"createCustomerPrompt";
 			this->Text = L"Create a new customer";
 			this->ResumeLayout(false);

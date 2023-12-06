@@ -223,7 +223,7 @@ namespace Projet
             this->groupBox_create_customer->Size = System::Drawing::Size(539, 91);
             this->groupBox_create_customer->TabIndex = 6;
             this->groupBox_create_customer->TabStop = false;
-            this->groupBox_create_customer->Text = L"Create customer";
+            this->groupBox_create_customer->Text = L"Create a customer";
             // 
             // button_create_customer
             // 
@@ -482,9 +482,7 @@ namespace Projet
             this->dataGridView_customers->Columns["birth_date"]->HeaderText = "Birth date";
             
         }
-
-
-        
+    
     private:
         void updateSelectedCustomer(int id)
         {
@@ -501,9 +499,15 @@ namespace Projet
         {
             this->dataGridView_customer_orders->Refresh();
             this->dataGridView_customer_orders->DataSource = this->selected_customer->getOrders();
+            
             this->dataGridView_customer_orders->Columns["id_order"]->Visible = false;
+            
             this->dataGridView_customer_orders->Sort(this->dataGridView_customer_orders->Columns["order_date"], System::ComponentModel::ListSortDirection::Descending);
 
+            
+            
+            this->dataGridView_customer_orders->Columns["order_reference"]->HeaderText = "Order reference";
+            this->dataGridView_customer_orders->Columns["total_amount"]->HeaderText = "Total Amount";
         }
 
     // Events
