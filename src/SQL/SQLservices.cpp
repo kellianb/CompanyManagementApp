@@ -73,7 +73,7 @@ System::Data::DataTable^ SQLservices::SQL_addCustomer(int id, System::DateTime b
 
 System::Data::DataTable^ SQLservices::SQL_getCustomerList()
 {
-    System::String^ cmdString = "SELECT Customers.id_person, P.first_name, P.last_name, Customers.birth_date, Customers.first_order_date FROM Projet_POO.Projet_POO_Livrable.Customers JOIN Projet_POO_Livrable.People P on P.id_person = Customers.id_person";
+    System::String^ cmdString = "SELECT C.id_person, P.first_name, P.last_name, C.birth_date, C.first_order_date FROM Projet_POO.Projet_POO_Livrable.Customers C JOIN Projet_POO_Livrable.People P on P.id_person = C.id_person";
     
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
@@ -179,7 +179,7 @@ System::Data::DataTable^ SQLservices::SQL_addEmployee(int id_person, System::Dat
 
 System::Data::DataTable^ SQLservices::SQL_getEmployeeList()
 {
-    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Employees";
+    System::String^ cmdString = "SELECT E.id_person, P.first_name, P.last_name, E.hiring_date, E.id_address, E.id_manager FROM Projet_POO.Projet_POO_Livrable.Employees E JOIN Projet_POO_Livrable.People P on P.id_person = E.id_person";
     
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     

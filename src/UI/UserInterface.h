@@ -425,7 +425,8 @@ namespace Projet
             case 2: // Customers
                 refresh_customers_datagrid();
                 return;
-            case 3: // Staff
+            case 3: // Employee
+                refresh_Employee_datagrid();
                 return;
             case 4: // Statistics
                 return;
@@ -521,5 +522,25 @@ namespace Projet
         {
             this->refresh_customers_datagrid();
         }
-};
+        
+    // Employee/Staff tab
+    private:
+        void refresh_Employee_datagrid()
+        {
+            this->dataGridView_staff->Refresh();
+            this->dataGridView_staff->DataSource = SQLserver->SQL_getEmployeeList();
+            this->dataGridView_staff->Columns["id_person"]->Width = 40;
+            this->dataGridView_staff->Columns["hiring_date"]->Width = 130;
+            this->dataGridView_staff->Columns["id_address"]->Width = 130;
+            this->dataGridView_staff->Columns["id_manager"]->Width = 130;
+
+            this->dataGridView_staff->Columns["id_person"]->HeaderText = "ID";
+            this->dataGridView_customers->Columns["first_name"]->HeaderText = "First name";
+            this->dataGridView_customers->Columns["last_name"]->HeaderText = "Last name";
+            this->dataGridView_staff->Columns["hiring_date"]->HeaderText = "Hiring date";
+            this->dataGridView_staff->Columns["id_address"]->HeaderText = "Address ID";
+            this->dataGridView_staff->Columns["id_manager"]->HeaderText = "Manager ID";
+        }
+};    
 }
+
