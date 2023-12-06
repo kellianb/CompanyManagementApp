@@ -345,7 +345,7 @@ namespace Projet
             this->button_customers_reload->TabIndex = 4;
             this->button_customers_reload->Text = L"Reload";
             this->button_customers_reload->UseVisualStyleBackColor = true;
-            this->button_customers_reload->Click += gcnew System::EventHandler(this, &UserInterface::button1_Click);
+            this->button_customers_reload->Click += gcnew System::EventHandler(this, &UserInterface::button_customers_reload_click);
             // 
             // UserInterface
             // 
@@ -457,5 +457,10 @@ namespace Projet
             this->selected_customer->delete_in_DB();
         }
 
+    private:
+        System::Void button_customers_reload_click(System::Object^ sender, System::EventArgs^ e)
+        {
+            this->refresh_customers_datagrid();
+        }
 };
 }
