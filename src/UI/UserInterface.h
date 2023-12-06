@@ -174,27 +174,27 @@ namespace Projet
             this->tabController->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
             this->tabController->Name = L"tabController";
             this->tabController->SelectedIndex = 0;
-            this->tabController->Size = System::Drawing::Size(1256, 709);
+            this->tabController->Size = System::Drawing::Size(1254, 701);
             this->tabController->TabIndex = 0;
             this->tabController->SelectedIndexChanged += gcnew System::EventHandler(this, &UserInterface::OnTabSelectedIndexChanged);
             // 
             // tab_orders
             // 
-            this->tab_orders->Location = System::Drawing::Point(4, 25);
+            this->tab_orders->Location = System::Drawing::Point(4, 28);
             this->tab_orders->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
             this->tab_orders->Name = L"tab_orders";
             this->tab_orders->Padding = System::Windows::Forms::Padding(5, 4, 5, 4);
-            this->tab_orders->Size = System::Drawing::Size(1248, 680);
+            this->tab_orders->Size = System::Drawing::Size(1246, 669);
             this->tab_orders->TabIndex = 1;
             this->tab_orders->Text = L"Orders";
             this->tab_orders->UseVisualStyleBackColor = true;
             // 
             // tab_inventory
             // 
-            this->tab_inventory->Location = System::Drawing::Point(4, 25);
+            this->tab_inventory->Location = System::Drawing::Point(4, 28);
             this->tab_inventory->Name = L"tab_inventory";
             this->tab_inventory->Padding = System::Windows::Forms::Padding(3);
-            this->tab_inventory->Size = System::Drawing::Size(1248, 680);
+            this->tab_inventory->Size = System::Drawing::Size(1246, 669);
             this->tab_inventory->TabIndex = 2;
             this->tab_inventory->Text = L"Inventory";
             this->tab_inventory->UseVisualStyleBackColor = true;
@@ -206,11 +206,11 @@ namespace Projet
             this->tab_customers->Controls->Add(this->button_customers_reload);
             this->tab_customers->Controls->Add(this->groupBox_customer);
             this->tab_customers->Controls->Add(this->dataGridView_customers);
-            this->tab_customers->Location = System::Drawing::Point(4, 25);
+            this->tab_customers->Location = System::Drawing::Point(4, 28);
             this->tab_customers->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
             this->tab_customers->Name = L"tab_customers";
             this->tab_customers->Padding = System::Windows::Forms::Padding(5, 4, 5, 4);
-            this->tab_customers->Size = System::Drawing::Size(1248, 680);
+            this->tab_customers->Size = System::Drawing::Size(1246, 669);
             this->tab_customers->TabIndex = 0;
             this->tab_customers->Text = L"Customers";
             this->tab_customers->UseVisualStyleBackColor = true;
@@ -240,7 +240,7 @@ namespace Projet
             this->groupBox_customer_orders->Controls->Add(this->dataGridView_customer_orders);
             this->groupBox_customer_orders->Location = System::Drawing::Point(561, 201);
             this->groupBox_customer_orders->Name = L"groupBox_customer_orders";
-            this->groupBox_customer_orders->Size = System::Drawing::Size(679, 229);
+            this->groupBox_customer_orders->Size = System::Drawing::Size(679, 327);
             this->groupBox_customer_orders->TabIndex = 5;
             this->groupBox_customer_orders->TabStop = false;
             this->groupBox_customer_orders->Text = L"Orders";
@@ -292,7 +292,7 @@ namespace Projet
             this->label_customer_birth_date->AutoSize = true;
             this->label_customer_birth_date->Location = System::Drawing::Point(312, 30);
             this->label_customer_birth_date->Name = L"label_customer_birth_date";
-            this->label_customer_birth_date->Size = System::Drawing::Size(68, 16);
+            this->label_customer_birth_date->Size = System::Drawing::Size(89, 20);
             this->label_customer_birth_date->TabIndex = 8;
             this->label_customer_birth_date->Text = L"Birth date";
             // 
@@ -300,7 +300,7 @@ namespace Projet
             // 
             this->dateTimePicker_customer_birth_date->Location = System::Drawing::Point(316, 53);
             this->dateTimePicker_customer_birth_date->Name = L"dateTimePicker_customer_birth_date";
-            this->dateTimePicker_customer_birth_date->Size = System::Drawing::Size(197, 23);
+            this->dateTimePicker_customer_birth_date->Size = System::Drawing::Size(197, 27);
             this->dateTimePicker_customer_birth_date->TabIndex = 7;
             // 
             // button_delete_customer
@@ -328,7 +328,7 @@ namespace Projet
             this->label_last_name_customer->AutoSize = true;
             this->label_last_name_customer->Location = System::Drawing::Point(24, 101);
             this->label_last_name_customer->Name = L"label_last_name_customer";
-            this->label_last_name_customer->Size = System::Drawing::Size(73, 16);
+            this->label_last_name_customer->Size = System::Drawing::Size(97, 20);
             this->label_last_name_customer->TabIndex = 4;
             this->label_last_name_customer->Text = L"Last Name";
             // 
@@ -337,7 +337,7 @@ namespace Projet
             this->label_first_name_customer->AutoSize = true;
             this->label_first_name_customer->Location = System::Drawing::Point(24, 30);
             this->label_first_name_customer->Name = L"label_first_name_customer";
-            this->label_first_name_customer->Size = System::Drawing::Size(75, 16);
+            this->label_first_name_customer->Size = System::Drawing::Size(97, 20);
             this->label_first_name_customer->TabIndex = 3;
             this->label_first_name_customer->Text = L"First Name";
             // 
@@ -345,14 +345,14 @@ namespace Projet
             // 
             this->textBox_first_name_customer->Location = System::Drawing::Point(28, 53);
             this->textBox_first_name_customer->Name = L"textBox_first_name_customer";
-            this->textBox_first_name_customer->Size = System::Drawing::Size(240, 23);
+            this->textBox_first_name_customer->Size = System::Drawing::Size(240, 27);
             this->textBox_first_name_customer->TabIndex = 1;
             // 
             // textBox_last_name_customer
             // 
             this->textBox_last_name_customer->Location = System::Drawing::Point(28, 124);
             this->textBox_last_name_customer->Name = L"textBox_last_name_customer";
-            this->textBox_last_name_customer->Size = System::Drawing::Size(240, 23);
+            this->textBox_last_name_customer->Size = System::Drawing::Size(240, 27);
             this->textBox_last_name_customer->TabIndex = 2;
             // 
             // dataGridView_customers
@@ -378,21 +378,23 @@ namespace Projet
             // tab_staff
             // 
             this->tab_staff->Controls->Add(this->dataGridView_staff);
-            this->tab_staff->Location = System::Drawing::Point(4, 25);
+            this->tab_staff->Location = System::Drawing::Point(4, 28);
             this->tab_staff->Name = L"tab_staff";
             this->tab_staff->Padding = System::Windows::Forms::Padding(3);
-            this->tab_staff->Size = System::Drawing::Size(1248, 680);
+            this->tab_staff->Size = System::Drawing::Size(1246, 669);
             this->tab_staff->TabIndex = 3;
             this->tab_staff->Text = L"Staff";
             this->tab_staff->UseVisualStyleBackColor = true;
             // 
             // dataGridView_staff
             // 
+            this->dataGridView_staff->AllowUserToAddRows = false;
             this->dataGridView_staff->BorderStyle = System::Windows::Forms::BorderStyle::None;
             this->dataGridView_staff->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::Sunken;
             this->dataGridView_staff->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
             this->dataGridView_staff->Location = System::Drawing::Point(8, 6);
             this->dataGridView_staff->Name = L"dataGridView_staff";
+            this->dataGridView_staff->ReadOnly = true;
             this->dataGridView_staff->RowHeadersWidth = 51;
             this->dataGridView_staff->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
             this->dataGridView_staff->Size = System::Drawing::Size(1228, 227);
@@ -400,18 +402,18 @@ namespace Projet
             // 
             // tab_statistics
             // 
-            this->tab_statistics->Location = System::Drawing::Point(4, 25);
+            this->tab_statistics->Location = System::Drawing::Point(4, 28);
             this->tab_statistics->Name = L"tab_statistics";
-            this->tab_statistics->Size = System::Drawing::Size(1248, 680);
+            this->tab_statistics->Size = System::Drawing::Size(1246, 669);
             this->tab_statistics->TabIndex = 4;
             this->tab_statistics->Text = L"Statistics";
             this->tab_statistics->UseVisualStyleBackColor = true;
             // 
             // UserInterface
             // 
-            this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+            this->AutoScaleDimensions = System::Drawing::SizeF(10, 20);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-            this->ClientSize = System::Drawing::Size(1256, 709);
+            this->ClientSize = System::Drawing::Size(1254, 701);
             this->Controls->Add(this->tabController);
             this->Font = (gcnew System::Drawing::Font(L"Inter", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
@@ -456,7 +458,7 @@ namespace Projet
                 refresh_customers_datagrid();
                 return;
             case 3: // Employee
-                refresh_Employee_datagrid();
+                refresh_employee_datagrid();
                 return;
             case 4: // Statistics
                 return;
@@ -508,6 +510,7 @@ namespace Projet
             
             this->dataGridView_customer_orders->Columns["order_reference"]->HeaderText = "Order reference";
             this->dataGridView_customer_orders->Columns["total_amount"]->HeaderText = "Total Amount";
+            
         }
 
     // Events
@@ -559,7 +562,7 @@ namespace Projet
         
     // Employee/Staff tab
     private:
-        void refresh_Employee_datagrid()
+        void refresh_employee_datagrid()
         {
             this->dataGridView_staff->Refresh();
             this->dataGridView_staff->DataSource = SQLserver->SQL_getEmployeeList();
