@@ -9,8 +9,10 @@ private:
     SQLdatabaseAdapter^ SQLadapter;
     
 public:
+    // Constructor
     SQLservices();
-    
+
+    // Person Queries
     System::Data::DataTable^ SQL_addPerson(System::String^, System::String^);
 
     System::Data::DataTable^ SQL_getPerson(int id);
@@ -18,7 +20,8 @@ public:
     System::Data::DataTable^ SQL_modifyPerson(int id, System::String^, System::String^);
 
     void SQL_deletePerson(int id);
-    
+
+    // Customer Queries
     System::Data::DataTable^ SQL_addCustomer(int, System::DateTime);
     
     System::Data::DataTable^ SQL_getCustomerList();
@@ -33,5 +36,19 @@ public:
 
     void SQL_deleteCustomerOrders(int id);
 
+    void SQL_deleteCustomerAddresses(int id);
+    
+
+    // Employee Queries
+    System::Data::DataTable^ SQL_addEmployee(int id_person, System::DateTime, int id_address, int id_manager);
+
     System::Data::DataTable^ SQL_getEmployeeList();
+
+    System::Data::DataTable^ SQL_getEmployee(int id);
+    
+    System::Data::DataTable^ SQL_modifyEmployee(int id_person, System::DateTime, int id_address, int id_manager);
+
+    void SQL_deleteEmployee(int id);
+
+    void SQL_deleteEmployeeAddresses(int id);
 };
