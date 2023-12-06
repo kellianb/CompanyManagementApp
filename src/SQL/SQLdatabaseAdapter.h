@@ -16,5 +16,5 @@ private:
 public:
     SQLdatabaseAdapter();
 
-    System::Data::DataSet^ sendQuery(System::Data::SqlClient::SqlCommand^, System::String^);
+    System::Data::DataTable^ sendQuery(System::Data::SqlClient::SqlCommand^);
 };

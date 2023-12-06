@@ -10,6 +10,7 @@ private:
     // Private DB modification methods
     void create_customer_in_DB();
     void fetch_customer_from_DB();
+    void delete_all_orders();
 
     // These methods only affect the "Customers" Table, not the parent "People" table
     void modify_customer_in_DB();
@@ -26,6 +27,6 @@ public:
     void modify_in_DB() override;
     void delete_in_DB() override;
 
-    System::Data::DataSet^ getOrders();
+    System::Data::DataTable^ getOrders();
     
 };

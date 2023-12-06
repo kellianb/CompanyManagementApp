@@ -13,18 +13,32 @@ void SQLdatabaseAdapter::readSQLconnectionStringFromFile()
 
 }
 
-System::Data::DataSet^ SQLdatabaseAdapter::sendQuery(System::Data::SqlClient::SqlCommand^ command, System::String^ dataTableName)
+System::Data::DataTable^ SQLdatabaseAdapter::sendQuery(System::Data::SqlClient::SqlCommand^ command)
 {
     // Add the connection to the command object
     command->Connection = this->connection;
     
-    this->SQLdataBuffer->Clear();
+    this->SQLdataBuffer = gcnew System::Data::DataSet;
     this->dataAdapter->SelectCommand = command;
-    this->dataAdapter->Fill(this->SQLdataBuffer, dataTableName);
-
-    //System::Console::WriteLine(this->SQLdataBuffer->Tables[0]->Rows[0]["first_name"]);
+    this->dataAdapter->Fill(this->SQLdataBuffer, "DataT");
     
-    return this->SQLdataBuffer;
+    //System::Console::WriteLine(this->SQLdataBuffer->Tables[0]->Rows[0]["first_name"]);
+    /*
+    for each (System::Data::DataTable^ table in this->SQLdataBuffer->Tables)
+    {
+        System::Console::WriteLine("Table Name: " + table->TableName);
+
+        // If you need more information about columns, etc., you can iterate through them
+        for each (System::Data::DataColumn^ column in table->Columns)
+        {
+            System::Console::WriteLine("  Column Name: " + column->ColumnName);
+            // Add more properties if needed: DataType, AllowDBNull, etc.
+        }
+
+        System::Console::WriteLine();
+    }*/
+    
+    return this->SQLdataBuffer->Tables["DataT"];
 }
 
 SQLdatabaseAdapter::SQLdatabaseAdapter()

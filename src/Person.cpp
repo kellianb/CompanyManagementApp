@@ -3,17 +3,17 @@
 
 void Person::create_person_in_DB()
 {
-    System::Data::DataSet^ buffer = this->SQLserv.SQL_addPerson(this->first_name, this->last_name);
+    System::Data::DataTable^ buffer = this->SQLserv.SQL_addPerson(this->first_name, this->last_name);
 
-    this->id = System::Convert::ToInt32(buffer->Tables[0]->Rows[0]["id_person"]);
+    this->id = System::Convert::ToInt32(buffer->Rows[0]["id_person"]);
 }
 
 void Person::fetch_person_from_DB()
 {
-    System::Data::DataSet^ buffer = this->SQLserv.SQL_getPerson(this->id);
+    System::Data::DataTable^ buffer = this->SQLserv.SQL_getPerson(this->id);
     
-    this->first_name = buffer->Tables["Person"]->Rows[0]["first_name"]->ToString();
-    this->last_name = buffer->Tables["Person"]->Rows[0]["last_name"]->ToString();
+    this->first_name = buffer->Rows[0]["first_name"]->ToString();
+    this->last_name = buffer->Rows[0]["last_name"]->ToString();
 }
 
 Person::Person(int id): id(id)

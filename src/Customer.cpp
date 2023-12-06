@@ -8,9 +8,14 @@ void Customer::create_customer_in_DB()
 void Customer::fetch_customer_from_DB()
 {
     
-    System::Data::DataSet^ buffer = this->SQLserv.SQL_getCustomer(this->id);
+    System::Data::DataTable^ buffer = this->SQLserv.SQL_getCustomer(this->id);
 
-    this->birth_date = safe_cast<System::DateTime>(buffer->Tables["Customer"]->Rows[0]["birth_date"]);
+    this->birth_date = safe_cast<System::DateTime>(buffer->Rows[0]["birth_date"]);
+}
+
+void Customer::delete_all_orders()
+{
+    this->SQLserv.SQL_deleteCustomerOrders(this->id);
 }
 
 void Customer::modify_customer_in_DB()
@@ -51,11 +56,23 @@ void Customer::modify_in_DB()
 
 void Customer::delete_in_DB()
 {
+    this->delete_all_orders();
     this->delete_customer_from_DB();
     this->delete_person_from_DB();
 }
 
-System::Data::DataSet^ Customer::getOrders()
+System::Data::DataTable^ Customer::getOrders()
 {
-    return nullptr;
+    System::Data::DataTable^ myDataTable = this->SQLserv.SQL_getCustomerOrders(this->id);
+
+    /*
+    for each (System::Data::DataColumn^ column in myDataTable->Columns)
+    {
+        System::Console::WriteLine("Column Name: " + column->ColumnName);
+        System::Console::WriteLine("Data Type: " + column->DataType->FullName);
+        System::Console::WriteLine("Allow DBNull: " + column->AllowDBNull);
+        System::Console::WriteLine("-----");
+    }*/
+    
+    return myDataTable;
 }
