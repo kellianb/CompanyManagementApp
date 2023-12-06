@@ -535,8 +535,8 @@ namespace Projet
             this->dataGridView_staff->Columns["id_manager"]->Width = 130;
 
             this->dataGridView_staff->Columns["id_person"]->HeaderText = "ID";
-            this->dataGridView_customers->Columns["first_name"]->HeaderText = "First name";
-            this->dataGridView_customers->Columns["last_name"]->HeaderText = "Last name";
+            this->dataGridView_staff->Columns["first_name"]->HeaderText = "First name";
+            this->dataGridView_staff->Columns["last_name"]->HeaderText = "Last name";
             this->dataGridView_staff->Columns["hiring_date"]->HeaderText = "Hiring date";
             this->dataGridView_staff->Columns["id_address"]->HeaderText = "Address ID";
             this->dataGridView_staff->Columns["id_manager"]->HeaderText = "Manager ID";
