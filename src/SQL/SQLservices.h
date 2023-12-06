@@ -22,4 +22,10 @@ public:
     System::Data::DataSet^ SQL_getCustomerList();
     
     System::Data::DataSet^ SQL_getCustomer(int id);
+
+    System::Data::DataSet^ SQL_updatePerson(int id, System::String^, System::String^);
+
+    System::Data::DataSet^ SQL_updateCustomer(int id, System::DateTime^);
+
+    void SQL_deleteCustomer(int id);
 };
