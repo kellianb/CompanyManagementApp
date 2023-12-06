@@ -52,7 +52,6 @@ namespace Projet
     private: System::Windows::Forms::GroupBox^ groupBox_customer_billing_addresses;
     private: System::Windows::Forms::GroupBox^ groupBox_delivery_addresses;
     private: System::Windows::Forms::DataGridView^ dataGridView_customer_delivery_addresses;
-
     private: System::Windows::Forms::DataGridView^ dataGridView_customer_billing_addresses;
 
 
@@ -111,10 +110,10 @@ namespace Projet
         System::Windows::Forms::TabPage^ tab_inventory;
 
     private:
-        System::Windows::Forms::TabPage^ tab_staff;
+        System::Windows::Forms::TabPage^ tab_employee;
 
     private:
-        System::Windows::Forms::DataGridView^ dataGridView_staff;
+        System::Windows::Forms::DataGridView^ dataGridView_employee;
 
     private:
         System::Windows::Forms::TabPage^ tab_statistics;
@@ -158,8 +157,8 @@ namespace Projet
             this->textBox_first_name_customer = (gcnew System::Windows::Forms::TextBox());
             this->textBox_last_name_customer = (gcnew System::Windows::Forms::TextBox());
             this->dataGridView_customers = (gcnew System::Windows::Forms::DataGridView());
-            this->tab_staff = (gcnew System::Windows::Forms::TabPage());
-            this->dataGridView_staff = (gcnew System::Windows::Forms::DataGridView());
+            this->tab_employee = (gcnew System::Windows::Forms::TabPage());
+            this->dataGridView_employee = (gcnew System::Windows::Forms::DataGridView());
             this->tab_statistics = (gcnew System::Windows::Forms::TabPage());
             this->tabController->SuspendLayout();
             this->tab_customers->SuspendLayout();
@@ -172,8 +171,8 @@ namespace Projet
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_orders))->BeginInit();
             this->groupBox_customer->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customers))->BeginInit();
-            this->tab_staff->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_staff))->BeginInit();
+            this->tab_employee->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_employee))->BeginInit();
             this->SuspendLayout();
             // 
             // tabController
@@ -181,7 +180,7 @@ namespace Projet
             this->tabController->Controls->Add(this->tab_orders);
             this->tabController->Controls->Add(this->tab_inventory);
             this->tabController->Controls->Add(this->tab_customers);
-            this->tabController->Controls->Add(this->tab_staff);
+            this->tabController->Controls->Add(this->tab_employee);
             this->tabController->Controls->Add(this->tab_statistics);
             this->tabController->Dock = System::Windows::Forms::DockStyle::Fill;
             this->tabController->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -245,12 +244,15 @@ namespace Projet
             // 
             // dataGridView_customer_delivery_addresses
             // 
+            this->dataGridView_customer_delivery_addresses->AllowUserToAddRows = false;
             this->dataGridView_customer_delivery_addresses->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-            this->dataGridView_customer_delivery_addresses->Location = System::Drawing::Point(6, 26);
+            this->dataGridView_customer_delivery_addresses->Location = System::Drawing::Point(6, 21);
             this->dataGridView_customer_delivery_addresses->Name = L"dataGridView_customer_delivery_addresses";
-            this->dataGridView_customer_delivery_addresses->RowHeadersWidth = 51;
-            this->dataGridView_customer_delivery_addresses->RowTemplate->Height = 24;
-            this->dataGridView_customer_delivery_addresses->Size = System::Drawing::Size(661, 94);
+            this->dataGridView_customer_delivery_addresses->ReadOnly = true;
+            this->dataGridView_customer_delivery_addresses->RowHeadersWidth = 62;
+            this->dataGridView_customer_delivery_addresses->RowTemplate->Height = 28;
+            this->dataGridView_customer_delivery_addresses->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+            this->dataGridView_customer_delivery_addresses->Size = System::Drawing::Size(667, 99);
             this->dataGridView_customer_delivery_addresses->TabIndex = 1;
             // 
             // groupBox_customer_billing_addresses
@@ -265,13 +267,16 @@ namespace Projet
             // 
             // dataGridView_customer_billing_addresses
             // 
+            this->dataGridView_customer_billing_addresses->AllowUserToAddRows = false;
             this->dataGridView_customer_billing_addresses->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-            this->dataGridView_customer_billing_addresses->Location = System::Drawing::Point(7, 27);
+            this->dataGridView_customer_billing_addresses->Location = System::Drawing::Point(6, 21);
             this->dataGridView_customer_billing_addresses->Name = L"dataGridView_customer_billing_addresses";
-            this->dataGridView_customer_billing_addresses->RowHeadersWidth = 51;
-            this->dataGridView_customer_billing_addresses->RowTemplate->Height = 24;
-            this->dataGridView_customer_billing_addresses->Size = System::Drawing::Size(526, 94);
-            this->dataGridView_customer_billing_addresses->TabIndex = 0;
+            this->dataGridView_customer_billing_addresses->ReadOnly = true;
+            this->dataGridView_customer_billing_addresses->RowHeadersWidth = 62;
+            this->dataGridView_customer_billing_addresses->RowTemplate->Height = 28;
+            this->dataGridView_customer_billing_addresses->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+            this->dataGridView_customer_billing_addresses->Size = System::Drawing::Size(667, 99);
+            this->dataGridView_customer_billing_addresses->TabIndex = 1;
             // 
             // groupBox_create_customer
             // 
@@ -433,30 +438,30 @@ namespace Projet
             this->dataGridView_customers->TabIndex = 0;
             this->dataGridView_customers->SelectionChanged += gcnew System::EventHandler(this, &UserInterface::dataGridView_customers_selectionChanged);
             // 
-            // tab_staff
+            // tab_employee
             // 
-            this->tab_staff->Controls->Add(this->dataGridView_staff);
-            this->tab_staff->Location = System::Drawing::Point(4, 28);
-            this->tab_staff->Name = L"tab_staff";
-            this->tab_staff->Padding = System::Windows::Forms::Padding(3);
-            this->tab_staff->Size = System::Drawing::Size(1246, 710);
-            this->tab_staff->TabIndex = 3;
-            this->tab_staff->Text = L"Staff";
-            this->tab_staff->UseVisualStyleBackColor = true;
+            this->tab_employee->Controls->Add(this->dataGridView_employee);
+            this->tab_employee->Location = System::Drawing::Point(4, 28);
+            this->tab_employee->Name = L"tab_employee";
+            this->tab_employee->Padding = System::Windows::Forms::Padding(3);
+            this->tab_employee->Size = System::Drawing::Size(1246, 710);
+            this->tab_employee->TabIndex = 3;
+            this->tab_employee->Text = L"Employee";
+            this->tab_employee->UseVisualStyleBackColor = true;
             // 
-            // dataGridView_staff
+            // dataGridView_employee
             // 
-            this->dataGridView_staff->AllowUserToAddRows = false;
-            this->dataGridView_staff->BorderStyle = System::Windows::Forms::BorderStyle::None;
-            this->dataGridView_staff->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::Sunken;
-            this->dataGridView_staff->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-            this->dataGridView_staff->Location = System::Drawing::Point(8, 6);
-            this->dataGridView_staff->Name = L"dataGridView_staff";
-            this->dataGridView_staff->ReadOnly = true;
-            this->dataGridView_staff->RowHeadersWidth = 51;
-            this->dataGridView_staff->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_staff->Size = System::Drawing::Size(1228, 227);
-            this->dataGridView_staff->TabIndex = 0;
+            this->dataGridView_employee->AllowUserToAddRows = false;
+            this->dataGridView_employee->BorderStyle = System::Windows::Forms::BorderStyle::None;
+            this->dataGridView_employee->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::Sunken;
+            this->dataGridView_employee->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+            this->dataGridView_employee->Location = System::Drawing::Point(8, 6);
+            this->dataGridView_employee->Name = L"dataGridView_employee";
+            this->dataGridView_employee->ReadOnly = true;
+            this->dataGridView_employee->RowHeadersWidth = 51;
+            this->dataGridView_employee->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+            this->dataGridView_employee->Size = System::Drawing::Size(1228, 227);
+            this->dataGridView_employee->TabIndex = 0;
             // 
             // tab_statistics
             // 
@@ -492,8 +497,8 @@ namespace Projet
             this->groupBox_customer->ResumeLayout(false);
             this->groupBox_customer->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customers))->EndInit();
-            this->tab_staff->ResumeLayout(false);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_staff))->EndInit();
+            this->tab_employee->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_employee))->EndInit();
             this->ResumeLayout(false);
 
         }
@@ -566,12 +571,12 @@ namespace Projet
             this->dataGridView_customer_orders->Columns["id_order"]->Visible = false;
             
             this->dataGridView_customer_orders->Sort(this->dataGridView_customer_orders->Columns["order_date"], System::ComponentModel::ListSortDirection::Descending);
-
-            
             
             this->dataGridView_customer_orders->Columns["order_reference"]->HeaderText = "Order reference";
             this->dataGridView_customer_orders->Columns["total_amount"]->HeaderText = "Total Amount";
-            
+            this->dataGridView_customer_orders->Columns["order_discount_percentage"]->HeaderText = "Discount Percentage";
+            this->dataGridView_customer_orders->Columns["order_date"]->HeaderText = "Order Date";
+            this->dataGridView_customer_orders->Columns["delivery_date"]->HeaderText = "Delivery Date";
         }
 
         void refresh_customer_billing_addresses_datagrid()
@@ -580,6 +585,12 @@ namespace Projet
             this->dataGridView_customer_billing_addresses->DataSource = this->selected_customer->getBillingAddresses();
             this->dataGridView_customer_billing_addresses->Columns["id_address"]->Visible = false;
 
+            this->dataGridView_customer_billing_addresses->Sort(this->dataGridView_customer_billing_addresses->Columns["postal_code"], System::ComponentModel::ListSortDirection::Descending);
+            
+            this->dataGridView_customer_billing_addresses->Columns["city"]->HeaderText = "City";
+            this->dataGridView_customer_billing_addresses->Columns["postal_code"]->HeaderText = "Postal Code";
+            this->dataGridView_customer_billing_addresses->Columns["street"]->HeaderText = "Street";
+            this->dataGridView_customer_billing_addresses->Columns["street_number"]->HeaderText = "Street Number";
         }
 
         void refresh_customer_delivery_addresses_datagrid()
@@ -588,6 +599,12 @@ namespace Projet
             this->dataGridView_customer_delivery_addresses->DataSource = this->selected_customer->getDeliveryAddresses();
             this->dataGridView_customer_delivery_addresses->Columns["id_address"]->Visible = false;
 
+            this->dataGridView_customer_delivery_addresses->Sort(this->dataGridView_customer_delivery_addresses->Columns["postal_code"], System::ComponentModel::ListSortDirection::Descending);
+            
+            this->dataGridView_customer_delivery_addresses->Columns["city"]->HeaderText = "City";
+            this->dataGridView_customer_delivery_addresses->Columns["postal_code"]->HeaderText = "Postal Code";
+            this->dataGridView_customer_delivery_addresses->Columns["street"]->HeaderText = "Street";
+            this->dataGridView_customer_delivery_addresses->Columns["street_number"]->HeaderText = "Street Number";
         }
 
     // Events
@@ -649,23 +666,23 @@ namespace Projet
         }
     }
         
-    // Employee/Staff tab
+    // Employee tab
     private:
         void refresh_employee_datagrid()
         {
-            this->dataGridView_staff->Refresh();
-            this->dataGridView_staff->DataSource = SQLserver->SQL_getEmployeeList();
-            this->dataGridView_staff->Columns["id_person"]->Width = 40;
-            this->dataGridView_staff->Columns["hiring_date"]->Width = 130;
-            this->dataGridView_staff->Columns["id_address"]->Width = 130;
-            this->dataGridView_staff->Columns["id_manager"]->Width = 130;
+            this->dataGridView_employee->Refresh();
+            this->dataGridView_employee->DataSource = SQLserver->SQL_getEmployeeList();
+            this->dataGridView_employee->Columns["id_person"]->Width = 40;
+            this->dataGridView_employee->Columns["hiring_date"]->Width = 130;
+            this->dataGridView_employee->Columns["id_address"]->Width = 130;
+            this->dataGridView_employee->Columns["id_manager"]->Width = 130;
 
-            this->dataGridView_staff->Columns["id_person"]->HeaderText = "ID";
-            this->dataGridView_staff->Columns["first_name"]->HeaderText = "First name";
-            this->dataGridView_staff->Columns["last_name"]->HeaderText = "Last name";
-            this->dataGridView_staff->Columns["hiring_date"]->HeaderText = "Hiring date";
-            this->dataGridView_staff->Columns["id_address"]->HeaderText = "Address ID";
-            this->dataGridView_staff->Columns["id_manager"]->HeaderText = "Manager ID";
+            this->dataGridView_employee->Columns["id_person"]->HeaderText = "ID";
+            this->dataGridView_employee->Columns["first_name"]->HeaderText = "First name";
+            this->dataGridView_employee->Columns["last_name"]->HeaderText = "Last name";
+            this->dataGridView_employee->Columns["hiring_date"]->HeaderText = "Hiring date";
+            this->dataGridView_employee->Columns["id_address"]->HeaderText = "Address ID";
+            this->dataGridView_employee->Columns["id_manager"]->HeaderText = "Manager ID";
         }
 };
 }

@@ -236,7 +236,6 @@ System::Data::DataTable^ SQLservices::SQL_getCustomerDeliveryAddresses(int id)
 
     return this->SQLadapter->sendQuery(cmd);
 }
-
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Employee Queries
