@@ -363,10 +363,11 @@ namespace Projet
             this->dataGridView_staff->BorderStyle = System::Windows::Forms::BorderStyle::None;
             this->dataGridView_staff->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::Sunken;
             this->dataGridView_staff->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-            this->dataGridView_staff->Location = System::Drawing::Point(6, 6);
+            this->dataGridView_staff->Location = System::Drawing::Point(8, 6);
             this->dataGridView_staff->Name = L"dataGridView_staff";
             this->dataGridView_staff->RowHeadersWidth = 51;
-            this->dataGridView_staff->Size = System::Drawing::Size(1232, 227);
+            this->dataGridView_staff->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+            this->dataGridView_staff->Size = System::Drawing::Size(1228, 227);
             this->dataGridView_staff->TabIndex = 0;
             // 
             // tab_statistics
