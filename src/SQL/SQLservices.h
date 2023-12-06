@@ -28,4 +28,10 @@ public:
     System::Data::DataSet^ SQL_modifyCustomer(int id, System::DateTime);
 
     void SQL_deleteCustomer(int id);
+
+    System::Data::DataSet^ SQL_getCustomerOrders(int id);
+
+    void SQL_deleteCustomerOrders(int id);
+
+    System::Data::DataSet^ SQL_getEmployeeList();
 };
