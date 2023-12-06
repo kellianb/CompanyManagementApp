@@ -28,5 +28,10 @@ public:
     void delete_in_DB() override;
 
     System::Data::DataTable^ getOrders();
+
+    System::Data::DataTable^ getBillingAddresses();
+    
+    System::Data::DataTable^ getDeliveryAddresses();
+    
     
 };
