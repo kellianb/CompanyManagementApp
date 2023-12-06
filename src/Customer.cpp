@@ -15,12 +15,12 @@ void Customer::fetch_customer_from_DB()
 
 void Customer::modify_customer_in_DB()
 {
-    
+    this->SQLserv.SQL_modifyCustomer(this->id, this->birth_date);
 }
 
 void Customer::delete_customer_from_DB()
 {
-    
+    this->SQLserv.SQL_deleteCustomer(this->id);
 }
 
 Customer::Customer(int id) : Person(id)

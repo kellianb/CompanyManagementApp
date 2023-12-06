@@ -408,6 +408,16 @@ namespace Projet
             this->dataGridView_customers->Refresh();
             this->dataGridView_customers->DataSource = SQLserver->SQL_getCustomerList();
             this->dataGridView_customers->DataMember = "Customers";
+
+            this->dataGridView_customers->Columns["id_person"]->Width = 40;
+            this->dataGridView_customers->Columns["first_order_date"]->Width = 130;
+
+            this->dataGridView_customers->Columns["id_person"]->HeaderText = "ID";
+            this->dataGridView_customers->Columns["first_order_date"]->HeaderText = "First order date";
+            this->dataGridView_customers->Columns["first_name"]->HeaderText = "First name";
+            this->dataGridView_customers->Columns["last_name"]->HeaderText = "Last name";
+            this->dataGridView_customers->Columns["birth_date"]->HeaderText = "Birth date";
+            
         }
         
     private:
@@ -430,7 +440,7 @@ namespace Projet
             }
 
            
-            String^ selectedIDstring = this->dataGridView_customers->SelectedRows[0]->Cells["ID"]->Value->
+            String^ selectedIDstring = this->dataGridView_customers->SelectedRows[0]->Cells["id_person"]->Value->
                 ToString();
 
             this->groupBox_customer->Text = "Customer " + selectedIDstring;
@@ -455,6 +465,8 @@ namespace Projet
         System::Void button_delete_customer_Click(System::Object^ sender, System::EventArgs^ e)
         {
             this->selected_customer->delete_in_DB();
+
+            this->refresh_customers_datagrid();
         }
 
     private:

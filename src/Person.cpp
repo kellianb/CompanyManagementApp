@@ -49,7 +49,7 @@ void Person::setLastName(System::String^ last_name_param)
 
 void Person::modify_person_in_DB()
 {
-    
+    this->SQLserv.SQL_modifyPerson(this->id, this->first_name, this->last_name);
 }
 
 void Person::delete_person_from_DB()
