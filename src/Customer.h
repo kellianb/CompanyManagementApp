@@ -33,5 +33,4 @@ public:
     
     System::Data::DataTable^ getDeliveryAddresses();
     
-    
 };
