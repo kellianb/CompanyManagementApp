@@ -9,8 +9,64 @@ SQLservices::SQLservices()
 }
 // ---------------------------------------------------------------------------------------------------------------------
 
+// Orders Queries
+System::Data::DataTable^ SQLservices::SQL_addOrder(System::DateTime, System::DateTime, System::Decimal, System::Decimal,
+    int id_delivery_address, int id_billing_address, int id_customer)
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_getOrder(int id)
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_getOrderList()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_modifyOrder(int id_order, System::DateTime, System::DateTime, System::Decimal,
+    System::Decimal, int id_delivery_address, int id_billing_address, int id_customer)
+{
+    return nullptr;
+}
+
+void SQLservices::SQL_deleteOrder(int id)
+{
+    
+}
+// ---------------------------------------------------------------------------------------------------------------------
+
+// Inventory Queries
+System::Data::DataTable^ SQLservices::SQL_addProduct(System::String^, int amount, int reorder)
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_getProduct(int id)
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_getProductList()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_modifyProduct(int id, System::String^, int amount, int reorder)
+{
+    return nullptr;
+}
+
+void SQLservices::SQL_deleteProduct(int id)
+{
+    
+}
+// ---------------------------------------------------------------------------------------------------------------------
+
 // Person queries
-System::Data::DataSet^ SQLservices::SQL_addPerson(System::String^ first_name, System::String^ last_name)
+System::Data::DataTable^ SQLservices::SQL_addPerson(System::String^ first_name, System::String^ last_name)
 {
     System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.People (first_name, last_name) OUTPUT inserted.id_person VALUES('@fname', '@lname')";
 
@@ -19,10 +75,10 @@ System::Data::DataSet^ SQLservices::SQL_addPerson(System::String^ first_name, Sy
     cmd->Parameters->AddWithValue("@fname", first_name);
     cmd->Parameters->AddWithValue("@lname", last_name);
 
-    return this->SQLadapter->sendQuery(cmd, "addedPersonID");
+    return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataSet^ SQLservices::SQL_getPerson(int id)
+System::Data::DataTable^ SQLservices::SQL_getPerson(int id)
 {
     System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.People WHERE id_person = @id";
 
@@ -30,10 +86,10 @@ System::Data::DataSet^ SQLservices::SQL_getPerson(int id)
     
     cmd->Parameters->AddWithValue("@id", id);
 
-    return this->SQLadapter->sendQuery(cmd, "Person");
+    return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataSet^ SQLservices::SQL_modifyPerson(int id, System::String^ new_first_name, System::String^ new_last_name)
+System::Data::DataTable^ SQLservices::SQL_modifyPerson(int id, System::String^ new_first_name, System::String^ new_last_name)
 {
     System::String^ cmdString = "UPDATE Projet_POO_Livrable.People SET first_name = @fname, last_name = @lname WHERE id_person = @id";
 
@@ -43,7 +99,7 @@ System::Data::DataSet^ SQLservices::SQL_modifyPerson(int id, System::String^ new
     cmd->Parameters->AddWithValue("@fname", new_first_name);
     cmd->Parameters->AddWithValue("@lname", new_last_name);
 
-    return this->SQLadapter->sendQuery(cmd, "Person");
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 void SQLservices::SQL_deletePerson(int id)
@@ -54,12 +110,12 @@ void SQLservices::SQL_deletePerson(int id)
 
     cmd->Parameters->AddWithValue("@id", id);
 
-    this->SQLadapter->sendQuery(cmd, "Person");
+    this->SQLadapter->sendQuery(cmd);
 }
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Customer queries
-System::Data::DataSet^ SQLservices::SQL_addCustomer(int id, System::DateTime birth_date)
+System::Data::DataTable^ SQLservices::SQL_addCustomer(int id, System::DateTime birth_date)
 {
     System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Customers (id_person, birth_date) OUTPUT inserted.id_person VALUES(@id, @birthDate)";
 
@@ -68,19 +124,19 @@ System::Data::DataSet^ SQLservices::SQL_addCustomer(int id, System::DateTime bir
     cmd->Parameters->AddWithValue("@id", id);
     cmd->Parameters->AddWithValue("@birthDate", birth_date);
 
-    return this->SQLadapter->sendQuery(cmd, "addedCustomer");
+    return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataSet^ SQLservices::SQL_getCustomerList()
+System::Data::DataTable^ SQLservices::SQL_getCustomerList()
 {
-    System::String^ cmdString = "SELECT Customers.id_person, P.first_name, P.last_name, Customers.birth_date, Customers.first_order_date FROM Projet_POO.Projet_POO_Livrable.Customers JOIN Projet_POO_Livrable.People P on P.id_person = Customers.id_person";
+    System::String^ cmdString = "SELECT C.id_person, P.first_name, P.last_name, C.birth_date, C.first_order_date FROM Projet_POO.Projet_POO_Livrable.Customers C JOIN Projet_POO_Livrable.People P on P.id_person = C.id_person";
     
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
-    return this->SQLadapter->sendQuery(cmd, "Customers");
+    return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataSet^ SQLservices::SQL_getCustomer(int id)
+System::Data::DataTable^ SQLservices::SQL_getCustomer(int id)
 {
     System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Customers WHERE id_person = @id";
 
@@ -88,12 +144,12 @@ System::Data::DataSet^ SQLservices::SQL_getCustomer(int id)
     
     cmd->Parameters->AddWithValue("@id", id);
 
-    return this->SQLadapter->sendQuery(cmd, "Customer");
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 
 
-System::Data::DataSet^ SQLservices::SQL_modifyCustomer(int id, System::DateTime new_birth_date)
+System::Data::DataTable^ SQLservices::SQL_modifyCustomer(int id, System::DateTime new_birth_date)
 {
     System::String^ cmdString = "UPDATE Projet_POO_Livrable.customers SET birth_date = @birthDate WHERE id_person = @id";
 
@@ -102,7 +158,7 @@ System::Data::DataSet^ SQLservices::SQL_modifyCustomer(int id, System::DateTime 
     cmd->Parameters->AddWithValue("@birthDate", new_birth_date);
     cmd->Parameters->AddWithValue("@id", id);
 
-    return this->SQLadapter->sendQuery(cmd, "Customers");
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 void SQLservices::SQL_deleteCustomer(int id)
@@ -116,18 +172,18 @@ void SQLservices::SQL_deleteCustomer(int id)
     SQL_deleteCustomerOrders(id);
     SQL_deleteCustomerAddresses(id);
 
-    this->SQLadapter->sendQuery(cmd, "Customer");
+    this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataSet^ SQLservices::SQL_getCustomerOrders(int id)
+System::Data::DataTable^ SQLservices::SQL_getCustomerOrders(int id)
 {
-    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Orders WHERE id_customer = @id";
+    System::String^ cmdString = "SELECT id_order, order_reference, total_amount, order_discount_percentage, order_date, delivery_date FROM Projet_POO_Livrable.Orders WHERE id_customer = @id";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
     cmd->Parameters->AddWithValue("@id", id);
 
-    return this->SQLadapter->sendQuery(cmd, "Customer");
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 void SQLservices::SQL_deleteCustomerOrders(int id)
@@ -138,7 +194,7 @@ void SQLservices::SQL_deleteCustomerOrders(int id)
 
     cmd->Parameters->AddWithValue("@id", id);
 
-    this->SQLadapter->sendQuery(cmd, "Customer");
+    this->SQLadapter->sendQuery(cmd);
 }
 
 void SQLservices::SQL_deleteCustomerAddresses(int id)
@@ -154,16 +210,14 @@ void SQLservices::SQL_deleteCustomerAddresses(int id)
 
     cmd1->Parameters->AddWithValue("@id", id);
 
-    this->SQLadapter->sendQuery(cmd1, "Customer");
-    this->SQLadapter->sendQuery(cmd2, "Customer");
+    this->SQLadapter->sendQuery(cmd1);
+    this->SQLadapter->sendQuery(cmd2);
     // this->SQLadapter->sendQuery(cmd3, "Address"); TODO : Implement it at the end or else every addresses will be Deleted when testing
 }
-
-
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Employee Queries
-System::Data::DataSet^ SQLservices::SQL_addEmployee(int id_person, System::DateTime hiring_date, int id_address, int id_manager)
+System::Data::DataTable^ SQLservices::SQL_addEmployee(int id_person, System::DateTime hiring_date, int id_address, int id_manager)
 {
         System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Employees (id_person, hiring_date, id_address, id_manager) OUTPUT inserted.id_person VALUES(@idPerson, @hiringDate, @Address, @manager)";
 
@@ -174,19 +228,19 @@ System::Data::DataSet^ SQLservices::SQL_addEmployee(int id_person, System::DateT
     cmd->Parameters->AddWithValue("@address", id_address);
     cmd->Parameters->AddWithValue("@Manager", id_manager);
 
-    return this->SQLadapter->sendQuery(cmd, "addedEmployee");
+    return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataSet^ SQLservices::SQL_getEmployeeList()
+System::Data::DataTable^ SQLservices::SQL_getEmployeeList()
 {
-    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Employees";
+    System::String^ cmdString = "SELECT E.id_person, P.first_name, P.last_name, E.hiring_date, E.id_address, E.id_manager FROM Projet_POO.Projet_POO_Livrable.Employees E JOIN Projet_POO_Livrable.People P on P.id_person = E.id_person";
     
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
-    return this->SQLadapter->sendQuery(cmd, "Employees");
+    return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataSet^ SQLservices::SQL_getEmployee(int id)
+System::Data::DataTable^ SQLservices::SQL_getEmployee(int id)
 {
     System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Employee WHERE id_person = @id";
 
@@ -194,10 +248,10 @@ System::Data::DataSet^ SQLservices::SQL_getEmployee(int id)
     
     cmd->Parameters->AddWithValue("@id", id);
 
-    return this->SQLadapter->sendQuery(cmd, "Employee");
+    return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataSet^ SQLservices::SQL_modifyEmployee(int id_person, System::DateTime new_hiring_date, int id_address, int id_manager)
+System::Data::DataTable^ SQLservices::SQL_modifyEmployee(int id_person, System::DateTime new_hiring_date, int id_address, int id_manager)
 {
     System::String^ cmdString = "UPDATE Projet_POO_Livrable.Employees SET hiring_date = @hiringDate, id_address = @address WHERE id_person = @idPerson";
 
@@ -208,7 +262,7 @@ System::Data::DataSet^ SQLservices::SQL_modifyEmployee(int id_person, System::Da
     cmd->Parameters->AddWithValue("@address", id_address);
     cmd->Parameters->AddWithValue("@manager", id_manager);
 
-    return this->SQLadapter->sendQuery(cmd, "Employee");
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 void SQLservices::SQL_deleteEmployee(int id)
@@ -219,7 +273,7 @@ void SQLservices::SQL_deleteEmployee(int id)
 
     cmd->Parameters->AddWithValue("@id", id);
 
-    this->SQLadapter->sendQuery(cmd, "Employee");
+    this->SQLadapter->sendQuery(cmd);
 }
 
 void SQLservices::SQL_deleteEmployeeAddresses(int id)
@@ -230,7 +284,54 @@ void SQLservices::SQL_deleteEmployeeAddresses(int id)
 
     cmd->Parameters->AddWithValue("@id", id);
 
-    this->SQLadapter->sendQuery(cmd, "Employee");
-    // this->SQLadapter->sendQuery(cmd3, "Address"); TODO : Implement it at the end or else every addresses will be Deleted when testing
+    this->SQLadapter->sendQuery(cmd);
+    // this->SQLadapter->sendQuery(cmd3); TODO : Implement it at the end or else every addresses will be Deleted when testing
+}
+// ---------------------------------------------------------------------------------------------------------------------
+
+// Statistics Queries
+System::Data::DataTable^ SQLservices::SQL_calculateAverageBasketSize()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_calculateMonthlyTurnover(System::DateTime month)
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_identifyProductsBelowThreshold()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_calculateTotalPurchasesByCustomer(int customerId)
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_identifyTop10BestSellingItems()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_identifyTop10LeastSellingItems()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_calculateCommercialStockValue()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_calculatePurchaseStockValue()
+{
+    return nullptr;
+}
+
+System::Data::DataTable^ SQLservices::SQL_simulateStockValueVariations(array<System::String^>^ modifications)
+{
+    return nullptr;
 }
 // ---------------------------------------------------------------------------------------------------------------------
