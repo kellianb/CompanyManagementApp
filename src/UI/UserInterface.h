@@ -3,6 +3,7 @@
 #include "../SQL/SQLservices.h"
 #include "../Customer.h"
 #include "createCustomerPrompt.h"
+#include "../Employee.h"
 
 
 namespace Projet
@@ -22,6 +23,7 @@ namespace Projet
     private:
         SQLservices^ SQLserver = gcnew SQLservices;
         Customer^ selected_customer;
+        Employee^ selected_employee;
 
     private:
         System::Windows::Forms::TextBox^ textBox_last_name_customer;
@@ -30,13 +32,28 @@ namespace Projet
         System::Windows::Forms::TextBox^ textBox_first_name_customer;
 
     private:
+        System::Windows::Forms::TextBox^ textBox_last_name_employee;
+
+    private:
+        System::Windows::Forms::TextBox^ textBox_first_name_employee;
+
+    private:
         System::Windows::Forms::GroupBox^ groupBox_customer;
+
+    private:
+        System::Windows::Forms::GroupBox^ groupBox_employee;
 
     private:
         System::Windows::Forms::Label^ label_last_name_customer;
 
     private:
         System::Windows::Forms::Label^ label_first_name_customer;
+
+    private:
+        System::Windows::Forms::Label^ label_last_name_employee;
+
+    private:
+        System::Windows::Forms::Label^ label_first_name_employee;
 
     private:
         System::Windows::Forms::Button^ button_delete_customer;
@@ -148,6 +165,7 @@ namespace Projet
             this->dataGridView_customer_orders = (gcnew System::Windows::Forms::DataGridView());
             this->button_customers_reload = (gcnew System::Windows::Forms::Button());
             this->groupBox_customer = (gcnew System::Windows::Forms::GroupBox());
+            this->groupBox_employee = (gcnew System::Windows::Forms::GroupBox()); 
             this->label_customer_birth_date = (gcnew System::Windows::Forms::Label());
             this->dateTimePicker_customer_birth_date = (gcnew System::Windows::Forms::DateTimePicker());
             this->button_delete_customer = (gcnew System::Windows::Forms::Button());
@@ -156,6 +174,10 @@ namespace Projet
             this->label_first_name_customer = (gcnew System::Windows::Forms::Label());
             this->textBox_first_name_customer = (gcnew System::Windows::Forms::TextBox());
             this->textBox_last_name_customer = (gcnew System::Windows::Forms::TextBox());
+            this->label_last_name_employee = (gcnew System::Windows::Forms::Label());
+            this->label_first_name_employee = (gcnew System::Windows::Forms::Label());
+            this->textBox_first_name_employee = (gcnew System::Windows::Forms::TextBox());
+            this->textBox_last_name_employee = (gcnew System::Windows::Forms::TextBox());
             this->dataGridView_customers = (gcnew System::Windows::Forms::DataGridView());
             this->tab_employee = (gcnew System::Windows::Forms::TabPage());
             this->dataGridView_employee = (gcnew System::Windows::Forms::DataGridView());
@@ -170,6 +192,7 @@ namespace Projet
             this->groupBox_customer_orders->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_orders))->BeginInit();
             this->groupBox_customer->SuspendLayout();
+            this->groupBox_employee->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customers))->BeginInit();
             this->tab_employee->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_employee))->BeginInit();
@@ -496,6 +519,8 @@ namespace Projet
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_orders))->EndInit();
             this->groupBox_customer->ResumeLayout(false);
             this->groupBox_customer->PerformLayout();
+            this->groupBox_employee->ResumeLayout(false);
+            this->groupBox_employee->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customers))->EndInit();
             this->tab_employee->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_employee))->EndInit();
@@ -684,6 +709,33 @@ namespace Projet
             this->dataGridView_employee->Columns["id_address"]->HeaderText = "Address ID";
             this->dataGridView_employee->Columns["id_manager"]->HeaderText = "Manager ID";
         }
+
+    private:
+        void updateSelectedEmployee(int id)
+        {
+            selected_employee = gcnew Employee(id);
+
+            this->textBox_first_name_employee->Text = selected_employee->getFirstName();
+            this->textBox_last_name_employee->Text = selected_employee->getLastName();
+            //this->dateTimePicker_employee_hiring_date->Value = selected_employee->getHiringDate();
+        }
+
+        // Events
+    private:
+        void dataGridView_employee_selectionChanged(System::Object^ sender, System::EventArgs^ e)
+        {
+            // Return if no columns are selected
+            if (dataGridView_customers->SelectedRows->Count == 0)
+            {
+                return;
+            }
+            
+            String^ selectedIDstring = this->dataGridView_employee->SelectedRows[0]->Cells["id_person"]->Value->
+                ToString();
+
+            this->groupBox_employee->Text = "Employee " + selectedIDstring + " Information";
+
+            updateSelectedEmployee(System::Convert::ToInt32(selectedIDstring));
+        }
 };
 }
-
