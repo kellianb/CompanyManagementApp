@@ -76,3 +76,13 @@ System::Data::DataTable^ Customer::getOrders()
     
     return myDataTable;
 }
+
+System::Data::DataTable^ Customer::getBillingAddresses()
+{
+    return this->SQLserv.SQL_getCustomerBillingAddresses(this->id);
+}
+
+System::Data::DataTable^ Customer::getDeliveryAddresses()
+{
+    return this->SQLserv.SQL_getCustomerDeliveryAddresses(this->id);
+}

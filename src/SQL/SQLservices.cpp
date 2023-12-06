@@ -214,6 +214,29 @@ void SQLservices::SQL_deleteCustomerAddresses(int id)
     this->SQLadapter->sendQuery(cmd2);
     // this->SQLadapter->sendQuery(cmd3, "Address"); TODO : Implement it at the end or else every addresses will be Deleted when testing
 }
+
+System::Data::DataTable^ SQLservices::SQL_getCustomerBillingAddresses(int id)
+{
+    System::String^ cmdString = "SELECT hba.id_address, A.city, A.postal_code, A.street, A.street_number FROM Projet_POO_Livrable.Customers JOIN Projet_POO_Livrable.has_billing_address hba on Customers.id_person = hba.id_customer JOIN Projet_POO_Livrable.Addresses A on A.id_address = hba.id_address WHERE id_customer = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@id", id);
+
+    return this->SQLadapter->sendQuery(cmd);
+}
+
+System::Data::DataTable^ SQLservices::SQL_getCustomerDeliveryAddresses(int id)
+{
+    System::String^ cmdString = "SELECT hda.id_address, A.city, A.postal_code, A.street, A.street_number FROM Projet_POO_Livrable.Customers JOIN Projet_POO_Livrable.has_delivery_address hda on Customers.id_person = hda.id_customer JOIN Projet_POO_Livrable.Addresses A on A.id_address = hda.id_address WHERE id_customer = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@id", id);
+
+    return this->SQLadapter->sendQuery(cmd);
+}
+
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Employee Queries
