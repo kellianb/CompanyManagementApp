@@ -1,5 +1,7 @@
 ﻿#include "SQLservices.h"
 
+#include <crtdbg.h>
+
 
 SQLservices::SQLservices()
 {
@@ -12,8 +14,8 @@ System::Data::DataSet^ SQLservices::SQL_addPerson(System::String^ first_name, Sy
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
-    cmd->Parameters->Add("@param1", first_name);
-    cmd->Parameters->Add("@param2", last_name);
+    cmd->Parameters->AddWithValue("@param1", first_name);
+    cmd->Parameters->AddWithValue("@param2", last_name);
 
     return this->SQLadapter->sendQuery(cmd, "addedPersonID");
 }
@@ -24,8 +26,7 @@ System::Data::DataSet^ SQLservices::SQL_getPerson(int id)
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
-    cmd->Parameters->Add(gcnew System::Data::SqlClient::SqlParameter("@param", System::Data::SqlDbType::Int));
-    cmd->Parameters["@param"]->Value = id;
+    cmd->Parameters->AddWithValue("@param", id);
 
     return this->SQLadapter->sendQuery(cmd, "Person");
 }
@@ -36,7 +37,7 @@ void SQLservices::SQL_deletePerson(int id)
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
-    cmd->Parameters->Add("@param", id);
+    cmd->Parameters->AddWithValue("@param", id);
 
     this->SQLadapter->sendQuery(cmd, "Person");
 }
@@ -47,8 +48,8 @@ System::Data::DataSet^ SQLservices::SQL_addCustomer(int id, System::DateTime^ bi
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
-    cmd->Parameters->Add("@param1", id);
-    cmd->Parameters->Add("@param2", birth_date->ToString("yyyy-MM-dd"));
+    cmd->Parameters->AddWithValue("@param1", id);
+    cmd->Parameters->AddWithValue("@param2", birth_date->ToString("yyyy-MM-dd"));
 
     return this->SQLadapter->sendQuery(cmd, "addedCustomer");
 }
@@ -68,8 +69,43 @@ System::Data::DataSet^ SQLservices::SQL_getCustomer(int id)
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
-    cmd->Parameters->Add(gcnew System::Data::SqlClient::SqlParameter("@param", System::Data::SqlDbType::Int));
-    cmd->Parameters["@param"]->Value = id;
+    cmd->Parameters->AddWithValue("@param", id);
 
     return this->SQLadapter->sendQuery(cmd, "Customer");
+}
+
+System::Data::DataSet^ SQLservices::SQL_updatePerson(int id, System::String^ new_first_name, System::String^ new_last_name)
+{
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.People SET first_name = @param1, last_name = @param2 WHERE id = @param";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@param", id);
+    cmd->Parameters->AddWithValue("@param1", new_first_name);
+    cmd->Parameters->AddWithValue("@param2", new_last_name);
+
+    return this->SQLadapter->sendQuery(cmd, "Person");
+}
+
+System::Data::DataSet^ SQLservices::SQL_updateCustomer(int id, System::DateTime^ new_birth_date)
+{
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.customers SET birth_date = @param1 WHERE id = @param2";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@param1", new_birth_date);
+    cmd->Parameters->AddWithValue("@param2", id);
+
+    return this->SQLadapter->sendQuery(cmd, "Customers");
+}
+
+void SQLservices::SQL_deleteCustomer(int id)
+{
+    System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.Customers WHERE id_person = @param";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@param", id);
+
+    this->SQLadapter->sendQuery(cmd, "Person");
 }
