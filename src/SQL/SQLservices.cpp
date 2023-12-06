@@ -154,8 +154,8 @@ void SQLservices::SQL_deleteCustomerAddresses(int id)
 
     cmd1->Parameters->AddWithValue("@id", id);
 
-    this->SQLadapter->sendQuery(cmd1, "Customer");
-    this->SQLadapter->sendQuery(cmd2, "Customer");
+    this->SQLadapter->sendQuery(cmd1);
+    this->SQLadapter->sendQuery(cmd2);
     // this->SQLadapter->sendQuery(cmd3, "Address"); TODO : Implement it at the end or else every addresses will be Deleted when testing
 }
 
