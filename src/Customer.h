@@ -5,10 +5,15 @@
 ref class Customer : Person
 {
 private:
+    System::DateTime birth_date;
+
+    // Private DB modification methods
     void create_customer_in_DB();
     void fetch_customer_from_DB();
 
-    System::DateTime birth_date;
+    // These methods only affect the "Customers" Table, not the parent "People" table
+    void modify_customer_in_DB();
+    void delete_customer_from_DB();
     
 public:
     Customer(int id);
@@ -17,5 +22,10 @@ public:
 
     System::DateTime getBirthDate();
     void setBirthDate(System::DateTime);
+
+    void modify_in_DB() override;
+    void delete_in_DB() override;
+
+    System::Data::DataSet^ getOrders();
     
 };

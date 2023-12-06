@@ -5,27 +5,35 @@ ref class Person
 {
 private:
     void create_person_in_DB();
-    virtual void fetch_person_from_DB();
+    void fetch_person_from_DB();
     
 protected:
+    // SQL services object
+    SQLservices SQLserv;
+
+    // Properties of the person
     int id;
     System::String^ first_name;
     System::String^ last_name;
-    SQLservices SQLserv;
+
+    // Private DB modification methods
     void modify_person_in_DB();
     void delete_person_from_DB();
 
 public:
+    // Constructors
     Person(int);
     Person(System::String^, System::String^);
 
+    // Setters and getters
     System::String^ getFirstName();
     System::String^ getLastName();
 
     void setFirstName(System::String^);
     void setLastName(System::String^);
-    
-    virtual void modify_from_DB();
-    virtual void delete_from_DB();
+
+    // DB modification methods
+    virtual void modify_in_DB();
+    virtual void delete_in_DB();
 
 };

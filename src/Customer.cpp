@@ -13,6 +13,16 @@ void Customer::fetch_customer_from_DB()
     this->birth_date = safe_cast<System::DateTime>(buffer->Tables["Customer"]->Rows[0]["birth_date"]);
 }
 
+void Customer::modify_customer_in_DB()
+{
+    
+}
+
+void Customer::delete_customer_from_DB()
+{
+    
+}
+
 Customer::Customer(int id) : Person(id)
 {
     fetch_customer_from_DB();
@@ -31,4 +41,21 @@ System::DateTime Customer::getBirthDate()
 void Customer::setBirthDate(System::DateTime birth_date_param)
 {
     this->birth_date = birth_date_param;
+}
+
+void Customer::modify_in_DB()
+{
+    this->modify_person_in_DB();
+    this->modify_customer_in_DB();
+}
+
+void Customer::delete_in_DB()
+{
+    this->delete_customer_from_DB();
+    this->delete_person_from_DB();
+}
+
+System::Data::DataSet^ Customer::getOrders()
+{
+    return nullptr;
 }

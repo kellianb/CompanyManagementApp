@@ -49,6 +49,7 @@ void Person::setLastName(System::String^ last_name_param)
 
 void Person::modify_person_in_DB()
 {
+    
 }
 
 void Person::delete_person_from_DB()
@@ -57,12 +58,12 @@ void Person::delete_person_from_DB()
 }
 
 
-void Person::modify_from_DB()
+void Person::modify_in_DB()
 {
     modify_person_in_DB();
 }
 
-void Person::delete_from_DB()
+void Person::delete_in_DB()
 {
     delete_person_from_DB();
 }
