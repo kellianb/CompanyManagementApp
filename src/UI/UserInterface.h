@@ -51,8 +51,10 @@ namespace Projet
     private: System::Windows::Forms::Button^ button_create_customer;
     private: System::Windows::Forms::GroupBox^ groupBox_customer_billing_addresses;
     private: System::Windows::Forms::GroupBox^ groupBox_delivery_addresses;
-    private: System::Windows::Forms::DataGridView^ dataGridView2;
-    private: System::Windows::Forms::DataGridView^ dataGridView1;
+    private: System::Windows::Forms::DataGridView^ dataGridView_customer_delivery_addresses;
+
+    private: System::Windows::Forms::DataGridView^ dataGridView_customer_billing_addresses;
+
 
 
 
@@ -137,6 +139,10 @@ namespace Projet
             this->tab_orders = (gcnew System::Windows::Forms::TabPage());
             this->tab_inventory = (gcnew System::Windows::Forms::TabPage());
             this->tab_customers = (gcnew System::Windows::Forms::TabPage());
+            this->groupBox_delivery_addresses = (gcnew System::Windows::Forms::GroupBox());
+            this->dataGridView_customer_delivery_addresses = (gcnew System::Windows::Forms::DataGridView());
+            this->groupBox_customer_billing_addresses = (gcnew System::Windows::Forms::GroupBox());
+            this->dataGridView_customer_billing_addresses = (gcnew System::Windows::Forms::DataGridView());
             this->groupBox_create_customer = (gcnew System::Windows::Forms::GroupBox());
             this->button_create_customer = (gcnew System::Windows::Forms::Button());
             this->groupBox_customer_orders = (gcnew System::Windows::Forms::GroupBox());
@@ -155,12 +161,12 @@ namespace Projet
             this->tab_staff = (gcnew System::Windows::Forms::TabPage());
             this->dataGridView_staff = (gcnew System::Windows::Forms::DataGridView());
             this->tab_statistics = (gcnew System::Windows::Forms::TabPage());
-            this->groupBox_customer_billing_addresses = (gcnew System::Windows::Forms::GroupBox());
-            this->groupBox_delivery_addresses = (gcnew System::Windows::Forms::GroupBox());
-            this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-            this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
             this->tabController->SuspendLayout();
             this->tab_customers->SuspendLayout();
+            this->groupBox_delivery_addresses->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_delivery_addresses))->BeginInit();
+            this->groupBox_customer_billing_addresses->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_billing_addresses))->BeginInit();
             this->groupBox_create_customer->SuspendLayout();
             this->groupBox_customer_orders->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_orders))->BeginInit();
@@ -168,10 +174,6 @@ namespace Projet
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customers))->BeginInit();
             this->tab_staff->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_staff))->BeginInit();
-            this->groupBox_customer_billing_addresses->SuspendLayout();
-            this->groupBox_delivery_addresses->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
             this->SuspendLayout();
             // 
             // tabController
@@ -198,7 +200,7 @@ namespace Projet
             this->tab_orders->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
             this->tab_orders->Name = L"tab_orders";
             this->tab_orders->Padding = System::Windows::Forms::Padding(5, 4, 5, 4);
-            this->tab_orders->Size = System::Drawing::Size(1246, 669);
+            this->tab_orders->Size = System::Drawing::Size(1246, 710);
             this->tab_orders->TabIndex = 1;
             this->tab_orders->Text = L"Orders";
             this->tab_orders->UseVisualStyleBackColor = true;
@@ -208,7 +210,7 @@ namespace Projet
             this->tab_inventory->Location = System::Drawing::Point(4, 28);
             this->tab_inventory->Name = L"tab_inventory";
             this->tab_inventory->Padding = System::Windows::Forms::Padding(3);
-            this->tab_inventory->Size = System::Drawing::Size(1246, 669);
+            this->tab_inventory->Size = System::Drawing::Size(1246, 710);
             this->tab_inventory->TabIndex = 2;
             this->tab_inventory->Text = L"Inventory";
             this->tab_inventory->UseVisualStyleBackColor = true;
@@ -230,6 +232,46 @@ namespace Projet
             this->tab_customers->TabIndex = 0;
             this->tab_customers->Text = L"Customers";
             this->tab_customers->UseVisualStyleBackColor = true;
+            // 
+            // groupBox_delivery_addresses
+            // 
+            this->groupBox_delivery_addresses->Controls->Add(this->dataGridView_customer_delivery_addresses);
+            this->groupBox_delivery_addresses->Location = System::Drawing::Point(561, 534);
+            this->groupBox_delivery_addresses->Name = L"groupBox_delivery_addresses";
+            this->groupBox_delivery_addresses->Size = System::Drawing::Size(679, 169);
+            this->groupBox_delivery_addresses->TabIndex = 8;
+            this->groupBox_delivery_addresses->TabStop = false;
+            this->groupBox_delivery_addresses->Text = L"Delivery addresses";
+            // 
+            // dataGridView_customer_delivery_addresses
+            // 
+            this->dataGridView_customer_delivery_addresses->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+            this->dataGridView_customer_delivery_addresses->Location = System::Drawing::Point(6, 26);
+            this->dataGridView_customer_delivery_addresses->Name = L"dataGridView_customer_delivery_addresses";
+            this->dataGridView_customer_delivery_addresses->RowHeadersWidth = 51;
+            this->dataGridView_customer_delivery_addresses->RowTemplate->Height = 24;
+            this->dataGridView_customer_delivery_addresses->Size = System::Drawing::Size(661, 94);
+            this->dataGridView_customer_delivery_addresses->TabIndex = 1;
+            // 
+            // groupBox_customer_billing_addresses
+            // 
+            this->groupBox_customer_billing_addresses->Controls->Add(this->dataGridView_customer_billing_addresses);
+            this->groupBox_customer_billing_addresses->Location = System::Drawing::Point(8, 534);
+            this->groupBox_customer_billing_addresses->Name = L"groupBox_customer_billing_addresses";
+            this->groupBox_customer_billing_addresses->Size = System::Drawing::Size(539, 169);
+            this->groupBox_customer_billing_addresses->TabIndex = 7;
+            this->groupBox_customer_billing_addresses->TabStop = false;
+            this->groupBox_customer_billing_addresses->Text = L"Billing addresses";
+            // 
+            // dataGridView_customer_billing_addresses
+            // 
+            this->dataGridView_customer_billing_addresses->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+            this->dataGridView_customer_billing_addresses->Location = System::Drawing::Point(7, 27);
+            this->dataGridView_customer_billing_addresses->Name = L"dataGridView_customer_billing_addresses";
+            this->dataGridView_customer_billing_addresses->RowHeadersWidth = 51;
+            this->dataGridView_customer_billing_addresses->RowTemplate->Height = 24;
+            this->dataGridView_customer_billing_addresses->Size = System::Drawing::Size(526, 94);
+            this->dataGridView_customer_billing_addresses->TabIndex = 0;
             // 
             // groupBox_create_customer
             // 
@@ -397,7 +439,7 @@ namespace Projet
             this->tab_staff->Location = System::Drawing::Point(4, 28);
             this->tab_staff->Name = L"tab_staff";
             this->tab_staff->Padding = System::Windows::Forms::Padding(3);
-            this->tab_staff->Size = System::Drawing::Size(1246, 669);
+            this->tab_staff->Size = System::Drawing::Size(1246, 710);
             this->tab_staff->TabIndex = 3;
             this->tab_staff->Text = L"Staff";
             this->tab_staff->UseVisualStyleBackColor = true;
@@ -420,50 +462,10 @@ namespace Projet
             // 
             this->tab_statistics->Location = System::Drawing::Point(4, 28);
             this->tab_statistics->Name = L"tab_statistics";
-            this->tab_statistics->Size = System::Drawing::Size(1246, 669);
+            this->tab_statistics->Size = System::Drawing::Size(1246, 710);
             this->tab_statistics->TabIndex = 4;
             this->tab_statistics->Text = L"Statistics";
             this->tab_statistics->UseVisualStyleBackColor = true;
-            // 
-            // groupBox_customer_billing_addresses
-            // 
-            this->groupBox_customer_billing_addresses->Controls->Add(this->dataGridView1);
-            this->groupBox_customer_billing_addresses->Location = System::Drawing::Point(8, 534);
-            this->groupBox_customer_billing_addresses->Name = L"groupBox_customer_billing_addresses";
-            this->groupBox_customer_billing_addresses->Size = System::Drawing::Size(539, 169);
-            this->groupBox_customer_billing_addresses->TabIndex = 7;
-            this->groupBox_customer_billing_addresses->TabStop = false;
-            this->groupBox_customer_billing_addresses->Text = L"Billing addresses";
-            // 
-            // groupBox_delivery_addresses
-            // 
-            this->groupBox_delivery_addresses->Controls->Add(this->dataGridView2);
-            this->groupBox_delivery_addresses->Location = System::Drawing::Point(561, 534);
-            this->groupBox_delivery_addresses->Name = L"groupBox_delivery_addresses";
-            this->groupBox_delivery_addresses->Size = System::Drawing::Size(679, 169);
-            this->groupBox_delivery_addresses->TabIndex = 8;
-            this->groupBox_delivery_addresses->TabStop = false;
-            this->groupBox_delivery_addresses->Text = L"Delivery addresses";
-            // 
-            // dataGridView1
-            // 
-            this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-            this->dataGridView1->Location = System::Drawing::Point(7, 27);
-            this->dataGridView1->Name = L"dataGridView1";
-            this->dataGridView1->RowHeadersWidth = 51;
-            this->dataGridView1->RowTemplate->Height = 24;
-            this->dataGridView1->Size = System::Drawing::Size(526, 94);
-            this->dataGridView1->TabIndex = 0;
-            // 
-            // dataGridView2
-            // 
-            this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-            this->dataGridView2->Location = System::Drawing::Point(6, 26);
-            this->dataGridView2->Name = L"dataGridView2";
-            this->dataGridView2->RowHeadersWidth = 51;
-            this->dataGridView2->RowTemplate->Height = 24;
-            this->dataGridView2->Size = System::Drawing::Size(661, 94);
-            this->dataGridView2->TabIndex = 1;
             // 
             // UserInterface
             // 
@@ -480,6 +482,10 @@ namespace Projet
             this->Load += gcnew System::EventHandler(this, &UserInterface::UserInterface_Load);
             this->tabController->ResumeLayout(false);
             this->tab_customers->ResumeLayout(false);
+            this->groupBox_delivery_addresses->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_delivery_addresses))->EndInit();
+            this->groupBox_customer_billing_addresses->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_billing_addresses))->EndInit();
             this->groupBox_create_customer->ResumeLayout(false);
             this->groupBox_customer_orders->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_orders))->EndInit();
@@ -488,10 +494,6 @@ namespace Projet
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customers))->EndInit();
             this->tab_staff->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_staff))->EndInit();
-            this->groupBox_customer_billing_addresses->ResumeLayout(false);
-            this->groupBox_delivery_addresses->ResumeLayout(false);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
             this->ResumeLayout(false);
 
         }
@@ -572,6 +574,22 @@ namespace Projet
             
         }
 
+        void refresh_customer_billing_addresses_datagrid()
+        {
+            this->dataGridView_customer_billing_addresses->Refresh();
+            this->dataGridView_customer_billing_addresses->DataSource = this->selected_customer->getBillingAddresses();
+            this->dataGridView_customer_billing_addresses->Columns["id_address"]->Visible = false;
+
+        }
+
+        void refresh_customer_delivery_addresses_datagrid()
+        {
+            this->dataGridView_customer_delivery_addresses->Refresh();
+            this->dataGridView_customer_delivery_addresses->DataSource = this->selected_customer->getDeliveryAddresses();
+            this->dataGridView_customer_delivery_addresses->Columns["id_address"]->Visible = false;
+
+        }
+
     // Events
     private:
         void dataGridView_customers_selectionChanged(System::Object^ sender, System::EventArgs^ e)
@@ -591,6 +609,8 @@ namespace Projet
             updateSelectedCustomer(System::Convert::ToInt32(selectedIDstring));
 
             refresh_customer_orders_datagrid();
+            refresh_customer_billing_addresses_datagrid();
+            refresh_customer_delivery_addresses_datagrid();
         }
     
     private:
