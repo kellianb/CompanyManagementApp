@@ -915,7 +915,7 @@ namespace Projet
 
             // Handling id_manager modification
             if (String::IsNullOrWhiteSpace(this->textBox_id_manager_employee->Text)) {
-                this->selected_employee->setIDmanager(nullptr); // Pass DBNull for whitespace or empty input
+                this->selected_employee->setIDmanagernullable(nullptr); // Pass DBNull for whitespace or empty input
             } else {
                 int idManager;
                 if (Int32::TryParse(this->textBox_id_manager_employee->Text->Trim(), idManager)) {
