@@ -70,9 +70,7 @@ namespace Projet
     private: System::Windows::Forms::GroupBox^ groupBox_delivery_addresses;
     private: System::Windows::Forms::DataGridView^ dataGridView_customer_delivery_addresses;
     private: System::Windows::Forms::DataGridView^ dataGridView_customer_billing_addresses;
-
-
-
+    private: System::Windows::Forms::DateTimePicker^ dateTimePicker_employee_hiring_date;
 
 
 
@@ -81,6 +79,9 @@ namespace Projet
 
     private:
         System::Windows::Forms::Label^ label_customer_birth_date;
+
+    private:
+        System::Windows::Forms::Label^ label_employee_hiring_date;
 
     public:
         UserInterface(void)
@@ -167,7 +168,9 @@ namespace Projet
             this->groupBox_customer = (gcnew System::Windows::Forms::GroupBox());
             this->groupBox_employee = (gcnew System::Windows::Forms::GroupBox()); 
             this->label_customer_birth_date = (gcnew System::Windows::Forms::Label());
+            this->label_employee_hiring_date = (gcnew System::Windows::Forms::Label());
             this->dateTimePicker_customer_birth_date = (gcnew System::Windows::Forms::DateTimePicker());
+            this->dateTimePicker_employee_hiring_date = (gcnew System::Windows::Forms::DateTimePicker());
             this->button_delete_customer = (gcnew System::Windows::Forms::Button());
             this->button_modify_customer = (gcnew System::Windows::Forms::Button());
             this->label_last_name_customer = (gcnew System::Windows::Forms::Label());
@@ -354,7 +357,7 @@ namespace Projet
             this->button_customers_reload->UseVisualStyleBackColor = true;
             this->button_customers_reload->Click += gcnew System::EventHandler(this, &UserInterface::button_customers_reload_click);
             // 
-            // groupBox_customer
+            // groupBox_customer ICIIIIII
             // 
             this->groupBox_customer->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
                 | System::Windows::Forms::AnchorStyles::Right));
@@ -474,12 +477,13 @@ namespace Projet
             this->tab_employee->UseVisualStyleBackColor = true;
             //
             // groupBox_employee
+            //
             this->groupBox_employee->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
                 | System::Windows::Forms::AnchorStyles::Right));
-            /*this->groupBox_employee->Controls->Add(this->label_employee_hiring_date);
+            this->groupBox_employee->Controls->Add(this->label_employee_hiring_date);
             this->groupBox_employee->Controls->Add(this->dateTimePicker_employee_hiring_date);
-            this->groupBox_employee->Controls->Add(this->button_delete_employee);
-            this->groupBox_employee->Controls->Add(this->button_modify_employee); TO DO: Implement this */
+            // this->groupBox_employee->Controls->Add(this->button_delete_employee);
+            // this->groupBox_employee->Controls->Add(this->button_modify_employee); TODO: Implement this
             this->groupBox_employee->Controls->Add(this->label_last_name_employee);
             this->groupBox_employee->Controls->Add(this->label_first_name_employee);
             this->groupBox_employee->Controls->Add(this->textBox_first_name_employee);
@@ -490,6 +494,22 @@ namespace Projet
             this->groupBox_employee->TabIndex = 3;
             this->groupBox_employee->TabStop = false;
             this->groupBox_employee->Text = L"Employee Information";
+            // 
+            // label_employee_hiring_date
+            // 
+            this->label_employee_hiring_date->AutoSize = true;
+            this->label_employee_hiring_date->Location = System::Drawing::Point(312, 30);
+            this->label_employee_hiring_date->Name = L"label_employee_hiring_date";
+            this->label_employee_hiring_date->Size = System::Drawing::Size(89, 20);
+            this->label_employee_hiring_date->TabIndex = 8;
+            this->label_employee_hiring_date->Text = L"Hiring date";
+            // 
+            // dateTimePicker_employee_hiring_date
+            // 
+            this->dateTimePicker_employee_hiring_date->Location = System::Drawing::Point(316, 53);
+            this->dateTimePicker_employee_hiring_date->Name = L"dateTimePicker_employee_hiring_date";
+            this->dateTimePicker_employee_hiring_date->Size = System::Drawing::Size(197, 27);
+            this->dateTimePicker_employee_hiring_date->TabIndex = 7;
             // 
             // label_last_name_employee
             // 
@@ -642,7 +662,6 @@ namespace Projet
             this->textBox_first_name_customer->Text = selected_customer->getFirstName();
             this->textBox_last_name_customer->Text = selected_customer->getLastName();
             this->dateTimePicker_customer_birth_date->Value = selected_customer->getBirthDate();
-            
         }
         
     private:
@@ -775,7 +794,7 @@ namespace Projet
 
             this->textBox_first_name_employee->Text = selected_employee->getFirstName();
             this->textBox_last_name_employee->Text = selected_employee->getLastName();
-            //this->dateTimePicker_employee_hiring_date->Value = selected_employee->getHiringDate();
+            this->dateTimePicker_employee_hiring_date->Value = selected_employee->getHireDate();
         }
 
     // Events    
