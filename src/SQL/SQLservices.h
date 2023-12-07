@@ -19,6 +19,10 @@ public:
     System::Data::DataTable^ SQL_getOrder(int id);
 
     System::Data::DataTable^ SQL_getOrderList();
+    
+    System::Data::DataTable^ SQLservices::SQL_getOrderBillingAdress(int id);
+
+    System::Data::DataTable^ SQLservices::SQL_getOrderDeliveryAdress(int id);
 
     System::Data::DataTable^ SQL_modifyOrder(int id_order, System::DateTime, System::DateTime, System::Decimal, System::Decimal, int id_delivery_address, int id_billing_address, int id_customer);
 
@@ -82,6 +86,7 @@ public:
 
     void SQL_deleteEmployeeAddresses(int id);
 
+    
     // Statistics Queries
     System::Data::DataTable^ SQL_calculateAverageBasketSize();
 
@@ -100,4 +105,15 @@ public:
     System::Data::DataTable^ SQL_calculatePurchaseStockValue();
 
     System::Data::DataTable^ SQL_simulateStockValueVariations(array<System::String^>^ modifications);
+
+    // Misc Queries
+    System::Data::DataTable^ SQL_addAddress(System::String^, System::String^, int postal_code, int street_number);
+
+    System::Data::DataTable^ SQL_getAddress(int id);
+
+    System::Data::DataTable^ SQL_getAddressList();
+
+    System::Data::DataTable^ SQL_modifyAddress(int id, System::String^, System::String^, int postal_code, int street_number);
+
+    void SQL_deleteAddress(int id);
 };
