@@ -422,7 +422,7 @@ System::Data::DataTable^ SQLservices::SQL_simulateStockValueVariations(array<Sys
 System::Data::DataTable^ SQLservices::SQL_addAddress(System::String^ city, System::String^ street, int postal_code,
     int street_number)
 {
-    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Addresses (city, street, postal_code, street_number) OUTPUT inserted.id_address VALUES(@city, @street, @postalCode, @street_number)";
+    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Addresses (city, street, postal_code, street_number) OUTPUT inserted.id_address VALUES(@city, @street, @postalCode, @streetNumber)";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     

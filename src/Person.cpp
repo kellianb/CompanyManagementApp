@@ -27,6 +27,11 @@ Person::Person(System::String^ first_name, System::String^ last_name): first_nam
     create_person_in_DB();
 }
 
+int Person::getID()
+{
+    return this->id;
+}
+
 System::String^ Person::getFirstName()
 {
     return this->first_name;
