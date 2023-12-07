@@ -6,6 +6,7 @@ ref class Employee : Person
 {
 private:
     int id_address;
+    int id_manager;
     System::DateTime hire_date;
     
     // Private DB modification methods
@@ -19,6 +20,7 @@ private:
 public:
     Employee(int);
     Employee(System::String^, System::String^, System::DateTime, int);
+    Employee(System::String^, System::String^, System::DateTime, int, int);
 
     int getIDaddress();
     void setIDaddress(int);

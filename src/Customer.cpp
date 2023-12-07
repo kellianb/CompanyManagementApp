@@ -7,7 +7,6 @@ void Customer::create_customer_in_DB()
 
 void Customer::fetch_customer_from_DB()
 {
-    
     System::Data::DataTable^ buffer = this->SQLserv.SQL_getCustomer(this->id);
 
     this->birth_date = safe_cast<System::DateTime>(buffer->Rows[0]["birth_date"]);
