@@ -26,14 +26,15 @@ public:
     Person(System::String^, System::String^);
 
     // Setters and getters
+    int getID();
     System::String^ getFirstName();
     System::String^ getLastName();
-
+    
     void setFirstName(System::String^);
     void setLastName(System::String^);
 
     // DB modification methods
     virtual void modify_in_DB();
     virtual void delete_in_DB();
-
+    
 };
