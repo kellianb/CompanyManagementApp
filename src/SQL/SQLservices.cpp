@@ -325,7 +325,7 @@ System::Data::DataTable^ SQLservices::SQL_getEmployeeList()
 
 System::Data::DataTable^ SQLservices::SQL_getEmployee(int id)
 {
-    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Employee WHERE id_person = @id";
+    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Employees WHERE id_person = @id";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
