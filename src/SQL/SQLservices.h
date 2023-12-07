@@ -19,6 +19,10 @@ public:
     System::Data::DataTable^ SQL_getOrder(int id);
 
     System::Data::DataTable^ SQL_getOrderList();
+    
+    System::Data::DataTable^ SQLservices::SQL_getOrderBillingAdress(int id);
+
+    System::Data::DataTable^ SQLservices::SQL_getOrderDeliveryAdress(int id);
 
     System::Data::DataTable^ SQL_modifyOrder(int id_order, System::DateTime, System::DateTime, System::Decimal, System::Decimal, int id_delivery_address, int id_billing_address, int id_customer);
 

@@ -781,7 +781,7 @@ namespace Projet
         void dataGridView_employee_selectionChanged(System::Object^ sender, System::EventArgs^ e)
         {
             // Return if no columns are selected
-            if (dataGridView_customers->SelectedRows->Count == 0)
+            if (dataGridView_employee->SelectedRows->Count == 0)
             {
                 return;
             }

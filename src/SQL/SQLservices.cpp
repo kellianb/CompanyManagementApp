@@ -10,31 +10,92 @@ SQLservices::SQLservices()
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Orders Queries
-System::Data::DataTable^ SQLservices::SQL_addOrder(System::DateTime, System::DateTime, System::Decimal, System::Decimal,
-    int id_delivery_address, int id_billing_address, int id_customer)
+System::Data::DataTable^ SQLservices::SQL_addOrder(System::DateTime delivery_date, System::DateTime order_date, System::Decimal discount_percentage, System::Decimal amount, int id_delivery_address, int id_billing_address, int id_customer)
 {
-    return nullptr;
+    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Orders (delivery_date, order_date, order_discount_percentage, total_amount, id_delivery_address, id_billing_adress, id_customer) OUTPUT inserted.id_person VALUES(@deliveryDate, @orderDate, @dctPercentage, @amount, @idDelivery, @idBilling, @idCustomer)";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@deliveryDate", delivery_date);
+    cmd->Parameters->AddWithValue("@orderDate", order_date);
+    cmd->Parameters->AddWithValue("@dctPercentage", discount_percentage);
+    cmd->Parameters->AddWithValue("@amount", amount);
+    cmd->Parameters->AddWithValue("@idDelivery", id_delivery_address);
+    cmd->Parameters->AddWithValue("@idBilling", id_billing_address);
+    cmd->Parameters->AddWithValue("@idCustomer", id_customer);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 System::Data::DataTable^ SQLservices::SQL_getOrder(int id)
 {
-    return nullptr;
+    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Orders WHERE id_order = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+    
+    cmd->Parameters->AddWithValue("@id", id);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 System::Data::DataTable^ SQLservices::SQL_getOrderList()
 {
-    return nullptr;
+    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Orders";
+    
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+    
+    return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_modifyOrder(int id_order, System::DateTime, System::DateTime, System::Decimal,
-    System::Decimal, int id_delivery_address, int id_billing_address, int id_customer)
+System::Data::DataTable^ SQLservices::SQL_getOrderBillingAdress(int id)
 {
-    return nullptr;
+    System::String^ cmdString = "SELECT hba.id_address, A.city, A.postal_code, A.street, A.street_number FROM Projet_POO_Livrable.Orders JOIN Projet_POO_Livrable.has_billing_address hba on Customers.id_order = hba.id_order JOIN Projet_POO_Livrable.Addresses A on A.id_address = hba.id_address WHERE id_order = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@id", id);
+
+    return this->SQLadapter->sendQuery(cmd);
+}
+
+System::Data::DataTable^ SQLservices::SQL_getOrderDeliveryAdress(int id)
+{
+    System::String^ cmdString = "SELECT hda.id_address, A.city, A.postal_code, A.street, A.street_number FROM Projet_POO_Livrable.Orders JOIN Projet_POO_Livrable.has_delivery_address hda on Customers.id_order = hda.id_order JOIN Projet_POO_Livrable.Addresses A on A.id_address = hda.id_address WHERE id_order = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@id", id);
+
+    return this->SQLadapter->sendQuery(cmd);
+}
+
+System::Data::DataTable^ SQLservices::SQL_modifyOrder(int id_order, System::DateTime new_delivery_date, System::DateTime new_order_date, System::Decimal new_discount_percentage, System::Decimal new_amount, int id_delivery_address, int id_billing_address, int id_customer)
+{
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Orders SET delivery_date = @deliveryDate, order_date = @orderDate, order_discount_percentage = @dctPercentage, total_amount = @amount, id_delivery_address = @idAdress, id_billing_address = @idBilling, id_customer = @idCustomer WHERE id_order = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@id", id_order);
+    cmd->Parameters->AddWithValue("@deliveryDate", new_delivery_date);
+    cmd->Parameters->AddWithValue("@orderDate", new_order_date);
+    cmd->Parameters->AddWithValue("@dctPercentage", new_discount_percentage);
+    cmd->Parameters->AddWithValue("@amount", new_amount);
+    cmd->Parameters->AddWithValue("@idDelivery", id_delivery_address);
+    cmd->Parameters->AddWithValue("@idBilling", id_billing_address);
+    cmd->Parameters->AddWithValue("@idCustomer", id_customer);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 void SQLservices::SQL_deleteOrder(int id)
 {
-    
+    System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.Orders WHERE id_order = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@id", id);
+
+    this->SQLadapter->sendQuery(cmd);
 }
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -129,7 +190,7 @@ System::Data::DataTable^ SQLservices::SQL_addCustomer(int id, System::DateTime b
 
 System::Data::DataTable^ SQLservices::SQL_getCustomerList()
 {
-    System::String^ cmdString = "SELECT C.id_person, P.first_name, P.last_name, C.birth_date, C.first_order_date FROM Projet_POO.Projet_POO_Livrable.Customers C JOIN Projet_POO_Livrable.People P on P.id_person = C.id_person";
+    System::String^ cmdString = "SELECT C.id_person, P.first_name, P.last_name, C.birth_date, C.first_order_date FROM Projet_POO_Livrable.Customers C JOIN Projet_POO_Livrable.People P on P.id_person = C.id_person";
     
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
@@ -255,7 +316,7 @@ System::Data::DataTable^ SQLservices::SQL_addEmployee(int id_person, System::Dat
 
 System::Data::DataTable^ SQLservices::SQL_getEmployeeList()
 {
-    System::String^ cmdString = "SELECT E.id_person, P.first_name, P.last_name, E.hiring_date, E.id_address, E.id_manager FROM Projet_POO.Projet_POO_Livrable.Employees E JOIN Projet_POO_Livrable.People P on P.id_person = E.id_person";
+    System::String^ cmdString = "SELECT E.id_person, P.first_name, P.last_name, E.hiring_date, E.id_address, E.id_manager FROM Projet_POO_Livrable.Employees E JOIN Projet_POO_Livrable.People P on P.id_person = E.id_person";
     
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
