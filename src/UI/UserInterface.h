@@ -781,13 +781,12 @@ namespace Projet
         void dataGridView_employee_selectionChanged(System::Object^ sender, System::EventArgs^ e)
         {
             // Return if no columns are selected
-            if (dataGridView_customers->SelectedRows->Count == 0)
+            if (dataGridView_employee->SelectedRows->Count == 0)
             {
                 return;
             }
 
-            String^ selectedIDstring = this->dataGridView_employee->SelectedRows[0]->Cells["id_person"]->Value->
-                ToString();
+            String^ selectedIDstring = this->dataGridView_employee->SelectedRows[0]->Cells["id_person"]->Value->ToString();
 
             this->groupBox_employee->Text = "Employee " + selectedIDstring + " Information";
 
