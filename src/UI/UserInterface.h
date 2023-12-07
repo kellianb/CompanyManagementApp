@@ -527,8 +527,10 @@ namespace Projet
             // dataGridView_employee
             // 
             this->dataGridView_employee->AllowUserToAddRows = false;
-            this->dataGridView_employee->BorderStyle = System::Windows::Forms::BorderStyle::None;
-            this->dataGridView_employee->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::Sunken;
+            this->dataGridView_employee->AllowUserToDeleteRows = false;
+            this->dataGridView_employee->AllowUserToOrderColumns = true;
+            this->dataGridView_employee->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+                | System::Windows::Forms::AnchorStyles::Right));
             this->dataGridView_employee->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
             this->dataGridView_employee->Location = System::Drawing::Point(8, 7);
             this->dataGridView_employee->MinimumSize = System::Drawing::Size(999, 112);
