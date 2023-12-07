@@ -68,6 +68,14 @@ public:
 
     void SQL_deleteCustomerAddresses(int id);
 
+    System::Data::DataTable^ SQL_addCustomerBillingAddresses(int id, int);
+
+    System::Data::DataTable^ SQL_addCustomerDeliveryAddresses(int id, int);
+
+    System::Data::DataTable^ SQL_deleteCustomerBillingAddresses(int id, int);
+
+    System::Data::DataTable^ SQL_deleteCustomerdeliveryAddresses(int id, int);
+    
     System::Data::DataTable^ SQL_getCustomerBillingAddresses(int id);
     
     System::Data::DataTable^ SQL_getCustomerDeliveryAddresses(int id);
