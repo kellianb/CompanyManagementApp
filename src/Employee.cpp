@@ -11,16 +11,22 @@ void Employee::fetch_employee_from_DB()
     System::Data::DataTable^ buffer = this->SQLserv.SQL_getEmployee(this->id);
 
     this->hire_date = safe_cast<System::DateTime>(buffer->Rows[0]["hiring_date"]);
+    this->id_address = safe_cast<int>(buffer->Rows[0]["id_address"]);
+    if (!System::DBNull::Value->Equals(buffer->Rows[0]["id_manager"])) {
+        this->id_manager = safe_cast<int>(buffer->Rows[0]["id_manager"]);
+    } else {
+        this->id_manager = -1; // or any other default value indicating no manager
+    }
 }
 
 void Employee::modify_employee_in_DB()
 {
-    // TODO: This
+    this->SQLserv.SQL_modifyEmployee(this->id, this->hire_date, this->id_address, this->id_manager);
 }
 
 void Employee::delete_employee_from_DB()
 {
-    // TODO: This
+    this->SQLserv.SQL_deleteEmployee(this->id);
 }
 
 Employee::Employee(int id) : Person(id)
@@ -43,10 +49,31 @@ int Employee::getIDaddress()
     return this->id_address;
 }
 
+int Employee::getIDmanager()
+{
+    return this->id_manager;
+}
+
 void Employee::setIDaddress(int id)
 {
     this->id_address = id;
 }
+
+void Employee::setIDmanager(int id)
+{
+    this->id_manager = id;
+}
+
+void Employee::setIDmanagernullable(Object^ id_manager) {
+    if (id_manager == nullptr)
+    {
+        this->id_manager = -1;
+    } else
+    {
+        this->id_manager = safe_cast<int>(id_manager);
+    }
+}
+
 
 System::DateTime Employee::getHireDate()
 {

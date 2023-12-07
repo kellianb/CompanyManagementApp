@@ -24,6 +24,9 @@ public:
 
     int getIDaddress();
     void setIDaddress(int);
+    int getIDmanager();
+    void setIDmanager(int);
+    void setIDmanagernullable(Object^); // Overloaded method for DBNull
     
     System::DateTime getHireDate();
     void setHireDate(System::DateTime);
