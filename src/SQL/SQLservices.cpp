@@ -417,3 +417,67 @@ System::Data::DataTable^ SQLservices::SQL_simulateStockValueVariations(array<Sys
     return nullptr;
 }
 // ---------------------------------------------------------------------------------------------------------------------
+
+// Misc Queries
+System::Data::DataTable^ SQLservices::SQL_addAddress(System::String^ city, System::String^ street, int postal_code,
+    int street_number)
+{
+    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Addresses (city, street, postal_code, street_number) OUTPUT inserted.id_address VALUES(@city, @street, @postalCode, @street_number)";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+    
+    cmd->Parameters->AddWithValue("@city", city);
+    cmd->Parameters->AddWithValue("@street", street);
+    cmd->Parameters->AddWithValue("@postalCode", postal_code);
+    cmd->Parameters->AddWithValue("@streetNumber", street_number);
+
+    return this->SQLadapter->sendQuery(cmd);
+}
+
+System::Data::DataTable^ SQLservices::SQL_getAddress(int id)
+{
+    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Addresses WHERE id_address = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+    
+    cmd->Parameters->AddWithValue("@id", id);
+
+    return this->SQLadapter->sendQuery(cmd);
+}
+
+System::Data::DataTable^ SQLservices::SQL_getAddressList()
+{
+    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Addresses";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    return this->SQLadapter->sendQuery(cmd);
+}
+
+System::Data::DataTable^ SQLservices::SQL_modifyAddress(int id, System::String^ city, System::String^ street, int postal_code,
+    int street_number)
+{
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Addresses SET city = @city, street = @street, postal_code = @postalCode, street_number = @streetNumber WHERE id_address = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+    
+    cmd->Parameters->AddWithValue("@id", id);
+    cmd->Parameters->AddWithValue("@city", city);
+    cmd->Parameters->AddWithValue("@street", street);
+    cmd->Parameters->AddWithValue("@postalCode", postal_code);
+    cmd->Parameters->AddWithValue("@streetNumber", street_number);
+
+    return this->SQLadapter->sendQuery(cmd);
+}
+
+void SQLservices::SQL_deleteAddress(int id)
+{
+    System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.Addresses WHERE id_address = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@id", id);
+
+    this->SQLadapter->sendQuery(cmd);
+}
+

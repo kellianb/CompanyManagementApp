@@ -86,6 +86,7 @@ public:
 
     void SQL_deleteEmployeeAddresses(int id);
 
+    
     // Statistics Queries
     System::Data::DataTable^ SQL_calculateAverageBasketSize();
 
@@ -104,4 +105,15 @@ public:
     System::Data::DataTable^ SQL_calculatePurchaseStockValue();
 
     System::Data::DataTable^ SQL_simulateStockValueVariations(array<System::String^>^ modifications);
+
+    // Misc Queries
+    System::Data::DataTable^ SQL_addAddress(System::String^, System::String^, int postal_code, int street_number);
+
+    System::Data::DataTable^ SQL_getAddress(int id);
+
+    System::Data::DataTable^ SQL_getAddressList();
+
+    System::Data::DataTable^ SQL_modifyAddress(int id, System::String^, System::String^, int postal_code, int street_number);
+
+    void SQL_deleteAddress(int id);
 };
