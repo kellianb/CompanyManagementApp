@@ -4,6 +4,7 @@
 #include "../SQL/SQLservices.h"
 #include "../Customer.h"
 #include "createCustomerPrompt.h"
+#include "selectEmployeeManager.h"
 #include "../Employee.h"
 #include "../Address.h"
 
@@ -97,8 +98,8 @@ namespace Projet
     private:
         System::Windows::Forms::Label^ label_customer_birth_date;
     private: System::Windows::Forms::Label^ label_id_address_employee;
-    private: System::Windows::Forms::Label^ label_id_manager_employee;
-    private: System::Windows::Forms::TextBox^ textBox_id_manager_employee;
+
+
     private: System::Windows::Forms::TextBox^ textBox_id_address_employee;
     private: System::Windows::Forms::Label^ label_customers_current_order_billing_address;
     private: System::Windows::Forms::Label^ label_customers_current_order_delivery_address;
@@ -107,7 +108,8 @@ namespace Projet
 
 
     private: System::Windows::Forms::Label^ label_employee_manager_name;
-    private: System::Windows::Forms::Label^ label_employee_manager_adress;
+    private: System::Windows::Forms::Button^ button_select_a_manager;
+
 
 
 
@@ -222,11 +224,8 @@ namespace Projet
             this->tab_employee = (gcnew System::Windows::Forms::TabPage());
             this->groupBox_employee_manager = (gcnew System::Windows::Forms::GroupBox());
             this->label_employee_manager_name = (gcnew System::Windows::Forms::Label());
-            this->label_employee_manager_adress = (gcnew System::Windows::Forms::Label());
             this->dataGridView_employee = (gcnew System::Windows::Forms::DataGridView());
             this->groupBox_employee = (gcnew System::Windows::Forms::GroupBox());
-            this->label_id_manager_employee = (gcnew System::Windows::Forms::Label());
-            this->textBox_id_manager_employee = (gcnew System::Windows::Forms::TextBox());
             this->button_delete_employee = (gcnew System::Windows::Forms::Button());
             this->button_modify_employee = (gcnew System::Windows::Forms::Button());
             this->textBox_id_address_employee = (gcnew System::Windows::Forms::TextBox());
@@ -238,6 +237,7 @@ namespace Projet
             this->textBox_first_name_employee = (gcnew System::Windows::Forms::TextBox());
             this->textBox_last_name_employee = (gcnew System::Windows::Forms::TextBox());
             this->tab_statistics = (gcnew System::Windows::Forms::TabPage());
+            this->button_select_a_manager = (gcnew System::Windows::Forms::Button());
             this->tabController->SuspendLayout();
             this->tab_customers->SuspendLayout();
             this->groupBox_delivery_addresses->SuspendLayout();
@@ -612,10 +612,9 @@ namespace Projet
             // groupBox_employee_manager
             // 
             this->groupBox_employee_manager->Controls->Add(this->label_employee_manager_name);
-            this->groupBox_employee_manager->Controls->Add(this->label_employee_manager_adress);
-            this->groupBox_employee_manager->Location = System::Drawing::Point(8, 448);
+            this->groupBox_employee_manager->Location = System::Drawing::Point(561, 201);
             this->groupBox_employee_manager->Name = L"groupBox_employee_manager";
-            this->groupBox_employee_manager->Size = System::Drawing::Size(543, 101);
+            this->groupBox_employee_manager->Size = System::Drawing::Size(687, 69);
             this->groupBox_employee_manager->TabIndex = 6;
             this->groupBox_employee_manager->TabStop = false;
             this->groupBox_employee_manager->Text = L"Manager Employee";
@@ -625,18 +624,9 @@ namespace Projet
             this->label_employee_manager_name->AutoSize = true;
             this->label_employee_manager_name->Location = System::Drawing::Point(6, 31);
             this->label_employee_manager_name->Name = L"label_employee_manager_name";
-            this->label_employee_manager_name->Size = System::Drawing::Size(51, 20);
+            this->label_employee_manager_name->Size = System::Drawing::Size(110, 20);
             this->label_employee_manager_name->TabIndex = 2;
-            this->label_employee_manager_name->Text = L" smth";
-            // 
-            // label_employee_manager_adress
-            // 
-            this->label_employee_manager_adress->AutoSize = true;
-            this->label_employee_manager_adress->Location = System::Drawing::Point(6, 67);
-            this->label_employee_manager_adress->Name = L"label_employee_manager_adress";
-            this->label_employee_manager_adress->Size = System::Drawing::Size(51, 20);
-            this->label_employee_manager_adress->TabIndex = 1;
-            this->label_employee_manager_adress->Text = L" smth";
+            this->label_employee_manager_name->Text = L"Here is a text";
             // 
             // dataGridView_employee
             // 
@@ -662,8 +652,7 @@ namespace Projet
             // 
             this->groupBox_employee->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
                 | System::Windows::Forms::AnchorStyles::Right));
-            this->groupBox_employee->Controls->Add(this->label_id_manager_employee);
-            this->groupBox_employee->Controls->Add(this->textBox_id_manager_employee);
+            this->groupBox_employee->Controls->Add(this->button_select_a_manager);
             this->groupBox_employee->Controls->Add(this->button_delete_employee);
             this->groupBox_employee->Controls->Add(this->button_modify_employee);
             this->groupBox_employee->Controls->Add(this->textBox_id_address_employee);
@@ -680,22 +669,6 @@ namespace Projet
             this->groupBox_employee->TabIndex = 3;
             this->groupBox_employee->TabStop = false;
             this->groupBox_employee->Text = L"Employee Information";
-            // 
-            // label_id_manager_employee
-            // 
-            this->label_id_manager_employee->AutoSize = true;
-            this->label_id_manager_employee->Location = System::Drawing::Point(24, 180);
-            this->label_id_manager_employee->Name = L"label_id_manager_employee";
-            this->label_id_manager_employee->Size = System::Drawing::Size(96, 20);
-            this->label_id_manager_employee->TabIndex = 12;
-            this->label_id_manager_employee->Text = L"Manager ID";
-            // 
-            // textBox_id_manager_employee
-            // 
-            this->textBox_id_manager_employee->Location = System::Drawing::Point(28, 203);
-            this->textBox_id_manager_employee->Name = L"textBox_id_manager_employee";
-            this->textBox_id_manager_employee->Size = System::Drawing::Size(240, 26);
-            this->textBox_id_manager_employee->TabIndex = 11;
             // 
             // button_delete_employee
             // 
@@ -790,6 +763,16 @@ namespace Projet
             this->tab_statistics->Text = L"Statistics";
             this->tab_statistics->UseVisualStyleBackColor = true;
             // 
+            // button_select_a_manager
+            // 
+            this->button_select_a_manager->Location = System::Drawing::Point(28, 199);
+            this->button_select_a_manager->Name = L"button_select_a_manager";
+            this->button_select_a_manager->Size = System::Drawing::Size(240, 30);
+            this->button_select_a_manager->TabIndex = 11;
+            this->button_select_a_manager->Text = L"Select a manager";
+            this->button_select_a_manager->UseVisualStyleBackColor = true;
+            this->button_select_a_manager->Click += gcnew System::EventHandler(this, &UserInterface::button_select_a_manager_click);
+            // 
             // UserInterface
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(10, 20);
@@ -827,13 +810,13 @@ namespace Projet
         }
 #pragma endregion
         
-    // General UserInterface functions
+        // General UserInterface functions
     private:
         System::Void UserInterface_Load(System::Object^ sender, System::EventArgs^ e)
         {
         }
 
-    // Executes code when a specific tab is opened
+        // Executes code when a specific tab is opened
     private:
         void OnTabSelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
         {
@@ -856,7 +839,7 @@ namespace Projet
             }
         }
 
-    // ### Customers tab ###
+        // ### Customers tab ###
     private:
         void refresh_customers_datagrid()
         {
@@ -941,7 +924,7 @@ namespace Projet
             this->dataGridView_customer_delivery_addresses->Columns["street_number"]->HeaderText = "Street Number";
         }
 
-    // Events
+        // Events
     private:
         void dataGridView_customers_selectionChanged(System::Object^ sender, System::EventArgs^ e)
         {
@@ -998,21 +981,18 @@ namespace Projet
         }
     }
 
-    // Orders stuff
-    int get_currently_selected_billing_address()
+        // Orders stuff
+        int get_currently_selected_billing_address()
     {
         return Convert::ToInt32(this->dataGridView_customer_billing_addresses->SelectedRows[0]->Cells["id_address"]->Value->ToString());
     }
         
-    int get_currently_selected_delivery_address()
+        int get_currently_selected_delivery_address()
     {
         return Convert::ToInt32(this->dataGridView_customer_delivery_addresses->SelectedRows[0]->Cells["id_address"]->Value->ToString());
     }
         
-    
-
-        
-    void dataGridView_customer_orders_selectionChanged(Object^ sender, EventArgs^ event_args)
+        void dataGridView_customer_orders_selectionChanged(Object^ sender, EventArgs^ event_args)
     {
         if (this->dataGridView_customer_orders->SelectedRows->Count != 0)
         {
@@ -1027,7 +1007,7 @@ namespace Projet
     }
 
 
-    // Billing address stuff
+        // Billing address stuff
     private: System::Void button_customer_add_billing_address_Click(System::Object^ sender, System::EventArgs^ e) {
         Projet::editAddressPrompt^ prompt = gcnew Projet::editAddressPrompt(this->selected_customer->getFirstName() + " " + this->selected_customer->getLastName() + " - Add billing address");
         
@@ -1072,9 +1052,9 @@ namespace Projet
         
     }
 
-    // Delivery address stuff
+        // Delivery address stuff
 
-    // TODO handle invalid values for adding and mofifying addresses
+        // TODO handle invalid values for adding and mofifying addresses
         
     private: System::Void button_customer_add_delivery_address_Click(System::Object^ sender, System::EventArgs^ e) {
         Projet::editAddressPrompt^ prompt = gcnew Projet::editAddressPrompt(this->selected_customer->getFirstName() + " " + this->selected_customer->getLastName() + " - Add delivery address");
@@ -1122,7 +1102,7 @@ namespace Projet
         
 
         
-    // ### Employee tab ###
+        // ### Employee tab ###
     private:
         void refresh_employee_datagrid()
         {
@@ -1150,10 +1130,9 @@ namespace Projet
             this->textBox_last_name_employee->Text = selected_employee->getLastName();
             this->dateTimePicker_employee_hiring_date->Value = selected_employee->getHireDate();
             this->textBox_id_address_employee->Text = selected_employee->getIDaddress().ToString();
-            this->textBox_id_manager_employee->Text = selected_employee->getIDmanager().ToString();
         }
 
-    // Events    
+        // Events    
     private:
         void dataGridView_employee_selectionChanged(System::Object^ sender, System::EventArgs^ e)
         {
@@ -1166,7 +1145,22 @@ namespace Projet
             String^ selectedIDstring = this->dataGridView_employee->SelectedRows[0]->Cells["id_person"]->Value->ToString();
 
             this->groupBox_employee->Text = "Employee " + selectedIDstring + " Information";
-
+            
+            Object^ managerCellValue = this->dataGridView_employee->SelectedRows[0]->Cells["id_manager"]->Value;
+            if (managerCellValue != nullptr && managerCellValue->ToString() != "") {
+                try {
+                    int managerId = Convert::ToInt32(managerCellValue);
+                    Employee^ manager = gcnew Employee(managerId);
+                    label_employee_manager_name->Text = "Manager name: " + manager->getFirstName() + " " + manager->getLastName();
+                } catch (System::FormatException^)
+                {
+                    // Handle the format exception if conversion fails
+                    label_employee_manager_name->Text = "Manager name: None";
+                }
+            } else {
+                label_employee_manager_name->Text = "Manager : None";
+            }
+            
             updateSelectedEmployee(System::Convert::ToInt32(selectedIDstring));
         }
 
@@ -1190,26 +1184,36 @@ namespace Projet
             if (!String::IsNullOrWhiteSpace(this->textBox_id_address_employee->Text) && 
                 Int32::TryParse(this->textBox_id_address_employee->Text->Trim(), idAddress)) {
                 this->selected_employee->setIDaddress(idAddress);
-                } else {
+                } else
+                {
                     // Handle invalid input for id_address (e.g., show an error message)
                     MessageBox::Show("Invalid input for Address ID", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-                    return; // Optionally, stop further processing
-                }
-
-            // Handling id_manager modification
-            if (String::IsNullOrWhiteSpace(this->textBox_id_manager_employee->Text)) {
-                this->selected_employee->setIDmanagernullable(nullptr); // Pass DBNull for whitespace or empty input
-            } else {
-                int idManager;
-                if (Int32::TryParse(this->textBox_id_manager_employee->Text->Trim(), idManager)) {
-                    this->selected_employee->setIDmanager(idManager);
-                } else {
-                    MessageBox::Show("Invalid input for Manager ID", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
                     return;
                 }
-            }
             this->selected_employee->modify_in_DB();
             this->refresh_employee_datagrid();
+        }
+
+        void dataGridView_employee_manager_selectionChanged(Object^ sender, EventArgs^ event_args)
+        {
+            if (this->dataGridView_employee->SelectedRows->Count != 0)
+            {
+                Employee^ currently_selected_manager = gcnew Employee(Convert::ToInt32(this->dataGridView_employee->SelectedRows[0]->Cells["id_manager"]->Value->ToString()));
+
+                label_employee_manager_name->Text = "Manager name : " + currently_selected_manager->getFirstName() + " " + currently_selected_manager->getLastName();
+            }
+        }
+
+    private: 
+        System::Void button_select_a_manager_click(System::Object^ sender, System::EventArgs^ e)
+        {
+            selectEmployeeManager^ prompt = gcnew selectEmployeeManager(SQLserver->SQL_getEmployeeList(), "Choose a manager");
+            if(prompt->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+            {
+                this->selected_employee->setIDmanager(prompt->selected_manager);
+
+                refresh_employee_datagrid();
+            }
         }
 };
 }
