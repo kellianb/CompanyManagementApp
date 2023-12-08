@@ -81,7 +81,19 @@ System::Data::DataTable^ Customer::getBillingAddresses()
     return this->SQLserv.SQL_getCustomerBillingAddresses(this->id);
 }
 
+void Customer::addBillingAddressToCustomer(int id_address)
+{
+    this->SQLserv.SQL_addBillingAddressesToCustomer(this->id, id_address);
+}
+
 System::Data::DataTable^ Customer::getDeliveryAddresses()
 {
     return this->SQLserv.SQL_getCustomerDeliveryAddresses(this->id);
 }
+
+void Customer::addDeliveryAddressToCustomer(int id_address)
+{
+    this->SQLserv.SQL_addDeliveryAddressesToCustomer(this->id, id_address);
+}
+
+
