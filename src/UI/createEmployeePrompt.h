@@ -14,8 +14,11 @@ namespace Projet {
 	/// </summary>
 	public ref class createEmployeePrompt : public System::Windows::Forms::Form
 	{
+	private :
+		String^ windowText;
+		
 	public:
-		createEmployeePrompt(void)
+		createEmployeePrompt(String^ windowText) : windowText(windowText)
 		{
 			InitializeComponent();
 			//
@@ -318,6 +321,7 @@ namespace Projet {
 			this->MinimumSize = System::Drawing::Size(550, 400);
 			this->Name = L"createEmployeePrompt";
 			this->Text = L"Create employee";
+			this->Load += gcnew System::EventHandler(this, &createEmployeePrompt::createEmployeePrompt_Load);
 			this->groupBox_address->ResumeLayout(false);
 			this->groupBox_address->PerformLayout();
 			this->ResumeLayout(false);
@@ -326,5 +330,8 @@ namespace Projet {
 		}
 #pragma endregion
 
-	};
+	private: System::Void createEmployeePrompt_Load(System::Object^ sender, System::EventArgs^ e) {
+		this->Text = this->windowText;
+	}
+};
 }
