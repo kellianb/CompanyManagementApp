@@ -207,18 +207,18 @@ namespace Projet {
 			this->button_cancel->Text = L"Cancel";
 			this->button_cancel->UseVisualStyleBackColor = true;
 			// 
-			// button_create
+			// button_confirm
 			// 
 			this->button_confirm->DialogResult = System::Windows::Forms::DialogResult::OK;
 			this->button_confirm->Location = System::Drawing::Point(165, 261);
 			this->button_confirm->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->button_confirm->Name = L"button_create";
+			this->button_confirm->Name = L"button_confirm";
 			this->button_confirm->Size = System::Drawing::Size(112, 35);
 			this->button_confirm->TabIndex = 12;
 			this->button_confirm->Text = L"Create";
 			this->button_confirm->UseVisualStyleBackColor = true;
 			// 
-			// createAddressPrompt
+			// editAddressPrompt
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -235,7 +235,7 @@ namespace Projet {
 			this->Controls->Add(this->textBox_address_city);
 			this->MaximumSize = System::Drawing::Size(550, 400);
 			this->MinimumSize = System::Drawing::Size(550, 400);
-			this->Name = L"createAddressPrompt";
+			this->Name = L"editAddressPrompt";
 			this->Text = L"Add address";
 			this->Load += gcnew System::EventHandler(this, &editAddressPrompt::createAddressPrompt_Load);
 			this->ResumeLayout(false);

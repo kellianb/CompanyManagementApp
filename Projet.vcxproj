@@ -271,6 +271,7 @@
     </ClCompile>
     <ClCompile Include="src\UI\editAddressPrompt.cpp" />
     <ClCompile Include="src\UI\createCustomerPrompt.cpp" />
+    <ClCompile Include="src\UI\selectEmployeeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src/UI/UserInterface.h">
@@ -288,6 +289,9 @@
     <ClInclude Include="src\UI\createCustomerPrompt.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="src\UI\selectEmployeeManager.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="src/UI/UserInterface.resx">
@@ -298,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\UI\createCustomerPrompt.resx">
       <DependentUpon>src\UI\createCustomerPrompt.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\UI\selectEmployeeManager.resx">
+      <DependentUpon>src\UI\selectEmployeeManager.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

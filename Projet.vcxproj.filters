@@ -39,7 +39,10 @@
     <ClCompile Include="src\Address.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\UI\createAddress.cpp">
+    <ClCompile Include="src\UI\editAddressPrompt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\selectEmployeeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,7 +71,10 @@
     <ClInclude Include="src\Address.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\UI\createAddress.h">
+    <ClInclude Include="src\UI\editAddressPrompt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UI\selectEmployeeManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
