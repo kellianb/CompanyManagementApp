@@ -269,6 +269,7 @@
       <CompileAsManaged>true</CompileAsManaged>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="src\UI\createEmployeePrompt.cpp" />
     <ClCompile Include="src\UI\editAddressPrompt.cpp" />
     <ClCompile Include="src\UI\createCustomerPrompt.cpp" />
     <ClCompile Include="src\UI\selectEmployeeManager.cpp" />
@@ -283,6 +284,9 @@
     <ClInclude Include="src\Person.h" />
     <ClInclude Include="src\SQL\SQLdatabaseAdapter.h" />
     <ClInclude Include="src\SQL\SQLservices.h" />
+    <ClInclude Include="src\UI\createEmployeePrompt.h" >
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="src\UI\editAddressPrompt.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -294,8 +298,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="src/UI/UserInterface.resx">
-      <DependentUpon>src/UI/UserInterface.h</DependentUpon>
+    <EmbeddedResource Include="src\UI\UserInterface.resx">
+      <DependentUpon>src\UI\UserInterface.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\UI\createEmployeePrompt.resx" >
+      <DependentUpon>src\UI\createEmployeePrompt.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\UI\editAddressPrompt.resx">
       <DependentUpon>src\UI\createAddress.h</DependentUpon>
@@ -306,9 +313,6 @@
     <EmbeddedResource Include="src\UI\selectEmployeeManager.resx">
       <DependentUpon>src\UI\selectEmployeeManager.h</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\UI\" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
