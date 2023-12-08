@@ -948,7 +948,9 @@ namespace Projet
         {
             Address^ new_customer_billing_address = gcnew Address(prompt->new_address_city, prompt->new_address_postal_code, prompt->new_address_street, prompt->new_address_street_number);
 
-            // TODO Add address to currently selected customer
+            selected_customer->addBillingAddressToCustomer(new_customer_billing_address->getID());
+
+            refresh_customer_billing_addresses_datagrid();
         }
     }
 
@@ -966,9 +968,11 @@ namespace Projet
 
         if (prompt->ShowDialog() == System::Windows::Forms::DialogResult::OK)
         {
-            Address^ new_customer_billing_address = gcnew Address(prompt->new_address_city, prompt->new_address_postal_code, prompt->new_address_street, prompt->new_address_street_number);
+            Address^ new_customer_delivery_address = gcnew Address(prompt->new_address_city, prompt->new_address_postal_code, prompt->new_address_street, prompt->new_address_street_number);
 
-            // TODO Add address to currently selected customer
+            selected_customer->addDeliveryAddressToCustomer(new_customer_delivery_address->getID());
+
+            refresh_customer_delivery_addresses_datagrid();
         }
     }
 

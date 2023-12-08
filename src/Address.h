@@ -21,6 +21,20 @@ public:
 
     Address(System::String^, int, System::String^, int);
 
+    int getID();
+
+    System::String^ getCity();
+    void setCity(System::String^);
+
+    System::String^ getStreet();
+    void setStreet(System::String^);
+
+    int getPostalCode();
+    void setPostalCode(int);
+
+    int getStreetNumber();
+    void setStreetNumber(int);
+
     void modify_address_in_DB();
     void delete_address_from_DB();
 };

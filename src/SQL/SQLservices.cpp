@@ -276,49 +276,49 @@ void SQLservices::SQL_deleteCustomerAddresses(int id)
     this->SQLadapter->sendQuery(cmd3);
 }
 
-System::Data::DataTable^ SQLservices::SQL_addCustomerBillingAddresses(int id, int id_address) 
+System::Data::DataTable^ SQLservices::SQL_addBillingAddressesToCustomer(int id_customer, int id_address) 
 {
-    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.has_billing_address (id_address, id_customer) VALUES(@idAddress, @id)";
+    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.has_billing_address (id_address, id_customer) VALUES(@idAddress, @idCustomer)";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
-    cmd->Parameters->AddWithValue("@id", id);
     cmd->Parameters->AddWithValue("@idAddress", id_address);
+    cmd->Parameters->AddWithValue("@idCustomer", id_customer);
     
     return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_addCustomerDeliveryAddresses(int id, int id_address) 
+System::Data::DataTable^ SQLservices::SQL_addDeliveryAddressesToCustomer(int id_customer, int id_address) 
 {
-    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.has_delivery_address (id_address, id_customer) VALUES (@idAddress, @id)";
+    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.has_delivery_address (id_address, id_customer) VALUES (@idAddress, @idCustomer)";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
-    cmd->Parameters->AddWithValue("@id", id);
     cmd->Parameters->AddWithValue("@idAddress", id_address);
+    cmd->Parameters->AddWithValue("@idCustomer", id_customer);
     
     return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_deleteCustomerBillingAddresses(int id, int id_address)
+System::Data::DataTable^ SQLservices::SQL_deleteBillingAddressesFromCustomer(int id_customer, int id_address)
 {
-    System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.has_billing_address WHERE id_customer = @id AND id_address = @idAddress";
+    System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.has_billing_address WHERE id_customer = @idCustomer AND id_address = @idAddress";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
-    
-    cmd->Parameters->AddWithValue("@id", id);
+
     cmd->Parameters->AddWithValue("@idAddress", id_address);
+    cmd->Parameters->AddWithValue("@idCustomer", id_customer);
 
     return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_deleteCustomerdeliveryAddresses(int id, int id_address)
+System::Data::DataTable^ SQLservices::SQL_deleteDeliveryAddressesFromCustomer(int id_customer, int id_address)
 {
-    System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.has_delivery_address WHERE id_customer = @id AND id_address = @idAddress";
+    System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.has_delivery_address WHERE id_customer = @idCustomer AND id_address = @idAddress";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
-    cmd->Parameters->AddWithValue("@id", id);
+    cmd->Parameters->AddWithValue("@idCustomer", id_customer);
     cmd->Parameters->AddWithValue("@idAddress", id_address);
 
     return this->SQLadapter->sendQuery(cmd);
