@@ -455,48 +455,100 @@ void SQLservices::SQL_deleteEmployeeAddresses(int id)
 // Statistics Queries
 System::Data::DataTable^ SQLservices::SQL_calculateAverageBasketSize()
 {
-    return nullptr;
+    System::String^ cmdString;
+    cmdString = "SELECT CAST(ROUND(AVG(total_amount),2)AS decimal(10,2)) AS Prix_moyen_panier FROM Projet_POO_Livrable.Orders";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 System::Data::DataTable^ SQLservices::SQL_calculateMonthlyTurnover(System::DateTime month)
 {
-    return nullptr;
+    System::String^ cmdString;
+    cmdString = "SELECT MONTH(payment_date) AS Month, CAST(SUM(amount) AS decimal(10,2)) Month_sales FROM Projet_POO_Livrable.Payments WHERE MONTH(payment_date) = @month GROUP BY MONTH(payment_date)";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@month", month);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 System::Data::DataTable^ SQLservices::SQL_identifyProductsBelowThreshold()
 {
-    return nullptr;
+    System::String^ cmdString;
+    cmdString = "SELECT id_product, product_name, amount_in_stock, reorder_threshold FROM Projet_POO_Livrable.Products WHERE amount_in_stock <= reorder_threshold";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 System::Data::DataTable^ SQLservices::SQL_calculateTotalPurchasesByCustomer(int customerId)
 {
-    return nullptr;
+    System::String^ cmdString;
+    cmdString = "SELECT P.id_person ,P.last_name, P.first_name, SUM(O.total_amount) AS Total_amount FROM Projet_POO_Livrable.Customers JOIN Projet_POO_Livrable.People P on P.id_person = Customers.id_person JOIN Projet_POO_Livrable.Orders O on Customers.id_person = O.id_customer WHERE P.id_person = @customerId GROUP BY P.id_person, P.last_name, P.first_name";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@customerId", customerId);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 System::Data::DataTable^ SQLservices::SQL_identifyTop10BestSellingItems()
 {
-    return nullptr;
+    System::String^ cmdString;
+    cmdString = "SELECT TOP 10 P.id_product,product_name, SUM(product_quantity) AS total_ordered_quantity FROM Projet_POO_Livrable.contains_product JOIN Projet_POO_Livrable.Orders O on O.id_order = contains_product.id_order JOIN Projet_POO_Livrable.Products P on P.id_product = contains_product.id_product GROUP BY P.id_product, product_name ORDER BY total_ordered_quantity DESC";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 System::Data::DataTable^ SQLservices::SQL_identifyTop10LeastSellingItems()
 {
-    return nullptr;
+    System::String^ cmdString;
+    cmdString = "SELECT TOP 10 P.id_product,product_name, SUM(product_quantity) AS total_ordered_quantity FROM Projet_POO_Livrable.contains_product JOIN Projet_POO_Livrable.Orders O on O.id_order = contains_product.id_order JOIN Projet_POO_Livrable.Products P on P.id_product = contains_product.id_product GROUP BY P.id_product, product_name ORDER BY total_ordered_quantity";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 System::Data::DataTable^ SQLservices::SQL_calculateCommercialStockValue()
 {
-    return nullptr;
+    System::String^ cmdString;
+    cmdString = "SELECT CAST(ROUND(SUM(amount_in_stock*(price_excl_tax + (price_excl_tax*(vat_percentage/100)))),2) AS decimal(10,2)) AS stock_commercial_value FROM Projet_POO_Livrable.Products JOIN Projet_POO_Livrable.Product_prices Pp on Products.id_product = Pp.id_product";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 System::Data::DataTable^ SQLservices::SQL_calculatePurchaseStockValue()
 {
-    return nullptr;
+    System::String^ cmdString;
+    cmdString = "SELECT SUM(amount_in_stock*price_excl_tax) AS stock_buying_value FROM Projet_POO_Livrable.Products JOIN Projet_POO_Livrable.Product_prices Pp on Products.id_product = Pp.id_product";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 System::Data::DataTable^ SQLservices::SQL_simulateStockValueVariations(array<System::String^>^ modifications)
 {
     return nullptr;
 }
+
+/*
+System::Data::DataTable^ SQLservices::SQL_simulateStockValueVariations(array<System::String^>^ modifications)
+{
+    return nullptr;
+}
+*/
+
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Address Queries
