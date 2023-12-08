@@ -18,7 +18,7 @@ namespace Projet {
 		String^ windowText;
 		
 	public:
-		createEmployeePrompt(String^ windowText) : windowText(windowText)
+		createEmployeePrompt(void)
 		{
 			InitializeComponent();
 			//
@@ -331,7 +331,6 @@ namespace Projet {
 #pragma endregion
 
 	private: System::Void createEmployeePrompt_Load(System::Object^ sender, System::EventArgs^ e) {
-		this->Text = this->windowText;
 	}
 };
 }
