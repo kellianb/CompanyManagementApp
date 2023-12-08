@@ -100,31 +100,65 @@ void SQLservices::SQL_deleteOrder(int id)
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Inventory Queries
-System::Data::DataTable^ SQLservices::SQL_addProduct(System::String^, int amount, int reorder)
+System::Data::DataTable^ SQLservices::SQL_addProduct(System::String^ productName, int amountInStock, int reorderThreshold)
 {
-    return nullptr;
+    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Products (product_name, amount_in_stock, reorder_threshold) OUTPUT inserted.id_product VALUES(@productName, @amountInStock, @reorderThreshold)";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+    
+    cmd->Parameters->AddWithValue("@productName", productName);
+    cmd->Parameters->AddWithValue("@amountInStock", amountInStock);
+    cmd->Parameters->AddWithValue("@reorderThreshold", reorderThreshold);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 System::Data::DataTable^ SQLservices::SQL_getProduct(int id)
 {
-    return nullptr;
+    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Products WHERE id_product = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+    
+    cmd->Parameters->AddWithValue("@id", id);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 System::Data::DataTable^ SQLservices::SQL_getProductList()
 {
-    return nullptr;
+    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Products";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_modifyProduct(int id, System::String^, int amount, int reorder)
+System::Data::DataTable^ SQLservices::SQL_modifyProduct(int id, System::String^ newProductName, int newAmountInStock, int newReorderThreshold)
 {
-    return nullptr;
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Products SET product_name = @productName, amount_in_stock = @amountInStock, reorder_threshold = @reorderThreshold WHERE id_product = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+    
+    cmd->Parameters->AddWithValue("@id", id);
+    cmd->Parameters->AddWithValue("@productName", newProductName);
+    cmd->Parameters->AddWithValue("@amountInStock", newAmountInStock);
+    cmd->Parameters->AddWithValue("@reorderThreshold", newReorderThreshold);
+
+    return this->SQLadapter->sendQuery(cmd);
 }
 
 void SQLservices::SQL_deleteProduct(int id)
 {
+    System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.Products WHERE id_product = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
+    cmd->Parameters->AddWithValue("@id", id);
+
+    this->SQLadapter->sendQuery(cmd);
 }
 // ---------------------------------------------------------------------------------------------------------------------
+
 
 // Person queries
 System::Data::DataTable^ SQLservices::SQL_addPerson(System::String^ first_name, System::String^ last_name)
@@ -207,8 +241,6 @@ System::Data::DataTable^ SQLservices::SQL_getCustomer(int id)
 
     return this->SQLadapter->sendQuery(cmd);
 }
-
-
 
 System::Data::DataTable^ SQLservices::SQL_modifyCustomer(int id, System::DateTime new_birth_date)
 {
@@ -467,7 +499,7 @@ System::Data::DataTable^ SQLservices::SQL_simulateStockValueVariations(array<Sys
 }
 // ---------------------------------------------------------------------------------------------------------------------
 
-// Misc Queries
+// Address Queries
 System::Data::DataTable^ SQLservices::SQL_addAddress(System::String^ city, System::String^ street, int postal_code,
     int street_number)
 {
@@ -529,4 +561,4 @@ void SQLservices::SQL_deleteAddress(int id)
 
     this->SQLadapter->sendQuery(cmd);
 }
-
+// ---------------------------------------------------------------------------------------------------------------------

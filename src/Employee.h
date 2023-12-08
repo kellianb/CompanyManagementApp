@@ -1,19 +1,14 @@
 ﻿#pragma once
+#include "Person.h"
 
-#include "Customer.h"
-
-ref class Employee : Person
-{
+ref class Employee : Person {
 private:
     int id_address;
     int id_manager;
     System::DateTime hire_date;
-    
-    // Private DB modification methods
+
     void create_employee_in_DB();
     void fetch_employee_from_DB();
-
-    // These methods only affect the "Customers" Table, not the parent "People" table
     void modify_employee_in_DB();
     void delete_employee_from_DB();
 
@@ -27,7 +22,7 @@ public:
     int getIDmanager();
     void setIDmanager(int);
     void setIDmanagernullable(Object^); // Overloaded method for DBNull
-    
+
     System::DateTime getHireDate();
     void setHireDate(System::DateTime);
 
