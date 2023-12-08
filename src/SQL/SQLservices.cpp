@@ -415,9 +415,9 @@ System::Data::DataTable^ SQLservices::SQL_getEmployee(int id)
     return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_modifyEmployee(int id_person, System::DateTime new_hiring_date, int id_address, int id_manager)
+System::Data::DataTable^ SQLservices::SQL_modifyEmployee(int id_person, System::DateTime new_hiring_date, int id_address, Object^ id_manager)
 {
-    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Employees SET hiring_date = @hiringDate, id_address = @address WHERE id_person = @idPerson";
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Employees SET hiring_date = @hiringDate, id_address = @address, id_manager = @manager WHERE id_person = @idPerson";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 

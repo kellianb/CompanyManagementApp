@@ -88,7 +88,7 @@ public:
 
     System::Data::DataTable^ SQL_getEmployee(int id);
     
-    System::Data::DataTable^ SQL_modifyEmployee(int id_person, System::DateTime, int id_address, int id_manager);
+    System::Data::DataTable^ SQL_modifyEmployee(int id_person, System::DateTime, int id_address, Object^ id_manager);
 
     void SQL_deleteEmployee(int id);
 

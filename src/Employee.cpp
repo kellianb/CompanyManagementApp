@@ -49,7 +49,14 @@ void Employee::fetch_employee_from_DB() {
 
 
 void Employee::modify_employee_in_DB() {
-    SQLserv.SQL_modifyEmployee(this->getID(), hire_date, id_address, id_manager);
+    Object^ dbManagerId;
+    if (this->id_manager == -1) {
+        dbManagerId = System::DBNull::Value;
+    } else {
+        dbManagerId = this->id_manager;
+    }
+
+    SQLserv.SQL_modifyEmployee(this->getID(), hire_date, id_address, dbManagerId);
 }
 
 void Employee::delete_employee_from_DB() {
