@@ -100,6 +100,14 @@ namespace Projet
     private: System::Windows::Forms::Label^ label_id_manager_employee;
     private: System::Windows::Forms::TextBox^ textBox_id_manager_employee;
     private: System::Windows::Forms::TextBox^ textBox_id_address_employee;
+    private: System::Windows::Forms::Label^ label_customers_current_order_billing_address;
+    private: System::Windows::Forms::Label^ label_customers_current_order_delivery_address;
+
+
+
+
+
+
 
 
 
@@ -220,6 +228,8 @@ namespace Projet
             this->textBox_first_name_employee = (gcnew System::Windows::Forms::TextBox());
             this->textBox_last_name_employee = (gcnew System::Windows::Forms::TextBox());
             this->tab_statistics = (gcnew System::Windows::Forms::TabPage());
+            this->label_customers_current_order_delivery_address = (gcnew System::Windows::Forms::Label());
+            this->label_customers_current_order_billing_address = (gcnew System::Windows::Forms::Label());
             this->tabController->SuspendLayout();
             this->tab_customers->SuspendLayout();
             this->groupBox_delivery_addresses->SuspendLayout();
@@ -428,6 +438,8 @@ namespace Projet
             // 
             // groupBox_customer_orders
             // 
+            this->groupBox_customer_orders->Controls->Add(this->label_customers_current_order_billing_address);
+            this->groupBox_customer_orders->Controls->Add(this->label_customers_current_order_delivery_address);
             this->groupBox_customer_orders->Controls->Add(this->dataGridView_customer_orders);
             this->groupBox_customer_orders->Location = System::Drawing::Point(561, 201);
             this->groupBox_customer_orders->Name = L"groupBox_customer_orders";
@@ -449,6 +461,7 @@ namespace Projet
             this->dataGridView_customer_orders->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
             this->dataGridView_customer_orders->Size = System::Drawing::Size(667, 202);
             this->dataGridView_customer_orders->TabIndex = 0;
+            this->dataGridView_customer_orders->SelectionChanged += gcnew System::EventHandler(this, &UserInterface::dataGridView_customer_orders_selectionChanged);
             // 
             // button_customers_reload
             // 
@@ -731,6 +744,24 @@ namespace Projet
             this->tab_statistics->Text = L"Statistics";
             this->tab_statistics->UseVisualStyleBackColor = true;
             // 
+            // label_customers_current_order_delivery_address
+            // 
+            this->label_customers_current_order_delivery_address->AutoSize = true;
+            this->label_customers_current_order_delivery_address->Location = System::Drawing::Point(6, 260);
+            this->label_customers_current_order_delivery_address->Name = L"label_customers_current_order_delivery_address";
+            this->label_customers_current_order_delivery_address->Size = System::Drawing::Size(16, 24);
+            this->label_customers_current_order_delivery_address->TabIndex = 1;
+            this->label_customers_current_order_delivery_address->Text = L" ";
+            // 
+            // label_customers_current_order_billing_address
+            // 
+            this->label_customers_current_order_billing_address->AutoSize = true;
+            this->label_customers_current_order_billing_address->Location = System::Drawing::Point(6, 229);
+            this->label_customers_current_order_billing_address->Name = L"label_customers_current_order_billing_address";
+            this->label_customers_current_order_billing_address->Size = System::Drawing::Size(16, 24);
+            this->label_customers_current_order_billing_address->TabIndex = 2;
+            this->label_customers_current_order_billing_address->Text = L" ";
+            // 
             // UserInterface
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(12, 24);
@@ -753,6 +784,7 @@ namespace Projet
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_billing_addresses))->EndInit();
             this->groupBox_create_customer->ResumeLayout(false);
             this->groupBox_customer_orders->ResumeLayout(false);
+            this->groupBox_customer_orders->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_orders))->EndInit();
             this->groupBox_customer_information->ResumeLayout(false);
             this->groupBox_customer_information->PerformLayout();
@@ -838,6 +870,9 @@ namespace Projet
             this->dataGridView_customer_orders->Sort(this->dataGridView_customer_orders->Columns["order_date"], System::ComponentModel::ListSortDirection::Descending);
 
             this->dataGridView_customer_orders->Columns["id_order"]->Visible = false;
+            this->dataGridView_customer_orders->Columns["id_billing_address"]->Visible = false;
+            this->dataGridView_customer_orders->Columns["id_delivery_address"]->Visible = false;
+                        
             this->dataGridView_customer_orders->Columns["order_reference"]->HeaderText = "Order reference";
             this->dataGridView_customer_orders->Columns["total_amount"]->HeaderText = "Total Amount";
             this->dataGridView_customer_orders->Columns["order_discount_percentage"]->HeaderText = "Discount Percentage";
@@ -950,7 +985,16 @@ namespace Projet
         
     void dataGridView_customer_orders_selectionChanged(Object^ sender, EventArgs^ event_args)
     {
-        // TODO add logic here
+        if (this->dataGridView_customer_orders->SelectedRows->Count != 0)
+        {
+            Address^ currently_selected_order_billing_address = gcnew Address(Convert::ToInt32(this->dataGridView_customer_orders->SelectedRows[0]->Cells["id_billing_address"]->Value->ToString()));
+
+            label_customers_current_order_billing_address->Text = "Billing address : " + currently_selected_order_billing_address->getStreetNumber() + " " + currently_selected_order_billing_address->getStreet() + ", " + currently_selected_order_billing_address->getPostalCode() + " " + currently_selected_order_billing_address->getCity();
+            
+            Address^ currently_selected_order_delivery_address = gcnew Address(Convert::ToInt32(this->dataGridView_customer_orders->SelectedRows[0]->Cells["id_delivery_address"]->Value->ToString()));
+
+            label_customers_current_order_delivery_address->Text = "Delivery address : " + currently_selected_order_delivery_address->getStreetNumber() + " " + currently_selected_order_delivery_address->getStreet() + ", " + currently_selected_order_delivery_address->getPostalCode() + " " + currently_selected_order_delivery_address->getCity();
+        }
     }
 
 

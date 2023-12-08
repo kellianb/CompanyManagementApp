@@ -238,7 +238,7 @@ void SQLservices::SQL_deleteCustomer(int id)
 
 System::Data::DataTable^ SQLservices::SQL_getCustomerOrders(int id)
 {
-    System::String^ cmdString = "SELECT id_order, order_reference, total_amount, order_discount_percentage, order_date, delivery_date FROM Projet_POO_Livrable.Orders WHERE id_customer = @id";
+    System::String^ cmdString = "SELECT id_order, order_reference, total_amount, order_discount_percentage, order_date, delivery_date, id_delivery_address, id_billing_address FROM Projet_POO_Livrable.Orders WHERE id_customer = @id";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
