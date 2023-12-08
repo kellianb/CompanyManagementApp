@@ -269,7 +269,7 @@
       <CompileAsManaged>true</CompileAsManaged>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
-    <ClCompile Include="src\UI\createAddressPrompt.cpp" />
+    <ClCompile Include="src\UI\editAddressPrompt.cpp" />
     <ClCompile Include="src\UI\createCustomerPrompt.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -282,7 +282,7 @@
     <ClInclude Include="src\Person.h" />
     <ClInclude Include="src\SQL\SQLdatabaseAdapter.h" />
     <ClInclude Include="src\SQL\SQLservices.h" />
-    <ClInclude Include="src\UI\createAddressPrompt.h">
+    <ClInclude Include="src\UI\editAddressPrompt.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="src\UI\createCustomerPrompt.h">
@@ -293,7 +293,7 @@
     <EmbeddedResource Include="src/UI/UserInterface.resx">
       <DependentUpon>src/UI/UserInterface.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\UI\createAddressPrompt.resx">
+    <EmbeddedResource Include="src\UI\editAddressPrompt.resx">
       <DependentUpon>src\UI\createAddress.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\UI\createCustomerPrompt.resx">
