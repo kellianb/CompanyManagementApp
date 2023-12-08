@@ -14,9 +14,6 @@ namespace Projet {
 	/// </summary>
 	public ref class createEmployeePrompt : public System::Windows::Forms::Form
 	{
-	private :
-		String^ windowText;
-		
 	public:
 		createEmployeePrompt(void)
 		{
@@ -65,8 +62,6 @@ namespace Projet {
 				return Convert::ToInt32(textBox_address_street_number->Text);
 			}
 		}
-
-
 		
 
 	protected:
@@ -144,65 +139,65 @@ namespace Projet {
 			// 
 			// textBox_employee_first_name
 			// 
-			this->textBox_employee_first_name->Location = System::Drawing::Point(162, 52);
-			this->textBox_employee_first_name->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->textBox_employee_first_name->Location = System::Drawing::Point(144, 42);
+			this->textBox_employee_first_name->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox_employee_first_name->Name = L"textBox_employee_first_name";
-			this->textBox_employee_first_name->Size = System::Drawing::Size(298, 26);
+			this->textBox_employee_first_name->Size = System::Drawing::Size(265, 22);
 			this->textBox_employee_first_name->TabIndex = 0;
 			// 
 			// textBox_employee_last_name
 			// 
-			this->textBox_employee_last_name->Location = System::Drawing::Point(162, 114);
-			this->textBox_employee_last_name->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->textBox_employee_last_name->Location = System::Drawing::Point(144, 91);
+			this->textBox_employee_last_name->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox_employee_last_name->Name = L"textBox_employee_last_name";
-			this->textBox_employee_last_name->Size = System::Drawing::Size(298, 26);
+			this->textBox_employee_last_name->Size = System::Drawing::Size(265, 22);
 			this->textBox_employee_last_name->TabIndex = 1;
 			// 
 			// label_first_name
 			// 
 			this->label_first_name->AutoSize = true;
-			this->label_first_name->Location = System::Drawing::Point(36, 55);
+			this->label_first_name->Location = System::Drawing::Point(32, 44);
 			this->label_first_name->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_first_name->Name = L"label_first_name";
-			this->label_first_name->Size = System::Drawing::Size(84, 20);
+			this->label_first_name->Size = System::Drawing::Size(69, 16);
 			this->label_first_name->TabIndex = 2;
 			this->label_first_name->Text = L"First name";
 			// 
 			// label_last_name
 			// 
 			this->label_last_name->AutoSize = true;
-			this->label_last_name->Location = System::Drawing::Point(36, 116);
+			this->label_last_name->Location = System::Drawing::Point(32, 93);
 			this->label_last_name->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_last_name->Name = L"label_last_name";
-			this->label_last_name->Size = System::Drawing::Size(84, 20);
+			this->label_last_name->Size = System::Drawing::Size(69, 16);
 			this->label_last_name->TabIndex = 3;
 			this->label_last_name->Text = L"Last name";
 			// 
 			// dateTimePicker_employee_hire_date
 			// 
-			this->dateTimePicker_employee_hire_date->Location = System::Drawing::Point(162, 177);
-			this->dateTimePicker_employee_hire_date->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->dateTimePicker_employee_hire_date->Location = System::Drawing::Point(144, 142);
+			this->dateTimePicker_employee_hire_date->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->dateTimePicker_employee_hire_date->Name = L"dateTimePicker_employee_hire_date";
-			this->dateTimePicker_employee_hire_date->Size = System::Drawing::Size(298, 26);
+			this->dateTimePicker_employee_hire_date->Size = System::Drawing::Size(265, 22);
 			this->dateTimePicker_employee_hire_date->TabIndex = 4;
 			// 
 			// label_hire_date
 			// 
 			this->label_hire_date->AutoSize = true;
-			this->label_hire_date->Location = System::Drawing::Point(36, 181);
+			this->label_hire_date->Location = System::Drawing::Point(32, 145);
 			this->label_hire_date->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_hire_date->Name = L"label_hire_date";
-			this->label_hire_date->Size = System::Drawing::Size(74, 20);
+			this->label_hire_date->Size = System::Drawing::Size(62, 16);
 			this->label_hire_date->TabIndex = 5;
 			this->label_hire_date->Text = L"Hire date";
 			// 
 			// button_create
 			// 
 			this->button_create->DialogResult = System::Windows::Forms::DialogResult::OK;
-			this->button_create->Location = System::Drawing::Point(148, 493);
-			this->button_create->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->button_create->Location = System::Drawing::Point(133, 448);
+			this->button_create->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button_create->Name = L"button_create";
-			this->button_create->Size = System::Drawing::Size(112, 35);
+			this->button_create->Size = System::Drawing::Size(100, 28);
 			this->button_create->TabIndex = 6;
 			this->button_create->Text = L"Create";
 			this->button_create->UseVisualStyleBackColor = true;
@@ -210,10 +205,10 @@ namespace Projet {
 			// button_cancel
 			// 
 			this->button_cancel->DialogResult = System::Windows::Forms::DialogResult::Cancel;
-			this->button_cancel->Location = System::Drawing::Point(297, 493);
-			this->button_cancel->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->button_cancel->Location = System::Drawing::Point(265, 448);
+			this->button_cancel->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button_cancel->Name = L"button_cancel";
-			this->button_cancel->Size = System::Drawing::Size(112, 35);
+			this->button_cancel->Size = System::Drawing::Size(100, 28);
 			this->button_cancel->TabIndex = 7;
 			this->button_cancel->Text = L"Cancel";
 			this->button_cancel->UseVisualStyleBackColor = true;
@@ -221,69 +216,69 @@ namespace Projet {
 			// label_address_street
 			// 
 			this->label_address_street->AutoSize = true;
-			this->label_address_street->Location = System::Drawing::Point(24, 135);
+			this->label_address_street->Location = System::Drawing::Point(21, 108);
 			this->label_address_street->Name = L"label_address_street";
-			this->label_address_street->Size = System::Drawing::Size(53, 20);
+			this->label_address_street->Size = System::Drawing::Size(42, 16);
 			this->label_address_street->TabIndex = 19;
 			this->label_address_street->Text = L"Street";
 			// 
 			// label_address_street_number
 			// 
 			this->label_address_street_number->AutoSize = true;
-			this->label_address_street_number->Location = System::Drawing::Point(24, 188);
+			this->label_address_street_number->Location = System::Drawing::Point(21, 150);
 			this->label_address_street_number->Name = L"label_address_street_number";
-			this->label_address_street_number->Size = System::Drawing::Size(111, 20);
+			this->label_address_street_number->Size = System::Drawing::Size(90, 16);
 			this->label_address_street_number->TabIndex = 18;
 			this->label_address_street_number->Text = L"Street number";
 			// 
 			// label_address_postal_code
 			// 
 			this->label_address_postal_code->AutoSize = true;
-			this->label_address_postal_code->Location = System::Drawing::Point(24, 85);
+			this->label_address_postal_code->Location = System::Drawing::Point(21, 68);
 			this->label_address_postal_code->Name = L"label_address_postal_code";
-			this->label_address_postal_code->Size = System::Drawing::Size(95, 20);
+			this->label_address_postal_code->Size = System::Drawing::Size(81, 16);
 			this->label_address_postal_code->TabIndex = 17;
 			this->label_address_postal_code->Text = L"Postal Code";
 			// 
 			// label_address_city
 			// 
 			this->label_address_city->AutoSize = true;
-			this->label_address_city->Location = System::Drawing::Point(24, 39);
+			this->label_address_city->Location = System::Drawing::Point(21, 31);
 			this->label_address_city->Name = L"label_address_city";
-			this->label_address_city->Size = System::Drawing::Size(35, 20);
+			this->label_address_city->Size = System::Drawing::Size(29, 16);
 			this->label_address_city->TabIndex = 16;
 			this->label_address_city->Text = L"City";
 			// 
 			// textBox_address_postal_code
 			// 
-			this->textBox_address_postal_code->Location = System::Drawing::Point(150, 82);
-			this->textBox_address_postal_code->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->textBox_address_postal_code->Location = System::Drawing::Point(133, 66);
+			this->textBox_address_postal_code->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox_address_postal_code->Name = L"textBox_address_postal_code";
-			this->textBox_address_postal_code->Size = System::Drawing::Size(298, 26);
+			this->textBox_address_postal_code->Size = System::Drawing::Size(265, 22);
 			this->textBox_address_postal_code->TabIndex = 15;
 			// 
 			// textBox_address_street_number
 			// 
-			this->textBox_address_street_number->Location = System::Drawing::Point(150, 185);
-			this->textBox_address_street_number->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->textBox_address_street_number->Location = System::Drawing::Point(133, 148);
+			this->textBox_address_street_number->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox_address_street_number->Name = L"textBox_address_street_number";
-			this->textBox_address_street_number->Size = System::Drawing::Size(298, 26);
+			this->textBox_address_street_number->Size = System::Drawing::Size(265, 22);
 			this->textBox_address_street_number->TabIndex = 14;
 			// 
 			// textBox_address_street
 			// 
-			this->textBox_address_street->Location = System::Drawing::Point(150, 132);
-			this->textBox_address_street->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->textBox_address_street->Location = System::Drawing::Point(133, 106);
+			this->textBox_address_street->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox_address_street->Name = L"textBox_address_street";
-			this->textBox_address_street->Size = System::Drawing::Size(298, 26);
+			this->textBox_address_street->Size = System::Drawing::Size(265, 22);
 			this->textBox_address_street->TabIndex = 13;
 			// 
 			// textBox_address_city
 			// 
-			this->textBox_address_city->Location = System::Drawing::Point(150, 36);
-			this->textBox_address_city->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->textBox_address_city->Location = System::Drawing::Point(133, 29);
+			this->textBox_address_city->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox_address_city->Name = L"textBox_address_city";
-			this->textBox_address_city->Size = System::Drawing::Size(298, 26);
+			this->textBox_address_city->Size = System::Drawing::Size(265, 22);
 			this->textBox_address_city->TabIndex = 12;
 			// 
 			// groupBox_address
@@ -296,18 +291,20 @@ namespace Projet {
 			this->groupBox_address->Controls->Add(this->textBox_address_postal_code);
 			this->groupBox_address->Controls->Add(this->label_address_city);
 			this->groupBox_address->Controls->Add(this->textBox_address_city);
-			this->groupBox_address->Location = System::Drawing::Point(12, 232);
+			this->groupBox_address->Location = System::Drawing::Point(12, 240);
+			this->groupBox_address->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->groupBox_address->Name = L"groupBox_address";
-			this->groupBox_address->Size = System::Drawing::Size(504, 238);
+			this->groupBox_address->Padding = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->groupBox_address->Size = System::Drawing::Size(448, 190);
 			this->groupBox_address->TabIndex = 20;
 			this->groupBox_address->TabStop = false;
 			this->groupBox_address->Text = L"Address";
 			// 
 			// createEmployeePrompt
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(528, 554);
+			this->ClientSize = System::Drawing::Size(473, 502);
 			this->Controls->Add(this->button_cancel);
 			this->Controls->Add(this->button_create);
 			this->Controls->Add(this->label_hire_date);
@@ -317,11 +314,10 @@ namespace Projet {
 			this->Controls->Add(this->textBox_employee_last_name);
 			this->Controls->Add(this->textBox_employee_first_name);
 			this->Controls->Add(this->groupBox_address);
-			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->MinimumSize = System::Drawing::Size(550, 400);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->MinimumSize = System::Drawing::Size(491, 329);
 			this->Name = L"createEmployeePrompt";
 			this->Text = L"Create employee";
-			this->Load += gcnew System::EventHandler(this, &createEmployeePrompt::createEmployeePrompt_Load);
 			this->groupBox_address->ResumeLayout(false);
 			this->groupBox_address->PerformLayout();
 			this->ResumeLayout(false);
@@ -330,7 +326,5 @@ namespace Projet {
 		}
 #pragma endregion
 
-	private: System::Void createEmployeePrompt_Load(System::Object^ sender, System::EventArgs^ e) {
-	}
-};
+	};
 }

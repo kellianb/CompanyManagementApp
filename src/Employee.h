@@ -14,6 +14,7 @@ private:
 
 public:
     Employee(int);
+    Employee(System::String^, System::String^, System::DateTime);
     Employee(System::String^, System::String^, System::DateTime, int);
     Employee(System::String^, System::String^, System::DateTime, int, int);
 
