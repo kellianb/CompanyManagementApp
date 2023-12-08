@@ -69,7 +69,7 @@ namespace Projet
     private: System::Windows::Forms::Button^ button_customers_reload;
     private: System::Windows::Forms::GroupBox^ groupBox_customer_orders;
     private: System::Windows::Forms::DataGridView^ dataGridView_customer_orders;
-    private: System::Windows::Forms::GroupBox^ groupBox_create_customer;
+
     private: System::Windows::Forms::Button^ button_create_customer;
     private: System::Windows::Forms::GroupBox^ groupBox_customer_billing_addresses;
     private: System::Windows::Forms::GroupBox^ groupBox_delivery_addresses;
@@ -102,6 +102,12 @@ namespace Projet
     private: System::Windows::Forms::TextBox^ textBox_id_address_employee;
     private: System::Windows::Forms::Label^ label_customers_current_order_billing_address;
     private: System::Windows::Forms::Label^ label_customers_current_order_delivery_address;
+    private: System::Windows::Forms::GroupBox^ groupBox_employee_manager;
+
+
+
+    private: System::Windows::Forms::Label^ label_employee_manager_name;
+    private: System::Windows::Forms::Label^ label_employee_manager_adress;
 
 
 
@@ -187,6 +193,7 @@ namespace Projet
             this->tab_orders = (gcnew System::Windows::Forms::TabPage());
             this->tab_inventory = (gcnew System::Windows::Forms::TabPage());
             this->tab_customers = (gcnew System::Windows::Forms::TabPage());
+            this->button_create_customer = (gcnew System::Windows::Forms::Button());
             this->groupBox_delivery_addresses = (gcnew System::Windows::Forms::GroupBox());
             this->button_customer_delete_delivery_address = (gcnew System::Windows::Forms::Button());
             this->button_customer_modify_delivery_address = (gcnew System::Windows::Forms::Button());
@@ -197,9 +204,9 @@ namespace Projet
             this->button_customer_modify_billing_address = (gcnew System::Windows::Forms::Button());
             this->button_customer_add_billing_address = (gcnew System::Windows::Forms::Button());
             this->dataGridView_customer_billing_addresses = (gcnew System::Windows::Forms::DataGridView());
-            this->groupBox_create_customer = (gcnew System::Windows::Forms::GroupBox());
-            this->button_create_customer = (gcnew System::Windows::Forms::Button());
             this->groupBox_customer_orders = (gcnew System::Windows::Forms::GroupBox());
+            this->label_customers_current_order_billing_address = (gcnew System::Windows::Forms::Label());
+            this->label_customers_current_order_delivery_address = (gcnew System::Windows::Forms::Label());
             this->dataGridView_customer_orders = (gcnew System::Windows::Forms::DataGridView());
             this->button_customers_reload = (gcnew System::Windows::Forms::Button());
             this->groupBox_customer_information = (gcnew System::Windows::Forms::GroupBox());
@@ -213,35 +220,36 @@ namespace Projet
             this->textBox_last_name_customer = (gcnew System::Windows::Forms::TextBox());
             this->dataGridView_customers = (gcnew System::Windows::Forms::DataGridView());
             this->tab_employee = (gcnew System::Windows::Forms::TabPage());
+            this->groupBox_employee_manager = (gcnew System::Windows::Forms::GroupBox());
+            this->label_employee_manager_name = (gcnew System::Windows::Forms::Label());
+            this->label_employee_manager_adress = (gcnew System::Windows::Forms::Label());
             this->dataGridView_employee = (gcnew System::Windows::Forms::DataGridView());
             this->groupBox_employee = (gcnew System::Windows::Forms::GroupBox());
             this->label_id_manager_employee = (gcnew System::Windows::Forms::Label());
             this->textBox_id_manager_employee = (gcnew System::Windows::Forms::TextBox());
+            this->button_delete_employee = (gcnew System::Windows::Forms::Button());
+            this->button_modify_employee = (gcnew System::Windows::Forms::Button());
             this->textBox_id_address_employee = (gcnew System::Windows::Forms::TextBox());
             this->label_id_address_employee = (gcnew System::Windows::Forms::Label());
             this->label_employee_hiring_date = (gcnew System::Windows::Forms::Label());
             this->dateTimePicker_employee_hiring_date = (gcnew System::Windows::Forms::DateTimePicker());
-            this->button_delete_employee = (gcnew System::Windows::Forms::Button());
-            this->button_modify_employee = (gcnew System::Windows::Forms::Button());
             this->label_last_name_employee = (gcnew System::Windows::Forms::Label());
             this->label_first_name_employee = (gcnew System::Windows::Forms::Label());
             this->textBox_first_name_employee = (gcnew System::Windows::Forms::TextBox());
             this->textBox_last_name_employee = (gcnew System::Windows::Forms::TextBox());
             this->tab_statistics = (gcnew System::Windows::Forms::TabPage());
-            this->label_customers_current_order_delivery_address = (gcnew System::Windows::Forms::Label());
-            this->label_customers_current_order_billing_address = (gcnew System::Windows::Forms::Label());
             this->tabController->SuspendLayout();
             this->tab_customers->SuspendLayout();
             this->groupBox_delivery_addresses->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_delivery_addresses))->BeginInit();
             this->groupBox_customer_billing_addresses->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_billing_addresses))->BeginInit();
-            this->groupBox_create_customer->SuspendLayout();
             this->groupBox_customer_orders->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_orders))->BeginInit();
             this->groupBox_customer_information->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customers))->BeginInit();
             this->tab_employee->SuspendLayout();
+            this->groupBox_employee_manager->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_employee))->BeginInit();
             this->groupBox_employee->SuspendLayout();
             this->SuspendLayout();
@@ -254,54 +262,64 @@ namespace Projet
             this->tabController->Controls->Add(this->tab_employee);
             this->tabController->Controls->Add(this->tab_statistics);
             this->tabController->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->tabController->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->tabController->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->tabController->Location = System::Drawing::Point(0, 0);
             this->tabController->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
             this->tabController->Name = L"tabController";
             this->tabController->SelectedIndex = 0;
-            this->tabController->Size = System::Drawing::Size(1254, 742);
+            this->tabController->Size = System::Drawing::Size(1258, 751);
             this->tabController->TabIndex = 0;
             this->tabController->SelectedIndexChanged += gcnew System::EventHandler(this, &UserInterface::OnTabSelectedIndexChanged);
             // 
             // tab_orders
             // 
-            this->tab_orders->Location = System::Drawing::Point(4, 33);
+            this->tab_orders->Location = System::Drawing::Point(4, 29);
             this->tab_orders->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
             this->tab_orders->Name = L"tab_orders";
             this->tab_orders->Padding = System::Windows::Forms::Padding(5, 4, 5, 4);
-            this->tab_orders->Size = System::Drawing::Size(1246, 705);
+            this->tab_orders->Size = System::Drawing::Size(1250, 718);
             this->tab_orders->TabIndex = 1;
             this->tab_orders->Text = L"Orders";
             this->tab_orders->UseVisualStyleBackColor = true;
             // 
             // tab_inventory
             // 
-            this->tab_inventory->Location = System::Drawing::Point(4, 33);
+            this->tab_inventory->Location = System::Drawing::Point(4, 29);
             this->tab_inventory->Name = L"tab_inventory";
             this->tab_inventory->Padding = System::Windows::Forms::Padding(3);
-            this->tab_inventory->Size = System::Drawing::Size(1246, 705);
+            this->tab_inventory->Size = System::Drawing::Size(1250, 718);
             this->tab_inventory->TabIndex = 2;
             this->tab_inventory->Text = L"Inventory";
             this->tab_inventory->UseVisualStyleBackColor = true;
             // 
             // tab_customers
             // 
+            this->tab_customers->Controls->Add(this->button_create_customer);
             this->tab_customers->Controls->Add(this->groupBox_delivery_addresses);
             this->tab_customers->Controls->Add(this->groupBox_customer_billing_addresses);
-            this->tab_customers->Controls->Add(this->groupBox_create_customer);
             this->tab_customers->Controls->Add(this->groupBox_customer_orders);
             this->tab_customers->Controls->Add(this->button_customers_reload);
             this->tab_customers->Controls->Add(this->groupBox_customer_information);
             this->tab_customers->Controls->Add(this->dataGridView_customers);
-            this->tab_customers->Location = System::Drawing::Point(4, 33);
+            this->tab_customers->Location = System::Drawing::Point(4, 29);
             this->tab_customers->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
             this->tab_customers->Name = L"tab_customers";
             this->tab_customers->Padding = System::Windows::Forms::Padding(5, 4, 5, 4);
-            this->tab_customers->Size = System::Drawing::Size(1246, 705);
+            this->tab_customers->Size = System::Drawing::Size(1250, 718);
             this->tab_customers->TabIndex = 0;
             this->tab_customers->Text = L"Customers";
             this->tab_customers->UseVisualStyleBackColor = true;
+            // 
+            // button_create_customer
+            // 
+            this->button_create_customer->Location = System::Drawing::Point(913, 152);
+            this->button_create_customer->Name = L"button_create_customer";
+            this->button_create_customer->Size = System::Drawing::Size(195, 37);
+            this->button_create_customer->TabIndex = 9;
+            this->button_create_customer->Text = L"Create a customer";
+            this->button_create_customer->UseVisualStyleBackColor = true;
+            this->button_create_customer->Click += gcnew System::EventHandler(this, &UserInterface::button_create_customer_Click);
             // 
             // groupBox_delivery_addresses
             // 
@@ -309,9 +327,9 @@ namespace Projet
             this->groupBox_delivery_addresses->Controls->Add(this->button_customer_modify_delivery_address);
             this->groupBox_delivery_addresses->Controls->Add(this->button_customer_add_delivery_address);
             this->groupBox_delivery_addresses->Controls->Add(this->dataGridView_customer_delivery_addresses);
-            this->groupBox_delivery_addresses->Location = System::Drawing::Point(561, 534);
+            this->groupBox_delivery_addresses->Location = System::Drawing::Point(8, 374);
             this->groupBox_delivery_addresses->Name = L"groupBox_delivery_addresses";
-            this->groupBox_delivery_addresses->Size = System::Drawing::Size(679, 169);
+            this->groupBox_delivery_addresses->Size = System::Drawing::Size(543, 169);
             this->groupBox_delivery_addresses->TabIndex = 8;
             this->groupBox_delivery_addresses->TabStop = false;
             this->groupBox_delivery_addresses->Text = L"Delivery addresses";
@@ -356,7 +374,7 @@ namespace Projet
             this->dataGridView_customer_delivery_addresses->RowHeadersWidth = 62;
             this->dataGridView_customer_delivery_addresses->RowTemplate->Height = 28;
             this->dataGridView_customer_delivery_addresses->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_customer_delivery_addresses->Size = System::Drawing::Size(667, 99);
+            this->dataGridView_customer_delivery_addresses->Size = System::Drawing::Size(531, 99);
             this->dataGridView_customer_delivery_addresses->TabIndex = 1;
             // 
             // groupBox_customer_billing_addresses
@@ -365,9 +383,9 @@ namespace Projet
             this->groupBox_customer_billing_addresses->Controls->Add(this->button_customer_modify_billing_address);
             this->groupBox_customer_billing_addresses->Controls->Add(this->button_customer_add_billing_address);
             this->groupBox_customer_billing_addresses->Controls->Add(this->dataGridView_customer_billing_addresses);
-            this->groupBox_customer_billing_addresses->Location = System::Drawing::Point(8, 534);
+            this->groupBox_customer_billing_addresses->Location = System::Drawing::Point(8, 549);
             this->groupBox_customer_billing_addresses->Name = L"groupBox_customer_billing_addresses";
-            this->groupBox_customer_billing_addresses->Size = System::Drawing::Size(539, 169);
+            this->groupBox_customer_billing_addresses->Size = System::Drawing::Size(543, 169);
             this->groupBox_customer_billing_addresses->TabIndex = 7;
             this->groupBox_customer_billing_addresses->TabStop = false;
             this->groupBox_customer_billing_addresses->Text = L"Billing addresses";
@@ -413,28 +431,8 @@ namespace Projet
             this->dataGridView_customer_billing_addresses->RowHeadersWidth = 62;
             this->dataGridView_customer_billing_addresses->RowTemplate->Height = 28;
             this->dataGridView_customer_billing_addresses->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_customer_billing_addresses->Size = System::Drawing::Size(527, 99);
+            this->dataGridView_customer_billing_addresses->Size = System::Drawing::Size(531, 99);
             this->dataGridView_customer_billing_addresses->TabIndex = 1;
-            // 
-            // groupBox_create_customer
-            // 
-            this->groupBox_create_customer->Controls->Add(this->button_create_customer);
-            this->groupBox_create_customer->Location = System::Drawing::Point(8, 437);
-            this->groupBox_create_customer->Name = L"groupBox_create_customer";
-            this->groupBox_create_customer->Size = System::Drawing::Size(539, 91);
-            this->groupBox_create_customer->TabIndex = 6;
-            this->groupBox_create_customer->TabStop = false;
-            this->groupBox_create_customer->Text = L"Create a customer";
-            // 
-            // button_create_customer
-            // 
-            this->button_create_customer->Location = System::Drawing::Point(27, 36);
-            this->button_create_customer->Name = L"button_create_customer";
-            this->button_create_customer->Size = System::Drawing::Size(195, 30);
-            this->button_create_customer->TabIndex = 9;
-            this->button_create_customer->Text = L"Create a customer";
-            this->button_create_customer->UseVisualStyleBackColor = true;
-            this->button_create_customer->Click += gcnew System::EventHandler(this, &UserInterface::button_create_customer_Click);
             // 
             // groupBox_customer_orders
             // 
@@ -443,10 +441,28 @@ namespace Projet
             this->groupBox_customer_orders->Controls->Add(this->dataGridView_customer_orders);
             this->groupBox_customer_orders->Location = System::Drawing::Point(561, 201);
             this->groupBox_customer_orders->Name = L"groupBox_customer_orders";
-            this->groupBox_customer_orders->Size = System::Drawing::Size(679, 327);
+            this->groupBox_customer_orders->Size = System::Drawing::Size(679, 521);
             this->groupBox_customer_orders->TabIndex = 5;
             this->groupBox_customer_orders->TabStop = false;
             this->groupBox_customer_orders->Text = L"Customer Orders";
+            // 
+            // label_customers_current_order_billing_address
+            // 
+            this->label_customers_current_order_billing_address->AutoSize = true;
+            this->label_customers_current_order_billing_address->Location = System::Drawing::Point(6, 309);
+            this->label_customers_current_order_billing_address->Name = L"label_customers_current_order_billing_address";
+            this->label_customers_current_order_billing_address->Size = System::Drawing::Size(14, 20);
+            this->label_customers_current_order_billing_address->TabIndex = 2;
+            this->label_customers_current_order_billing_address->Text = L" ";
+            // 
+            // label_customers_current_order_delivery_address
+            // 
+            this->label_customers_current_order_delivery_address->AutoSize = true;
+            this->label_customers_current_order_delivery_address->Location = System::Drawing::Point(6, 340);
+            this->label_customers_current_order_delivery_address->Name = L"label_customers_current_order_delivery_address";
+            this->label_customers_current_order_delivery_address->Size = System::Drawing::Size(14, 20);
+            this->label_customers_current_order_delivery_address->TabIndex = 1;
+            this->label_customers_current_order_delivery_address->Text = L" ";
             // 
             // dataGridView_customer_orders
             // 
@@ -459,7 +475,7 @@ namespace Projet
             this->dataGridView_customer_orders->RowHeadersWidth = 62;
             this->dataGridView_customer_orders->RowTemplate->Height = 28;
             this->dataGridView_customer_orders->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_customer_orders->Size = System::Drawing::Size(667, 202);
+            this->dataGridView_customer_orders->Size = System::Drawing::Size(667, 272);
             this->dataGridView_customer_orders->TabIndex = 0;
             this->dataGridView_customer_orders->SelectionChanged += gcnew System::EventHandler(this, &UserInterface::dataGridView_customer_orders_selectionChanged);
             // 
@@ -487,7 +503,7 @@ namespace Projet
             this->groupBox_customer_information->Controls->Add(this->textBox_last_name_customer);
             this->groupBox_customer_information->Location = System::Drawing::Point(8, 201);
             this->groupBox_customer_information->Name = L"groupBox_customer_information";
-            this->groupBox_customer_information->Size = System::Drawing::Size(539, 229);
+            this->groupBox_customer_information->Size = System::Drawing::Size(543, 166);
             this->groupBox_customer_information->TabIndex = 3;
             this->groupBox_customer_information->TabStop = false;
             this->groupBox_customer_information->Text = L"Customer Information";
@@ -497,7 +513,7 @@ namespace Projet
             this->label_customer_birth_date->AutoSize = true;
             this->label_customer_birth_date->Location = System::Drawing::Point(312, 30);
             this->label_customer_birth_date->Name = L"label_customer_birth_date";
-            this->label_customer_birth_date->Size = System::Drawing::Size(103, 24);
+            this->label_customer_birth_date->Size = System::Drawing::Size(82, 20);
             this->label_customer_birth_date->TabIndex = 8;
             this->label_customer_birth_date->Text = L"Birth date";
             // 
@@ -505,12 +521,12 @@ namespace Projet
             // 
             this->dateTimePicker_customer_birth_date->Location = System::Drawing::Point(316, 53);
             this->dateTimePicker_customer_birth_date->Name = L"dateTimePicker_customer_birth_date";
-            this->dateTimePicker_customer_birth_date->Size = System::Drawing::Size(197, 31);
+            this->dateTimePicker_customer_birth_date->Size = System::Drawing::Size(197, 26);
             this->dateTimePicker_customer_birth_date->TabIndex = 7;
             // 
             // button_delete_customer
             // 
-            this->button_delete_customer->Location = System::Drawing::Point(134, 184);
+            this->button_delete_customer->Location = System::Drawing::Point(425, 120);
             this->button_delete_customer->Name = L"button_delete_customer";
             this->button_delete_customer->Size = System::Drawing::Size(88, 30);
             this->button_delete_customer->TabIndex = 6;
@@ -520,7 +536,7 @@ namespace Projet
             // 
             // button_modify_customer
             // 
-            this->button_modify_customer->Location = System::Drawing::Point(27, 184);
+            this->button_modify_customer->Location = System::Drawing::Point(316, 120);
             this->button_modify_customer->Name = L"button_modify_customer";
             this->button_modify_customer->Size = System::Drawing::Size(88, 30);
             this->button_modify_customer->TabIndex = 5;
@@ -533,7 +549,7 @@ namespace Projet
             this->label_last_name_customer->AutoSize = true;
             this->label_last_name_customer->Location = System::Drawing::Point(24, 101);
             this->label_last_name_customer->Name = L"label_last_name_customer";
-            this->label_last_name_customer->Size = System::Drawing::Size(110, 24);
+            this->label_last_name_customer->Size = System::Drawing::Size(91, 20);
             this->label_last_name_customer->TabIndex = 4;
             this->label_last_name_customer->Text = L"Last Name";
             // 
@@ -542,7 +558,7 @@ namespace Projet
             this->label_first_name_customer->AutoSize = true;
             this->label_first_name_customer->Location = System::Drawing::Point(24, 30);
             this->label_first_name_customer->Name = L"label_first_name_customer";
-            this->label_first_name_customer->Size = System::Drawing::Size(112, 24);
+            this->label_first_name_customer->Size = System::Drawing::Size(92, 20);
             this->label_first_name_customer->TabIndex = 3;
             this->label_first_name_customer->Text = L"First Name";
             // 
@@ -550,14 +566,14 @@ namespace Projet
             // 
             this->textBox_first_name_customer->Location = System::Drawing::Point(28, 53);
             this->textBox_first_name_customer->Name = L"textBox_first_name_customer";
-            this->textBox_first_name_customer->Size = System::Drawing::Size(240, 31);
+            this->textBox_first_name_customer->Size = System::Drawing::Size(240, 26);
             this->textBox_first_name_customer->TabIndex = 1;
             // 
             // textBox_last_name_customer
             // 
             this->textBox_last_name_customer->Location = System::Drawing::Point(28, 124);
             this->textBox_last_name_customer->Name = L"textBox_last_name_customer";
-            this->textBox_last_name_customer->Size = System::Drawing::Size(240, 31);
+            this->textBox_last_name_customer->Size = System::Drawing::Size(240, 26);
             this->textBox_last_name_customer->TabIndex = 2;
             // 
             // dataGridView_customers
@@ -576,21 +592,51 @@ namespace Projet
             this->dataGridView_customers->RowHeadersWidth = 62;
             this->dataGridView_customers->RowTemplate->Height = 28;
             this->dataGridView_customers->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_customers->Size = System::Drawing::Size(1232, 188);
+            this->dataGridView_customers->Size = System::Drawing::Size(1236, 188);
             this->dataGridView_customers->TabIndex = 0;
             this->dataGridView_customers->SelectionChanged += gcnew System::EventHandler(this, &UserInterface::dataGridView_customers_selectionChanged);
             // 
             // tab_employee
             // 
+            this->tab_employee->Controls->Add(this->groupBox_employee_manager);
             this->tab_employee->Controls->Add(this->dataGridView_employee);
             this->tab_employee->Controls->Add(this->groupBox_employee);
-            this->tab_employee->Location = System::Drawing::Point(4, 33);
+            this->tab_employee->Location = System::Drawing::Point(4, 29);
             this->tab_employee->Name = L"tab_employee";
             this->tab_employee->Padding = System::Windows::Forms::Padding(3);
-            this->tab_employee->Size = System::Drawing::Size(1246, 705);
+            this->tab_employee->Size = System::Drawing::Size(1250, 718);
             this->tab_employee->TabIndex = 3;
             this->tab_employee->Text = L"Employee";
             this->tab_employee->UseVisualStyleBackColor = true;
+            // 
+            // groupBox_employee_manager
+            // 
+            this->groupBox_employee_manager->Controls->Add(this->label_employee_manager_name);
+            this->groupBox_employee_manager->Controls->Add(this->label_employee_manager_adress);
+            this->groupBox_employee_manager->Location = System::Drawing::Point(8, 448);
+            this->groupBox_employee_manager->Name = L"groupBox_employee_manager";
+            this->groupBox_employee_manager->Size = System::Drawing::Size(543, 101);
+            this->groupBox_employee_manager->TabIndex = 6;
+            this->groupBox_employee_manager->TabStop = false;
+            this->groupBox_employee_manager->Text = L"Manager Employee";
+            // 
+            // label_employee_manager_name
+            // 
+            this->label_employee_manager_name->AutoSize = true;
+            this->label_employee_manager_name->Location = System::Drawing::Point(6, 31);
+            this->label_employee_manager_name->Name = L"label_employee_manager_name";
+            this->label_employee_manager_name->Size = System::Drawing::Size(51, 20);
+            this->label_employee_manager_name->TabIndex = 2;
+            this->label_employee_manager_name->Text = L" smth";
+            // 
+            // label_employee_manager_adress
+            // 
+            this->label_employee_manager_adress->AutoSize = true;
+            this->label_employee_manager_adress->Location = System::Drawing::Point(6, 67);
+            this->label_employee_manager_adress->Name = L"label_employee_manager_adress";
+            this->label_employee_manager_adress->Size = System::Drawing::Size(51, 20);
+            this->label_employee_manager_adress->TabIndex = 1;
+            this->label_employee_manager_adress->Text = L" smth";
             // 
             // dataGridView_employee
             // 
@@ -608,7 +654,7 @@ namespace Projet
             this->dataGridView_employee->RowHeadersWidth = 62;
             this->dataGridView_employee->RowTemplate->Height = 28;
             this->dataGridView_employee->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_employee->Size = System::Drawing::Size(1232, 188);
+            this->dataGridView_employee->Size = System::Drawing::Size(1236, 188);
             this->dataGridView_employee->TabIndex = 0;
             this->dataGridView_employee->SelectionChanged += gcnew System::EventHandler(this, &UserInterface::dataGridView_employee_selectionChanged);
             // 
@@ -618,19 +664,19 @@ namespace Projet
                 | System::Windows::Forms::AnchorStyles::Right));
             this->groupBox_employee->Controls->Add(this->label_id_manager_employee);
             this->groupBox_employee->Controls->Add(this->textBox_id_manager_employee);
+            this->groupBox_employee->Controls->Add(this->button_delete_employee);
+            this->groupBox_employee->Controls->Add(this->button_modify_employee);
             this->groupBox_employee->Controls->Add(this->textBox_id_address_employee);
             this->groupBox_employee->Controls->Add(this->label_id_address_employee);
             this->groupBox_employee->Controls->Add(this->label_employee_hiring_date);
             this->groupBox_employee->Controls->Add(this->dateTimePicker_employee_hiring_date);
-            this->groupBox_employee->Controls->Add(this->button_delete_employee);
-            this->groupBox_employee->Controls->Add(this->button_modify_employee);
             this->groupBox_employee->Controls->Add(this->label_last_name_employee);
             this->groupBox_employee->Controls->Add(this->label_first_name_employee);
             this->groupBox_employee->Controls->Add(this->textBox_first_name_employee);
             this->groupBox_employee->Controls->Add(this->textBox_last_name_employee);
             this->groupBox_employee->Location = System::Drawing::Point(8, 201);
             this->groupBox_employee->Name = L"groupBox_employee";
-            this->groupBox_employee->Size = System::Drawing::Size(539, 229);
+            this->groupBox_employee->Size = System::Drawing::Size(543, 241);
             this->groupBox_employee->TabIndex = 3;
             this->groupBox_employee->TabStop = false;
             this->groupBox_employee->Text = L"Employee Information";
@@ -638,24 +684,44 @@ namespace Projet
             // label_id_manager_employee
             // 
             this->label_id_manager_employee->AutoSize = true;
-            this->label_id_manager_employee->Location = System::Drawing::Point(312, 165);
+            this->label_id_manager_employee->Location = System::Drawing::Point(24, 180);
             this->label_id_manager_employee->Name = L"label_id_manager_employee";
-            this->label_id_manager_employee->Size = System::Drawing::Size(118, 24);
+            this->label_id_manager_employee->Size = System::Drawing::Size(96, 20);
             this->label_id_manager_employee->TabIndex = 12;
             this->label_id_manager_employee->Text = L"Manager ID";
             // 
             // textBox_id_manager_employee
             // 
-            this->textBox_id_manager_employee->Location = System::Drawing::Point(316, 188);
+            this->textBox_id_manager_employee->Location = System::Drawing::Point(28, 203);
             this->textBox_id_manager_employee->Name = L"textBox_id_manager_employee";
-            this->textBox_id_manager_employee->Size = System::Drawing::Size(197, 31);
+            this->textBox_id_manager_employee->Size = System::Drawing::Size(240, 26);
             this->textBox_id_manager_employee->TabIndex = 11;
+            // 
+            // button_delete_employee
+            // 
+            this->button_delete_employee->Location = System::Drawing::Point(316, 199);
+            this->button_delete_employee->Name = L"button_delete_employee";
+            this->button_delete_employee->Size = System::Drawing::Size(198, 30);
+            this->button_delete_employee->TabIndex = 6;
+            this->button_delete_employee->Text = L"Delete";
+            this->button_delete_employee->UseVisualStyleBackColor = true;
+            this->button_delete_employee->Click += gcnew System::EventHandler(this, &UserInterface::button_delete_employee_Click);
+            // 
+            // button_modify_employee
+            // 
+            this->button_modify_employee->Location = System::Drawing::Point(316, 163);
+            this->button_modify_employee->Name = L"button_modify_employee";
+            this->button_modify_employee->Size = System::Drawing::Size(198, 30);
+            this->button_modify_employee->TabIndex = 5;
+            this->button_modify_employee->Text = L"Modify";
+            this->button_modify_employee->UseVisualStyleBackColor = true;
+            this->button_modify_employee->Click += gcnew System::EventHandler(this, &UserInterface::button_modify_employee_Click);
             // 
             // textBox_id_address_employee
             // 
             this->textBox_id_address_employee->Location = System::Drawing::Point(316, 124);
             this->textBox_id_address_employee->Name = L"textBox_id_address_employee";
-            this->textBox_id_address_employee->Size = System::Drawing::Size(197, 31);
+            this->textBox_id_address_employee->Size = System::Drawing::Size(197, 26);
             this->textBox_id_address_employee->TabIndex = 10;
             // 
             // label_id_address_employee
@@ -663,7 +729,7 @@ namespace Projet
             this->label_id_address_employee->AutoSize = true;
             this->label_id_address_employee->Location = System::Drawing::Point(312, 101);
             this->label_id_address_employee->Name = L"label_id_address_employee";
-            this->label_id_address_employee->Size = System::Drawing::Size(112, 24);
+            this->label_id_address_employee->Size = System::Drawing::Size(93, 20);
             this->label_id_address_employee->TabIndex = 9;
             this->label_id_address_employee->Text = L"Address ID";
             // 
@@ -672,7 +738,7 @@ namespace Projet
             this->label_employee_hiring_date->AutoSize = true;
             this->label_employee_hiring_date->Location = System::Drawing::Point(312, 30);
             this->label_employee_hiring_date->Name = L"label_employee_hiring_date";
-            this->label_employee_hiring_date->Size = System::Drawing::Size(114, 24);
+            this->label_employee_hiring_date->Size = System::Drawing::Size(91, 20);
             this->label_employee_hiring_date->TabIndex = 8;
             this->label_employee_hiring_date->Text = L"Hiring date";
             // 
@@ -680,35 +746,15 @@ namespace Projet
             // 
             this->dateTimePicker_employee_hiring_date->Location = System::Drawing::Point(316, 53);
             this->dateTimePicker_employee_hiring_date->Name = L"dateTimePicker_employee_hiring_date";
-            this->dateTimePicker_employee_hiring_date->Size = System::Drawing::Size(197, 31);
+            this->dateTimePicker_employee_hiring_date->Size = System::Drawing::Size(197, 26);
             this->dateTimePicker_employee_hiring_date->TabIndex = 7;
-            // 
-            // button_delete_employee
-            // 
-            this->button_delete_employee->Location = System::Drawing::Point(134, 184);
-            this->button_delete_employee->Name = L"button_delete_employee";
-            this->button_delete_employee->Size = System::Drawing::Size(88, 30);
-            this->button_delete_employee->TabIndex = 6;
-            this->button_delete_employee->Text = L"Delete";
-            this->button_delete_employee->UseVisualStyleBackColor = true;
-            this->button_delete_employee->Click += gcnew System::EventHandler(this, &UserInterface::button_delete_employee_Click);
-            // 
-            // button_modify_employee
-            // 
-            this->button_modify_employee->Location = System::Drawing::Point(27, 184);
-            this->button_modify_employee->Name = L"button_modify_employee";
-            this->button_modify_employee->Size = System::Drawing::Size(88, 30);
-            this->button_modify_employee->TabIndex = 5;
-            this->button_modify_employee->Text = L"Modify";
-            this->button_modify_employee->UseVisualStyleBackColor = true;
-            this->button_modify_employee->Click += gcnew System::EventHandler(this, &UserInterface::button_modify_employee_Click);
             // 
             // label_last_name_employee
             // 
             this->label_last_name_employee->AutoSize = true;
             this->label_last_name_employee->Location = System::Drawing::Point(24, 101);
             this->label_last_name_employee->Name = L"label_last_name_employee";
-            this->label_last_name_employee->Size = System::Drawing::Size(110, 24);
+            this->label_last_name_employee->Size = System::Drawing::Size(91, 20);
             this->label_last_name_employee->TabIndex = 4;
             this->label_last_name_employee->Text = L"Last Name";
             // 
@@ -717,7 +763,7 @@ namespace Projet
             this->label_first_name_employee->AutoSize = true;
             this->label_first_name_employee->Location = System::Drawing::Point(24, 30);
             this->label_first_name_employee->Name = L"label_first_name_employee";
-            this->label_first_name_employee->Size = System::Drawing::Size(112, 24);
+            this->label_first_name_employee->Size = System::Drawing::Size(92, 20);
             this->label_first_name_employee->TabIndex = 3;
             this->label_first_name_employee->Text = L"First Name";
             // 
@@ -725,50 +771,32 @@ namespace Projet
             // 
             this->textBox_first_name_employee->Location = System::Drawing::Point(28, 53);
             this->textBox_first_name_employee->Name = L"textBox_first_name_employee";
-            this->textBox_first_name_employee->Size = System::Drawing::Size(240, 31);
+            this->textBox_first_name_employee->Size = System::Drawing::Size(240, 26);
             this->textBox_first_name_employee->TabIndex = 1;
             // 
             // textBox_last_name_employee
             // 
-            this->textBox_last_name_employee->Location = System::Drawing::Point(28, 124);
+            this->textBox_last_name_employee->Location = System::Drawing::Point(28, 123);
             this->textBox_last_name_employee->Name = L"textBox_last_name_employee";
-            this->textBox_last_name_employee->Size = System::Drawing::Size(240, 31);
+            this->textBox_last_name_employee->Size = System::Drawing::Size(240, 26);
             this->textBox_last_name_employee->TabIndex = 2;
             // 
             // tab_statistics
             // 
-            this->tab_statistics->Location = System::Drawing::Point(4, 33);
+            this->tab_statistics->Location = System::Drawing::Point(4, 29);
             this->tab_statistics->Name = L"tab_statistics";
-            this->tab_statistics->Size = System::Drawing::Size(1246, 705);
+            this->tab_statistics->Size = System::Drawing::Size(1250, 718);
             this->tab_statistics->TabIndex = 4;
             this->tab_statistics->Text = L"Statistics";
             this->tab_statistics->UseVisualStyleBackColor = true;
             // 
-            // label_customers_current_order_delivery_address
-            // 
-            this->label_customers_current_order_delivery_address->AutoSize = true;
-            this->label_customers_current_order_delivery_address->Location = System::Drawing::Point(6, 260);
-            this->label_customers_current_order_delivery_address->Name = L"label_customers_current_order_delivery_address";
-            this->label_customers_current_order_delivery_address->Size = System::Drawing::Size(16, 24);
-            this->label_customers_current_order_delivery_address->TabIndex = 1;
-            this->label_customers_current_order_delivery_address->Text = L" ";
-            // 
-            // label_customers_current_order_billing_address
-            // 
-            this->label_customers_current_order_billing_address->AutoSize = true;
-            this->label_customers_current_order_billing_address->Location = System::Drawing::Point(6, 229);
-            this->label_customers_current_order_billing_address->Name = L"label_customers_current_order_billing_address";
-            this->label_customers_current_order_billing_address->Size = System::Drawing::Size(16, 24);
-            this->label_customers_current_order_billing_address->TabIndex = 2;
-            this->label_customers_current_order_billing_address->Text = L" ";
-            // 
             // UserInterface
             // 
-            this->AutoScaleDimensions = System::Drawing::SizeF(12, 24);
+            this->AutoScaleDimensions = System::Drawing::SizeF(10, 20);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-            this->ClientSize = System::Drawing::Size(1254, 742);
+            this->ClientSize = System::Drawing::Size(1258, 751);
             this->Controls->Add(this->tabController);
-            this->Font = (gcnew System::Drawing::Font(L"Inter", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
             this->MaximumSize = System::Drawing::Size(1276, 798);
@@ -782,7 +810,6 @@ namespace Projet
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_delivery_addresses))->EndInit();
             this->groupBox_customer_billing_addresses->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_billing_addresses))->EndInit();
-            this->groupBox_create_customer->ResumeLayout(false);
             this->groupBox_customer_orders->ResumeLayout(false);
             this->groupBox_customer_orders->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_orders))->EndInit();
@@ -790,6 +817,8 @@ namespace Projet
             this->groupBox_customer_information->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customers))->EndInit();
             this->tab_employee->ResumeLayout(false);
+            this->groupBox_employee_manager->ResumeLayout(false);
+            this->groupBox_employee_manager->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_employee))->EndInit();
             this->groupBox_employee->ResumeLayout(false);
             this->groupBox_employee->PerformLayout();
