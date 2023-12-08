@@ -30,11 +30,14 @@ public:
     System::Data::DataTable^ getOrders();
 
     System::Data::DataTable^ getBillingAddresses();
-
-    void addBillingAddressToCustomer(int id_address);
     
     System::Data::DataTable^ getDeliveryAddresses();
 
+    void addBillingAddressToCustomer(int id_address);
+    
     void addDeliveryAddressToCustomer(int id_address);
-       
+
+    void deleteBillingAddressFromCustomer(int id_address);
+
+    void deleteDeliveryAddressFromCustomer(int id_address);
 };

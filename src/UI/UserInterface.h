@@ -1,6 +1,6 @@
 #pragma once
 
-#include "createAddressPrompt.h"
+#include "editAddressPrompt.h"
 #include "../SQL/SQLservices.h"
 #include "../Customer.h"
 #include "createCustomerPrompt.h"
@@ -208,7 +208,6 @@ namespace Projet
             this->dataGridView_employee = (gcnew System::Windows::Forms::DataGridView());
             this->groupBox_employee = (gcnew System::Windows::Forms::GroupBox());
             this->label_employee_hiring_date = (gcnew System::Windows::Forms::Label());
-            this->dateTimePicker_employee_hiring_date = (gcnew System::Windows::Forms::DateTimePicker());
             this->button_delete_employee = (gcnew System::Windows::Forms::Button());
             this->button_modify_employee = (gcnew System::Windows::Forms::Button());
             this->label_last_name_employee = (gcnew System::Windows::Forms::Label());
@@ -933,7 +932,19 @@ namespace Projet
     }
 
     // Orders stuff
+    int get_currently_selected_billing_address()
+    {
+        return Convert::ToInt32(this->dataGridView_customer_billing_addresses->SelectedRows[0]->Cells["id_address"]->Value->ToString());
+    }
+        
+    int get_currently_selected_delivery_address()
+    {
+        return Convert::ToInt32(this->dataGridView_customer_delivery_addresses->SelectedRows[0]->Cells["id_address"]->Value->ToString());
+    }
+        
+    
 
+        
     void dataGridView_customer_orders_selectionChanged(Object^ sender, EventArgs^ event_args)
     {
         // TODO add logic here
@@ -942,7 +953,7 @@ namespace Projet
 
     // Billing address stuff
     private: System::Void button_customer_add_billing_address_Click(System::Object^ sender, System::EventArgs^ e) {
-        Projet::createAddressPrompt^ prompt = gcnew Projet::createAddressPrompt(this->selected_customer->getFirstName() + " " + this->selected_customer->getLastName() + " - Add billing address");
+        Projet::editAddressPrompt^ prompt = gcnew Projet::editAddressPrompt(this->selected_customer->getFirstName() + " " + this->selected_customer->getLastName() + " - Add billing address");
         
         if (prompt->ShowDialog() == System::Windows::Forms::DialogResult::OK)
         {
@@ -955,16 +966,39 @@ namespace Projet
     }
 
     private: System::Void button_customer_modify_billing_address_Click(System::Object^ sender, System::EventArgs^ e) {
-        // TODO add functionality
+        Address^ currentlySelectedBillingAddress = gcnew Address(get_currently_selected_billing_address());
+
+        String^ windowText = this->selected_customer->getFirstName() + " " + this->selected_customer->getLastName() + " - Edit billing address";
+
+        Projet::editAddressPrompt^ prompt = gcnew Projet::editAddressPrompt(windowText, currentlySelectedBillingAddress->getCity(), currentlySelectedBillingAddress->getPostalCode(), currentlySelectedBillingAddress->getStreet(), currentlySelectedBillingAddress->getStreetNumber());
+
+        if(prompt->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+        {
+            currentlySelectedBillingAddress->setCity(prompt->new_address_city);
+            currentlySelectedBillingAddress->setPostalCode(prompt->new_address_postal_code);
+            currentlySelectedBillingAddress->setStreet(prompt->new_address_street);
+            currentlySelectedBillingAddress->setStreetNumber(prompt->new_address_street_number);
+
+            currentlySelectedBillingAddress->modify_address_in_DB();
+
+            refresh_customer_billing_addresses_datagrid();
+        }
     }
         
     private: System::Void button_customer_delete_billing_address_Click(System::Object^ sender, System::EventArgs^ e) {
-        // TODO add functionality
+        Address^ currentlySelectedBillingAddress = gcnew Address(get_currently_selected_billing_address());
+        
+        this->selected_customer->deleteBillingAddressFromCustomer(currentlySelectedBillingAddress->getID());
+
+        currentlySelectedBillingAddress->delete_address_from_DB();
+
+        refresh_customer_billing_addresses_datagrid();
+        
     }
 
     // Delivery address stuff
     private: System::Void button_customer_add_delivery_address_Click(System::Object^ sender, System::EventArgs^ e) {
-        Projet::createAddressPrompt^ prompt = gcnew Projet::createAddressPrompt(this->selected_customer->getFirstName() + " " + this->selected_customer->getLastName() + " - Add delivery address");
+        Projet::editAddressPrompt^ prompt = gcnew Projet::editAddressPrompt(this->selected_customer->getFirstName() + " " + this->selected_customer->getLastName() + " - Add delivery address");
 
         if (prompt->ShowDialog() == System::Windows::Forms::DialogResult::OK)
         {
@@ -977,11 +1011,34 @@ namespace Projet
     }
 
     private: System::Void button_customer_modify_delivery_address_Click(System::Object^ sender, System::EventArgs^ e) {
-        // TODO add functionality
+        Address^ currentlySelectedDeliveryAddress = gcnew Address(get_currently_selected_delivery_address());
+
+        String^ windowText = this->selected_customer->getFirstName() + " " + this->selected_customer->getLastName() + " - Edit delivery address";
+
+        Projet::editAddressPrompt^ prompt = gcnew Projet::editAddressPrompt(windowText, currentlySelectedDeliveryAddress->getCity(), currentlySelectedDeliveryAddress->getPostalCode(), currentlySelectedDeliveryAddress->getStreet(), currentlySelectedDeliveryAddress->getStreetNumber());
+
+        if (prompt->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+        {
+            currentlySelectedDeliveryAddress->setCity(prompt->new_address_city);
+            currentlySelectedDeliveryAddress->setPostalCode(prompt->new_address_postal_code);
+            currentlySelectedDeliveryAddress->setStreet(prompt->new_address_street);
+            currentlySelectedDeliveryAddress->setStreetNumber(prompt->new_address_street_number);
+
+            currentlySelectedDeliveryAddress->modify_address_in_DB();
+
+            refresh_customer_delivery_addresses_datagrid();
+        }
+
+        
     }
     private: System::Void button_customer_delete_delivery_address_Click(System::Object^ sender, System::EventArgs^ e) {
-        // TODO add functionality
+        Address^ currentlySelectedDeliveryAddress = gcnew Address(get_currently_selected_delivery_address());
 
+        this->selected_customer->deleteDeliveryAddressFromCustomer(currentlySelectedDeliveryAddress->getID());
+
+        currentlySelectedDeliveryAddress->delete_address_from_DB();
+
+        refresh_customer_delivery_addresses_datagrid();
     }
         
 

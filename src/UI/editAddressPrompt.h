@@ -12,18 +12,30 @@ namespace Projet {
 	/// <summary>
 	/// Summary for createAddress
 	/// </summary>
-	public ref class createAddressPrompt : public System::Windows::Forms::Form
+	public ref class editAddressPrompt : public System::Windows::Forms::Form
 	{
 	private:
 		String^ windowText;
 		
 	public:
-		createAddressPrompt(String^ windowText) : windowText((windowText))
+		// Constructor for creating a new address
+		editAddressPrompt(String^ windowText) : windowText((windowText))
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+
+		}
+
+		// Constructor for editing an existing address
+		editAddressPrompt(String^ windowText, System::String^ city, int postal_code, System::String^ street, int street_number) : windowText((windowText))
+		{
+			InitializeComponent();
+
+			this->textBox_address_city->Text = city;
+			this->textBox_address_postal_code->Text = postal_code.ToString();
+			this->textBox_address_street->Text = street;
+			this->textBox_address_street_number->Text = street_number.ToString();
+
+			this->button_confirm->Text = "Modify";
 		}
 
 	public:
@@ -53,7 +65,7 @@ namespace Projet {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~createAddressPrompt()
+		~editAddressPrompt()
 		{
 			if (components)
 			{
@@ -84,7 +96,7 @@ namespace Projet {
 
 
 	private: System::Windows::Forms::Button^ button_cancel;
-	private: System::Windows::Forms::Button^ button_create;
+	private: System::Windows::Forms::Button^ button_confirm;
 
 	protected:
 
@@ -113,7 +125,7 @@ namespace Projet {
 			this->label_address_street_number = (gcnew System::Windows::Forms::Label());
 			this->label_address_street = (gcnew System::Windows::Forms::Label());
 			this->button_cancel = (gcnew System::Windows::Forms::Button());
-			this->button_create = (gcnew System::Windows::Forms::Button());
+			this->button_confirm = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// textBox_address_city
@@ -197,14 +209,14 @@ namespace Projet {
 			// 
 			// button_create
 			// 
-			this->button_create->DialogResult = System::Windows::Forms::DialogResult::OK;
-			this->button_create->Location = System::Drawing::Point(165, 261);
-			this->button_create->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->button_create->Name = L"button_create";
-			this->button_create->Size = System::Drawing::Size(112, 35);
-			this->button_create->TabIndex = 12;
-			this->button_create->Text = L"Create";
-			this->button_create->UseVisualStyleBackColor = true;
+			this->button_confirm->DialogResult = System::Windows::Forms::DialogResult::OK;
+			this->button_confirm->Location = System::Drawing::Point(165, 261);
+			this->button_confirm->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->button_confirm->Name = L"button_create";
+			this->button_confirm->Size = System::Drawing::Size(112, 35);
+			this->button_confirm->TabIndex = 12;
+			this->button_confirm->Text = L"Create";
+			this->button_confirm->UseVisualStyleBackColor = true;
 			// 
 			// createAddressPrompt
 			// 
@@ -212,7 +224,7 @@ namespace Projet {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(528, 344);
 			this->Controls->Add(this->button_cancel);
-			this->Controls->Add(this->button_create);
+			this->Controls->Add(this->button_confirm);
 			this->Controls->Add(this->label_address_street);
 			this->Controls->Add(this->label_address_street_number);
 			this->Controls->Add(this->label_address_postal_code);
@@ -225,7 +237,7 @@ namespace Projet {
 			this->MinimumSize = System::Drawing::Size(550, 400);
 			this->Name = L"createAddressPrompt";
 			this->Text = L"Add address";
-			this->Load += gcnew System::EventHandler(this, &createAddressPrompt::createAddressPrompt_Load);
+			this->Load += gcnew System::EventHandler(this, &editAddressPrompt::createAddressPrompt_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
