@@ -114,7 +114,7 @@ public:
 
     System::Data::DataTable^ SQL_simulateStockValueVariations(array<System::String^>^ modifications);
 
-    // Misc Queries
+    // Address Queries
     System::Data::DataTable^ SQL_addAddress(System::String^, System::String^, int postal_code, int street_number);
 
     System::Data::DataTable^ SQL_getAddress(int id);
