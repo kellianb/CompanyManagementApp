@@ -31,6 +31,7 @@ void Employee::setManager(int id_manager)
 
 void Employee::removeManager()
 {
+    this->id_manager = -1;
     this->SQLserv.SQL_removeEmployeeManager(this->id);
 }
 
