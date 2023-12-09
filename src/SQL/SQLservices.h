@@ -26,7 +26,9 @@ public:
 
     System::Data::DataTable^ SQL_modifyOrder(int, System::DateTime, System::DateTime, float, int, int, int);
 
-    void SQL_deleteOrder(int id);
+    void SQL_removeAllProductsFromOrder(int);
+    
+    void SQL_deleteOrder(int);
     
     
     // Inventory Queries
