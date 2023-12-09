@@ -14,15 +14,13 @@ private:
 
 public:
     Employee(int);
-    Employee(System::String^, System::String^, System::DateTime);
     Employee(System::String^, System::String^, System::DateTime, int);
-    Employee(System::String^, System::String^, System::DateTime, int, int);
 
-    int getIDaddress();
-    void setIDaddress(int);
-    int getIDmanager();
-    void setIDmanager(int);
-    void setIDmanagernullable(Object^); // Overloaded method for DBNull
+    int getAddress();
+    void setAddress(int);
+    int getManager();
+    void setManager(int);
+    void removeManager();
 
     System::DateTime getHireDate();
     void setHireDate(System::DateTime);

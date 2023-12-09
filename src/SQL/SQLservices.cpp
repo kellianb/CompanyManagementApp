@@ -10,16 +10,15 @@ SQLservices::SQLservices()
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Orders Queries
-System::Data::DataTable^ SQLservices::SQL_addOrder(System::DateTime delivery_date, System::DateTime order_date, System::Decimal discount_percentage, System::Decimal amount, int id_delivery_address, int id_billing_address, int id_customer)
+System::Data::DataTable^ SQLservices::SQL_addOrder(System::DateTime delivery_date, System::DateTime order_date, float discount_percentage, int id_delivery_address, int id_billing_address, int id_customer)
 {
-    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Orders (delivery_date, order_date, order_discount_percentage, total_amount, id_delivery_address, id_billing_adress, id_customer) OUTPUT inserted.id_person VALUES(@deliveryDate, @orderDate, @dctPercentage, @amount, @idDelivery, @idBilling, @idCustomer)";
+    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Orders (delivery_date, order_date, order_discount_percentage, id_delivery_address, id_billing_adress, id_customer) OUTPUT inserted.id_order, inserted.order_reference VALUES(@deliveryDate, @orderDate, @dctPercentage, @idDelivery, @idBilling, @idCustomer)";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
     cmd->Parameters->AddWithValue("@deliveryDate", delivery_date);
     cmd->Parameters->AddWithValue("@orderDate", order_date);
     cmd->Parameters->AddWithValue("@dctPercentage", discount_percentage);
-    cmd->Parameters->AddWithValue("@amount", amount);
     cmd->Parameters->AddWithValue("@idDelivery", id_delivery_address);
     cmd->Parameters->AddWithValue("@idBilling", id_billing_address);
     cmd->Parameters->AddWithValue("@idCustomer", id_customer);
@@ -69,9 +68,9 @@ System::Data::DataTable^ SQLservices::SQL_getOrderDeliveryAdress(int id)
     return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_modifyOrder(int id_order, System::DateTime new_delivery_date, System::DateTime new_order_date, System::Decimal new_discount_percentage, System::Decimal new_amount, int id_delivery_address, int id_billing_address, int id_customer)
+System::Data::DataTable^ SQLservices::SQL_modifyOrder(int id_order, System::DateTime new_delivery_date, System::DateTime new_order_date, float new_discount_percentage, int id_delivery_address, int id_billing_address, int id_customer)
 {
-    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Orders SET delivery_date = @deliveryDate, order_date = @orderDate, order_discount_percentage = @dctPercentage, total_amount = @amount, id_delivery_address = @idAdress, id_billing_address = @idBilling, id_customer = @idCustomer WHERE id_order = @id";
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Orders SET delivery_date = @deliveryDate, order_date = @orderDate, order_discount_percentage = @dctPercentage, id_delivery_address = @idAdress, id_billing_address = @idBilling, id_customer = @idCustomer WHERE id_order = @id";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
@@ -79,7 +78,6 @@ System::Data::DataTable^ SQLservices::SQL_modifyOrder(int id_order, System::Date
     cmd->Parameters->AddWithValue("@deliveryDate", new_delivery_date);
     cmd->Parameters->AddWithValue("@orderDate", new_order_date);
     cmd->Parameters->AddWithValue("@dctPercentage", new_discount_percentage);
-    cmd->Parameters->AddWithValue("@amount", new_amount);
     cmd->Parameters->AddWithValue("@idDelivery", id_delivery_address);
     cmd->Parameters->AddWithValue("@idBilling", id_billing_address);
     cmd->Parameters->AddWithValue("@idCustomer", id_customer);
@@ -381,18 +379,17 @@ System::Data::DataTable^ SQLservices::SQL_getCustomerDeliveryAddresses(int id)
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Employee Queries
-System::Data::DataTable^ SQLservices::SQL_addEmployee(int id_person, System::DateTime hiring_date, int id_address, int id_manager)
+void SQLservices::SQL_addEmployee(int id_person, System::DateTime hiring_date, int id_address)
 {
-        System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Employees (id_person, hiring_date, id_address, id_manager) OUTPUT inserted.id_person VALUES(@idPerson, @hiringDate, @Address, @manager)";
+        System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Employees (id_person, hiring_date, id_address) VALUES(@idPerson, @hiringDate, @Address)";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
     cmd->Parameters->AddWithValue("@idPerson", id_person);
     cmd->Parameters->AddWithValue("@hiringDate", hiring_date);
     cmd->Parameters->AddWithValue("@address", id_address);
-    cmd->Parameters->AddWithValue("@Manager", id_manager);
 
-    return this->SQLadapter->sendQuery(cmd);
+    this->SQLadapter->sendQuery(cmd);
 }
 
 System::Data::DataTable^ SQLservices::SQL_getEmployeeList()
@@ -415,18 +412,16 @@ System::Data::DataTable^ SQLservices::SQL_getEmployee(int id)
     return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_modifyEmployee(int id_person, System::DateTime new_hiring_date, int id_address, Object^ id_manager)
+void SQLservices::SQL_modifyEmployee(int id_person, System::DateTime new_hiring_date)
 {
-    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Employees SET hiring_date = @hiringDate, id_address = @address, id_manager = @manager WHERE id_person = @idPerson";
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Employees SET hiring_date = @hiringDate WHERE id_person = @idPerson";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
     cmd->Parameters->AddWithValue("@idPerson", id_person);
     cmd->Parameters->AddWithValue("@hiringDate", new_hiring_date);
-    cmd->Parameters->AddWithValue("@address", id_address);
-    cmd->Parameters->AddWithValue("@manager", id_manager);
 
-    return this->SQLadapter->sendQuery(cmd);
+    this->SQLadapter->sendQuery(cmd);
 }
 
 void SQLservices::SQL_deleteEmployee(int id)
@@ -450,6 +445,42 @@ void SQLservices::SQL_deleteEmployeeAddresses(int id)
 
     this->SQLadapter->sendQuery(cmd);
 }
+
+void SQLservices::SQL_setEmployeeManager(int id_employee, int id_manager)
+{
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Employees SET id_manager = @idManager WHERE id_person = @idPerson";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@idPerson", id_employee);
+    cmd->Parameters->AddWithValue("@idManager", id_manager);
+
+    this->SQLadapter->sendQuery(cmd);
+}
+
+void SQLservices::SQL_removeEmployeeManager(int id_employee)
+{
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Employees SET id_manager = NULL WHERE id_person = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@id", id_employee);
+
+    this->SQLadapter->sendQuery(cmd);
+}
+
+void SQLservices::SQL_removeEmployeeAsManager(int id_employee)
+{
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Employees SET id_manager = NULL WHERE id_manager = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@id", id_employee);
+
+    this->SQLadapter->sendQuery(cmd);
+}
+
+
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Statistics Queries

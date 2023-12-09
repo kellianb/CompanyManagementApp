@@ -14,7 +14,7 @@ public:
 
     
     // Orders Queries
-    System::Data::DataTable^ SQL_addOrder(System::DateTime, System::DateTime, System::Decimal, System::Decimal, int id_delivery_address, int id_billing_address, int id_customer);
+    System::Data::DataTable^ SQL_addOrder(System::DateTime, System::DateTime, float, int id_delivery_address, int id_billing_address, int id_customer);
 
     System::Data::DataTable^ SQL_getOrder(int id);
 
@@ -24,7 +24,7 @@ public:
 
     System::Data::DataTable^ SQLservices::SQL_getOrderDeliveryAdress(int id);
 
-    System::Data::DataTable^ SQL_modifyOrder(int id_order, System::DateTime, System::DateTime, System::Decimal, System::Decimal, int id_delivery_address, int id_billing_address, int id_customer);
+    System::Data::DataTable^ SQL_modifyOrder(int, System::DateTime, System::DateTime, float, int, int, int);
 
     void SQL_deleteOrder(int id);
     
@@ -76,23 +76,29 @@ public:
 
     System::Data::DataTable^ SQL_deleteDeliveryAddressesFromCustomer(int, int);
     
-    System::Data::DataTable^ SQL_getCustomerBillingAddresses(int id);
+    System::Data::DataTable^ SQL_getCustomerBillingAddresses(int);
     
-    System::Data::DataTable^ SQL_getCustomerDeliveryAddresses(int id);
+    System::Data::DataTable^ SQL_getCustomerDeliveryAddresses(int);
 
     
     // Employee Queries
-    System::Data::DataTable^ SQL_addEmployee(int id_person, System::DateTime, int id_address, int id_manager);
+    void SQL_addEmployee(int, System::DateTime, int);
 
     System::Data::DataTable^ SQL_getEmployeeList();
 
-    System::Data::DataTable^ SQL_getEmployee(int id);
+    System::Data::DataTable^ SQL_getEmployee(int);
     
-    System::Data::DataTable^ SQL_modifyEmployee(int id_person, System::DateTime, int id_address, Object^ id_manager);
+    void SQL_modifyEmployee(int, System::DateTime);
 
-    void SQL_deleteEmployee(int id);
+    void SQL_deleteEmployee(int);
 
-    void SQL_deleteEmployeeAddresses(int id);
+    void SQL_deleteEmployeeAddresses(int);
+
+    void SQL_setEmployeeManager(int, int);
+
+    void SQL_removeEmployeeManager(int);
+
+    void SQL_removeEmployeeAsManager(int);
 
     
     // Statistics Queries
