@@ -4,9 +4,11 @@ void Order::create_order_in_DB()
 {
     System::Data::DataTable^ buffer = this->SQLserv->SQL_addOrder(this->delivery_date, this->order_date, this->discount_percentage, this->id_delivery_address, this->id_billing_address, this->id_customer);
 
-    this->reference = safe_cast<System::String^>(buffer->Rows[0]["order_reference"]);
     this->id = safe_cast<int>(buffer->Rows[0]["id_order"]);
-    
+
+    buffer = this->SQLserv->SQL_getOrder(this->id);
+
+    this->reference = safe_cast<System::String^>(buffer->Rows[0]["order_reference"]);
 }
 
 void Order::fetch_order_from_DB()

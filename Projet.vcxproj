@@ -271,6 +271,7 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="src\UI\createEmployeePrompt.cpp" />
+    <ClCompile Include="src\UI\createOrderPrompt.cpp" />
     <ClCompile Include="src\UI\editAddressPrompt.cpp" />
     <ClCompile Include="src\UI\createCustomerPrompt.cpp" />
     <ClCompile Include="src\UI\selectEmployeeManager.cpp" />
@@ -286,7 +287,10 @@
     <ClInclude Include="src\Person.h" />
     <ClInclude Include="src\SQL\SQLdatabaseAdapter.h" />
     <ClInclude Include="src\SQL\SQLservices.h" />
-    <ClInclude Include="src\UI\createEmployeePrompt.h" >
+    <ClInclude Include="src\UI\createEmployeePrompt.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="src\UI\createOrderPrompt.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="src\UI\editAddressPrompt.h">
@@ -300,10 +304,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="src\UI\createOrderPrompt.resx">
+      <DependentUpon>src\UI\createOrderPrompt.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\UI\UserInterface.resx">
       <DependentUpon>src\UI\UserInterface.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\UI\createEmployeePrompt.resx" >
+    <EmbeddedResource Include="src\UI\createEmployeePrompt.resx">
       <DependentUpon>src\UI\createEmployeePrompt.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\UI\editAddressPrompt.resx">
