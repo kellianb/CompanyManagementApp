@@ -225,6 +225,8 @@ namespace Projet
             this->textBox_last_name_customer = (gcnew System::Windows::Forms::TextBox());
             this->dataGridView_customers = (gcnew System::Windows::Forms::DataGridView());
             this->tab_employee = (gcnew System::Windows::Forms::TabPage());
+            this->button_employee_reload = (gcnew System::Windows::Forms::Button());
+            this->button_create_an_employee = (gcnew System::Windows::Forms::Button());
             this->groupBox_employee_manager = (gcnew System::Windows::Forms::GroupBox());
             this->label_employee_manager_name = (gcnew System::Windows::Forms::Label());
             this->dataGridView_employee = (gcnew System::Windows::Forms::DataGridView());
@@ -241,8 +243,6 @@ namespace Projet
             this->textBox_first_name_employee = (gcnew System::Windows::Forms::TextBox());
             this->textBox_last_name_employee = (gcnew System::Windows::Forms::TextBox());
             this->tab_statistics = (gcnew System::Windows::Forms::TabPage());
-            this->button_create_an_employee = (gcnew System::Windows::Forms::Button());
-            this->button_employee_reload = (gcnew System::Windows::Forms::Button());
             this->tabController->SuspendLayout();
             this->tab_customers->SuspendLayout();
             this->groupBox_delivery_addresses->SuspendLayout();
@@ -376,6 +376,7 @@ namespace Projet
             this->dataGridView_customer_delivery_addresses->Location = System::Drawing::Point(6, 21);
             this->dataGridView_customer_delivery_addresses->MultiSelect = false;
             this->dataGridView_customer_delivery_addresses->Name = L"dataGridView_customer_delivery_addresses";
+            this->dataGridView_customer_delivery_addresses->ReadOnly = true;
             this->dataGridView_customer_delivery_addresses->RowHeadersWidth = 62;
             this->dataGridView_customer_delivery_addresses->RowTemplate->Height = 28;
             this->dataGridView_customer_delivery_addresses->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -616,6 +617,26 @@ namespace Projet
             this->tab_employee->Text = L"Employee";
             this->tab_employee->UseVisualStyleBackColor = true;
             // 
+            // button_employee_reload
+            // 
+            this->button_employee_reload->Location = System::Drawing::Point(1128, 152);
+            this->button_employee_reload->Name = L"button_employee_reload";
+            this->button_employee_reload->Size = System::Drawing::Size(100, 37);
+            this->button_employee_reload->TabIndex = 11;
+            this->button_employee_reload->Text = L"Reload";
+            this->button_employee_reload->UseVisualStyleBackColor = true;
+            this->button_employee_reload->Click += gcnew System::EventHandler(this, &UserInterface::button_employee_reload_Click);
+            // 
+            // button_create_an_employee
+            // 
+            this->button_create_an_employee->Location = System::Drawing::Point(913, 152);
+            this->button_create_an_employee->Name = L"button_create_an_employee";
+            this->button_create_an_employee->Size = System::Drawing::Size(195, 37);
+            this->button_create_an_employee->TabIndex = 10;
+            this->button_create_an_employee->Text = L"Create an employee";
+            this->button_create_an_employee->UseVisualStyleBackColor = true;
+            this->button_create_an_employee->Click += gcnew System::EventHandler(this, &UserInterface::button_create_an_employee_Click);
+            // 
             // groupBox_employee_manager
             // 
             this->groupBox_employee_manager->Controls->Add(this->label_employee_manager_name);
@@ -779,26 +800,6 @@ namespace Projet
             this->tab_statistics->TabIndex = 4;
             this->tab_statistics->Text = L"Statistics";
             this->tab_statistics->UseVisualStyleBackColor = true;
-            // 
-            // button_create_an_employee
-            // 
-            this->button_create_an_employee->Location = System::Drawing::Point(913, 152);
-            this->button_create_an_employee->Name = L"button_create_an_employee";
-            this->button_create_an_employee->Size = System::Drawing::Size(195, 37);
-            this->button_create_an_employee->TabIndex = 10;
-            this->button_create_an_employee->Text = L"Create an employee";
-            this->button_create_an_employee->UseVisualStyleBackColor = true;
-            this->button_create_an_employee->Click += gcnew System::EventHandler(this, &UserInterface::button_create_an_employee_Click);
-            // 
-            // button_employee_reload
-            // 
-            this->button_employee_reload->Location = System::Drawing::Point(1128, 152);
-            this->button_employee_reload->Name = L"button_employee_reload";
-            this->button_employee_reload->Size = System::Drawing::Size(100, 37);
-            this->button_employee_reload->TabIndex = 11;
-            this->button_employee_reload->Text = L"Reload";
-            this->button_employee_reload->UseVisualStyleBackColor = true;
-            this->button_employee_reload->Click += gcnew System::EventHandler(this, &UserInterface::button_employee_reload_Click);
             // 
             // UserInterface
             // 
