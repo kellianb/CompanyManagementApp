@@ -9,7 +9,7 @@ private:
     
 protected:
     // SQL services object
-    SQLservices SQLserv;
+    SQLservices^ SQLserv = gcnew SQLservices;
 
     // Properties of the person
     int id;

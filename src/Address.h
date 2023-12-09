@@ -4,7 +4,7 @@
 ref class Address
 {
 private:
-    SQLservices SQLserv;
+    SQLservices^ SQLserv = gcnew SQLservices;
 
     void create_address_in_DB();
     void fetch_address_from_DB();

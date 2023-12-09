@@ -6,6 +6,7 @@
 #include "createCustomerPrompt.h"
 #include "selectEmployeeManager.h"
 #include "createEmployeePrompt.h"
+#include "createOrderPrompt.h"
 #include "../Employee.h"
 #include "../Address.h"
 #include "../Order.h"
@@ -94,14 +95,7 @@ namespace Projet
     private: System::Windows::Forms::DateTimePicker^ dateTimePicker_employee_hiring_date;
 
 
-
-    private:
-
-
-    private:
-        System::Windows::Forms::Label^ label_customer_birth_date;
-
-
+    private: System::Windows::Forms::Label^ label_customer_birth_date;
 
 
     private: System::Windows::Forms::Label^ label_customers_current_order_billing_address;
@@ -129,176 +123,81 @@ namespace Projet
 
 
 
-private: System::Windows::Forms::GroupBox^ groupBox_total_purchases_by_customers;
+    private: System::Windows::Forms::GroupBox^ groupBox_total_purchases_by_customers;
 
     private: System::Windows::Forms::DataGridView^ dataGridView1;
-private: System::Windows::Forms::GroupBox^ groupBox_product_below_threshold;
+    private: System::Windows::Forms::GroupBox^ groupBox_product_below_threshold;
 
-private: System::Windows::Forms::DataGridView^ dataGridView2;
-private: System::Windows::Forms::GroupBox^ groupBox_worst_products;
-private: System::Windows::Forms::DataGridView^ dataGridView4;
-private: System::Windows::Forms::GroupBox^ groupBox_bestsellers;
-private: System::Windows::Forms::DataGridView^ dataGridView3;
-private: System::Windows::Forms::Label^ label1;
-private: System::Windows::Forms::Label^ label2;
-private: System::Windows::Forms::TextBox^ textBox_fname_statistics;
-private: System::Windows::Forms::TextBox^ textBox_lname_statistics;
+    private: System::Windows::Forms::DataGridView^ dataGridView2;
+    private: System::Windows::Forms::GroupBox^ groupBox_worst_products;
+    private: System::Windows::Forms::DataGridView^ dataGridView4;
+    private: System::Windows::Forms::GroupBox^ groupBox_bestsellers;
+    private: System::Windows::Forms::DataGridView^ dataGridView3;
+    private: System::Windows::Forms::Label^ label1;
+    private: System::Windows::Forms::Label^ label2;
+    private: System::Windows::Forms::TextBox^ textBox_fname_statistics;
+    private: System::Windows::Forms::TextBox^ textBox_lname_statistics;
 
 
-private: System::Windows::Forms::Button^ button_search_customer;
+    private: System::Windows::Forms::Button^ button_search_customer;
 
+    private: System::Windows::Forms::GroupBox^ groupBox_order_information;
+    private: System::Windows::Forms::Label^ label_order_date;
 
+    private: System::Windows::Forms::DateTimePicker^ dateTimePicker_order_date;
 
+    private: System::Windows::Forms::Button^ button_order_delete;
 
+    private: System::Windows::Forms::Button^ button_order_modify;
 
 
 
+    private: System::Windows::Forms::Label^ label_discount_percentage;
+    private: System::Windows::Forms::TextBox^ textBox_discount_percentage;
 
 
+    private: System::Windows::Forms::Label^ label_delivery_date;
 
+    private: System::Windows::Forms::DateTimePicker^ dateTimePicker_delivery_date;
 
+    private: System::Windows::Forms::GroupBox^ groupBox_product_information;
 
+    private: System::Windows::Forms::Button^ button9;
+    private: System::Windows::Forms::Button^ button10;
+    private: System::Windows::Forms::Label^ label7;
+    private: System::Windows::Forms::Label^ label_product_name;
+    private: System::Windows::Forms::TextBox^ textBox_product_name;
+    private: System::Windows::Forms::TextBox^ textBox_product_amount;
+    private: System::Windows::Forms::Label^ label_reorder_threshold;
+    private: System::Windows::Forms::TextBox^ textBox1;
+    private: System::Windows::Forms::GroupBox^ groupBox_customer_currently_selected_order;
 
+    private: System::Windows::Forms::Button^ button1;
+    private: System::Windows::Forms::GroupBox^ groupBox_employee_address;
+    private: System::Windows::Forms::Button^ button_employee_modify_address;
 
 
 
+    private: System::Windows::Forms::Label^ label_employee_address_street_number;
 
 
+    private: System::Windows::Forms::Label^ label_employee_address_postal_code;
+    private: System::Windows::Forms::Label^ label_employee_address_street;
 
 
 
+    private: System::Windows::Forms::Label^ label_employee_address_city;
 
+    private: System::Windows::Forms::TextBox^ textBox_employee_address_city;
+    private: System::Windows::Forms::TextBox^ textBox_employee_address_street;
+    private: System::Windows::Forms::TextBox^ textBox_employee_address_street_number;
 
 
 
+    private: System::Windows::Forms::TextBox^ textBox_employee_address_postal_code;
+    private: System::Windows::Forms::Button^ button_employee_remove_manager;
 
-
-
-
-
-
-
-
-
-private: System::Windows::Forms::GroupBox^ groupBox_order_information;
-private: System::Windows::Forms::Label^ label_order_date;
-
-private: System::Windows::Forms::DateTimePicker^ dateTimePicker_order_date;
-
-
-
-private: System::Windows::Forms::Button^ button_order_delete;
-
-private: System::Windows::Forms::Button^ button_order_modify;
-
-
-
-private: System::Windows::Forms::Label^ label_discount_percentage;
-private: System::Windows::Forms::TextBox^ textBox_discount_percentage;
-
-
-
-
-
-private: System::Windows::Forms::Label^ label_delivery_date;
-
-private: System::Windows::Forms::DateTimePicker^ dateTimePicker_delivery_date;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-private: System::Windows::Forms::GroupBox^ groupBox_product_information;
-
-
-
-
-
-private: System::Windows::Forms::Button^ button9;
-private: System::Windows::Forms::Button^ button10;
-private: System::Windows::Forms::Label^ label7;
-private: System::Windows::Forms::Label^ label_product_name;
-private: System::Windows::Forms::TextBox^ textBox_product_name;
-private: System::Windows::Forms::TextBox^ textBox_product_amount;
-private: System::Windows::Forms::Label^ label_reorder_threshold;
-private: System::Windows::Forms::TextBox^ textBox1;
-private: System::Windows::Forms::GroupBox^ groupBox_customer_currently_selected_order;
-
-private: System::Windows::Forms::Button^ button1;
-private: System::Windows::Forms::GroupBox^ groupBox_employee_address;
-private: System::Windows::Forms::Button^ button_employee_modify_address;
-
-
-
-private: System::Windows::Forms::Label^ label_employee_address_street_number;
-
-
-private: System::Windows::Forms::Label^ label_employee_address_postal_code;
-private: System::Windows::Forms::Label^ label_employee_address_street;
-
-
-
-private: System::Windows::Forms::Label^ label_employee_address_city;
-
-private: System::Windows::Forms::TextBox^ textBox_employee_address_city;
-private: System::Windows::Forms::TextBox^ textBox_employee_address_street;
-private: System::Windows::Forms::TextBox^ textBox_employee_address_street_number;
-
-
-
-private: System::Windows::Forms::TextBox^ textBox_employee_address_postal_code;
-private: System::Windows::Forms::Button^ button_employee_remove_manager;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private:
-        System::Windows::Forms::Label^ label_employee_hiring_date;
+    private: System::Windows::Forms::Label^ label_employee_hiring_date;
 
     public:
         UserInterface(void)
@@ -966,6 +865,7 @@ private: System::Windows::Forms::Button^ button_employee_remove_manager;
             this->button_customer_add_order->TabIndex = 7;
             this->button_customer_add_order->Text = L"Create";
             this->button_customer_add_order->UseVisualStyleBackColor = true;
+            this->button_customer_add_order->Click += gcnew System::EventHandler(this, &UserInterface::button_customer_add_order_Click);
             // 
             // dataGridView_customer_orders
             // 
@@ -1652,6 +1552,7 @@ private: System::Windows::Forms::Button^ button_employee_remove_manager;
     private:
         System::Void UserInterface_Load(System::Object^ sender, System::EventArgs^ e)
         {
+
         }
 
         // Executes code when a specific tab is opened
@@ -1840,6 +1741,17 @@ private: System::Windows::Forms::Button^ button_employee_remove_manager;
         else
         {
             this->groupBox_customer_currently_selected_order->Visible = false;
+        }
+    }
+
+    private: System::Void button_customer_add_order_Click(System::Object^ sender, System::EventArgs^ e) {
+        createOrderPrompt^ prompt = gcnew createOrderPrompt(this->selected_customer->getID());
+
+        if (prompt->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+        {
+            Order ^new_order = gcnew Order(prompt->new_order_order_date, prompt->new_order_delivery_date, prompt->new_order_discount_percentage, prompt->new_order_id_billing_address, prompt->new_order_id_delivery_address, selected_customer->getID());
+
+            refresh_customer_orders_datagrid();
         }
     }
 
@@ -2105,5 +2017,6 @@ private: System::Windows::Forms::Button^ button_employee_remove_manager;
 
         refresh_employee_address_information();
 }
+
 };
 }

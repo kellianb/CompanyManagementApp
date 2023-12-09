@@ -12,7 +12,7 @@ SQLservices::SQLservices()
 // Orders Queries
 System::Data::DataTable^ SQLservices::SQL_addOrder(System::DateTime delivery_date, System::DateTime order_date, float discount_percentage, int id_delivery_address, int id_billing_address, int id_customer)
 {
-    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Orders (delivery_date, order_date, order_discount_percentage, id_delivery_address, id_billing_adress, id_customer) OUTPUT inserted.id_order, inserted.order_reference VALUES(@deliveryDate, @orderDate, @dctPercentage, @idDelivery, @idBilling, @idCustomer)";
+    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Orders (delivery_date, order_date, order_discount_percentage, id_delivery_address, id_billing_address, id_customer) OUTPUT inserted.id_order VALUES(@deliveryDate, @orderDate, @dctPercentage, @idDelivery, @idBilling, @idCustomer)";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 

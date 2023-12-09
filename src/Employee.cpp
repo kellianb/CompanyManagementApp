@@ -26,13 +26,13 @@ int Employee::getManager()
 void Employee::setManager(int id_manager)
 {
     this->id_manager = id_manager;
-    this->SQLserv.SQL_setEmployeeManager(this->id, id_manager);
+    this->SQLserv->SQL_setEmployeeManager(this->id, id_manager);
 }
 
 void Employee::removeManager()
 {
     this->id_manager = -1;
-    this->SQLserv.SQL_removeEmployeeManager(this->id);
+    this->SQLserv->SQL_removeEmployeeManager(this->id);
 }
 
 System::DateTime Employee::getHireDate()
@@ -46,11 +46,11 @@ void Employee::setHireDate(System::DateTime date)
 }
 
 void Employee::create_employee_in_DB() {
-    SQLserv.SQL_addEmployee(this->id, hire_date, id_address);
+    SQLserv->SQL_addEmployee(this->id, hire_date, id_address);
 }
 
 void Employee::fetch_employee_from_DB() {
-    System::Data::DataTable^ buffer = this->SQLserv.SQL_getEmployee(this->getID());
+    System::Data::DataTable^ buffer = this->SQLserv->SQL_getEmployee(this->getID());
 
     // Assuming these columns exist in the returned DataTable
     this->hire_date = safe_cast<System::DateTime>(buffer->Rows[0]["hiring_date"]);
@@ -67,12 +67,12 @@ void Employee::fetch_employee_from_DB() {
 
 
 void Employee::modify_employee_in_DB() {
-    SQLserv.SQL_modifyEmployee(this->getID(), hire_date);
+    SQLserv->SQL_modifyEmployee(this->getID(), hire_date);
     
 }
 
 void Employee::delete_employee_from_DB() {
-    SQLserv.SQL_deleteEmployee(this->getID());
+    SQLserv->SQL_deleteEmployee(this->getID());
 }
 
 void Employee::modify_in_DB() {
@@ -81,8 +81,8 @@ void Employee::modify_in_DB() {
 }
 
 void Employee::delete_in_DB() {
-    SQLserv.SQL_removeEmployeeAsManager(this->id);
+    SQLserv->SQL_removeEmployeeAsManager(this->id);
     delete_employee_from_DB();
     delete_person_from_DB();
-    SQLserv.SQL_deleteAddress(this->id_address);
+    SQLserv->SQL_deleteAddress(this->id_address);
 }

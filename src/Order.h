@@ -4,7 +4,7 @@
 ref class Order
 {
 private:
-    SQLservices^ SQLserv;
+    SQLservices^ SQLserv = gcnew SQLservices;
 
     void create_order_in_DB();
     void fetch_order_from_DB();
