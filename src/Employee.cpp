@@ -72,9 +72,7 @@ void Employee::modify_employee_in_DB() {
 }
 
 void Employee::delete_employee_from_DB() {
-    SQLserv.SQL_removeEmployeeAsManager(this->id);
     SQLserv.SQL_deleteEmployee(this->getID());
-    SQLserv.SQL_deleteAddress(this->id_address);
 }
 
 void Employee::modify_in_DB() {
@@ -83,6 +81,8 @@ void Employee::modify_in_DB() {
 }
 
 void Employee::delete_in_DB() {
-    delete_person_from_DB();
+    SQLserv.SQL_removeEmployeeAsManager(this->id);
     delete_employee_from_DB();
+    delete_person_from_DB();
+    SQLserv.SQL_deleteAddress(this->id_address);
 }

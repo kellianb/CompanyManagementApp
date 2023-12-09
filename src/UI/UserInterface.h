@@ -1311,7 +1311,7 @@ private: System::Windows::Forms::Button^ button_employee_remove_manager;
             // 
             // button_delete_employee
             // 
-            this->button_delete_employee->Location = System::Drawing::Point(426, 123);
+            this->button_delete_employee->Location = System::Drawing::Point(425, 120);
             this->button_delete_employee->Name = L"button_delete_employee";
             this->button_delete_employee->Size = System::Drawing::Size(88, 30);
             this->button_delete_employee->TabIndex = 6;
@@ -1321,7 +1321,7 @@ private: System::Windows::Forms::Button^ button_employee_remove_manager;
             // 
             // button_modify_employee
             // 
-            this->button_modify_employee->Location = System::Drawing::Point(316, 121);
+            this->button_modify_employee->Location = System::Drawing::Point(316, 120);
             this->button_modify_employee->Name = L"button_modify_employee";
             this->button_modify_employee->Size = System::Drawing::Size(88, 30);
             this->button_modify_employee->TabIndex = 5;
@@ -1372,7 +1372,7 @@ private: System::Windows::Forms::Button^ button_employee_remove_manager;
             // 
             // textBox_last_name_employee
             // 
-            this->textBox_last_name_employee->Location = System::Drawing::Point(28, 123);
+            this->textBox_last_name_employee->Location = System::Drawing::Point(28, 124);
             this->textBox_last_name_employee->Name = L"textBox_last_name_employee";
             this->textBox_last_name_employee->Size = System::Drawing::Size(240, 26);
             this->textBox_last_name_employee->TabIndex = 2;
@@ -1676,6 +1676,7 @@ private: System::Windows::Forms::Button^ button_employee_remove_manager;
                 return;
             }
         }
+        
 
         // ### Customers tab ###
     private:
@@ -1685,6 +1686,7 @@ private: System::Windows::Forms::Button^ button_employee_remove_manager;
             this->dataGridView_customers->Refresh();
             this->dataGridView_customers->DataSource = SQLserver->SQL_getCustomerList();
 
+            
             // Configure columns
             this->dataGridView_customers->Columns["id_person"]->Width = 40;
             this->dataGridView_customers->Columns["first_order_date"]->Width = 130;
@@ -1694,6 +1696,7 @@ private: System::Windows::Forms::Button^ button_employee_remove_manager;
             this->dataGridView_customers->Columns["first_name"]->HeaderText = "First name";
             this->dataGridView_customers->Columns["last_name"]->HeaderText = "Last name";
             this->dataGridView_customers->Columns["birth_date"]->HeaderText = "Birth date";
+
             
         }
     
