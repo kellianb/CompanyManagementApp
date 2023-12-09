@@ -4,37 +4,48 @@ Employee::Employee(int id) : Person(id) {
     fetch_employee_from_DB();
 }
 
-Employee::Employee(System::String^ firstName, System::String^ lastName, System::DateTime hireDate) 
-    : Person(firstName, lastName), hire_date(hireDate) {
+
+Employee::Employee(System::String^ firstName, System::String^ lastName, System::DateTime hireDate, int addressId) : Person(firstName, lastName), hire_date(hireDate), id_address(addressId) {
     create_employee_in_DB();
 }
 
-Employee::Employee(System::String^ firstName, System::String^ lastName, System::DateTime hireDate, int addressId) 
-    : Person(firstName, lastName), hire_date(hireDate), id_address(addressId) {
-    create_employee_in_DB();
+int Employee::getAddress()
+{
+    return id_address;
 }
 
-Employee::Employee(System::String^ firstName, System::String^ lastName, System::DateTime hireDate, int addressId, int managerId) 
-    : Person(firstName, lastName), hire_date(hireDate), id_address(addressId), id_manager(managerId) {
-    create_employee_in_DB();
+void Employee::setAddress(int id)
+{
+    id_address = id;
 }
 
-int Employee::getIDaddress() { return id_address; }
-void Employee::setIDaddress(int id) { id_address = id; modify_in_DB(); }
-
-int Employee::getIDmanager() { return id_manager; }
-void Employee::setIDmanager(int id) { id_manager = id; modify_in_DB(); }
-
-void Employee::setIDmanagernullable(Object^ nullableId) { 
-    id_manager = nullableId != nullptr ? safe_cast<int>(nullableId) : -1; 
-    modify_in_DB(); 
+int Employee::getManager()
+{
+    return id_manager;
+}
+void Employee::setManager(int id_manager)
+{
+    this->id_manager = id_manager;
+    this->SQLserv.SQL_setEmployeeManager(this->id, id_manager);
 }
 
-System::DateTime Employee::getHireDate() { return hire_date; }
-void Employee::setHireDate(System::DateTime date) { hire_date = date; modify_in_DB(); }
+void Employee::removeManager()
+{
+    this->SQLserv.SQL_removeEmployeeManager(this->id);
+}
+
+System::DateTime Employee::getHireDate()
+{
+    return hire_date;
+}
+
+void Employee::setHireDate(System::DateTime date)
+{
+    hire_date = date; modify_in_DB();
+}
 
 void Employee::create_employee_in_DB() {
-    SQLserv.SQL_addEmployee(this->getID(), hire_date, id_address, id_manager);
+    SQLserv.SQL_addEmployee(this->id, hire_date, id_address);
 }
 
 void Employee::fetch_employee_from_DB() {
@@ -47,25 +58,22 @@ void Employee::fetch_employee_from_DB() {
     // Handling nullable manager ID
     if (buffer->Rows[0]->IsNull("id_manager")) {
         this->id_manager = -1; // or any other default/indicator value
-    } else {
+    }
+    else {
         this->id_manager = safe_cast<int>(buffer->Rows[0]["id_manager"]);
     }
 }
 
 
 void Employee::modify_employee_in_DB() {
-    Object^ dbManagerId;
-    if (this->id_manager == -1) {
-        dbManagerId = System::DBNull::Value;
-    } else {
-        dbManagerId = this->id_manager;
-    }
-
-    SQLserv.SQL_modifyEmployee(this->getID(), hire_date, id_address, dbManagerId);
+    SQLserv.SQL_modifyEmployee(this->getID(), hire_date);
+    
 }
 
 void Employee::delete_employee_from_DB() {
+    SQLserv.SQL_removeEmployeeAsManager(this->id);
     SQLserv.SQL_deleteEmployee(this->getID());
+    SQLserv.SQL_deleteAddress(this->id_address);
 }
 
 void Employee::modify_in_DB() {
