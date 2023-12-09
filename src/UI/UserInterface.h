@@ -6,7 +6,7 @@
 #include "createCustomerPrompt.h"
 #include "selectEmployeeManager.h"
 #include "createEmployeePrompt.h"
-#include "createOrderPrompt.h"
+#include "editOrderPrompt.h"
 #include "../Employee.h"
 #include "../Address.h"
 #include "../Order.h"
@@ -829,6 +829,7 @@ namespace Projet
             this->button1->TabIndex = 5;
             this->button1->Text = L"Modify";
             this->button1->UseVisualStyleBackColor = true;
+            this->button1->Click += gcnew System::EventHandler(this, &UserInterface::button_customer_modify_order);
             // 
             // button_customer_delete_order
             // 
@@ -838,6 +839,7 @@ namespace Projet
             this->button_customer_delete_order->TabIndex = 9;
             this->button_customer_delete_order->Text = L"Delete";
             this->button_customer_delete_order->UseVisualStyleBackColor = true;
+            this->button_customer_delete_order->Click += gcnew System::EventHandler(this, &UserInterface::button_customer_delete_order_Click);
             // 
             // label_customers_current_order_billing_address
             // 
@@ -1745,7 +1747,7 @@ namespace Projet
     }
 
     private: System::Void button_customer_add_order_Click(System::Object^ sender, System::EventArgs^ e) {
-        createOrderPrompt^ prompt = gcnew createOrderPrompt(this->selected_customer->getID());
+        editOrderPrompt^ prompt = gcnew editOrderPrompt(this->selected_customer->getID(), this->selected_customer->getFirstName() + " " + this->selected_customer->getLastName() + " - Create order");
 
         if (prompt->ShowDialog() == System::Windows::Forms::DialogResult::OK)
         {
@@ -1753,6 +1755,33 @@ namespace Projet
 
             refresh_customer_orders_datagrid();
         }
+    }
+
+    private: System::Void button_customer_modify_order(System::Object^ sender, System::EventArgs^ e) {
+        Order ^selected_order = gcnew Order(Convert::ToInt32(this->dataGridView_customer_orders->SelectedRows[0]->Cells["id_order"]->Value->ToString()));
+        
+        editOrderPrompt^ prompt = gcnew editOrderPrompt(this->selected_customer->getID(), this->selected_customer->getFirstName() + " " + this->selected_customer->getLastName() + " - Edit order", selected_order->getOrderDate(), selected_order->getDeliveryDate(), selected_order->getDiscoutPercentage(), selected_order->getBillingAddress(), selected_order->getDeliveryAddress());
+
+        if (prompt->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+        {
+            selected_order->setOrderDate(prompt->new_order_order_date);
+            selected_order->setDeliveryDate(prompt->new_order_delivery_date);
+            selected_order->setDiscountPercentage(prompt->new_order_discount_percentage);
+            selected_order->setBillingAddress(prompt->new_order_id_billing_address);
+            selected_order->setDeliveryAddress(prompt->new_order_id_delivery_address);
+
+            selected_order->modify_order_in_DB();
+
+            refresh_customer_orders_datagrid();
+        }
+    }
+
+    private: System::Void button_customer_delete_order_Click(System::Object^ sender, System::EventArgs^ e) {
+        Order ^selected_order = gcnew Order(Convert::ToInt32(this->dataGridView_customer_orders->SelectedRows[0]->Cells["id_order"]->Value->ToString()));
+
+        selected_order->delete_order_from_DB();
+
+        refresh_customer_orders_datagrid();
     }
 
 
@@ -2017,6 +2046,8 @@ namespace Projet
 
         refresh_employee_address_information();
 }
+
+
 
 };
 }
