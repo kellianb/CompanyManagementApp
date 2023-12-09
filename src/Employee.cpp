@@ -4,6 +4,11 @@ Employee::Employee(int id) : Person(id) {
     fetch_employee_from_DB();
 }
 
+Employee::Employee(System::String^ firstName, System::String^ lastName, System::DateTime hireDate) 
+    : Person(firstName, lastName), hire_date(hireDate) {
+    create_employee_in_DB();
+}
+
 Employee::Employee(System::String^ firstName, System::String^ lastName, System::DateTime hireDate, int addressId) 
     : Person(firstName, lastName), hire_date(hireDate), id_address(addressId) {
     create_employee_in_DB();
