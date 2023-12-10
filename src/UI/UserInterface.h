@@ -108,7 +108,7 @@ namespace Projet
     private: System::Windows::Forms::Button^ button_employee_select_manager;
     private: System::Windows::Forms::Button^ button_employee_reload;
     private: System::Windows::Forms::Button^ button_create_employee;
-    private: System::Windows::Forms::DataGridView^ dataGridView_Orders;
+
     private: System::Windows::Forms::DataGridView^ dataGridView_Inventory;
     private: System::Windows::Forms::GroupBox^ groupBox_general_stats;
 
@@ -141,24 +141,24 @@ namespace Projet
 
     private: System::Windows::Forms::Button^ button_search_customer;
 
-    private: System::Windows::Forms::GroupBox^ groupBox_order_information;
-    private: System::Windows::Forms::Label^ label_order_date;
-
-    private: System::Windows::Forms::DateTimePicker^ dateTimePicker_order_date;
-
-    private: System::Windows::Forms::Button^ button_order_delete;
-
-    private: System::Windows::Forms::Button^ button_order_modify;
 
 
 
-    private: System::Windows::Forms::Label^ label_discount_percentage;
-    private: System::Windows::Forms::TextBox^ textBox_discount_percentage;
 
 
-    private: System::Windows::Forms::Label^ label_delivery_date;
 
-    private: System::Windows::Forms::DateTimePicker^ dateTimePicker_delivery_date;
+
+
+
+
+
+
+
+
+
+
+
+
 
     private: System::Windows::Forms::GroupBox^ groupBox_product_information;
 
@@ -233,7 +233,7 @@ namespace Projet
         System::Windows::Forms::TabPage^ tab_customers;
 
     private:
-        System::Windows::Forms::TabPage^ tab_orders;
+
 
     protected:
 
@@ -269,17 +269,6 @@ namespace Projet
         void InitializeComponent(void)
         {
             this->tabController = (gcnew System::Windows::Forms::TabControl());
-            this->tab_orders = (gcnew System::Windows::Forms::TabPage());
-            this->groupBox_order_information = (gcnew System::Windows::Forms::GroupBox());
-            this->label_delivery_date = (gcnew System::Windows::Forms::Label());
-            this->dateTimePicker_delivery_date = (gcnew System::Windows::Forms::DateTimePicker());
-            this->button_order_modify = (gcnew System::Windows::Forms::Button());
-            this->button_order_delete = (gcnew System::Windows::Forms::Button());
-            this->label_order_date = (gcnew System::Windows::Forms::Label());
-            this->dateTimePicker_order_date = (gcnew System::Windows::Forms::DateTimePicker());
-            this->label_discount_percentage = (gcnew System::Windows::Forms::Label());
-            this->textBox_discount_percentage = (gcnew System::Windows::Forms::TextBox());
-            this->dataGridView_Orders = (gcnew System::Windows::Forms::DataGridView());
             this->tab_inventory = (gcnew System::Windows::Forms::TabPage());
             this->groupBox_product_information = (gcnew System::Windows::Forms::GroupBox());
             this->label_reorder_threshold = (gcnew System::Windows::Forms::Label());
@@ -370,9 +359,6 @@ namespace Projet
             this->label_monthly_turnover = (gcnew System::Windows::Forms::Label());
             this->label_avg_basket = (gcnew System::Windows::Forms::Label());
             this->tabController->SuspendLayout();
-            this->tab_orders->SuspendLayout();
-            this->groupBox_order_information->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_Orders))->BeginInit();
             this->tab_inventory->SuspendLayout();
             this->groupBox_product_information->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_Inventory))->BeginInit();
@@ -405,7 +391,6 @@ namespace Projet
             // 
             // tabController
             // 
-            this->tabController->Controls->Add(this->tab_orders);
             this->tabController->Controls->Add(this->tab_inventory);
             this->tabController->Controls->Add(this->tab_customers);
             this->tabController->Controls->Add(this->tab_employee);
@@ -420,123 +405,6 @@ namespace Projet
             this->tabController->Size = System::Drawing::Size(1258, 751);
             this->tabController->TabIndex = 0;
             this->tabController->SelectedIndexChanged += gcnew System::EventHandler(this, &UserInterface::OnTabSelectedIndexChanged);
-            // 
-            // tab_orders
-            // 
-            this->tab_orders->Controls->Add(this->groupBox_order_information);
-            this->tab_orders->Controls->Add(this->dataGridView_Orders);
-            this->tab_orders->Location = System::Drawing::Point(4, 29);
-            this->tab_orders->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
-            this->tab_orders->Name = L"tab_orders";
-            this->tab_orders->Padding = System::Windows::Forms::Padding(5, 4, 5, 4);
-            this->tab_orders->Size = System::Drawing::Size(1250, 718);
-            this->tab_orders->TabIndex = 1;
-            this->tab_orders->Text = L"Orders";
-            this->tab_orders->UseVisualStyleBackColor = true;
-            // 
-            // groupBox_order_information
-            // 
-            this->groupBox_order_information->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-                | System::Windows::Forms::AnchorStyles::Right));
-            this->groupBox_order_information->Controls->Add(this->label_delivery_date);
-            this->groupBox_order_information->Controls->Add(this->dateTimePicker_delivery_date);
-            this->groupBox_order_information->Controls->Add(this->button_order_modify);
-            this->groupBox_order_information->Controls->Add(this->button_order_delete);
-            this->groupBox_order_information->Controls->Add(this->label_order_date);
-            this->groupBox_order_information->Controls->Add(this->dateTimePicker_order_date);
-            this->groupBox_order_information->Controls->Add(this->label_discount_percentage);
-            this->groupBox_order_information->Controls->Add(this->textBox_discount_percentage);
-            this->groupBox_order_information->Location = System::Drawing::Point(8, 201);
-            this->groupBox_order_information->Name = L"groupBox_order_information";
-            this->groupBox_order_information->Size = System::Drawing::Size(543, 166);
-            this->groupBox_order_information->TabIndex = 9;
-            this->groupBox_order_information->TabStop = false;
-            this->groupBox_order_information->Text = L"Order Information";
-            // 
-            // label_delivery_date
-            // 
-            this->label_delivery_date->AutoSize = true;
-            this->label_delivery_date->Location = System::Drawing::Point(309, 22);
-            this->label_delivery_date->Name = L"label_delivery_date";
-            this->label_delivery_date->Size = System::Drawing::Size(107, 20);
-            this->label_delivery_date->TabIndex = 10;
-            this->label_delivery_date->Text = L"Delivery date";
-            // 
-            // dateTimePicker_delivery_date
-            // 
-            this->dateTimePicker_delivery_date->Location = System::Drawing::Point(313, 45);
-            this->dateTimePicker_delivery_date->Name = L"dateTimePicker_delivery_date";
-            this->dateTimePicker_delivery_date->Size = System::Drawing::Size(197, 26);
-            this->dateTimePicker_delivery_date->TabIndex = 9;
-            // 
-            // button_order_modify
-            // 
-            this->button_order_modify->Location = System::Drawing::Point(313, 116);
-            this->button_order_modify->Name = L"button_order_modify";
-            this->button_order_modify->Size = System::Drawing::Size(88, 30);
-            this->button_order_modify->TabIndex = 5;
-            this->button_order_modify->Text = L"Modify";
-            this->button_order_modify->UseVisualStyleBackColor = true;
-            // 
-            // button_order_delete
-            // 
-            this->button_order_delete->Location = System::Drawing::Point(422, 118);
-            this->button_order_delete->Name = L"button_order_delete";
-            this->button_order_delete->Size = System::Drawing::Size(88, 30);
-            this->button_order_delete->TabIndex = 6;
-            this->button_order_delete->Text = L"Delete";
-            this->button_order_delete->UseVisualStyleBackColor = true;
-            // 
-            // label_order_date
-            // 
-            this->label_order_date->AutoSize = true;
-            this->label_order_date->Location = System::Drawing::Point(24, 22);
-            this->label_order_date->Name = L"label_order_date";
-            this->label_order_date->Size = System::Drawing::Size(89, 20);
-            this->label_order_date->TabIndex = 8;
-            this->label_order_date->Text = L"Order date";
-            // 
-            // dateTimePicker_order_date
-            // 
-            this->dateTimePicker_order_date->Location = System::Drawing::Point(28, 45);
-            this->dateTimePicker_order_date->Name = L"dateTimePicker_order_date";
-            this->dateTimePicker_order_date->Size = System::Drawing::Size(197, 26);
-            this->dateTimePicker_order_date->TabIndex = 7;
-            // 
-            // label_discount_percentage
-            // 
-            this->label_discount_percentage->AutoSize = true;
-            this->label_discount_percentage->Location = System::Drawing::Point(24, 97);
-            this->label_discount_percentage->Name = L"label_discount_percentage";
-            this->label_discount_percentage->Size = System::Drawing::Size(120, 20);
-            this->label_discount_percentage->TabIndex = 3;
-            this->label_discount_percentage->Text = L"Order discount";
-            // 
-            // textBox_discount_percentage
-            // 
-            this->textBox_discount_percentage->Location = System::Drawing::Point(28, 120);
-            this->textBox_discount_percentage->Name = L"textBox_discount_percentage";
-            this->textBox_discount_percentage->Size = System::Drawing::Size(197, 26);
-            this->textBox_discount_percentage->TabIndex = 1;
-            // 
-            // dataGridView_Orders
-            // 
-            this->dataGridView_Orders->AllowUserToAddRows = false;
-            this->dataGridView_Orders->AllowUserToDeleteRows = false;
-            this->dataGridView_Orders->AllowUserToOrderColumns = true;
-            this->dataGridView_Orders->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-                | System::Windows::Forms::AnchorStyles::Right));
-            this->dataGridView_Orders->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-            this->dataGridView_Orders->Location = System::Drawing::Point(6, 7);
-            this->dataGridView_Orders->MinimumSize = System::Drawing::Size(999, 112);
-            this->dataGridView_Orders->MultiSelect = false;
-            this->dataGridView_Orders->Name = L"dataGridView_Orders";
-            this->dataGridView_Orders->ReadOnly = true;
-            this->dataGridView_Orders->RowHeadersWidth = 62;
-            this->dataGridView_Orders->RowTemplate->Height = 28;
-            this->dataGridView_Orders->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_Orders->Size = System::Drawing::Size(1236, 188);
-            this->dataGridView_Orders->TabIndex = 1;
             // 
             // tab_inventory
             // 
@@ -1505,10 +1373,6 @@ namespace Projet
             this->Text = L"Company management";
             this->Load += gcnew System::EventHandler(this, &UserInterface::UserInterface_Load);
             this->tabController->ResumeLayout(false);
-            this->tab_orders->ResumeLayout(false);
-            this->groupBox_order_information->ResumeLayout(false);
-            this->groupBox_order_information->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_Orders))->EndInit();
             this->tab_inventory->ResumeLayout(false);
             this->groupBox_product_information->ResumeLayout(false);
             this->groupBox_product_information->PerformLayout();
