@@ -1731,9 +1731,11 @@ namespace Projet
         if (this->dataGridView_customer_orders->SelectedRows->Count != 0)
         {
             this->groupBox_customer_currently_selected_order->Visible = true;
+
+            // TODO : Add order reference
             
             Address^ currently_selected_order_billing_address = gcnew Address(Convert::ToInt32(this->dataGridView_customer_orders->SelectedRows[0]->Cells["id_billing_address"]->Value->ToString()));
-
+            
             label_customers_current_order_billing_address->Text = "Billing address : " + currently_selected_order_billing_address->getStreetNumber() + " " + currently_selected_order_billing_address->getStreet() + ", " + currently_selected_order_billing_address->getPostalCode() + " " + currently_selected_order_billing_address->getCity();
             
             Address^ currently_selected_order_delivery_address = gcnew Address(Convert::ToInt32(this->dataGridView_customer_orders->SelectedRows[0]->Cells["id_delivery_address"]->Value->ToString()));
@@ -1842,7 +1844,7 @@ namespace Projet
 
         // Delivery address stuff
 
-        // TODO handle invalid values for adding and mofifying addresses
+        // TODO handle invalid values for adding and modifying addresses
         
     private: System::Void button_customer_add_delivery_address_Click(System::Object^ sender, System::EventArgs^ e) {
         Projet::editAddressPrompt^ prompt = gcnew Projet::editAddressPrompt(this->selected_customer->getFirstName() + " " + this->selected_customer->getLastName() + " - Add delivery address");
