@@ -134,13 +134,13 @@ public:
     void SQL_deleteAddress(int id);
 
     // Product_price Queries
-    System::Data::DataTable^ SQL_addProductPrice(int, int, double, double, System::DateTime, int, int, int);
+    System::Data::DataTable^ SQL_addProductPrice(int, int, float, System::DateTime, int, int, int);
 
     System::Data::DataTable^ SQL_getProductPrice(int);
 
     System::Data::DataTable^ SQL_getProductPriceList();
 
-    System::Data::DataTable^ SQL_modifyProductPrice(int, int, int, double, double, System::DateTime, int, int, int);
+    System::Data::DataTable^ SQL_modifyProductPrice(int, int, float, System::DateTime, int, int, int);
 
     void SQL_deleteProductPrice(int);
 };

@@ -37,4 +37,6 @@ public:
     
     void modify_product_in_DB();
     void delete_product_from_DB();
+
+    System::Data::DataTable^ getProductPrices();
 };

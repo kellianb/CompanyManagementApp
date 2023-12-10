@@ -390,6 +390,9 @@
     <EmbeddedResource Include="src\UI\editOrderPrompt.resx">
       <DependentUpon>src\UI\editOrderPrompt.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\UI\editProductPrices.resx">
+      <DependentUpon>src\UI\editProductPrices.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\UI\editProductPrompt.resx">
       <DependentUpon>editProductPrompt.h</DependentUpon>
     </EmbeddedResource>

@@ -8,12 +8,14 @@
 #include "createEmployeePrompt.h"
 #include "editOrderPrompt.h"
 #include "editProductPrompt.h"
+#include "editProductPrices.h"
 
 #include "../Customer.h"
 #include "../Employee.h"
 #include "../Address.h"
 #include "../Order.h"
 #include "../Product.h"
+#include "../Product_price.h"
 
 
 namespace Projet
@@ -36,6 +38,7 @@ namespace Projet
 
         // Products tab
         Product^ selected_product;
+        Product_price^ selected_product_price;
 
         // Customer tab
         Customer^ selected_customer;
@@ -198,6 +201,11 @@ namespace Projet
 private: System::Windows::Forms::Button^ button_create_product;
 private: System::Windows::Forms::Button^ button_products_reload;
 private: System::Windows::Forms::Label^ label_product_reorder;
+private: System::Windows::Forms::GroupBox^ groupBox_product_price;
+private: System::Windows::Forms::DataGridView^ dataGridView_product_prices;
+private: System::Windows::Forms::Button^ button_delete_product_prices;
+private: System::Windows::Forms::Button^ button_add_product_prices;
+private: System::Windows::Forms::Button^ button_edit_product_prices;
 
 
 
@@ -276,9 +284,15 @@ private: System::Windows::Forms::Label^ label_product_reorder;
         {
             this->tabController = (gcnew System::Windows::Forms::TabControl());
             this->tab_inventory = (gcnew System::Windows::Forms::TabPage());
+            this->groupBox_product_price = (gcnew System::Windows::Forms::GroupBox());
+            this->dataGridView_product_prices = (gcnew System::Windows::Forms::DataGridView());
+            this->button_delete_product_prices = (gcnew System::Windows::Forms::Button());
+            this->button_add_product_prices = (gcnew System::Windows::Forms::Button());
+            this->button_edit_product_prices = (gcnew System::Windows::Forms::Button());
             this->button_create_product = (gcnew System::Windows::Forms::Button());
             this->button_products_reload = (gcnew System::Windows::Forms::Button());
             this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+            this->label_product_reorder = (gcnew System::Windows::Forms::Label());
             this->label_product_vat = (gcnew System::Windows::Forms::Label());
             this->textBox_product_vat = (gcnew System::Windows::Forms::TextBox());
             this->label_reorder_threshold = (gcnew System::Windows::Forms::Label());
@@ -368,9 +382,10 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_commercial_stock_value = (gcnew System::Windows::Forms::Label());
             this->label_monthly_turnover = (gcnew System::Windows::Forms::Label());
             this->label_avg_basket = (gcnew System::Windows::Forms::Label());
-            this->label_product_reorder = (gcnew System::Windows::Forms::Label());
             this->tabController->SuspendLayout();
             this->tab_inventory->SuspendLayout();
+            this->groupBox_product_price->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_product_prices))->BeginInit();
             this->groupBox1->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_inventory))->BeginInit();
             this->tab_customers->SuspendLayout();
@@ -413,23 +428,81 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->tabController->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
             this->tabController->Name = L"tabController";
             this->tabController->SelectedIndex = 0;
-            this->tabController->Size = System::Drawing::Size(1258, 751);
+            this->tabController->Size = System::Drawing::Size(1260, 759);
             this->tabController->TabIndex = 0;
             this->tabController->SelectedIndexChanged += gcnew System::EventHandler(this, &UserInterface::OnTabSelectedIndexChanged);
             // 
             // tab_inventory
             // 
+            this->tab_inventory->Controls->Add(this->groupBox_product_price);
             this->tab_inventory->Controls->Add(this->button_create_product);
             this->tab_inventory->Controls->Add(this->button_products_reload);
             this->tab_inventory->Controls->Add(this->groupBox1);
             this->tab_inventory->Controls->Add(this->dataGridView_inventory);
-            this->tab_inventory->Location = System::Drawing::Point(4, 29);
+            this->tab_inventory->Location = System::Drawing::Point(4, 25);
             this->tab_inventory->Name = L"tab_inventory";
             this->tab_inventory->Padding = System::Windows::Forms::Padding(3);
-            this->tab_inventory->Size = System::Drawing::Size(1250, 718);
+            this->tab_inventory->Size = System::Drawing::Size(1252, 730);
             this->tab_inventory->TabIndex = 2;
             this->tab_inventory->Text = L"Inventory";
             this->tab_inventory->UseVisualStyleBackColor = true;
+            // 
+            // groupBox_product_price
+            // 
+            this->groupBox_product_price->Controls->Add(this->dataGridView_product_prices);
+            this->groupBox_product_price->Controls->Add(this->button_delete_product_prices);
+            this->groupBox_product_price->Controls->Add(this->button_add_product_prices);
+            this->groupBox_product_price->Controls->Add(this->button_edit_product_prices);
+            this->groupBox_product_price->Location = System::Drawing::Point(559, 201);
+            this->groupBox_product_price->Name = L"groupBox_product_price";
+            this->groupBox_product_price->Size = System::Drawing::Size(687, 523);
+            this->groupBox_product_price->TabIndex = 17;
+            this->groupBox_product_price->TabStop = false;
+            this->groupBox_product_price->Text = L"Product prices";
+            // 
+            // dataGridView_product_prices
+            // 
+            this->dataGridView_product_prices->AllowUserToAddRows = false;
+            this->dataGridView_product_prices->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+            this->dataGridView_product_prices->Location = System::Drawing::Point(6, 21);
+            this->dataGridView_product_prices->MultiSelect = false;
+            this->dataGridView_product_prices->Name = L"dataGridView_product_prices";
+            this->dataGridView_product_prices->ReadOnly = true;
+            this->dataGridView_product_prices->RowHeadersWidth = 62;
+            this->dataGridView_product_prices->RowTemplate->Height = 28;
+            this->dataGridView_product_prices->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+            this->dataGridView_product_prices->Size = System::Drawing::Size(675, 460);
+            this->dataGridView_product_prices->TabIndex = 1;
+            // 
+            // button_delete_product_prices
+            // 
+            this->button_delete_product_prices->Location = System::Drawing::Point(224, 487);
+            this->button_delete_product_prices->Name = L"button_delete_product_prices";
+            this->button_delete_product_prices->Size = System::Drawing::Size(88, 30);
+            this->button_delete_product_prices->TabIndex = 6;
+            this->button_delete_product_prices->Text = L"Delete";
+            this->button_delete_product_prices->UseVisualStyleBackColor = true;
+            this->button_delete_product_prices->Click += gcnew System::EventHandler(this, &UserInterface::button_delete_product_price_Click);
+            // 
+            // button_add_product_prices
+            // 
+            this->button_add_product_prices->Location = System::Drawing::Point(6, 487);
+            this->button_add_product_prices->Name = L"button_add_product_prices";
+            this->button_add_product_prices->Size = System::Drawing::Size(88, 30);
+            this->button_add_product_prices->TabIndex = 3;
+            this->button_add_product_prices->Text = L"Add";
+            this->button_add_product_prices->UseVisualStyleBackColor = true;
+            this->button_add_product_prices->Click += gcnew System::EventHandler(this, &UserInterface::button_add_product_price_Click);
+            // 
+            // button_edit_product_prices
+            // 
+            this->button_edit_product_prices->Location = System::Drawing::Point(114, 487);
+            this->button_edit_product_prices->Name = L"button_edit_product_prices";
+            this->button_edit_product_prices->Size = System::Drawing::Size(88, 30);
+            this->button_edit_product_prices->TabIndex = 5;
+            this->button_edit_product_prices->Text = L"Modify";
+            this->button_edit_product_prices->UseVisualStyleBackColor = true;
+            this->button_edit_product_prices->Click += gcnew System::EventHandler(this, &UserInterface::button_edit_product_price_Click);
             // 
             // button_create_product
             // 
@@ -468,17 +541,28 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->groupBox1->Controls->Add(this->textBox_product_stock);
             this->groupBox1->Location = System::Drawing::Point(8, 201);
             this->groupBox1->Name = L"groupBox1";
-            this->groupBox1->Size = System::Drawing::Size(543, 236);
+            this->groupBox1->Size = System::Drawing::Size(545, 236);
             this->groupBox1->TabIndex = 14;
             this->groupBox1->TabStop = false;
             this->groupBox1->Text = L"Product Information";
+            // 
+            // label_product_reorder
+            // 
+            this->label_product_reorder->AutoSize = true;
+            this->label_product_reorder->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Bold));
+            this->label_product_reorder->ForeColor = System::Drawing::Color::Red;
+            this->label_product_reorder->Location = System::Drawing::Point(23, 190);
+            this->label_product_reorder->Name = L"label_product_reorder";
+            this->label_product_reorder->Size = System::Drawing::Size(110, 24);
+            this->label_product_reorder->TabIndex = 16;
+            this->label_product_reorder->Text = L"REORDER";
             // 
             // label_product_vat
             // 
             this->label_product_vat->AutoSize = true;
             this->label_product_vat->Location = System::Drawing::Point(312, 101);
             this->label_product_vat->Name = L"label_product_vat";
-            this->label_product_vat->Size = System::Drawing::Size(61, 20);
+            this->label_product_vat->Size = System::Drawing::Size(49, 16);
             this->label_product_vat->TabIndex = 15;
             this->label_product_vat->Text = L"VAT %";
             // 
@@ -486,7 +570,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             // 
             this->textBox_product_vat->Location = System::Drawing::Point(316, 124);
             this->textBox_product_vat->Name = L"textBox_product_vat";
-            this->textBox_product_vat->Size = System::Drawing::Size(197, 26);
+            this->textBox_product_vat->Size = System::Drawing::Size(197, 22);
             this->textBox_product_vat->TabIndex = 15;
             // 
             // label_reorder_threshold
@@ -494,7 +578,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_reorder_threshold->AutoSize = true;
             this->label_reorder_threshold->Location = System::Drawing::Point(312, 30);
             this->label_reorder_threshold->Name = L"label_reorder_threshold";
-            this->label_reorder_threshold->Size = System::Drawing::Size(143, 20);
+            this->label_reorder_threshold->Size = System::Drawing::Size(115, 16);
             this->label_reorder_threshold->TabIndex = 8;
             this->label_reorder_threshold->Text = L"Reorder threshold";
             // 
@@ -502,7 +586,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             // 
             this->textBox_product_reorder_threshold->Location = System::Drawing::Point(316, 53);
             this->textBox_product_reorder_threshold->Name = L"textBox_product_reorder_threshold";
-            this->textBox_product_reorder_threshold->Size = System::Drawing::Size(197, 26);
+            this->textBox_product_reorder_threshold->Size = System::Drawing::Size(197, 22);
             this->textBox_product_reorder_threshold->TabIndex = 7;
             // 
             // button_delete_product
@@ -530,7 +614,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_product_stock->AutoSize = true;
             this->label_product_stock->Location = System::Drawing::Point(24, 101);
             this->label_product_stock->Name = L"label_product_stock";
-            this->label_product_stock->Size = System::Drawing::Size(51, 20);
+            this->label_product_stock->Size = System::Drawing::Size(41, 16);
             this->label_product_stock->TabIndex = 4;
             this->label_product_stock->Text = L"Stock";
             // 
@@ -539,7 +623,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_product_name->AutoSize = true;
             this->label_product_name->Location = System::Drawing::Point(24, 30);
             this->label_product_name->Name = L"label_product_name";
-            this->label_product_name->Size = System::Drawing::Size(113, 20);
+            this->label_product_name->Size = System::Drawing::Size(90, 16);
             this->label_product_name->TabIndex = 3;
             this->label_product_name->Text = L"Product name";
             // 
@@ -547,14 +631,14 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             // 
             this->textBox_product_name->Location = System::Drawing::Point(28, 53);
             this->textBox_product_name->Name = L"textBox_product_name";
-            this->textBox_product_name->Size = System::Drawing::Size(240, 26);
+            this->textBox_product_name->Size = System::Drawing::Size(240, 22);
             this->textBox_product_name->TabIndex = 1;
             // 
             // textBox_product_stock
             // 
             this->textBox_product_stock->Location = System::Drawing::Point(28, 124);
             this->textBox_product_stock->Name = L"textBox_product_stock";
-            this->textBox_product_stock->Size = System::Drawing::Size(240, 26);
+            this->textBox_product_stock->Size = System::Drawing::Size(240, 22);
             this->textBox_product_stock->TabIndex = 2;
             // 
             // dataGridView_inventory
@@ -573,7 +657,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->dataGridView_inventory->RowHeadersWidth = 62;
             this->dataGridView_inventory->RowTemplate->Height = 28;
             this->dataGridView_inventory->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_inventory->Size = System::Drawing::Size(1236, 188);
+            this->dataGridView_inventory->Size = System::Drawing::Size(1238, 188);
             this->dataGridView_inventory->TabIndex = 1;
             this->dataGridView_inventory->SelectionChanged += gcnew System::EventHandler(this, &UserInterface::dataGridView_inventory_SelectionChanged);
             // 
@@ -586,11 +670,11 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->tab_customers->Controls->Add(this->button_customers_reload);
             this->tab_customers->Controls->Add(this->groupBox_customer_information);
             this->tab_customers->Controls->Add(this->dataGridView_customers);
-            this->tab_customers->Location = System::Drawing::Point(4, 29);
+            this->tab_customers->Location = System::Drawing::Point(4, 25);
             this->tab_customers->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
             this->tab_customers->Name = L"tab_customers";
             this->tab_customers->Padding = System::Windows::Forms::Padding(5, 4, 5, 4);
-            this->tab_customers->Size = System::Drawing::Size(1250, 718);
+            this->tab_customers->Size = System::Drawing::Size(1252, 730);
             this->tab_customers->TabIndex = 0;
             this->tab_customers->Text = L"Customers";
             this->tab_customers->UseVisualStyleBackColor = true;
@@ -769,7 +853,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_customers_current_order_billing_address->AutoSize = true;
             this->label_customers_current_order_billing_address->Location = System::Drawing::Point(24, 30);
             this->label_customers_current_order_billing_address->Name = L"label_customers_current_order_billing_address";
-            this->label_customers_current_order_billing_address->Size = System::Drawing::Size(19, 20);
+            this->label_customers_current_order_billing_address->Size = System::Drawing::Size(13, 16);
             this->label_customers_current_order_billing_address->TabIndex = 2;
             this->label_customers_current_order_billing_address->Text = L" f";
             // 
@@ -778,7 +862,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_customers_current_order_delivery_address->AutoSize = true;
             this->label_customers_current_order_delivery_address->Location = System::Drawing::Point(24, 79);
             this->label_customers_current_order_delivery_address->Name = L"label_customers_current_order_delivery_address";
-            this->label_customers_current_order_delivery_address->Size = System::Drawing::Size(19, 20);
+            this->label_customers_current_order_delivery_address->Size = System::Drawing::Size(13, 16);
             this->label_customers_current_order_delivery_address->TabIndex = 1;
             this->label_customers_current_order_delivery_address->Text = L" f";
             // 
@@ -831,7 +915,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->groupBox_customer_information->Controls->Add(this->textBox_last_name_customer);
             this->groupBox_customer_information->Location = System::Drawing::Point(8, 201);
             this->groupBox_customer_information->Name = L"groupBox_customer_information";
-            this->groupBox_customer_information->Size = System::Drawing::Size(543, 166);
+            this->groupBox_customer_information->Size = System::Drawing::Size(545, 166);
             this->groupBox_customer_information->TabIndex = 3;
             this->groupBox_customer_information->TabStop = false;
             this->groupBox_customer_information->Text = L"Customer Information";
@@ -841,7 +925,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_customer_birth_date->AutoSize = true;
             this->label_customer_birth_date->Location = System::Drawing::Point(312, 30);
             this->label_customer_birth_date->Name = L"label_customer_birth_date";
-            this->label_customer_birth_date->Size = System::Drawing::Size(82, 20);
+            this->label_customer_birth_date->Size = System::Drawing::Size(63, 16);
             this->label_customer_birth_date->TabIndex = 8;
             this->label_customer_birth_date->Text = L"Birth date";
             // 
@@ -849,7 +933,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             // 
             this->dateTimePicker_customer_birth_date->Location = System::Drawing::Point(316, 53);
             this->dateTimePicker_customer_birth_date->Name = L"dateTimePicker_customer_birth_date";
-            this->dateTimePicker_customer_birth_date->Size = System::Drawing::Size(197, 26);
+            this->dateTimePicker_customer_birth_date->Size = System::Drawing::Size(197, 22);
             this->dateTimePicker_customer_birth_date->TabIndex = 7;
             // 
             // button_delete_customer
@@ -877,7 +961,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_last_name_customer->AutoSize = true;
             this->label_last_name_customer->Location = System::Drawing::Point(24, 101);
             this->label_last_name_customer->Name = L"label_last_name_customer";
-            this->label_last_name_customer->Size = System::Drawing::Size(91, 20);
+            this->label_last_name_customer->Size = System::Drawing::Size(72, 16);
             this->label_last_name_customer->TabIndex = 4;
             this->label_last_name_customer->Text = L"Last Name";
             // 
@@ -886,7 +970,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_first_name_customer->AutoSize = true;
             this->label_first_name_customer->Location = System::Drawing::Point(24, 30);
             this->label_first_name_customer->Name = L"label_first_name_customer";
-            this->label_first_name_customer->Size = System::Drawing::Size(92, 20);
+            this->label_first_name_customer->Size = System::Drawing::Size(72, 16);
             this->label_first_name_customer->TabIndex = 3;
             this->label_first_name_customer->Text = L"First Name";
             // 
@@ -894,14 +978,14 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             // 
             this->textBox_first_name_customer->Location = System::Drawing::Point(28, 53);
             this->textBox_first_name_customer->Name = L"textBox_first_name_customer";
-            this->textBox_first_name_customer->Size = System::Drawing::Size(240, 26);
+            this->textBox_first_name_customer->Size = System::Drawing::Size(240, 22);
             this->textBox_first_name_customer->TabIndex = 1;
             // 
             // textBox_last_name_customer
             // 
             this->textBox_last_name_customer->Location = System::Drawing::Point(28, 124);
             this->textBox_last_name_customer->Name = L"textBox_last_name_customer";
-            this->textBox_last_name_customer->Size = System::Drawing::Size(240, 26);
+            this->textBox_last_name_customer->Size = System::Drawing::Size(240, 22);
             this->textBox_last_name_customer->TabIndex = 2;
             // 
             // dataGridView_customers
@@ -920,7 +1004,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->dataGridView_customers->RowHeadersWidth = 62;
             this->dataGridView_customers->RowTemplate->Height = 28;
             this->dataGridView_customers->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_customers->Size = System::Drawing::Size(1236, 188);
+            this->dataGridView_customers->Size = System::Drawing::Size(1238, 188);
             this->dataGridView_customers->TabIndex = 0;
             this->dataGridView_customers->SelectionChanged += gcnew System::EventHandler(this, &UserInterface::dataGridView_customers_selectionChanged);
             // 
@@ -932,10 +1016,10 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->tab_employee->Controls->Add(this->groupBox_employee_manager);
             this->tab_employee->Controls->Add(this->dataGridView_employee);
             this->tab_employee->Controls->Add(this->groupBox_employee_information);
-            this->tab_employee->Location = System::Drawing::Point(4, 29);
+            this->tab_employee->Location = System::Drawing::Point(4, 25);
             this->tab_employee->Name = L"tab_employee";
             this->tab_employee->Padding = System::Windows::Forms::Padding(3);
-            this->tab_employee->Size = System::Drawing::Size(1250, 718);
+            this->tab_employee->Size = System::Drawing::Size(1252, 730);
             this->tab_employee->TabIndex = 3;
             this->tab_employee->Text = L"Employees";
             this->tab_employee->UseVisualStyleBackColor = true;
@@ -955,7 +1039,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->groupBox_employee_address->Controls->Add(this->textBox_employee_address_street);
             this->groupBox_employee_address->Location = System::Drawing::Point(8, 373);
             this->groupBox_employee_address->Name = L"groupBox_employee_address";
-            this->groupBox_employee_address->Size = System::Drawing::Size(543, 205);
+            this->groupBox_employee_address->Size = System::Drawing::Size(545, 205);
             this->groupBox_employee_address->TabIndex = 11;
             this->groupBox_employee_address->TabStop = false;
             this->groupBox_employee_address->Text = L"Employee Address";
@@ -964,14 +1048,14 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             // 
             this->textBox_employee_address_street_number->Location = System::Drawing::Point(316, 123);
             this->textBox_employee_address_street_number->Name = L"textBox_employee_address_street_number";
-            this->textBox_employee_address_street_number->Size = System::Drawing::Size(198, 26);
+            this->textBox_employee_address_street_number->Size = System::Drawing::Size(198, 22);
             this->textBox_employee_address_street_number->TabIndex = 11;
             // 
             // textBox_employee_address_postal_code
             // 
             this->textBox_employee_address_postal_code->Location = System::Drawing::Point(315, 53);
             this->textBox_employee_address_postal_code->Name = L"textBox_employee_address_postal_code";
-            this->textBox_employee_address_postal_code->Size = System::Drawing::Size(198, 26);
+            this->textBox_employee_address_postal_code->Size = System::Drawing::Size(198, 22);
             this->textBox_employee_address_postal_code->TabIndex = 10;
             // 
             // button_employee_modify_address
@@ -989,7 +1073,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_employee_address_street_number->AutoSize = true;
             this->label_employee_address_street_number->Location = System::Drawing::Point(312, 101);
             this->label_employee_address_street_number->Name = L"label_employee_address_street_number";
-            this->label_employee_address_street_number->Size = System::Drawing::Size(118, 20);
+            this->label_employee_address_street_number->Size = System::Drawing::Size(93, 16);
             this->label_employee_address_street_number->TabIndex = 9;
             this->label_employee_address_street_number->Text = L"Street Number";
             // 
@@ -998,7 +1082,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_employee_address_postal_code->AutoSize = true;
             this->label_employee_address_postal_code->Location = System::Drawing::Point(312, 30);
             this->label_employee_address_postal_code->Name = L"label_employee_address_postal_code";
-            this->label_employee_address_postal_code->Size = System::Drawing::Size(97, 20);
+            this->label_employee_address_postal_code->Size = System::Drawing::Size(79, 16);
             this->label_employee_address_postal_code->TabIndex = 8;
             this->label_employee_address_postal_code->Text = L"Postal code";
             // 
@@ -1007,7 +1091,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_employee_address_street->AutoSize = true;
             this->label_employee_address_street->Location = System::Drawing::Point(24, 101);
             this->label_employee_address_street->Name = L"label_employee_address_street";
-            this->label_employee_address_street->Size = System::Drawing::Size(54, 20);
+            this->label_employee_address_street->Size = System::Drawing::Size(42, 16);
             this->label_employee_address_street->TabIndex = 4;
             this->label_employee_address_street->Text = L"Street";
             // 
@@ -1016,7 +1100,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_employee_address_city->AutoSize = true;
             this->label_employee_address_city->Location = System::Drawing::Point(24, 30);
             this->label_employee_address_city->Name = L"label_employee_address_city";
-            this->label_employee_address_city->Size = System::Drawing::Size(38, 20);
+            this->label_employee_address_city->Size = System::Drawing::Size(29, 16);
             this->label_employee_address_city->TabIndex = 3;
             this->label_employee_address_city->Text = L"City";
             // 
@@ -1024,14 +1108,14 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             // 
             this->textBox_employee_address_city->Location = System::Drawing::Point(28, 53);
             this->textBox_employee_address_city->Name = L"textBox_employee_address_city";
-            this->textBox_employee_address_city->Size = System::Drawing::Size(240, 26);
+            this->textBox_employee_address_city->Size = System::Drawing::Size(240, 22);
             this->textBox_employee_address_city->TabIndex = 1;
             // 
             // textBox_employee_address_street
             // 
             this->textBox_employee_address_street->Location = System::Drawing::Point(28, 123);
             this->textBox_employee_address_street->Name = L"textBox_employee_address_street";
-            this->textBox_employee_address_street->Size = System::Drawing::Size(240, 26);
+            this->textBox_employee_address_street->Size = System::Drawing::Size(240, 22);
             this->textBox_employee_address_street->TabIndex = 2;
             // 
             // button_employee_reload
@@ -1091,7 +1175,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_employee_manager_name->AutoSize = true;
             this->label_employee_manager_name->Location = System::Drawing::Point(6, 30);
             this->label_employee_manager_name->Name = L"label_employee_manager_name";
-            this->label_employee_manager_name->Size = System::Drawing::Size(217, 20);
+            this->label_employee_manager_name->Size = System::Drawing::Size(166, 16);
             this->label_employee_manager_name->TabIndex = 2;
             this->label_employee_manager_name->Text = L"If you see this, this is a bug.";
             // 
@@ -1111,7 +1195,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->dataGridView_employee->RowHeadersWidth = 62;
             this->dataGridView_employee->RowTemplate->Height = 28;
             this->dataGridView_employee->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_employee->Size = System::Drawing::Size(1236, 188);
+            this->dataGridView_employee->Size = System::Drawing::Size(1238, 188);
             this->dataGridView_employee->TabIndex = 0;
             this->dataGridView_employee->SelectionChanged += gcnew System::EventHandler(this, &UserInterface::dataGridView_employee_selectionChanged);
             // 
@@ -1129,7 +1213,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->groupBox_employee_information->Controls->Add(this->textBox_last_name_employee);
             this->groupBox_employee_information->Location = System::Drawing::Point(8, 201);
             this->groupBox_employee_information->Name = L"groupBox_employee_information";
-            this->groupBox_employee_information->Size = System::Drawing::Size(543, 166);
+            this->groupBox_employee_information->Size = System::Drawing::Size(545, 166);
             this->groupBox_employee_information->TabIndex = 3;
             this->groupBox_employee_information->TabStop = false;
             this->groupBox_employee_information->Text = L"Employee Information";
@@ -1159,7 +1243,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_employee_hiring_date->AutoSize = true;
             this->label_employee_hiring_date->Location = System::Drawing::Point(312, 30);
             this->label_employee_hiring_date->Name = L"label_employee_hiring_date";
-            this->label_employee_hiring_date->Size = System::Drawing::Size(91, 20);
+            this->label_employee_hiring_date->Size = System::Drawing::Size(72, 16);
             this->label_employee_hiring_date->TabIndex = 8;
             this->label_employee_hiring_date->Text = L"Hiring date";
             // 
@@ -1167,7 +1251,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             // 
             this->dateTimePicker_employee_hiring_date->Location = System::Drawing::Point(316, 53);
             this->dateTimePicker_employee_hiring_date->Name = L"dateTimePicker_employee_hiring_date";
-            this->dateTimePicker_employee_hiring_date->Size = System::Drawing::Size(197, 26);
+            this->dateTimePicker_employee_hiring_date->Size = System::Drawing::Size(197, 22);
             this->dateTimePicker_employee_hiring_date->TabIndex = 7;
             // 
             // label_last_name_employee
@@ -1175,7 +1259,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_last_name_employee->AutoSize = true;
             this->label_last_name_employee->Location = System::Drawing::Point(24, 101);
             this->label_last_name_employee->Name = L"label_last_name_employee";
-            this->label_last_name_employee->Size = System::Drawing::Size(91, 20);
+            this->label_last_name_employee->Size = System::Drawing::Size(72, 16);
             this->label_last_name_employee->TabIndex = 4;
             this->label_last_name_employee->Text = L"Last Name";
             // 
@@ -1184,7 +1268,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_first_name_employee->AutoSize = true;
             this->label_first_name_employee->Location = System::Drawing::Point(24, 30);
             this->label_first_name_employee->Name = L"label_first_name_employee";
-            this->label_first_name_employee->Size = System::Drawing::Size(92, 20);
+            this->label_first_name_employee->Size = System::Drawing::Size(72, 16);
             this->label_first_name_employee->TabIndex = 3;
             this->label_first_name_employee->Text = L"First Name";
             // 
@@ -1192,14 +1276,14 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             // 
             this->textBox_first_name_employee->Location = System::Drawing::Point(28, 53);
             this->textBox_first_name_employee->Name = L"textBox_first_name_employee";
-            this->textBox_first_name_employee->Size = System::Drawing::Size(240, 26);
+            this->textBox_first_name_employee->Size = System::Drawing::Size(240, 22);
             this->textBox_first_name_employee->TabIndex = 1;
             // 
             // textBox_last_name_employee
             // 
             this->textBox_last_name_employee->Location = System::Drawing::Point(28, 124);
             this->textBox_last_name_employee->Name = L"textBox_last_name_employee";
-            this->textBox_last_name_employee->Size = System::Drawing::Size(240, 26);
+            this->textBox_last_name_employee->Size = System::Drawing::Size(240, 22);
             this->textBox_last_name_employee->TabIndex = 2;
             // 
             // tab_statistics
@@ -1209,9 +1293,9 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->tab_statistics->Controls->Add(this->groupBox_product_below_threshold);
             this->tab_statistics->Controls->Add(this->groupBox_total_purchases_by_customers);
             this->tab_statistics->Controls->Add(this->groupBox_general_stats);
-            this->tab_statistics->Location = System::Drawing::Point(4, 29);
+            this->tab_statistics->Location = System::Drawing::Point(4, 25);
             this->tab_statistics->Name = L"tab_statistics";
-            this->tab_statistics->Size = System::Drawing::Size(1250, 718);
+            this->tab_statistics->Size = System::Drawing::Size(1252, 730);
             this->tab_statistics->TabIndex = 4;
             this->tab_statistics->Text = L"Statistics";
             this->tab_statistics->UseVisualStyleBackColor = true;
@@ -1314,7 +1398,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label1->AutoSize = true;
             this->label1->Location = System::Drawing::Point(260, 121);
             this->label1->Name = L"label1";
-            this->label1->Size = System::Drawing::Size(91, 20);
+            this->label1->Size = System::Drawing::Size(72, 16);
             this->label1->TabIndex = 8;
             this->label1->Text = L"Last Name";
             // 
@@ -1323,7 +1407,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label2->AutoSize = true;
             this->label2->Location = System::Drawing::Point(6, 121);
             this->label2->Name = L"label2";
-            this->label2->Size = System::Drawing::Size(92, 20);
+            this->label2->Size = System::Drawing::Size(72, 16);
             this->label2->TabIndex = 7;
             this->label2->Text = L"First Name";
             // 
@@ -1331,14 +1415,14 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             // 
             this->textBox_fname_statistics->Location = System::Drawing::Point(6, 136);
             this->textBox_fname_statistics->Name = L"textBox_fname_statistics";
-            this->textBox_fname_statistics->Size = System::Drawing::Size(240, 26);
+            this->textBox_fname_statistics->Size = System::Drawing::Size(240, 22);
             this->textBox_fname_statistics->TabIndex = 5;
             // 
             // textBox_lname_statistics
             // 
             this->textBox_lname_statistics->Location = System::Drawing::Point(263, 136);
             this->textBox_lname_statistics->Name = L"textBox_lname_statistics";
-            this->textBox_lname_statistics->Size = System::Drawing::Size(240, 26);
+            this->textBox_lname_statistics->Size = System::Drawing::Size(240, 22);
             this->textBox_lname_statistics->TabIndex = 6;
             // 
             // dataGridView1
@@ -1373,7 +1457,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_simulate_stock_value->AutoSize = true;
             this->label_simulate_stock_value->Location = System::Drawing::Point(6, 143);
             this->label_simulate_stock_value->Name = L"label_simulate_stock_value";
-            this->label_simulate_stock_value->Size = System::Drawing::Size(361, 20);
+            this->label_simulate_stock_value->Size = System::Drawing::Size(277, 16);
             this->label_simulate_stock_value->TabIndex = 6;
             this->label_simulate_stock_value->Text = L"This text is for the simulation of the stock value";
             // 
@@ -1382,7 +1466,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_purchase_stock_value->AutoSize = true;
             this->label_purchase_stock_value->Location = System::Drawing::Point(6, 109);
             this->label_purchase_stock_value->Name = L"label_purchase_stock_value";
-            this->label_purchase_stock_value->Size = System::Drawing::Size(307, 20);
+            this->label_purchase_stock_value->Size = System::Drawing::Size(238, 16);
             this->label_purchase_stock_value->TabIndex = 5;
             this->label_purchase_stock_value->Text = L"This text is for the purchase stock value";
             // 
@@ -1391,7 +1475,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_commercial_stock_value->AutoSize = true;
             this->label_commercial_stock_value->Location = System::Drawing::Point(6, 79);
             this->label_commercial_stock_value->Name = L"label_commercial_stock_value";
-            this->label_commercial_stock_value->Size = System::Drawing::Size(325, 20);
+            this->label_commercial_stock_value->Size = System::Drawing::Size(252, 16);
             this->label_commercial_stock_value->TabIndex = 4;
             this->label_commercial_stock_value->Text = L"This text is for the commercial stock value";
             // 
@@ -1400,7 +1484,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_monthly_turnover->AutoSize = true;
             this->label_monthly_turnover->Location = System::Drawing::Point(6, 48);
             this->label_monthly_turnover->Name = L"label_monthly_turnover";
-            this->label_monthly_turnover->Size = System::Drawing::Size(273, 20);
+            this->label_monthly_turnover->Size = System::Drawing::Size(208, 16);
             this->label_monthly_turnover->TabIndex = 3;
             this->label_monthly_turnover->Text = L"This text is for the monthly turnover";
             // 
@@ -1409,26 +1493,15 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->label_avg_basket->AutoSize = true;
             this->label_avg_basket->Location = System::Drawing::Point(6, 21);
             this->label_avg_basket->Name = L"label_avg_basket";
-            this->label_avg_basket->Size = System::Drawing::Size(262, 20);
+            this->label_avg_basket->Size = System::Drawing::Size(206, 16);
             this->label_avg_basket->TabIndex = 2;
             this->label_avg_basket->Text = L"This text is for the average basket";
             // 
-            // label_product_reorder
-            // 
-            this->label_product_reorder->AutoSize = true;
-            this->label_product_reorder->Font = (gcnew System::Drawing::Font(L"Inter ExtraBold", 14, System::Drawing::FontStyle::Bold));
-            this->label_product_reorder->ForeColor = System::Drawing::Color::Red;
-            this->label_product_reorder->Location = System::Drawing::Point(23, 190);
-            this->label_product_reorder->Name = L"label_product_reorder";
-            this->label_product_reorder->Size = System::Drawing::Size(128, 29);
-            this->label_product_reorder->TabIndex = 16;
-            this->label_product_reorder->Text = L"REORDER";
-            // 
             // UserInterface
             // 
-            this->AutoScaleDimensions = System::Drawing::SizeF(10, 20);
+            this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-            this->ClientSize = System::Drawing::Size(1258, 751);
+            this->ClientSize = System::Drawing::Size(1260, 759);
             this->Controls->Add(this->tabController);
             this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
@@ -1440,6 +1513,8 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->Load += gcnew System::EventHandler(this, &UserInterface::UserInterface_Load);
             this->tabController->ResumeLayout(false);
             this->tab_inventory->ResumeLayout(false);
+            this->groupBox_product_price->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_product_prices))->EndInit();
             this->groupBox1->ResumeLayout(false);
             this->groupBox1->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_inventory))->EndInit();
@@ -1545,6 +1620,27 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->textBox_product_vat->Text = selected_product->getVATPercentage().ToString();
         }
 
+        void refresh_product_prices()
+        {
+            this->groupBox_product_price->Text = "Product " + selected_product->getID() + " Prices";
+
+            // Refresh datagrid
+            this->dataGridView_product_prices->Refresh();
+            this->dataGridView_product_prices->DataSource = this->selected_product->getProductPrices();
+
+            // Configure columns
+            this->dataGridView_product_prices->Columns["id_product_price"]->Visible = false;
+            this->dataGridView_product_prices->Columns["id_product"]->Visible = false;
+            
+            this->dataGridView_product_prices->Sort(this->dataGridView_product_prices->Columns["price_date"], System::ComponentModel::ListSortDirection::Descending);
+
+            this->dataGridView_product_prices->Columns["price_date"]->HeaderText = "Price date";
+            this->dataGridView_product_prices->Columns["price_excl_tax"]->HeaderText = "Price";
+            this->dataGridView_product_prices->Columns["min_order_amount"]->HeaderText = "Minimum amount";
+            this->dataGridView_product_prices->Columns["color_rgb_r"]->HeaderText = "Color R";
+            this->dataGridView_product_prices->Columns["color_rgb_g"]->HeaderText = "Color G";
+            this->dataGridView_product_prices->Columns["color_rgb_b"]->HeaderText = "Color B";
+        }
 
         // Events
         void dataGridView_inventory_SelectionChanged(Object^ sender, EventArgs^ event_args)
@@ -1561,6 +1657,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             selected_product = gcnew Product(System::Convert::ToInt32(selectedIDstring));
 
             refresh_product_information();
+            refresh_product_prices();
         }
 
         private: System::Void button_create_product_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1593,9 +1690,35 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->selected_product->delete_product_from_DB();
 
             refresh_products_datagrid();
-            
         }
+        
+        // Events
+    private: System::Void button_add_product_price_Click(System::Object^ sender, System::EventArgs^ e) {
+        editProductPrices^ prompt = gcnew editProductPrices("Create a product");
 
+        if(prompt->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+        {
+            Product_price^ new_product_price = gcnew Product_price(selected_product->getID(), prompt->minimum_amount, prompt->price_excluding_tax, prompt->price_date, prompt->color_rgb_r, prompt->color_rgb_g, prompt->color_rgb_b);
+                
+            refresh_products_datagrid();
+        }
+            
+    }
+
+    private: System::Void button_edit_product_price_Click(System::Object^ sender, System::EventArgs^ e) {
+        // TODO: Edit product price
+    }
+
+    private: System::Void button_reload_product_price_Click(System::Object^ sender, System::EventArgs^ e) {
+        refresh_product_prices();
+    }
+
+    private: System::Void button_delete_product_price_Click(System::Object^ sender, System::EventArgs^ e)
+    {
+        this->selected_product_price->delete_product_price_from_DB();
+
+        refresh_product_prices();
+    }
         
         // ### Customers tab ###
     private:
@@ -1860,7 +1983,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
 
         // Delivery address stuff
 
-        // TODO handle invalid values for adding and modifying addresses
+        // TODO: handle invalid values for adding and modifying addresses
         
     private: System::Void button_customer_add_delivery_address_Click(System::Object^ sender, System::EventArgs^ e) {
         Projet::editAddressPrompt^ prompt = gcnew Projet::editAddressPrompt(this->selected_customer->getFirstName() + " " + this->selected_customer->getLastName() + " - Add delivery address");
