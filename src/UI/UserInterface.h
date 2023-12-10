@@ -2359,7 +2359,7 @@ private: System::Windows::Forms::Button^ button_stats_reload;
             double discountVariation = comboBox_discount->SelectedIndex >= 0 ? parsePercentage(comboBox_discount->Items[comboBox_discount->SelectedIndex]->ToString()) : 0.0;
             double markdownVariation = comboBox_markdown->SelectedIndex >= 0 ? parsePercentage(comboBox_markdown->Items[comboBox_markdown->SelectedIndex]->ToString()) : 0.0;
 
-            Console::Write("VAT: " + vatVariation.ToString() + "\n");
+            // Console::Write("VAT: " + vatVariation.ToString() + "\n");
 
             System::Data::DataTable^ simulatedStockValueData = SQLserver->SQL_simulateStockValueVariation(vatVariation, marginVariation, discountVariation, markdownVariation);
 
