@@ -1583,7 +1583,7 @@ private: System::Windows::Forms::Label^ label_product_reorder;
             this->selected_product->setProductName(this->textBox_product_name->Text->Trim());
             this->selected_product->setAmountInStock(System::Convert::ToInt32(this->textBox_product_stock->Text->Trim()));
             this->selected_product->setReorderThreshold(System::Convert::ToInt32(this->textBox_product_reorder_threshold->Text->Trim()));
-            this->selected_product->setVATPercentage(System::Convert::ToDouble(this->textBox_product_vat->Text->Trim()));
+            this->selected_product->setVATPercentage(System::Convert::ToSingle(this->textBox_product_vat->Text->Trim()));
 
             this->selected_product->modify_product_in_DB();
 
