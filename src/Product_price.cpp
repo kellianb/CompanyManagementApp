@@ -15,9 +15,9 @@ void Product_price::fetch_product_price_from_DB()
     this->min_order_amount = safe_cast<int>(buffer->Rows[0]["min_order_amount"]);
     this->price_excl_tax = System::Convert::ToDouble(buffer->Rows[0]["price_excl_tax"]);
     this->price_date = safe_cast<System::DateTime>(buffer->Rows[0]["price_date"]);
-    this->color_rgb_r = safe_cast<int>(buffer->Rows[0]["color_rgb_r"]);
-    this->color_rgb_g = safe_cast<int>(buffer->Rows[0]["color_rgb_g"]);
-    this->color_rgb_b = safe_cast<int>(buffer->Rows[0]["color_rgb_b"]);
+    this->color_rgb_r = System::Convert::ToInt32(buffer->Rows[0]["color_rgb_r"]);
+    this->color_rgb_g = System::Convert::ToInt32(buffer->Rows[0]["color_rgb_g"]);
+    this->color_rgb_b = System::Convert::ToInt32(buffer->Rows[0]["color_rgb_b"]);
 }
 
 Product_price::Product_price(int id_product_price) : id_product_price(id_product_price)

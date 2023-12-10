@@ -41,7 +41,19 @@ public:
     System::Data::DataTable^ SQL_modifyProduct(int id, System::String^, int amount, int reorder, float);
 
     void SQL_deleteProduct(int id);
-    
+
+    // Product_price Queries
+    System::Data::DataTable^ SQL_addProductPrice(int, int, float, System::DateTime, int, int, int);
+
+    System::Data::DataTable^ SQL_getProductPrice(int);
+
+    System::Data::DataTable^ SQL_getProductPricesListForProduct(int);
+
+    System::Data::DataTable^ SQL_getProductPriceList();
+
+    System::Data::DataTable^ SQL_modifyProductPrice(int, int, float, System::DateTime, int, int, int);
+
+    void SQL_deleteProductPrice(int);
     
     // Person Queries
     System::Data::DataTable^ SQL_addPerson(System::String^, System::String^);
@@ -132,15 +144,5 @@ public:
     System::Data::DataTable^ SQL_modifyAddress(int id, System::String^, System::String^, int postal_code, int street_number);
 
     void SQL_deleteAddress(int id);
-
-    // Product_price Queries
-    System::Data::DataTable^ SQL_addProductPrice(int, int, float, System::DateTime, int, int, int);
-
-    System::Data::DataTable^ SQL_getProductPrice(int);
-
-    System::Data::DataTable^ SQL_getProductPriceList();
-
-    System::Data::DataTable^ SQL_modifyProductPrice(int, int, float, System::DateTime, int, int, int);
-
-    void SQL_deleteProductPrice(int);
+    
 };

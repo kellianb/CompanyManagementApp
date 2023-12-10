@@ -83,7 +83,7 @@ void Product::delete_product_from_DB()
 
 System::Data::DataTable^ Product::getProductPrices()
 {
-    System::Data::DataTable^ myDataTable = this->SQLserv->SQL_getProductPrice(this->id);
+    System::Data::DataTable^ myDataTable = this->SQLserv->SQL_getProductPricesListForProduct(this->id);
 
     return myDataTable;
 }
