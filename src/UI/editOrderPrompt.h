@@ -28,7 +28,7 @@ namespace Projet {
 			currentCustomer = gcnew Customer(id_customer);
 		}
 
-		editOrderPrompt(int id_customer, String^ windowText, System::DateTime order_date, System::DateTime delivery_date, int discount_percentage, int id_delivery_address, int id_billing_address) : windowText(windowText)
+		editOrderPrompt(int id_customer, String^ windowText, System::DateTime order_date, System::DateTime delivery_date, float discount_percentage, int id_delivery_address, int id_billing_address) : windowText(windowText)
 		{
 			InitializeComponent();
 
@@ -69,13 +69,13 @@ namespace Projet {
 			}
 		}
 
-		property  int new_order_discount_percentage {
-			int get() {
+		property  float new_order_discount_percentage {
+			float get() {
 				if(textBox_discount_percentage->Text == "")
 				{
 					return 0;
 				}
-				return Convert::ToInt32(textBox_discount_percentage->Text);
+				return Convert::ToSingle(textBox_discount_percentage->Text);
 			}
 		}
 
