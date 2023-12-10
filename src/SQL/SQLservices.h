@@ -31,6 +31,8 @@ public:
     void SQL_deleteOrder(int);
 
     System::Data::DataTable^ SQL_getProductsInOrderList(int);
+
+    int SQL_getOrderFromPayment(int);
     
     // Inventory Queries
     System::Data::DataTable^ SQL_addProduct(System::String^, int, int, float);

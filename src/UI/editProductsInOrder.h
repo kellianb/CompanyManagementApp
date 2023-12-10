@@ -342,8 +342,8 @@ void dataGridView_inventory_selectionChanged(Object^ sender, EventArgs^ event_ar
 private: System::Void editProductsInOrder_Load(System::Object^ sender, System::EventArgs^ e) {
 	refresh_dataGridView_inventory();
 	refresh_dataGridView_products_in_order();
-	
 }
+		
 private: System::Void numericUpDown_product_amount_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
 	refresh_dataGridView_product_variants();
 }
