@@ -10,6 +10,7 @@
 #include "editProductPrompt.h"
 #include "editProductPrices.h"
 #include "editProductsInOrder.h"
+#include "managePaymentPrompt.h"
 
 #include "../Customer.h"
 #include "../Employee.h"
@@ -227,6 +228,9 @@ private: System::Windows::Forms::Label^ label_discount;
 private: System::Windows::Forms::Label^ label_margin;
 private: System::Windows::Forms::Label^ label_vat;
 private: System::Windows::Forms::Button^ button_stats_reload;
+private: System::Windows::Forms::Button^ button_payment;
+
+
 
     private: System::Windows::Forms::Label^ label_employee_hiring_date;
 
@@ -335,6 +339,7 @@ private: System::Windows::Forms::Button^ button_stats_reload;
             this->dataGridView_customer_billing_addresses = (gcnew System::Windows::Forms::DataGridView());
             this->groupBox_customer_orders = (gcnew System::Windows::Forms::GroupBox());
             this->groupBox_customer_currently_selected_order = (gcnew System::Windows::Forms::GroupBox());
+            this->button_payment = (gcnew System::Windows::Forms::Button());
             this->button1 = (gcnew System::Windows::Forms::Button());
             this->button_customer_delete_order = (gcnew System::Windows::Forms::Button());
             this->label_customers_current_order_billing_address = (gcnew System::Windows::Forms::Label());
@@ -444,13 +449,13 @@ private: System::Windows::Forms::Button^ button_stats_reload;
             this->tabController->Controls->Add(this->tab_employee);
             this->tabController->Controls->Add(this->tab_statistics);
             this->tabController->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->tabController->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->tabController->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->tabController->Location = System::Drawing::Point(0, 0);
             this->tabController->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
             this->tabController->Name = L"tabController";
             this->tabController->SelectedIndex = 0;
-            this->tabController->Size = System::Drawing::Size(1258, 751);
+            this->tabController->Size = System::Drawing::Size(1260, 759);
             this->tabController->TabIndex = 0;
             this->tabController->SelectedIndexChanged += gcnew System::EventHandler(this, &UserInterface::OnTabSelectedIndexChanged);
             // 
@@ -583,12 +588,12 @@ private: System::Windows::Forms::Button^ button_stats_reload;
             // label_product_reorder
             // 
             this->label_product_reorder->AutoSize = true;
-            this->label_product_reorder->Font = (gcnew System::Drawing::Font(L"Inter ExtraBold", 14, System::Drawing::FontStyle::Bold));
+            this->label_product_reorder->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Bold));
             this->label_product_reorder->ForeColor = System::Drawing::Color::Red;
             this->label_product_reorder->Location = System::Drawing::Point(22, 190);
             this->label_product_reorder->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label_product_reorder->Name = L"label_product_reorder";
-            this->label_product_reorder->Size = System::Drawing::Size(128, 29);
+            this->label_product_reorder->Size = System::Drawing::Size(110, 24);
             this->label_product_reorder->TabIndex = 16;
             this->label_product_reorder->Text = L"REORDER";
             // 
@@ -598,7 +603,7 @@ private: System::Windows::Forms::Button^ button_stats_reload;
             this->label_product_vat->Location = System::Drawing::Point(312, 101);
             this->label_product_vat->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
             this->label_product_vat->Name = L"label_product_vat";
-            this->label_product_vat->Size = System::Drawing::Size(61, 20);
+            this->label_product_vat->Size = System::Drawing::Size(49, 16);
             this->label_product_vat->TabIndex = 15;
             this->label_product_vat->Text = L"VAT %";
             // 
@@ -703,7 +708,7 @@ private: System::Windows::Forms::Button^ button_stats_reload;
             this->dataGridView_inventory->RowHeadersWidth = 62;
             this->dataGridView_inventory->RowTemplate->Height = 28;
             this->dataGridView_inventory->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_inventory->Size = System::Drawing::Size(1236, 188);
+            this->dataGridView_inventory->Size = System::Drawing::Size(1238, 188);
             this->dataGridView_inventory->TabIndex = 1;
             this->dataGridView_inventory->SelectionChanged += gcnew System::EventHandler(this, &UserInterface::dataGridView_inventory_selectionChanged);
             // 
@@ -893,6 +898,17 @@ private: System::Windows::Forms::Button^ button_stats_reload;
             this->groupBox_customer_currently_selected_order->TabIndex = 10;
             this->groupBox_customer_currently_selected_order->TabStop = false;
             this->groupBox_customer_currently_selected_order->Text = L"Order";
+            // 
+            // button_payment
+            // 
+            this->button_payment->Location = System::Drawing::Point(556, 120);
+            this->button_payment->Margin = System::Windows::Forms::Padding(2);
+            this->button_payment->Name = L"button_payment";
+            this->button_payment->Size = System::Drawing::Size(88, 30);
+            this->button_payment->TabIndex = 11;
+            this->button_payment->Text = L"Payments";
+            this->button_payment->UseVisualStyleBackColor = true;
+            this->button_payment->Click += gcnew System::EventHandler(this, &UserInterface::button_payment_Click);
             // 
             // button1
             // 
@@ -1088,7 +1104,7 @@ private: System::Windows::Forms::Button^ button_stats_reload;
             this->dataGridView_customers->RowHeadersWidth = 62;
             this->dataGridView_customers->RowTemplate->Height = 28;
             this->dataGridView_customers->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_customers->Size = System::Drawing::Size(1238, 188);
+            this->dataGridView_customers->Size = System::Drawing::Size(1240, 188);
             this->dataGridView_customers->TabIndex = 0;
             this->dataGridView_customers->SelectionChanged += gcnew System::EventHandler(this, &UserInterface::dataGridView_customers_selectionChanged);
             // 
@@ -1737,11 +1753,11 @@ private: System::Windows::Forms::Button^ button_stats_reload;
             // 
             // UserInterface
             // 
-            this->AutoScaleDimensions = System::Drawing::SizeF(10, 20);
+            this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-            this->ClientSize = System::Drawing::Size(1258, 751);
+            this->ClientSize = System::Drawing::Size(1260, 759);
             this->Controls->Add(this->tabController);
-            this->Font = (gcnew System::Drawing::Font(L"Inter", 10));
+            this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
             this->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
             this->MaximumSize = System::Drawing::Size(1276, 798);
             this->MinimumSize = System::Drawing::Size(1276, 798);
@@ -2133,6 +2149,14 @@ private: System::Windows::Forms::Button^ button_stats_reload;
         }
     }
 
+    private: System::Void button_payment_Click(System::Object^ sender, System::EventArgs^ e) {
+        if (dataGridView_customer_orders->SelectedRows->Count > 0) {
+            int selectedOrderId = Convert::ToInt32(dataGridView_customer_orders->SelectedRows[0]->Cells["id_order"]->Value);
+            managePaymentPrompt^ paymentForm = gcnew managePaymentPrompt(selectedOrderId);
+            paymentForm->ShowDialog();
+    }
+        
+
     // Orders stuff
     void dataGridView_customer_orders_selectionChanged(Object^ sender, EventArgs^ event_args)
     {
@@ -2313,6 +2337,9 @@ private: System::Windows::Forms::Button^ button_stats_reload;
 
         refresh_customer_delivery_addresses_datagrid();
     }
+
+        // Payment stuff
+        
         
         
         // ### Employee tab ###
