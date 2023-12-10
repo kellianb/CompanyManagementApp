@@ -111,26 +111,27 @@ void SQLservices::SQL_deleteOrder(int id)
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Inventory Queries
-System::Data::DataTable^ SQLservices::SQL_addProduct(System::String^ productName, int amountInStock, int reorderThreshold)
+System::Data::DataTable^ SQLservices::SQL_addProduct(System::String^ productName, int amountInStock, int reorderThreshold, float vatPercentage)
 {
-    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Products (product_name, amount_in_stock, reorder_threshold) OUTPUT inserted.id_product VALUES(@productName, @amountInStock, @reorderThreshold)";
+    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Products (product_name, amount_in_stock, reorder_threshold, vat_percentage) OUTPUT inserted.id_product VALUES(@productName, @amountInStock, @reorderThreshold, @vatPercentage)";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
     cmd->Parameters->AddWithValue("@productName", productName);
     cmd->Parameters->AddWithValue("@amountInStock", amountInStock);
     cmd->Parameters->AddWithValue("@reorderThreshold", reorderThreshold);
+    cmd->Parameters->AddWithValue("@vatPercentage", vatPercentage);
 
     return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_getProduct(int id)
+System::Data::DataTable^ SQLservices::SQL_getProduct(int idProduct)
 {
-    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Products WHERE id_product = @id";
+    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Products WHERE id_product = @idProduct";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
-    cmd->Parameters->AddWithValue("@id", id);
+    cmd->Parameters->AddWithValue("@idProduct", idProduct);
 
     return this->SQLadapter->sendQuery(cmd);
 }
@@ -144,9 +145,9 @@ System::Data::DataTable^ SQLservices::SQL_getProductList()
     return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_modifyProduct(int id, System::String^ newProductName, int newAmountInStock, int newReorderThreshold)
+System::Data::DataTable^ SQLservices::SQL_modifyProduct(int id, System::String^ newProductName, int newAmountInStock, int newReorderThreshold, float newVatPercentage)
 {
-    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Products SET product_name = @productName, amount_in_stock = @amountInStock, reorder_threshold = @reorderThreshold WHERE id_product = @id";
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Products SET product_name = @productName, amount_in_stock = @amountInStock, reorder_threshold = @reorderThreshold, vat_percentage = @vatPercentage WHERE id_product = @id";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
     
@@ -154,6 +155,7 @@ System::Data::DataTable^ SQLservices::SQL_modifyProduct(int id, System::String^ 
     cmd->Parameters->AddWithValue("@productName", newProductName);
     cmd->Parameters->AddWithValue("@amountInStock", newAmountInStock);
     cmd->Parameters->AddWithValue("@reorderThreshold", newReorderThreshold);
+    cmd->Parameters->AddWithValue("@vatPercentage", newVatPercentage);
 
     return this->SQLadapter->sendQuery(cmd);
 }

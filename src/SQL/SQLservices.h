@@ -32,13 +32,13 @@ public:
     
     
     // Inventory Queries
-    System::Data::DataTable^ SQL_addProduct(System::String^, int amount, int reorder);
+    System::Data::DataTable^ SQL_addProduct(System::String^, int, int, float);
 
-    System::Data::DataTable^ SQL_getProduct(int id);
+    System::Data::DataTable^ SQL_getProduct(int idProduct);
 
     System::Data::DataTable^ SQL_getProductList();
 
-    System::Data::DataTable^ SQL_modifyProduct(int id, System::String^, int amount, int reorder);
+    System::Data::DataTable^ SQL_modifyProduct(int id, System::String^, int amount, int reorder, float);
 
     void SQL_deleteProduct(int id);
     
