@@ -117,17 +117,3 @@ System::Data::DataTable^ Order::getProductsInOrderList()
 {
     return this->SQLserv->SQL_getProductsInOrderList(this->id);
 }
-
-
-
-
-void Order::addProductToOrder(int id_product, int amount, float discount, int color_rgb_r, int color_rgb_g, int color_rgb_b)
-{
-    this->SQLserv->SQL_addProductToOrder(this->id, id_product, amount, discount, color_rgb_r, color_rgb_g, color_rgb_b);
-}
-
-
-void Order::removeProductFromOrder(int id_product, int color_rgb_r, int color_rgb_g, int color_rgb_b)
-{
-    this->SQLserv->SQL_removeProductFromOrder(this->id, id_product, color_rgb_r, color_rgb_g, color_rgb_b);
-}

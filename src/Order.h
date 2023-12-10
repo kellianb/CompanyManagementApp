@@ -53,8 +53,4 @@ public:
     void delete_order_from_DB();
 
     System::Data::DataTable^ getProductsInOrderList();
-
-    void addProductToOrder(int, int, float, int, int, int);
-
-    void removeProductFromOrder(int, int, int, int);
 };

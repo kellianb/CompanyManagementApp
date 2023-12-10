@@ -107,47 +107,15 @@ void SQLservices::SQL_deleteOrder(int id)
     this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_getProductsInOrderList(int id_order)
+System::Data::DataTable^ SQLservices::SQL_getProductsInOrderList(int id)
 {   
     System::String^ cmdString = "SELECT P.id_product, P.product_name, CP.price, CP.product_quantity, CP.product_discount_percentage, CP.color_rgb_r, CP.color_rgb_g, CP.color_rgb_b FROM Projet_POO_Livrable.contains_product CP JOIN Projet_POO_Livrable.Products P on P.id_product = CP.id_product WHERE id_order = @idOrder";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
-    cmd->Parameters->AddWithValue("@idOrder", id_order);
+    cmd->Parameters->AddWithValue("@idOrder", id);
     
-    return this->SQLadapter->sendQuery(cmd);
-}
-
-void SQLservices::SQL_addProductToOrder(int id_order, int id_product, int amount, float discount, int color_rgb_r, int color_rgb_g, int color_rgb_b)
-{
-    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.contains_product (id_order, id_product, product_quantity, product_discount_percentage, color_rgb_r, color_rgb_g, color_rgb_b) VALUES (@idOrder, @idProduct, @product_quantity, @productDiscountPercentage, @color_rgb_r, @color_rgb_g, @color_rgb_b)";
-
-    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
-
-    cmd->Parameters->AddWithValue("@idOrder", id_order);
-    cmd->Parameters->AddWithValue("@idProduct", id_product);
-    cmd->Parameters->AddWithValue("@product_quantity", amount);
-    cmd->Parameters->AddWithValue("@productDiscountPercentage", discount);
-    cmd->Parameters->AddWithValue("@color_rgb_r", color_rgb_r);
-    cmd->Parameters->AddWithValue("@color_rgb_g", color_rgb_g);
-    cmd->Parameters->AddWithValue("@color_rgb_b", color_rgb_b);
-
-    this->SQLadapter->sendQuery(cmd);
-}
-
-void SQLservices::SQL_removeProductFromOrder(int id_order, int id_product, int color_rgb_r, int color_rgb_g, int color_rgb_b)
-{
-    System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.contains_product WHERE id_order = @idOrder AND id_product = @idProduct AND color_rgb_r = @color_rgb_r AND color_rgb_g = @color_rgb_g AND color_rgb_b = @color_rgb_b";
-
-    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
-
-    cmd->Parameters->AddWithValue("@idOrder", id_order);
-    cmd->Parameters->AddWithValue("@idProduct", id_product);
-    cmd->Parameters->AddWithValue("@color_rgb_r", color_rgb_r);
-    cmd->Parameters->AddWithValue("@color_rgb_g", color_rgb_g);
-    cmd->Parameters->AddWithValue("@color_rgb_b", color_rgb_b);
-
-    this->SQLadapter->sendQuery(cmd);
+    return this->SQLadapter->sendQuery(cmd);;
 }
 
 

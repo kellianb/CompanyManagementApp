@@ -3,7 +3,6 @@
 #include "../Order.h"
 #include "../SQL/SQLservices.h"
 #include "../Product.h"
-#include "../Product_price.h"
 
 namespace Projet {
 
@@ -23,6 +22,7 @@ namespace Projet {
 	SQLservices^ SQLserver = gcnew SQLservices();
 	Order^ selectedOrder;
 	Product^ selectedProduct;
+		
 		
 	public:
 		editProductsInOrder(int id_order)
@@ -66,9 +66,7 @@ namespace Projet {
 	private: System::Windows::Forms::DataGridView^ dataGridView_products_in_order;
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown_product_amount;
 	private: System::Windows::Forms::Label^ label__product_amount;
-	private: System::Windows::Forms::Label^ label_product_discount;
-
-
+	private: System::Windows::Forms::Label^ label1;
 
 
 
@@ -97,7 +95,7 @@ namespace Projet {
 			this->button_add_item_to_order = (gcnew System::Windows::Forms::Button());
 			this->numericUpDown_product_amount = (gcnew System::Windows::Forms::NumericUpDown());
 			this->label__product_amount = (gcnew System::Windows::Forms::Label());
-			this->label_product_discount = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_inventory))->BeginInit();
 			this->groupBox_inventory->SuspendLayout();
 			this->groupBox_variants->SuspendLayout();
@@ -162,16 +160,13 @@ namespace Projet {
 			this->dataGridView_product_variants->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
 			this->dataGridView_product_variants->Size = System::Drawing::Size(491, 181);
 			this->dataGridView_product_variants->TabIndex = 0;
-			this->dataGridView_product_variants->SelectionChanged += gcnew System::EventHandler(this, &editProductsInOrder::dataGridView_product_variants_selectionChanged);
 			// 
 			// groupBox_products_in_order
 			// 
-			this->groupBox_products_in_order->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
 			this->groupBox_products_in_order->Controls->Add(this->dataGridView_products_in_order);
 			this->groupBox_products_in_order->Location = System::Drawing::Point(750, 18);
 			this->groupBox_products_in_order->Name = L"groupBox_products_in_order";
-			this->groupBox_products_in_order->Size = System::Drawing::Size(677, 643);
+			this->groupBox_products_in_order->Size = System::Drawing::Size(485, 643);
 			this->groupBox_products_in_order->TabIndex = 2;
 			this->groupBox_products_in_order->TabStop = false;
 			this->groupBox_products_in_order->Text = L"Products in Order";
@@ -190,13 +185,11 @@ namespace Projet {
 			this->dataGridView_products_in_order->RowHeadersWidth = 51;
 			this->dataGridView_products_in_order->RowTemplate->Height = 24;
 			this->dataGridView_products_in_order->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->dataGridView_products_in_order->Size = System::Drawing::Size(665, 617);
+			this->dataGridView_products_in_order->Size = System::Drawing::Size(473, 617);
 			this->dataGridView_products_in_order->TabIndex = 1;
-			this->dataGridView_products_in_order->SelectionChanged += gcnew System::EventHandler(this, &editProductsInOrder::dataGridView_products_in_order_selectionChanged);
 			// 
 			// numericUpDown_product_discount
 			// 
-			this->numericUpDown_product_discount->DecimalPlaces = 2;
 			this->numericUpDown_product_discount->Location = System::Drawing::Point(579, 550);
 			this->numericUpDown_product_discount->Name = L"numericUpDown_product_discount";
 			this->numericUpDown_product_discount->Size = System::Drawing::Size(120, 27);
@@ -210,7 +203,6 @@ namespace Projet {
 			this->button_remove_item_to_order->TabIndex = 4;
 			this->button_remove_item_to_order->Text = L"<< Remove";
 			this->button_remove_item_to_order->UseVisualStyleBackColor = true;
-			this->button_remove_item_to_order->Click += gcnew System::EventHandler(this, &editProductsInOrder::button_remove_item_to_order_Click);
 			// 
 			// button_add_item_to_order
 			// 
@@ -220,17 +212,13 @@ namespace Projet {
 			this->button_add_item_to_order->TabIndex = 5;
 			this->button_add_item_to_order->Text = L"Add >>";
 			this->button_add_item_to_order->UseVisualStyleBackColor = true;
-			this->button_add_item_to_order->Click += gcnew System::EventHandler(this, &editProductsInOrder::button_add_item_to_order_Click);
 			// 
 			// numericUpDown_product_amount
 			// 
 			this->numericUpDown_product_amount->Location = System::Drawing::Point(579, 486);
-			this->numericUpDown_product_amount->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10000, 0, 0, 0 });
-			this->numericUpDown_product_amount->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			this->numericUpDown_product_amount->Name = L"numericUpDown_product_amount";
 			this->numericUpDown_product_amount->Size = System::Drawing::Size(120, 27);
 			this->numericUpDown_product_amount->TabIndex = 6;
-			this->numericUpDown_product_amount->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			this->numericUpDown_product_amount->ValueChanged += gcnew System::EventHandler(this, &editProductsInOrder::numericUpDown_product_amount_ValueChanged);
 			// 
 			// label__product_amount
@@ -242,21 +230,21 @@ namespace Projet {
 			this->label__product_amount->TabIndex = 7;
 			this->label__product_amount->Text = L"Amount";
 			// 
-			// label_product_discount
+			// label1
 			// 
-			this->label_product_discount->AutoSize = true;
-			this->label_product_discount->Location = System::Drawing::Point(579, 527);
-			this->label_product_discount->Name = L"label_product_discount";
-			this->label_product_discount->Size = System::Drawing::Size(79, 20);
-			this->label_product_discount->TabIndex = 8;
-			this->label_product_discount->Text = L"Discount";
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(579, 527);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(79, 20);
+			this->label1->TabIndex = 8;
+			this->label1->Text = L"Discount";
 			// 
 			// editProductsInOrder
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(10, 19);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1439, 673);
-			this->Controls->Add(this->label_product_discount);
+			this->ClientSize = System::Drawing::Size(1247, 673);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->label__product_amount);
 			this->Controls->Add(this->numericUpDown_product_amount);
 			this->Controls->Add(this->button_add_item_to_order);
@@ -285,141 +273,79 @@ namespace Projet {
 		
 #pragma endregion
 
-	private: void refresh_dataGridView_inventory()
+private: void refresh_dataGridView_inventory()
+{
+	this->dataGridView_inventory->Refresh();
+	this->dataGridView_inventory->DataSource = SQLserver->SQL_getProductList();
+
+	this->dataGridView_inventory->Columns["id_product"]->Width = 40;
+	this->dataGridView_inventory->Columns["id_product"]->HeaderText = "ID";
+	
+	this->dataGridView_inventory->Columns["product_name"]->HeaderText = "Name";
+	
+	this->dataGridView_inventory->Columns["amount_in_stock"]->HeaderText = "Stock";
+	this->dataGridView_inventory->Columns["amount_in_stock"]->Width = 100;
+
+	
+	this->dataGridView_inventory->Columns["reorder_threshold"]->HeaderText = "Reorder at";
+	this->dataGridView_inventory->Columns["reorder_threshold"]->Width = 100;
+	
+	this->dataGridView_inventory->Columns["vat_percentage"]->HeaderText = "VAT %";
+	this->dataGridView_inventory->Columns["vat_percentage"]->Width = 60;
+}
+
+private: void refresh_dataGridView_product_variants()
+{
+	this->dataGridView_product_variants->Refresh();
+	this->dataGridView_product_variants->DataSource = selectedProduct->getAvailableColors(System::Convert::ToInt32(numericUpDown_product_amount->Value));
+
+	this->dataGridView_product_variants->Columns["id_product"]->Width = 40;
+	this->dataGridView_product_variants->Columns["id_product"]->HeaderText = "ID";
+	
+	this->dataGridView_product_variants->Columns["product_name"]->HeaderText = "Name";
+	
+	this->dataGridView_product_variants->Columns["amount_in_stock"]->HeaderText = "Stock";
+	this->dataGridView_product_variants->Columns["amount_in_stock"]->Width = 100;
+
+	
+	this->dataGridView_product_variants->Columns["reorder_threshold"]->HeaderText = "Reorder at";
+	this->dataGridView_product_variants->Columns["reorder_threshold"]->Width = 100;
+	
+	this->dataGridView_product_variants->Columns["vat_percentage"]->HeaderText = "VAT %";
+	this->dataGridView_product_variants->Columns["vat_percentage"]->Width = 60;
+}
+
+private: void refresh_dataGridView_products_in_order()
+{
+	this->dataGridView_products_in_order->Refresh();
+	this->dataGridView_products_in_order->DataSource = selectedOrder->getProductsInOrderList();
+
+	this->dataGridView_products_in_order->Columns["id_product"]->Width = 40;
+	this->dataGridView_products_in_order->Columns["id_product"]->HeaderText = "ID";
+	
+
+	this->dataGridView_products_in_order->Columns["product_name"]->HeaderText = "Name";
+
+	refresh_dataGridView_product_variants();
+}
+
+void dataGridView_inventory_selectionChanged(Object^ sender, EventArgs^ event_args)
+{
+	if (dataGridView_inventory->SelectedRows->Count == 0)
 	{
-		this->dataGridView_inventory->Refresh();
-		this->dataGridView_inventory->DataSource = SQLserver->SQL_getProductList();
-
-		this->dataGridView_inventory->Columns["id_product"]->Width = 40;
-		this->dataGridView_inventory->Columns["id_product"]->HeaderText = "ID";
-		
-		this->dataGridView_inventory->Columns["product_name"]->HeaderText = "Name";
-		
-		this->dataGridView_inventory->Columns["amount_in_stock"]->HeaderText = "Stock";
-		this->dataGridView_inventory->Columns["amount_in_stock"]->Width = 100;
-
-		
-		this->dataGridView_inventory->Columns["reorder_threshold"]->HeaderText = "Reorder at";
-		this->dataGridView_inventory->Columns["reorder_threshold"]->Width = 100;
-		
-		this->dataGridView_inventory->Columns["vat_percentage"]->HeaderText = "VAT %";
-		this->dataGridView_inventory->Columns["vat_percentage"]->Width = 60;
+		return;
 	}
-
-	private: void refresh_dataGridView_product_variants()
-	{
-		this->dataGridView_product_variants->Refresh();
-		this->dataGridView_product_variants->DataSource = selectedProduct->getAvailableColors(System::Convert::ToInt32(numericUpDown_product_amount->Value));
-
-		this->dataGridView_product_variants->Columns["color_rgb_r"]->HeaderText = "Red";
-		this->dataGridView_product_variants->Columns["color_rgb_g"]->HeaderText = "Green";
-		this->dataGridView_product_variants->Columns["color_rgb_b"]->HeaderText = "Blue";
-		
-		dataGridView_product_variants_selectionChanged(nullptr, nullptr);
-	}
-
-	private: void refresh_dataGridView_products_in_order()
-	{
-		this->dataGridView_products_in_order->Refresh();
-		this->dataGridView_products_in_order->DataSource = selectedOrder->getProductsInOrderList();
-
-		this->dataGridView_products_in_order->Columns["id_product"]->HeaderText = "ID";
-		this->dataGridView_products_in_order->Columns["id_product"]->Width = 40;
+	this->selectedProduct = gcnew Product(Convert::ToInt32(this->dataGridView_inventory->SelectedRows[0]->Cells["id_product"]->Value));
+}
 
 		
-		this->dataGridView_products_in_order->Columns["price"]->HeaderText = "Price";
-		this->dataGridView_products_in_order->Columns["price"]->Width = 60;
-
-		
-		this->dataGridView_products_in_order->Columns["product_name"]->HeaderText = "Name";
-		this->dataGridView_products_in_order->Columns["product_name"]->Width = 120;
-
-		
-		this->dataGridView_products_in_order->Columns["product_quantity"]->HeaderText = "Amount";
-		this->dataGridView_products_in_order->Columns["product_discount_percentage"]->HeaderText = "Discount %";
-		
-		this->dataGridView_products_in_order->Columns["color_rgb_r"]->HeaderText = "Red";
-		this->dataGridView_products_in_order->Columns["color_rgb_r"]->Width = 60;
-
-		this->dataGridView_products_in_order->Columns["color_rgb_g"]->HeaderText = "Green";
-		this->dataGridView_products_in_order->Columns["color_rgb_g"]->Width = 60;
-
-		
-		this->dataGridView_products_in_order->Columns["color_rgb_b"]->HeaderText = "Blue";
-		this->dataGridView_products_in_order->Columns["color_rgb_b"]->Width = 60;
-
-
-		dataGridView_products_in_order_selectionChanged(nullptr, nullptr);
-
-	}
-
-	private: void dataGridView_inventory_selectionChanged(Object^ sender, EventArgs^ event_args)
-	{
-		if (dataGridView_inventory->SelectedRows->Count == 0)
-		{
-			return;
-		}
-		this->selectedProduct = gcnew Product(Convert::ToInt32(this->dataGridView_inventory->SelectedRows[0]->Cells["id_product"]->Value));
-
-		refresh_dataGridView_product_variants();
-	}
-
-	private:void dataGridView_product_variants_selectionChanged(Object^ sender, EventArgs^ event_args)
-	{
-		if(dataGridView_product_variants->SelectedRows->Count == 0)
-		{
-			this->button_add_item_to_order->Enabled = false;
-		}
-		else
-		{
-			this->button_add_item_to_order->Enabled = true;
-		}
-	}
-		
-	private: System::Void dataGridView_products_in_order_selectionChanged(System::Object^ sender, System::EventArgs^ e) {
-		if (dataGridView_products_in_order->SelectedRows->Count == 0)
-		{
-			this->button_remove_item_to_order->Enabled = false;
-		}
-		else
-		{
-			this->button_remove_item_to_order->Enabled = true;
-		}
-	}
-
-		
-	private: System::Void editProductsInOrder_Load(System::Object^ sender, System::EventArgs^ e) {
-		refresh_dataGridView_inventory();
-		refresh_dataGridView_products_in_order();
-
-		this->Text = "Edit Products in Order " + selectedOrder->getReference();
-	}
-		
-	private: System::Void numericUpDown_product_amount_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
-		refresh_dataGridView_product_variants();
-	}
-		
-
-	private: System::Void button_add_item_to_order_Click(System::Object^ sender, System::EventArgs^ e) {
-		int r = Convert::ToInt32(this->dataGridView_product_variants->SelectedRows[0]->Cells["color_rgb_r"]->Value);
-		int g = Convert::ToInt32(this->dataGridView_product_variants->SelectedRows[0]->Cells["color_rgb_g"]->Value);
-		int b = Convert::ToInt32(this->dataGridView_product_variants->SelectedRows[0]->Cells["color_rgb_b"]->Value);
-		
-		this->selectedOrder->addProductToOrder(selectedProduct->getID(), System::Convert::ToSingle(numericUpDown_product_amount->Value), System::Convert::ToSingle(numericUpDown_product_discount->Value), r, g, b);
-
-		refresh_dataGridView_products_in_order();
-	}
-	private: System::Void button_remove_item_to_order_Click(System::Object^ sender, System::EventArgs^ e) {
-		int product_id = Convert::ToInt32(this->dataGridView_products_in_order->SelectedRows[0]->Cells["id_product"]->Value);
-
-		int r = Convert::ToInt32(this->dataGridView_products_in_order->SelectedRows[0]->Cells["color_rgb_r"]->Value);
-		int g = Convert::ToInt32(this->dataGridView_products_in_order->SelectedRows[0]->Cells["color_rgb_g"]->Value);
-		int b = Convert::ToInt32(this->dataGridView_products_in_order->SelectedRows[0]->Cells["color_rgb_b"]->Value);
-		
-		this->selectedOrder->removeProductFromOrder(product_id, r, g, b);
-
-		refresh_dataGridView_products_in_order();
-	}
-
+private: System::Void editProductsInOrder_Load(System::Object^ sender, System::EventArgs^ e) {
+	refresh_dataGridView_inventory();
+	refresh_dataGridView_products_in_order();
+	
+}
+private: System::Void numericUpDown_product_amount_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
+	refresh_dataGridView_product_variants();
+}
 };
 }
