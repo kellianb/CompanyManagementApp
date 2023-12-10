@@ -132,79 +132,87 @@ namespace Projet {
 			// 
 			// textBox_address_city
 			// 
-			this->textBox_address_city->Location = System::Drawing::Point(163, 52);
-			this->textBox_address_city->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->textBox_address_city->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->textBox_address_city->Location = System::Drawing::Point(156, 42);
+			this->textBox_address_city->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox_address_city->Name = L"textBox_address_city";
-			this->textBox_address_city->Size = System::Drawing::Size(298, 26);
+			this->textBox_address_city->Size = System::Drawing::Size(265, 27);
 			this->textBox_address_city->TabIndex = 4;
 			// 
 			// textBox_address_street
 			// 
-			this->textBox_address_street->Location = System::Drawing::Point(163, 148);
-			this->textBox_address_street->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->textBox_address_street->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->textBox_address_street->Location = System::Drawing::Point(156, 118);
+			this->textBox_address_street->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox_address_street->Name = L"textBox_address_street";
-			this->textBox_address_street->Size = System::Drawing::Size(298, 26);
+			this->textBox_address_street->Size = System::Drawing::Size(265, 27);
 			this->textBox_address_street->TabIndex = 5;
 			// 
 			// textBox_address_street_number
 			// 
-			this->textBox_address_street_number->Location = System::Drawing::Point(163, 201);
-			this->textBox_address_street_number->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->textBox_address_street_number->Location = System::Drawing::Point(156, 161);
+			this->textBox_address_street_number->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox_address_street_number->Name = L"textBox_address_street_number";
-			this->textBox_address_street_number->Size = System::Drawing::Size(298, 26);
+			this->textBox_address_street_number->Size = System::Drawing::Size(265, 23);
 			this->textBox_address_street_number->TabIndex = 6;
 			// 
 			// textBox_address_postal_code
 			// 
-			this->textBox_address_postal_code->Location = System::Drawing::Point(163, 98);
-			this->textBox_address_postal_code->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->textBox_address_postal_code->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->textBox_address_postal_code->Location = System::Drawing::Point(156, 78);
+			this->textBox_address_postal_code->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox_address_postal_code->Name = L"textBox_address_postal_code";
-			this->textBox_address_postal_code->Size = System::Drawing::Size(298, 26);
+			this->textBox_address_postal_code->Size = System::Drawing::Size(265, 27);
 			this->textBox_address_postal_code->TabIndex = 7;
 			// 
 			// label_address_city
 			// 
 			this->label_address_city->AutoSize = true;
-			this->label_address_city->Location = System::Drawing::Point(29, 55);
+			this->label_address_city->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_address_city->Location = System::Drawing::Point(26, 44);
 			this->label_address_city->Name = L"label_address_city";
-			this->label_address_city->Size = System::Drawing::Size(35, 20);
+			this->label_address_city->Size = System::Drawing::Size(40, 20);
 			this->label_address_city->TabIndex = 8;
 			this->label_address_city->Text = L"City";
 			// 
 			// label_address_postal_code
 			// 
 			this->label_address_postal_code->AutoSize = true;
-			this->label_address_postal_code->Location = System::Drawing::Point(29, 101);
+			this->label_address_postal_code->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_address_postal_code->Location = System::Drawing::Point(26, 81);
 			this->label_address_postal_code->Name = L"label_address_postal_code";
-			this->label_address_postal_code->Size = System::Drawing::Size(95, 20);
+			this->label_address_postal_code->Size = System::Drawing::Size(107, 20);
 			this->label_address_postal_code->TabIndex = 9;
 			this->label_address_postal_code->Text = L"Postal Code";
 			// 
 			// label_address_street_number
 			// 
 			this->label_address_street_number->AutoSize = true;
-			this->label_address_street_number->Location = System::Drawing::Point(29, 204);
+			this->label_address_street_number->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_address_street_number->Location = System::Drawing::Point(26, 163);
 			this->label_address_street_number->Name = L"label_address_street_number";
-			this->label_address_street_number->Size = System::Drawing::Size(111, 20);
+			this->label_address_street_number->Size = System::Drawing::Size(125, 20);
 			this->label_address_street_number->TabIndex = 10;
 			this->label_address_street_number->Text = L"Street number";
 			// 
 			// label_address_street
 			// 
 			this->label_address_street->AutoSize = true;
-			this->label_address_street->Location = System::Drawing::Point(29, 151);
+			this->label_address_street->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_address_street->Location = System::Drawing::Point(26, 121);
 			this->label_address_street->Name = L"label_address_street";
-			this->label_address_street->Size = System::Drawing::Size(53, 20);
+			this->label_address_street->Size = System::Drawing::Size(58, 20);
 			this->label_address_street->TabIndex = 11;
 			this->label_address_street->Text = L"Street";
 			// 
 			// button_cancel
 			// 
 			this->button_cancel->DialogResult = System::Windows::Forms::DialogResult::Cancel;
-			this->button_cancel->Location = System::Drawing::Point(314, 261);
-			this->button_cancel->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->button_cancel->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->button_cancel->Location = System::Drawing::Point(253, 219);
+			this->button_cancel->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button_cancel->Name = L"button_cancel";
-			this->button_cancel->Size = System::Drawing::Size(112, 35);
+			this->button_cancel->Size = System::Drawing::Size(100, 28);
 			this->button_cancel->TabIndex = 13;
 			this->button_cancel->Text = L"Cancel";
 			this->button_cancel->UseVisualStyleBackColor = true;
@@ -212,19 +220,20 @@ namespace Projet {
 			// button_confirm
 			// 
 			this->button_confirm->DialogResult = System::Windows::Forms::DialogResult::OK;
-			this->button_confirm->Location = System::Drawing::Point(165, 261);
-			this->button_confirm->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->button_confirm->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->button_confirm->Location = System::Drawing::Point(121, 219);
+			this->button_confirm->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button_confirm->Name = L"button_confirm";
-			this->button_confirm->Size = System::Drawing::Size(112, 35);
+			this->button_confirm->Size = System::Drawing::Size(100, 28);
 			this->button_confirm->TabIndex = 12;
 			this->button_confirm->Text = L"Create";
 			this->button_confirm->UseVisualStyleBackColor = true;
 			// 
 			// editAddressPrompt
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(528, 344);
+			this->ClientSize = System::Drawing::Size(473, 282);
 			this->Controls->Add(this->button_cancel);
 			this->Controls->Add(this->button_confirm);
 			this->Controls->Add(this->label_address_street);
@@ -235,8 +244,10 @@ namespace Projet {
 			this->Controls->Add(this->textBox_address_street_number);
 			this->Controls->Add(this->textBox_address_street);
 			this->Controls->Add(this->textBox_address_city);
-			this->MaximumSize = System::Drawing::Size(550, 400);
-			this->MinimumSize = System::Drawing::Size(550, 400);
+			this->Font = (gcnew System::Drawing::Font(L"Inter", 7.8F));
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->MaximumSize = System::Drawing::Size(491, 329);
+			this->MinimumSize = System::Drawing::Size(491, 329);
 			this->Name = L"editAddressPrompt";
 			this->Text = L"Add address";
 			this->Load += gcnew System::EventHandler(this, &editAddressPrompt::createAddressPrompt_Load);

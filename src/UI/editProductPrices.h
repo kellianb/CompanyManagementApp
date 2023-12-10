@@ -164,6 +164,7 @@ namespace Projet
 			// button_cancel
 			// 
 			this->button_cancel->DialogResult = System::Windows::Forms::DialogResult::Cancel;
+			this->button_cancel->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
 			this->button_cancel->Location = System::Drawing::Point(249, 286);
 			this->button_cancel->Margin = System::Windows::Forms::Padding(4);
 			this->button_cancel->Name = L"button_cancel";
@@ -175,6 +176,7 @@ namespace Projet
 			// button_create
 			// 
 			this->button_create->DialogResult = System::Windows::Forms::DialogResult::OK;
+			this->button_create->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
 			this->button_create->Location = System::Drawing::Point(116, 286);
 			this->button_create->Margin = System::Windows::Forms::Padding(4);
 			this->button_create->Name = L"button_create";
@@ -186,42 +188,47 @@ namespace Projet
 			// label_price_date
 			// 
 			this->label_price_date->AutoSize = true;
-			this->label_price_date->Location = System::Drawing::Point(23, 108);
+			this->label_price_date->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_price_date->Location = System::Drawing::Point(21, 108);
 			this->label_price_date->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_price_date->Name = L"label_price_date";
-			this->label_price_date->Size = System::Drawing::Size(70, 16);
+			this->label_price_date->Size = System::Drawing::Size(92, 20);
 			this->label_price_date->TabIndex = 21;
 			this->label_price_date->Text = L"Price Date";
 			// 
 			// label_product_amount
 			// 
 			this->label_product_amount->AutoSize = true;
+			this->label_product_amount->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
 			this->label_product_amount->Location = System::Drawing::Point(21, 17);
 			this->label_product_amount->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_product_amount->Name = L"label_product_amount";
-			this->label_product_amount->Size = System::Drawing::Size(107, 16);
+			this->label_product_amount->Size = System::Drawing::Size(148, 20);
 			this->label_product_amount->TabIndex = 20;
 			this->label_product_amount->Text = L"Minimum amount";
 			// 
 			// textBox_minimum_amount
 			// 
-			this->textBox_minimum_amount->Location = System::Drawing::Point(157, 15);
+			this->textBox_minimum_amount->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->textBox_minimum_amount->Location = System::Drawing::Point(184, 15);
 			this->textBox_minimum_amount->Margin = System::Windows::Forms::Padding(4);
 			this->textBox_minimum_amount->Name = L"textBox_minimum_amount";
-			this->textBox_minimum_amount->Size = System::Drawing::Size(265, 22);
+			this->textBox_minimum_amount->Size = System::Drawing::Size(265, 27);
 			this->textBox_minimum_amount->TabIndex = 18;
 			// 
 			// dateTimePicker_price_date
 			// 
-			this->dateTimePicker_price_date->Location = System::Drawing::Point(159, 108);
+			this->dateTimePicker_price_date->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->dateTimePicker_price_date->Location = System::Drawing::Point(184, 108);
 			this->dateTimePicker_price_date->Margin = System::Windows::Forms::Padding(4);
 			this->dateTimePicker_price_date->Name = L"dateTimePicker_price_date";
-			this->dateTimePicker_price_date->Size = System::Drawing::Size(265, 22);
+			this->dateTimePicker_price_date->Size = System::Drawing::Size(265, 27);
 			this->dateTimePicker_price_date->TabIndex = 28;
 			// 
 			// button_select_color
 			// 
-			this->button_select_color->Location = System::Drawing::Point(157, 160);
+			this->button_select_color->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->button_select_color->Location = System::Drawing::Point(184, 160);
 			this->button_select_color->Margin = System::Windows::Forms::Padding(4);
 			this->button_select_color->Name = L"button_select_color";
 			this->button_select_color->Size = System::Drawing::Size(267, 28);
@@ -233,66 +240,72 @@ namespace Projet
 			// label_color_picker
 			// 
 			this->label_color_picker->AutoSize = true;
-			this->label_color_picker->Location = System::Drawing::Point(21, 166);
+			this->label_color_picker->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_color_picker->Location = System::Drawing::Point(21, 165);
 			this->label_color_picker->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_color_picker->Name = L"label_color_picker";
-			this->label_color_picker->Size = System::Drawing::Size(80, 16);
+			this->label_color_picker->Size = System::Drawing::Size(51, 20);
 			this->label_color_picker->TabIndex = 30;
-			this->label_color_picker->Text = L"Color Picker";
+			this->label_color_picker->Text = L"Color";
 			// 
 			// label_red
 			// 
 			this->label_red->AutoSize = true;
-			this->label_red->Location = System::Drawing::Point(159, 199);
+			this->label_red->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_red->Location = System::Drawing::Point(186, 199);
 			this->label_red->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_red->Name = L"label_red";
-			this->label_red->Size = System::Drawing::Size(20, 16);
+			this->label_red->Size = System::Drawing::Size(25, 20);
 			this->label_red->TabIndex = 34;
 			this->label_red->Text = L"R:";
 			// 
 			// label_green
 			// 
 			this->label_green->AutoSize = true;
-			this->label_green->Location = System::Drawing::Point(159, 224);
+			this->label_green->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_green->Location = System::Drawing::Point(186, 224);
 			this->label_green->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_green->Name = L"label_green";
-			this->label_green->Size = System::Drawing::Size(20, 16);
+			this->label_green->Size = System::Drawing::Size(27, 20);
 			this->label_green->TabIndex = 35;
 			this->label_green->Text = L"G:";
 			// 
 			// label_blue
 			// 
 			this->label_blue->AutoSize = true;
-			this->label_blue->Location = System::Drawing::Point(159, 249);
+			this->label_blue->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_blue->Location = System::Drawing::Point(186, 249);
 			this->label_blue->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_blue->Name = L"label_blue";
-			this->label_blue->Size = System::Drawing::Size(19, 16);
+			this->label_blue->Size = System::Drawing::Size(25, 20);
 			this->label_blue->TabIndex = 36;
 			this->label_blue->Text = L"B:";
 			// 
 			// label_price_exc_tax
 			// 
 			this->label_price_exc_tax->AutoSize = true;
+			this->label_price_exc_tax->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
 			this->label_price_exc_tax->Location = System::Drawing::Point(21, 65);
 			this->label_price_exc_tax->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_price_exc_tax->Name = L"label_price_exc_tax";
-			this->label_price_exc_tax->Size = System::Drawing::Size(111, 16);
+			this->label_price_exc_tax->Size = System::Drawing::Size(151, 20);
 			this->label_price_exc_tax->TabIndex = 38;
 			this->label_price_exc_tax->Text = L"Price minus taxes";
 			// 
 			// textBox_price_exc_tax
 			// 
-			this->textBox_price_exc_tax->Location = System::Drawing::Point(157, 63);
+			this->textBox_price_exc_tax->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->textBox_price_exc_tax->Location = System::Drawing::Point(184, 65);
 			this->textBox_price_exc_tax->Margin = System::Windows::Forms::Padding(4);
 			this->textBox_price_exc_tax->Name = L"textBox_price_exc_tax";
-			this->textBox_price_exc_tax->Size = System::Drawing::Size(265, 22);
+			this->textBox_price_exc_tax->Size = System::Drawing::Size(265, 27);
 			this->textBox_price_exc_tax->TabIndex = 37;
 			// 
 			// editProductPrices
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(452, 329);
+			this->ClientSize = System::Drawing::Size(481, 329);
 			this->Controls->Add(this->label_price_exc_tax);
 			this->Controls->Add(this->textBox_price_exc_tax);
 			this->Controls->Add(this->label_blue);
@@ -306,9 +319,10 @@ namespace Projet
 			this->Controls->Add(this->label_price_date);
 			this->Controls->Add(this->label_product_amount);
 			this->Controls->Add(this->textBox_minimum_amount);
+			this->Font = (gcnew System::Drawing::Font(L"Inter", 7.8F));
 			this->Margin = System::Windows::Forms::Padding(4);
-			this->MaximumSize = System::Drawing::Size(470, 376);
-			this->MinimumSize = System::Drawing::Size(470, 376);
+			this->MaximumSize = System::Drawing::Size(499, 376);
+			this->MinimumSize = System::Drawing::Size(499, 376);
 			this->Name = L"editProductPrices";
 			this->Text = L"editProductPrices";
 			this->Load += gcnew System::EventHandler(this, &editProductPrices::editProductPrices_Load);

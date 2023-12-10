@@ -349,6 +349,7 @@
       <CompileAsManaged>true</CompileAsManaged>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="src\UI\editProductsInOrder.cpp" />
     <ClCompile Include="src\UI\selectEmployeeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -382,6 +383,9 @@
     <ClInclude Include="src\UI\editProductPrompt.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="src\UI\editProductsInOrder.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="src\UI\selectEmployeeManager.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -395,6 +399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\UI\editProductPrompt.resx">
       <DependentUpon>editProductPrompt.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\UI\editProductsInOrder.resx">
+      <DependentUpon>src\UI\editProductsInOrder.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\UI\UserInterface.resx">
       <DependentUpon>src\UI\UserInterface.h</DependentUpon>

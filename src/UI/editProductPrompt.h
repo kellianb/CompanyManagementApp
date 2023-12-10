@@ -133,80 +133,89 @@ namespace Projet {
 			// label_amount_in_stock
 			// 
 			this->label_amount_in_stock->AutoSize = true;
+			this->label_amount_in_stock->Font = (gcnew System::Drawing::Font(L"Inter", 10));
 			this->label_amount_in_stock->Location = System::Drawing::Point(21, 88);
 			this->label_amount_in_stock->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_amount_in_stock->Name = L"label_amount_in_stock";
-			this->label_amount_in_stock->Size = System::Drawing::Size(102, 16);
+			this->label_amount_in_stock->Size = System::Drawing::Size(141, 20);
 			this->label_amount_in_stock->TabIndex = 7;
 			this->label_amount_in_stock->Text = L"Amount in Stock";
 			// 
 			// label_product_name
 			// 
 			this->label_product_name->AutoSize = true;
+			this->label_product_name->Font = (gcnew System::Drawing::Font(L"Inter", 10));
 			this->label_product_name->Location = System::Drawing::Point(21, 40);
 			this->label_product_name->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_product_name->Name = L"label_product_name";
-			this->label_product_name->Size = System::Drawing::Size(90, 16);
+			this->label_product_name->Size = System::Drawing::Size(122, 20);
 			this->label_product_name->TabIndex = 6;
 			this->label_product_name->Text = L"Product name";
 			// 
 			// textBox_amount_in_stock
 			// 
-			this->textBox_amount_in_stock->Location = System::Drawing::Point(157, 86);
-			this->textBox_amount_in_stock->Margin = System::Windows::Forms::Padding(4);
+			this->textBox_amount_in_stock->Font = (gcnew System::Drawing::Font(L"Inter", 10));
+			this->textBox_amount_in_stock->Location = System::Drawing::Point(187, 86);
+			this->textBox_amount_in_stock->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox_amount_in_stock->Name = L"textBox_amount_in_stock";
-			this->textBox_amount_in_stock->Size = System::Drawing::Size(265, 22);
+			this->textBox_amount_in_stock->Size = System::Drawing::Size(265, 28);
 			this->textBox_amount_in_stock->TabIndex = 5;
 			// 
 			// textBox_product_name
 			// 
-			this->textBox_product_name->Location = System::Drawing::Point(157, 37);
-			this->textBox_product_name->Margin = System::Windows::Forms::Padding(4);
+			this->textBox_product_name->Font = (gcnew System::Drawing::Font(L"Inter", 10));
+			this->textBox_product_name->Location = System::Drawing::Point(187, 37);
+			this->textBox_product_name->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox_product_name->Name = L"textBox_product_name";
-			this->textBox_product_name->Size = System::Drawing::Size(265, 22);
+			this->textBox_product_name->Size = System::Drawing::Size(265, 28);
 			this->textBox_product_name->TabIndex = 4;
 			// 
 			// label_product_vat
 			// 
 			this->label_product_vat->AutoSize = true;
+			this->label_product_vat->Font = (gcnew System::Drawing::Font(L"Inter", 10));
 			this->label_product_vat->Location = System::Drawing::Point(21, 186);
 			this->label_product_vat->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_product_vat->Name = L"label_product_vat";
-			this->label_product_vat->Size = System::Drawing::Size(49, 16);
+			this->label_product_vat->Size = System::Drawing::Size(61, 20);
 			this->label_product_vat->TabIndex = 15;
 			this->label_product_vat->Text = L"VAT %";
 			// 
 			// label_reorder_threshold
 			// 
 			this->label_reorder_threshold->AutoSize = true;
+			this->label_reorder_threshold->Font = (gcnew System::Drawing::Font(L"Inter", 10));
 			this->label_reorder_threshold->Location = System::Drawing::Point(21, 138);
 			this->label_reorder_threshold->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_reorder_threshold->Name = L"label_reorder_threshold";
-			this->label_reorder_threshold->Size = System::Drawing::Size(115, 16);
+			this->label_reorder_threshold->Size = System::Drawing::Size(154, 20);
 			this->label_reorder_threshold->TabIndex = 14;
 			this->label_reorder_threshold->Text = L"Reorder threshold";
 			// 
 			// textBox_product_vat
 			// 
-			this->textBox_product_vat->Location = System::Drawing::Point(157, 184);
-			this->textBox_product_vat->Margin = System::Windows::Forms::Padding(4);
+			this->textBox_product_vat->Font = (gcnew System::Drawing::Font(L"Inter", 10));
+			this->textBox_product_vat->Location = System::Drawing::Point(187, 184);
+			this->textBox_product_vat->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox_product_vat->Name = L"textBox_product_vat";
-			this->textBox_product_vat->Size = System::Drawing::Size(265, 22);
+			this->textBox_product_vat->Size = System::Drawing::Size(265, 28);
 			this->textBox_product_vat->TabIndex = 13;
 			// 
 			// textBox_reorder_threshold
 			// 
-			this->textBox_reorder_threshold->Location = System::Drawing::Point(157, 135);
-			this->textBox_reorder_threshold->Margin = System::Windows::Forms::Padding(4);
+			this->textBox_reorder_threshold->Font = (gcnew System::Drawing::Font(L"Inter", 10));
+			this->textBox_reorder_threshold->Location = System::Drawing::Point(187, 135);
+			this->textBox_reorder_threshold->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox_reorder_threshold->Name = L"textBox_reorder_threshold";
-			this->textBox_reorder_threshold->Size = System::Drawing::Size(265, 22);
+			this->textBox_reorder_threshold->Size = System::Drawing::Size(265, 28);
 			this->textBox_reorder_threshold->TabIndex = 12;
 			// 
 			// button_cancel
 			// 
 			this->button_cancel->DialogResult = System::Windows::Forms::DialogResult::Cancel;
-			this->button_cancel->Location = System::Drawing::Point(234, 246);
-			this->button_cancel->Margin = System::Windows::Forms::Padding(4);
+			this->button_cancel->Font = (gcnew System::Drawing::Font(L"Inter", 10));
+			this->button_cancel->Location = System::Drawing::Point(259, 244);
+			this->button_cancel->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button_cancel->Name = L"button_cancel";
 			this->button_cancel->Size = System::Drawing::Size(100, 28);
 			this->button_cancel->TabIndex = 17;
@@ -216,8 +225,9 @@ namespace Projet {
 			// button_create
 			// 
 			this->button_create->DialogResult = System::Windows::Forms::DialogResult::OK;
-			this->button_create->Location = System::Drawing::Point(102, 246);
-			this->button_create->Margin = System::Windows::Forms::Padding(4);
+			this->button_create->Font = (gcnew System::Drawing::Font(L"Inter", 10));
+			this->button_create->Location = System::Drawing::Point(127, 244);
+			this->button_create->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button_create->Name = L"button_create";
 			this->button_create->Size = System::Drawing::Size(100, 28);
 			this->button_create->TabIndex = 16;
@@ -228,7 +238,7 @@ namespace Projet {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(452, 296);
+			this->ClientSize = System::Drawing::Size(485, 296);
 			this->Controls->Add(this->button_cancel);
 			this->Controls->Add(this->button_create);
 			this->Controls->Add(this->label_product_vat);
@@ -239,8 +249,9 @@ namespace Projet {
 			this->Controls->Add(this->label_product_name);
 			this->Controls->Add(this->textBox_amount_in_stock);
 			this->Controls->Add(this->textBox_product_name);
-			this->MaximumSize = System::Drawing::Size(470, 343);
-			this->MinimumSize = System::Drawing::Size(470, 343);
+			this->Font = (gcnew System::Drawing::Font(L"Inter", 7.8F));
+			this->MaximumSize = System::Drawing::Size(503, 343);
+			this->MinimumSize = System::Drawing::Size(503, 343);
 			this->Name = L"editProductPrompt";
 			this->Text = L"createProductPrompt";
 			this->Load += gcnew System::EventHandler(this, &editProductPrompt::editProductPrompt_Load);

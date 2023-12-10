@@ -112,3 +112,8 @@ void Order::delete_order_from_DB()
     this->SQLserv->SQL_removeAllProductsFromOrder(this->id);
     this->SQLserv->SQL_deleteOrder(this->id);
 }
+
+System::Data::DataTable^ Order::getProductsInOrderList()
+{
+    return this->SQLserv->SQL_getProductsInOrderList(this->id);
+}

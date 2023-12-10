@@ -39,4 +39,6 @@ public:
     void delete_product_from_DB();
 
     System::Data::DataTable^ getProductPrices();
+
+    System::Data::DataTable^ getAvailableColors(int);
 };

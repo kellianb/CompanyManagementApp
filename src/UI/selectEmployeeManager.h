@@ -92,26 +92,26 @@ namespace Projet
             this->dataGridView_employees->AllowUserToAddRows = false;
             this->dataGridView_employees->AllowUserToDeleteRows = false;
             this->dataGridView_employees->AllowUserToOrderColumns = true;
-            this->dataGridView_employees->ColumnHeadersHeightSizeMode =
-                System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-            this->dataGridView_employees->Location = System::Drawing::Point(13, 12);
+            this->dataGridView_employees->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+            this->dataGridView_employees->Location = System::Drawing::Point(15, 12);
+            this->dataGridView_employees->Margin = System::Windows::Forms::Padding(4, 2, 4, 2);
             this->dataGridView_employees->MultiSelect = false;
             this->dataGridView_employees->Name = L"dataGridView_employees";
             this->dataGridView_employees->ReadOnly = true;
             this->dataGridView_employees->RowHeadersWidth = 62;
             this->dataGridView_employees->RowTemplate->Height = 28;
-            this->dataGridView_employees->SelectionMode =
-                System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_employees->Size = System::Drawing::Size(779, 470);
+            this->dataGridView_employees->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+            this->dataGridView_employees->Size = System::Drawing::Size(663, 365);
             this->dataGridView_employees->TabIndex = 0;
             // 
             // button_cancel
             // 
             this->button_cancel->DialogResult = System::Windows::Forms::DialogResult::Cancel;
-            this->button_cancel->Location = System::Drawing::Point(400, 506);
-            this->button_cancel->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+            this->button_cancel->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+            this->button_cancel->Location = System::Drawing::Point(325, 409);
+            this->button_cancel->Margin = System::Windows::Forms::Padding(5, 5, 5, 5);
             this->button_cancel->Name = L"button_cancel";
-            this->button_cancel->Size = System::Drawing::Size(112, 35);
+            this->button_cancel->Size = System::Drawing::Size(125, 33);
             this->button_cancel->TabIndex = 15;
             this->button_cancel->Text = L"Cancel";
             this->button_cancel->UseVisualStyleBackColor = true;
@@ -119,26 +119,30 @@ namespace Projet
             // button_select
             // 
             this->button_select->DialogResult = System::Windows::Forms::DialogResult::OK;
-            this->button_select->Location = System::Drawing::Point(251, 506);
-            this->button_select->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+            this->button_select->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+            this->button_select->Location = System::Drawing::Point(190, 409);
+            this->button_select->Margin = System::Windows::Forms::Padding(5, 5, 5, 5);
             this->button_select->Name = L"button_select";
-            this->button_select->Size = System::Drawing::Size(112, 35);
+            this->button_select->Size = System::Drawing::Size(125, 33);
             this->button_select->TabIndex = 14;
             this->button_select->Text = L"Select";
             this->button_select->UseVisualStyleBackColor = true;
             // 
             // selectEmployeeManager
             // 
-            this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+            this->AutoScaleDimensions = System::Drawing::SizeF(10, 19);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-            this->ClientSize = System::Drawing::Size(804, 565);
+            this->ClientSize = System::Drawing::Size(691, 457);
             this->Controls->Add(this->button_cancel);
             this->Controls->Add(this->button_select);
             this->Controls->Add(this->dataGridView_employees);
+            this->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+            this->Margin = System::Windows::Forms::Padding(4, 2, 4, 2);
             this->Name = L"selectEmployeeManager";
             this->Text = L"Select manager";
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_employees))->EndInit();
             this->ResumeLayout(false);
+
         }
 #pragma endregion
     };

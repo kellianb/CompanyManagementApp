@@ -107,6 +107,17 @@ void SQLservices::SQL_deleteOrder(int id)
     this->SQLadapter->sendQuery(cmd);
 }
 
+System::Data::DataTable^ SQLservices::SQL_getProductsInOrderList(int id)
+{   
+    System::String^ cmdString = "SELECT P.id_product, P.product_name, CP.price, CP.product_quantity, CP.product_discount_percentage, CP.color_rgb_r, CP.color_rgb_g, CP.color_rgb_b FROM Projet_POO_Livrable.contains_product CP JOIN Projet_POO_Livrable.Products P on P.id_product = CP.id_product WHERE id_order = @idOrder";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@idOrder", id);
+    
+    return this->SQLadapter->sendQuery(cmd);;
+}
+
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -156,6 +167,18 @@ System::Data::DataTable^ SQLservices::SQL_modifyProduct(int id, System::String^ 
     cmd->Parameters->AddWithValue("@amountInStock", newAmountInStock);
     cmd->Parameters->AddWithValue("@reorderThreshold", newReorderThreshold);
     cmd->Parameters->AddWithValue("@vatPercentage", newVatPercentage);
+
+    return this->SQLadapter->sendQuery(cmd);
+}
+
+System::Data::DataTable^ SQLservices::SQL_getAvailableColors(int id_product, int amount)
+{
+    System::String^ cmdString = "SELECT color_rgb_r, color_rgb_g, color_rgb_b FROM Projet_POO_Livrable.Product_prices WHERE id_product = @idProduct AND min_order_amount <= @amount GROUP BY color_rgb_r, color_rgb_g, color_rgb_b";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@idProduct", id_product);
+    cmd->Parameters->AddWithValue("@amount", amount);
 
     return this->SQLadapter->sendQuery(cmd);
 }
