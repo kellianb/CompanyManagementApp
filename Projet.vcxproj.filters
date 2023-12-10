@@ -63,6 +63,9 @@
     <ClCompile Include="src\UI\editProductPrices.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Product_price.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src/UI/UserInterface.h">
@@ -111,6 +114,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\UI\editProductPrices.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Product_price.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

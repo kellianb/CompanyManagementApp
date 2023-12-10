@@ -663,16 +663,15 @@ void SQLservices::SQL_deleteAddress(int id)
 
 // Product prices Queries
 
-System::Data::DataTable^ SQLservices::SQL_addProductPrice(int id_product, int min_order_amount, double price_excl_tax, double vat_percentage, System::DateTime price_date, int color_rgb_r, int color_rgb_g, int color_rgb_b)
+System::Data::DataTable^ SQLservices::SQL_addProductPrice(int id_product, int min_order_amount, float price_excl_tax, System::DateTime price_date, int color_rgb_r, int color_rgb_g, int color_rgb_b)
 {
-    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Product_prices (id_product, min_order_amount, price_excl_tax, vat_percentage, start_date, color_rgb_r, color_rgb_g, color_rgb_b) OUTPUT inserted.id_product_price VALUES(@idProduct, @minOrderAmount, @priceExclTax, @vatPercentage, @priceDate, @colorR, @colorG, @colorB)";
+    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Product_prices (id_product, min_order_amount, price_excl_tax, price_date, color_rgb_r, color_rgb_g, color_rgb_b) OUTPUT inserted.id_product_price VALUES(@idProduct, @minOrderAmount, @priceExclTax, @priceDate, @colorR, @colorG, @colorB)";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
     cmd->Parameters->AddWithValue("@idProduct", id_product);
     cmd->Parameters->AddWithValue("@minOrderAmount", min_order_amount);
     cmd->Parameters->AddWithValue("@priceExclTax", price_excl_tax);
-    cmd->Parameters->AddWithValue("@vatPercentage", vat_percentage);
     cmd->Parameters->AddWithValue("@priceDate", price_date);
     cmd->Parameters->AddWithValue("@colorR", color_rgb_r);
     cmd->Parameters->AddWithValue("@colorG", color_rgb_g);
@@ -701,17 +700,15 @@ System::Data::DataTable^ SQLservices::SQL_getProductPriceList()
     return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_modifyProductPrice(int id_product_price, int id_product, int min_order_amount, double price_excl_tax, double vat_percentage, System::DateTime price_date, int color_rgb_r, int color_rgb_g, int color_rgb_b)
+System::Data::DataTable^ SQLservices::SQL_modifyProductPrice(int id_product_price, int min_order_amount, float price_excl_tax, System::DateTime price_date, int color_rgb_r, int color_rgb_g, int color_rgb_b)
 {
-    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Product_prices SET id_product = @idProduct, min_order_amount = @minOrderAmount, price_excl_tax = @priceExclTax, vat_percentage = @vatPercentage, start_date = @priceDate, color_rgb_r = @colorR, color_rgb_g = @colorG, color_rgb_b = @colorB WHERE id_product_price = @id";
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Product_prices SET min_order_amount = @minOrderAmount, price_excl_tax = @priceExclTax, price_date = @priceDate, color_rgb_r = @colorR, color_rgb_g = @colorG, color_rgb_b = @colorB WHERE id_product_price = @id";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
     cmd->Parameters->AddWithValue("@id", id_product_price);
-    cmd->Parameters->AddWithValue("@idProduct", id_product);
     cmd->Parameters->AddWithValue("@minOrderAmount", min_order_amount);
     cmd->Parameters->AddWithValue("@priceExclTax", price_excl_tax);
-    cmd->Parameters->AddWithValue("@vatPercentage", vat_percentage);
     cmd->Parameters->AddWithValue("@priceDate", price_date);
     cmd->Parameters->AddWithValue("@colorR", color_rgb_r);
     cmd->Parameters->AddWithValue("@colorG", color_rgb_g);
