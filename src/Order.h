@@ -46,7 +46,7 @@ public:
     int getDeliveryAddress();
     void setDeliveryAddress(int);
 
-    int Order::getBillingAddress();
+    int getBillingAddress();
     void setBillingAddress(int);
 
     void modify_order_in_DB();

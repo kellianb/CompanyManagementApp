@@ -1,15 +1,18 @@
 #pragma once
 
-#include "editAddressPrompt.h"
 #include "../SQL/SQLservices.h"
-#include "../Customer.h"
+
+#include "editAddressPrompt.h"
 #include "createCustomerPrompt.h"
 #include "selectEmployeeManager.h"
 #include "createEmployeePrompt.h"
 #include "editOrderPrompt.h"
+
+#include "../Customer.h"
 #include "../Employee.h"
 #include "../Address.h"
 #include "../Order.h"
+#include "../Product.h"
 
 
 namespace Projet
@@ -27,8 +30,17 @@ namespace Projet
     public ref class UserInterface : public System::Windows::Forms::Form
     {
     private:
+        // SQL services
         SQLservices^ SQLserver = gcnew SQLservices;
+
+        // Products tab
+        Product^ selected_product;
+
+        // Customer tab
         Customer^ selected_customer;
+        Order^ selected_customer_order;
+
+        // Employee tab
         Employee^ selected_employee;
         Address^ selected_employee_address;
 
@@ -109,7 +121,7 @@ namespace Projet
     private: System::Windows::Forms::Button^ button_employee_reload;
     private: System::Windows::Forms::Button^ button_create_employee;
 
-    private: System::Windows::Forms::DataGridView^ dataGridView_Inventory;
+    private: System::Windows::Forms::DataGridView^ dataGridView_inventory;
     private: System::Windows::Forms::GroupBox^ groupBox_general_stats;
 
     private: System::Windows::Forms::Label^ label_avg_basket;
@@ -140,52 +152,19 @@ namespace Projet
 
 
     private: System::Windows::Forms::Button^ button_search_customer;
+    private: System::Windows::Forms::TextBox^ textBox_product_reorder_threshold;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private: System::Windows::Forms::GroupBox^ groupBox_product_information;
-
-    private: System::Windows::Forms::Button^ button9;
-    private: System::Windows::Forms::Button^ button10;
-    private: System::Windows::Forms::Label^ label7;
-    private: System::Windows::Forms::Label^ label_product_name;
-    private: System::Windows::Forms::TextBox^ textBox_product_name;
-    private: System::Windows::Forms::TextBox^ textBox_product_amount;
-    private: System::Windows::Forms::Label^ label_reorder_threshold;
-    private: System::Windows::Forms::TextBox^ textBox1;
     private: System::Windows::Forms::GroupBox^ groupBox_customer_currently_selected_order;
 
     private: System::Windows::Forms::Button^ button1;
     private: System::Windows::Forms::GroupBox^ groupBox_employee_address;
     private: System::Windows::Forms::Button^ button_employee_modify_address;
-
-
-
+    
     private: System::Windows::Forms::Label^ label_employee_address_street_number;
-
-
+    
     private: System::Windows::Forms::Label^ label_employee_address_postal_code;
     private: System::Windows::Forms::Label^ label_employee_address_street;
-
-
-
+    
     private: System::Windows::Forms::Label^ label_employee_address_city;
 
     private: System::Windows::Forms::TextBox^ textBox_employee_address_city;
@@ -196,6 +175,29 @@ namespace Projet
 
     private: System::Windows::Forms::TextBox^ textBox_employee_address_postal_code;
     private: System::Windows::Forms::Button^ button_employee_remove_manager;
+
+    private: System::Windows::Forms::GroupBox^ groupBox1;
+    private: System::Windows::Forms::Label^ label_reorder_threshold;
+    private: System::Windows::Forms::Button^ button_delete_product;
+
+
+    private: System::Windows::Forms::Button^ button_modify_product;
+
+    private: System::Windows::Forms::Label^ label_product_stock;
+    private: System::Windows::Forms::Label^ label_product_name;
+
+
+    private: System::Windows::Forms::TextBox^ textBox_product_name;
+    private: System::Windows::Forms::TextBox^ textBox_product_stock;
+    private: System::Windows::Forms::Label^ label_product_vat;
+
+
+
+    private: System::Windows::Forms::TextBox^ textBox_product_vat;
+
+
+
+
 
     private: System::Windows::Forms::Label^ label_employee_hiring_date;
 
@@ -270,16 +272,18 @@ namespace Projet
         {
             this->tabController = (gcnew System::Windows::Forms::TabControl());
             this->tab_inventory = (gcnew System::Windows::Forms::TabPage());
-            this->groupBox_product_information = (gcnew System::Windows::Forms::GroupBox());
+            this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+            this->label_product_vat = (gcnew System::Windows::Forms::Label());
+            this->textBox_product_vat = (gcnew System::Windows::Forms::TextBox());
             this->label_reorder_threshold = (gcnew System::Windows::Forms::Label());
-            this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-            this->button9 = (gcnew System::Windows::Forms::Button());
-            this->button10 = (gcnew System::Windows::Forms::Button());
-            this->label7 = (gcnew System::Windows::Forms::Label());
+            this->textBox_product_reorder_threshold = (gcnew System::Windows::Forms::TextBox());
+            this->button_delete_product = (gcnew System::Windows::Forms::Button());
+            this->button_modify_product = (gcnew System::Windows::Forms::Button());
+            this->label_product_stock = (gcnew System::Windows::Forms::Label());
             this->label_product_name = (gcnew System::Windows::Forms::Label());
             this->textBox_product_name = (gcnew System::Windows::Forms::TextBox());
-            this->textBox_product_amount = (gcnew System::Windows::Forms::TextBox());
-            this->dataGridView_Inventory = (gcnew System::Windows::Forms::DataGridView());
+            this->textBox_product_stock = (gcnew System::Windows::Forms::TextBox());
+            this->dataGridView_inventory = (gcnew System::Windows::Forms::DataGridView());
             this->tab_customers = (gcnew System::Windows::Forms::TabPage());
             this->button_create_customer = (gcnew System::Windows::Forms::Button());
             this->groupBox_delivery_addresses = (gcnew System::Windows::Forms::GroupBox());
@@ -360,8 +364,8 @@ namespace Projet
             this->label_avg_basket = (gcnew System::Windows::Forms::Label());
             this->tabController->SuspendLayout();
             this->tab_inventory->SuspendLayout();
-            this->groupBox_product_information->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_Inventory))->BeginInit();
+            this->groupBox1->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_inventory))->BeginInit();
             this->tab_customers->SuspendLayout();
             this->groupBox_delivery_addresses->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_delivery_addresses))->BeginInit();
@@ -408,8 +412,8 @@ namespace Projet
             // 
             // tab_inventory
             // 
-            this->tab_inventory->Controls->Add(this->groupBox_product_information);
-            this->tab_inventory->Controls->Add(this->dataGridView_Inventory);
+            this->tab_inventory->Controls->Add(this->groupBox1);
+            this->tab_inventory->Controls->Add(this->dataGridView_inventory);
             this->tab_inventory->Location = System::Drawing::Point(4, 29);
             this->tab_inventory->Name = L"tab_inventory";
             this->tab_inventory->Padding = System::Windows::Forms::Padding(3);
@@ -418,67 +422,87 @@ namespace Projet
             this->tab_inventory->Text = L"Inventory";
             this->tab_inventory->UseVisualStyleBackColor = true;
             // 
-            // groupBox_product_information
+            // groupBox1
             // 
-            this->groupBox_product_information->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+            this->groupBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
                 | System::Windows::Forms::AnchorStyles::Right));
-            this->groupBox_product_information->Controls->Add(this->label_reorder_threshold);
-            this->groupBox_product_information->Controls->Add(this->textBox1);
-            this->groupBox_product_information->Controls->Add(this->button9);
-            this->groupBox_product_information->Controls->Add(this->button10);
-            this->groupBox_product_information->Controls->Add(this->label7);
-            this->groupBox_product_information->Controls->Add(this->label_product_name);
-            this->groupBox_product_information->Controls->Add(this->textBox_product_name);
-            this->groupBox_product_information->Controls->Add(this->textBox_product_amount);
-            this->groupBox_product_information->Location = System::Drawing::Point(8, 200);
-            this->groupBox_product_information->Name = L"groupBox_product_information";
-            this->groupBox_product_information->Size = System::Drawing::Size(543, 181);
-            this->groupBox_product_information->TabIndex = 13;
-            this->groupBox_product_information->TabStop = false;
-            this->groupBox_product_information->Text = L"Product Information";
+            this->groupBox1->Controls->Add(this->label_product_vat);
+            this->groupBox1->Controls->Add(this->textBox_product_vat);
+            this->groupBox1->Controls->Add(this->label_reorder_threshold);
+            this->groupBox1->Controls->Add(this->textBox_product_reorder_threshold);
+            this->groupBox1->Controls->Add(this->button_delete_product);
+            this->groupBox1->Controls->Add(this->button_modify_product);
+            this->groupBox1->Controls->Add(this->label_product_stock);
+            this->groupBox1->Controls->Add(this->label_product_name);
+            this->groupBox1->Controls->Add(this->textBox_product_name);
+            this->groupBox1->Controls->Add(this->textBox_product_stock);
+            this->groupBox1->Location = System::Drawing::Point(8, 201);
+            this->groupBox1->Name = L"groupBox1";
+            this->groupBox1->Size = System::Drawing::Size(543, 236);
+            this->groupBox1->TabIndex = 14;
+            this->groupBox1->TabStop = false;
+            this->groupBox1->Text = L"Product Information";
+            // 
+            // label_product_vat
+            // 
+            this->label_product_vat->AutoSize = true;
+            this->label_product_vat->Location = System::Drawing::Point(312, 101);
+            this->label_product_vat->Name = L"label_product_vat";
+            this->label_product_vat->Size = System::Drawing::Size(61, 20);
+            this->label_product_vat->TabIndex = 15;
+            this->label_product_vat->Text = L"VAT %";
+            // 
+            // textBox_product_vat
+            // 
+            this->textBox_product_vat->Location = System::Drawing::Point(316, 124);
+            this->textBox_product_vat->Name = L"textBox_product_vat";
+            this->textBox_product_vat->Size = System::Drawing::Size(197, 26);
+            this->textBox_product_vat->TabIndex = 15;
             // 
             // label_reorder_threshold
             // 
             this->label_reorder_threshold->AutoSize = true;
-            this->label_reorder_threshold->Location = System::Drawing::Point(283, 30);
+            this->label_reorder_threshold->Location = System::Drawing::Point(312, 30);
             this->label_reorder_threshold->Name = L"label_reorder_threshold";
             this->label_reorder_threshold->Size = System::Drawing::Size(143, 20);
             this->label_reorder_threshold->TabIndex = 8;
             this->label_reorder_threshold->Text = L"Reorder threshold";
             // 
-            // textBox1
+            // textBox_product_reorder_threshold
             // 
-            this->textBox1->Location = System::Drawing::Point(287, 53);
-            this->textBox1->Name = L"textBox1";
-            this->textBox1->Size = System::Drawing::Size(240, 26);
-            this->textBox1->TabIndex = 7;
+            this->textBox_product_reorder_threshold->Location = System::Drawing::Point(316, 53);
+            this->textBox_product_reorder_threshold->Name = L"textBox_product_reorder_threshold";
+            this->textBox_product_reorder_threshold->Size = System::Drawing::Size(197, 26);
+            this->textBox_product_reorder_threshold->TabIndex = 7;
             // 
-            // button9
+            // button_delete_product
             // 
-            this->button9->Location = System::Drawing::Point(439, 97);
-            this->button9->Name = L"button9";
-            this->button9->Size = System::Drawing::Size(88, 30);
-            this->button9->TabIndex = 6;
-            this->button9->Text = L"Delete";
-            this->button9->UseVisualStyleBackColor = true;
+            this->button_delete_product->Location = System::Drawing::Point(425, 193);
+            this->button_delete_product->Name = L"button_delete_product";
+            this->button_delete_product->Size = System::Drawing::Size(88, 30);
+            this->button_delete_product->TabIndex = 6;
+            this->button_delete_product->Text = L"Delete";
+            this->button_delete_product->UseVisualStyleBackColor = true;
+            this->button_delete_product->Click += gcnew System::EventHandler(this, &UserInterface::button_delete_product_Click);
             // 
-            // button10
+            // button_modify_product
             // 
-            this->button10->Location = System::Drawing::Point(287, 97);
-            this->button10->Name = L"button10";
-            this->button10->Size = System::Drawing::Size(88, 30);
-            this->button10->TabIndex = 5;
-            this->button10->Text = L"Modify";
-            this->button10->UseVisualStyleBackColor = true;
+            this->button_modify_product->Location = System::Drawing::Point(316, 191);
+            this->button_modify_product->Name = L"button_modify_product";
+            this->button_modify_product->Size = System::Drawing::Size(88, 30);
+            this->button_modify_product->TabIndex = 5;
+            this->button_modify_product->Text = L"Modify";
+            this->button_modify_product->UseVisualStyleBackColor = true;
+            this->button_modify_product->Click += gcnew System::EventHandler(this, &UserInterface::button_modify_product_Click);
             // 
-            // label7
+            // label_product_stock
             // 
-            this->label7->AutoSize = true;
-            this->label7->Location = System::Drawing::Point(24, 99);
-            this->label7->Name = L"label7";
-            this->label7->Size = System::Drawing::Size(127, 20);
-            this->label7->TabIndex = 4;
-            this->label7->Text = L"Product amount";
+            this->label_product_stock->AutoSize = true;
+            this->label_product_stock->Location = System::Drawing::Point(24, 101);
+            this->label_product_stock->Name = L"label_product_stock";
+            this->label_product_stock->Size = System::Drawing::Size(51, 20);
+            this->label_product_stock->TabIndex = 4;
+            this->label_product_stock->Text = L"Stock";
             // 
             // label_product_name
             // 
@@ -496,31 +520,32 @@ namespace Projet
             this->textBox_product_name->Size = System::Drawing::Size(240, 26);
             this->textBox_product_name->TabIndex = 1;
             // 
-            // textBox_product_amount
+            // textBox_product_stock
             // 
-            this->textBox_product_amount->Location = System::Drawing::Point(28, 118);
-            this->textBox_product_amount->Name = L"textBox_product_amount";
-            this->textBox_product_amount->Size = System::Drawing::Size(240, 26);
-            this->textBox_product_amount->TabIndex = 2;
+            this->textBox_product_stock->Location = System::Drawing::Point(28, 124);
+            this->textBox_product_stock->Name = L"textBox_product_stock";
+            this->textBox_product_stock->Size = System::Drawing::Size(240, 26);
+            this->textBox_product_stock->TabIndex = 2;
             // 
-            // dataGridView_Inventory
+            // dataGridView_inventory
             // 
-            this->dataGridView_Inventory->AllowUserToAddRows = false;
-            this->dataGridView_Inventory->AllowUserToDeleteRows = false;
-            this->dataGridView_Inventory->AllowUserToOrderColumns = true;
-            this->dataGridView_Inventory->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+            this->dataGridView_inventory->AllowUserToAddRows = false;
+            this->dataGridView_inventory->AllowUserToDeleteRows = false;
+            this->dataGridView_inventory->AllowUserToOrderColumns = true;
+            this->dataGridView_inventory->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
                 | System::Windows::Forms::AnchorStyles::Right));
-            this->dataGridView_Inventory->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-            this->dataGridView_Inventory->Location = System::Drawing::Point(6, 6);
-            this->dataGridView_Inventory->MinimumSize = System::Drawing::Size(999, 112);
-            this->dataGridView_Inventory->MultiSelect = false;
-            this->dataGridView_Inventory->Name = L"dataGridView_Inventory";
-            this->dataGridView_Inventory->ReadOnly = true;
-            this->dataGridView_Inventory->RowHeadersWidth = 62;
-            this->dataGridView_Inventory->RowTemplate->Height = 28;
-            this->dataGridView_Inventory->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView_Inventory->Size = System::Drawing::Size(1236, 188);
-            this->dataGridView_Inventory->TabIndex = 1;
+            this->dataGridView_inventory->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+            this->dataGridView_inventory->Location = System::Drawing::Point(8, 7);
+            this->dataGridView_inventory->MinimumSize = System::Drawing::Size(999, 112);
+            this->dataGridView_inventory->MultiSelect = false;
+            this->dataGridView_inventory->Name = L"dataGridView_inventory";
+            this->dataGridView_inventory->ReadOnly = true;
+            this->dataGridView_inventory->RowHeadersWidth = 62;
+            this->dataGridView_inventory->RowTemplate->Height = 28;
+            this->dataGridView_inventory->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+            this->dataGridView_inventory->Size = System::Drawing::Size(1236, 188);
+            this->dataGridView_inventory->TabIndex = 1;
+            this->dataGridView_inventory->SelectionChanged += gcnew System::EventHandler(this, &UserInterface::dataGridView_inventory_SelectionChanged);
             // 
             // tab_customers
             // 
@@ -1374,9 +1399,9 @@ namespace Projet
             this->Load += gcnew System::EventHandler(this, &UserInterface::UserInterface_Load);
             this->tabController->ResumeLayout(false);
             this->tab_inventory->ResumeLayout(false);
-            this->groupBox_product_information->ResumeLayout(false);
-            this->groupBox_product_information->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_Inventory))->EndInit();
+            this->groupBox1->ResumeLayout(false);
+            this->groupBox1->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_inventory))->EndInit();
             this->tab_customers->ResumeLayout(false);
             this->groupBox_delivery_addresses->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_customer_delivery_addresses))->EndInit();
@@ -1418,7 +1443,7 @@ namespace Projet
     private:
         System::Void UserInterface_Load(System::Object^ sender, System::EventArgs^ e)
         {
-
+            refresh_products_datagrid();
         }
 
         // Executes code when a specific tab is opened
@@ -1427,24 +1452,86 @@ namespace Projet
         {
             switch(this->tabController->SelectedIndex)
             {
-            case 0: // Orders
+            case 0: // Inventory
+                refresh_products_datagrid();
                 return;
-            case 1: // Inventory
-                return;
-            case 2: // Customers
+            case 1: // Customers
                 refresh_customers_datagrid();
                 return;
-            case 3: // Employee
+            case 2: // Employee
                 refresh_employee_datagrid();
                 return;
-            case 4: // Statistics
+            case 3: // Statistics
                 return;
             default:
                 return;
             }
         }
         
+        // ### Inventory tab ###
 
+    private:
+        void refresh_products_datagrid()
+        {
+            this->dataGridView_inventory->Refresh();
+            this->dataGridView_inventory->DataSource = SQLserver->SQL_getProductList();
+
+            this->dataGridView_inventory->Columns["id_product"]->Width = 40;
+            this->dataGridView_inventory->Columns["id_product"]->HeaderText = "ID";
+            this->dataGridView_inventory->Columns["product_name"]->HeaderText = "Name";
+            this->dataGridView_inventory->Columns["amount_in_stock"]->HeaderText = "Stock";
+            this->dataGridView_inventory->Columns["reorder_threshold"]->HeaderText = "Reorder at";
+            this->dataGridView_inventory->Columns["vat_percentage"]->HeaderText = "VAT %";
+        }
+
+
+        void refresh_product_information()
+        {
+            this->groupBox1->Text = "Product " + selected_product->getID() + " Information";
+            
+            this->textBox_product_name->Text = selected_product->getProductName();
+            this->textBox_product_stock->Text = selected_product->getAmountInStock().ToString();
+            this->textBox_product_reorder_threshold->Text = selected_product->getReorderThreshold().ToString();
+            this->textBox_product_vat->Text = selected_product->getVATPercentage().ToString();
+        }
+
+
+        // Events
+        void dataGridView_inventory_SelectionChanged(Object^ sender, EventArgs^ event_args)
+        {
+            // Return if no columns are selected
+            if (dataGridView_inventory->SelectedRows->Count == 0)
+            {
+                return;
+            }
+            
+            String^ selectedIDstring = this->dataGridView_inventory->SelectedRows[0]->Cells["id_product"]->Value->ToString();
+
+            
+            selected_product = gcnew Product(System::Convert::ToInt32(selectedIDstring));
+
+            refresh_product_information();
+        }
+
+        
+        private: System::Void button_modify_product_Click(System::Object^ sender, System::EventArgs^ e) {
+            this->selected_product->setProductName(this->textBox_product_name->Text->Trim());
+            this->selected_product->setAmountInStock(System::Convert::ToInt32(this->textBox_product_stock->Text->Trim()));
+            this->selected_product->setReorderThreshold(System::Convert::ToInt32(this->textBox_product_reorder_threshold->Text->Trim()));
+            this->selected_product->setVATPercentage(System::Convert::ToDouble(this->textBox_product_vat->Text->Trim()));
+
+            this->selected_product->modify_product_in_DB();
+
+            refresh_products_datagrid();
+        }
+        private: System::Void button_delete_product_Click(System::Object^ sender, System::EventArgs^ e) {
+            this->selected_product->delete_product_from_DB();
+
+            refresh_products_datagrid();
+            
+        }
+
+        
         // ### Customers tab ###
     private:
         void refresh_customers_datagrid()
@@ -1594,15 +1681,17 @@ namespace Projet
     {
         if (this->dataGridView_customer_orders->SelectedRows->Count != 0)
         {
+            this->selected_customer_order = gcnew Order(Convert::ToInt32(this->dataGridView_customer_orders->SelectedRows[0]->Cells["id_order"]->Value->ToString()));
+
+            
             this->groupBox_customer_currently_selected_order->Visible = true;
 
-            // TODO : Add order reference
             
-            Address^ currently_selected_order_billing_address = gcnew Address(Convert::ToInt32(this->dataGridView_customer_orders->SelectedRows[0]->Cells["id_billing_address"]->Value->ToString()));
+            Address^ currently_selected_order_billing_address = gcnew Address(selected_customer_order->getBillingAddress());
             
             label_customers_current_order_billing_address->Text = "Billing address : " + currently_selected_order_billing_address->getStreetNumber() + " " + currently_selected_order_billing_address->getStreet() + ", " + currently_selected_order_billing_address->getPostalCode() + " " + currently_selected_order_billing_address->getCity();
             
-            Address^ currently_selected_order_delivery_address = gcnew Address(Convert::ToInt32(this->dataGridView_customer_orders->SelectedRows[0]->Cells["id_delivery_address"]->Value->ToString()));
+            Address^ currently_selected_order_delivery_address = gcnew Address(selected_customer_order->getDeliveryAddress());
 
             label_customers_current_order_delivery_address->Text = "Delivery address : " + currently_selected_order_delivery_address->getStreetNumber() + " " + currently_selected_order_delivery_address->getStreet() + ", " + currently_selected_order_delivery_address->getPostalCode() + " " + currently_selected_order_delivery_address->getCity();
         }
@@ -1624,19 +1713,17 @@ namespace Projet
     }
 
     private: System::Void button_customer_modify_order(System::Object^ sender, System::EventArgs^ e) {
-        Order ^selected_order = gcnew Order(Convert::ToInt32(this->dataGridView_customer_orders->SelectedRows[0]->Cells["id_order"]->Value->ToString()));
-        
-        editOrderPrompt^ prompt = gcnew editOrderPrompt(this->selected_customer->getID(), this->selected_customer->getFirstName() + " " + this->selected_customer->getLastName() + " - Edit order", selected_order->getOrderDate(), selected_order->getDeliveryDate(), selected_order->getDiscoutPercentage(), selected_order->getBillingAddress(), selected_order->getDeliveryAddress());
+        editOrderPrompt^ prompt = gcnew editOrderPrompt(this->selected_customer->getID(), this->selected_customer->getFirstName() + " " + this->selected_customer->getLastName() + " - Edit order", selected_customer_order->getOrderDate(), selected_customer_order->getDeliveryDate(), selected_customer_order->getDiscoutPercentage(), selected_customer_order->getBillingAddress(), selected_customer_order->getDeliveryAddress());
 
         if (prompt->ShowDialog() == System::Windows::Forms::DialogResult::OK)
         {
-            selected_order->setOrderDate(prompt->new_order_order_date);
-            selected_order->setDeliveryDate(prompt->new_order_delivery_date);
-            selected_order->setDiscountPercentage(prompt->new_order_discount_percentage);
-            selected_order->setBillingAddress(prompt->new_order_id_billing_address);
-            selected_order->setDeliveryAddress(prompt->new_order_id_delivery_address);
+            selected_customer_order->setOrderDate(prompt->new_order_order_date);
+            selected_customer_order->setDeliveryDate(prompt->new_order_delivery_date);
+            selected_customer_order->setDiscountPercentage(prompt->new_order_discount_percentage);
+            selected_customer_order->setBillingAddress(prompt->new_order_id_billing_address);
+            selected_customer_order->setDeliveryAddress(prompt->new_order_id_delivery_address);
 
-            selected_order->modify_order_in_DB();
+            selected_customer_order->modify_order_in_DB();
 
             refresh_customer_orders_datagrid();
         }
@@ -1754,7 +1841,6 @@ namespace Projet
         refresh_customer_delivery_addresses_datagrid();
     }
         
-
         
         // ### Employee tab ###
     private:
@@ -1817,8 +1903,6 @@ namespace Projet
             this->textBox_employee_address_street_number->Text = selected_employee_address->getStreetNumber().ToString();
 
         }
-
-        
         
     // Events
     private: System::Void button_create_employee_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1912,8 +1996,5 @@ namespace Projet
 
         refresh_employee_address_information();
 }
-
-
-
 };
 }

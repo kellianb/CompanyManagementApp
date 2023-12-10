@@ -36,6 +36,8 @@ namespace Projet {
 			this->textBox_address_street_number->Text = street_number.ToString();
 
 			this->button_confirm->Text = "Modify";
+
+			
 		}
 
 	public:
