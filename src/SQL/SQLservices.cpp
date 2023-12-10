@@ -70,7 +70,7 @@ System::Data::DataTable^ SQLservices::SQL_getOrderDeliveryAdress(int id)
 
 System::Data::DataTable^ SQLservices::SQL_modifyOrder(int id_order, System::DateTime new_delivery_date, System::DateTime new_order_date, float new_discount_percentage, int id_delivery_address, int id_billing_address, int id_customer)
 {
-    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Orders SET delivery_date = @deliveryDate, order_date = @orderDate, order_discount_percentage = @dctPercentage, id_delivery_address = @idAdress, id_billing_address = @idBilling, id_customer = @idCustomer WHERE id_order = @id";
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Orders SET delivery_date = @deliveryDate, order_date = @orderDate, order_discount_percentage = @dctPercentage, id_delivery_address = @idDelivery, id_billing_address = @idBilling, id_customer = @idCustomer WHERE id_order = @id";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
@@ -85,6 +85,17 @@ System::Data::DataTable^ SQLservices::SQL_modifyOrder(int id_order, System::Date
     return this->SQLadapter->sendQuery(cmd);
 }
 
+void SQLservices::SQL_removeAllProductsFromOrder(int id_order)
+{
+    System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.contains_product WHERE id_order = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+    
+    cmd->Parameters->AddWithValue("@id", id_order);
+
+    this->SQLadapter->sendQuery(cmd);
+}
+
 void SQLservices::SQL_deleteOrder(int id)
 {
     System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.Orders WHERE id_order = @id";
@@ -95,6 +106,8 @@ void SQLservices::SQL_deleteOrder(int id)
 
     this->SQLadapter->sendQuery(cmd);
 }
+
+
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Inventory Queries

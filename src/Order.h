@@ -34,6 +34,9 @@ public:
 
     System::String^ getReference();
     
+    float getDiscoutPercentage();
+    void setDiscountPercentage(float);
+    
     System::DateTime getOrderDate();
     void setOrderDate(System::DateTime);
 
@@ -42,7 +45,8 @@ public:
 
     int getDeliveryAddress();
     void setDeliveryAddress(int);
-    
+
+    int Order::getBillingAddress();
     void setBillingAddress(int);
 
     void modify_order_in_DB();

@@ -14,17 +14,47 @@ namespace Projet {
 	/// <summary>
 	/// Summary for createOrderPrompt
 	/// </summary>
-	public ref class createOrderPrompt : public System::Windows::Forms::Form
+	public ref class editOrderPrompt : public System::Windows::Forms::Form
 	{
 	private:
 		Customer^ currentCustomer;
+		System::String^ windowText;
 		
 	public:
-		createOrderPrompt(int id_customer)
+		editOrderPrompt(int id_customer, String^ windowText) : windowText(windowText)
 		{
 			InitializeComponent();
 
 			currentCustomer = gcnew Customer(id_customer);
+		}
+
+		editOrderPrompt(int id_customer, String^ windowText, System::DateTime order_date, System::DateTime delivery_date, int discount_percentage, int id_delivery_address, int id_billing_address) : windowText(windowText)
+		{
+			InitializeComponent();
+
+			currentCustomer = gcnew Customer(id_customer);
+
+			this->dateTimePicker_order_date->Value = order_date;
+			this->dateTimePicker_delivery_date->Value = delivery_date;
+			this->textBox_discount_percentage->Text = discount_percentage.ToString();
+
+			for (int i = 0; i < this->dataGridView_delivery_address->Rows->Count; i++)
+			{
+				if (Convert::ToInt32(this->dataGridView_delivery_address->Rows[i]->Cells["id_address"]->Value) == id_delivery_address)
+				{
+					this->dataGridView_delivery_address->Rows[i]->Selected = true;
+				}
+			}
+
+			for (int i = 0; i < this->dataGridView_billing_address->Rows->Count; i++)
+			{
+				if (Convert::ToInt32(this->dataGridView_billing_address->Rows[i]->Cells["id_address"]->Value) == id_billing_address)
+				{
+					this->dataGridView_billing_address->Rows[i]->Selected = true;
+				}
+			}
+
+			this->button_create->Text = "Modify";
 		}
 
 		property System::DateTime new_order_delivery_date {
@@ -66,7 +96,7 @@ namespace Projet {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~createOrderPrompt()
+		~editOrderPrompt()
 		{
 			if (components)
 			{
@@ -132,7 +162,7 @@ namespace Projet {
 			// 
 			this->button_cancel->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 			this->button_cancel->DialogResult = System::Windows::Forms::DialogResult::Cancel;
-			this->button_cancel->Location = System::Drawing::Point(431, 490);
+			this->button_cancel->Location = System::Drawing::Point(340, 490);
 			this->button_cancel->Margin = System::Windows::Forms::Padding(4);
 			this->button_cancel->Name = L"button_cancel";
 			this->button_cancel->Size = System::Drawing::Size(100, 28);
@@ -144,7 +174,7 @@ namespace Projet {
 			// 
 			this->button_create->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 			this->button_create->DialogResult = System::Windows::Forms::DialogResult::OK;
-			this->button_create->Location = System::Drawing::Point(296, 490);
+			this->button_create->Location = System::Drawing::Point(205, 490);
 			this->button_create->Margin = System::Windows::Forms::Padding(4);
 			this->button_create->Name = L"button_create";
 			this->button_create->Size = System::Drawing::Size(100, 28);
@@ -191,7 +221,7 @@ namespace Projet {
 			this->groupBox_billing_address->Controls->Add(this->dataGridView_billing_address);
 			this->groupBox_billing_address->Location = System::Drawing::Point(12, 309);
 			this->groupBox_billing_address->Name = L"groupBox_billing_address";
-			this->groupBox_billing_address->Size = System::Drawing::Size(799, 157);
+			this->groupBox_billing_address->Size = System::Drawing::Size(656, 157);
 			this->groupBox_billing_address->TabIndex = 15;
 			this->groupBox_billing_address->TabStop = false;
 			this->groupBox_billing_address->Text = L"Select billing addresses";
@@ -209,7 +239,7 @@ namespace Projet {
 			this->dataGridView_billing_address->RowHeadersWidth = 62;
 			this->dataGridView_billing_address->RowTemplate->Height = 28;
 			this->dataGridView_billing_address->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->dataGridView_billing_address->Size = System::Drawing::Size(784, 130);
+			this->dataGridView_billing_address->Size = System::Drawing::Size(641, 130);
 			this->dataGridView_billing_address->TabIndex = 1;
 			// 
 			// dataGridView_delivery_address
@@ -225,7 +255,7 @@ namespace Projet {
 			this->dataGridView_delivery_address->RowHeadersWidth = 62;
 			this->dataGridView_delivery_address->RowTemplate->Height = 28;
 			this->dataGridView_delivery_address->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->dataGridView_delivery_address->Size = System::Drawing::Size(784, 130);
+			this->dataGridView_delivery_address->Size = System::Drawing::Size(641, 130);
 			this->dataGridView_delivery_address->TabIndex = 1;
 			// 
 			// groupBox_delivery_address
@@ -235,7 +265,7 @@ namespace Projet {
 			this->groupBox_delivery_address->Controls->Add(this->dataGridView_delivery_address);
 			this->groupBox_delivery_address->Location = System::Drawing::Point(12, 146);
 			this->groupBox_delivery_address->Name = L"groupBox_delivery_address";
-			this->groupBox_delivery_address->Size = System::Drawing::Size(799, 157);
+			this->groupBox_delivery_address->Size = System::Drawing::Size(656, 157);
 			this->groupBox_delivery_address->TabIndex = 16;
 			this->groupBox_delivery_address->TabStop = false;
 			this->groupBox_delivery_address->Text = L"Select delivery addresses";
@@ -260,7 +290,7 @@ namespace Projet {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(823, 531);
+			this->ClientSize = System::Drawing::Size(680, 531);
 			this->Controls->Add(this->textBox_discount_percentage);
 			this->Controls->Add(this->label_discount_percentage);
 			this->Controls->Add(this->groupBox_delivery_address);
@@ -271,9 +301,11 @@ namespace Projet {
 			this->Controls->Add(this->dateTimePicker_order_date);
 			this->Controls->Add(this->button_cancel);
 			this->Controls->Add(this->button_create);
+			this->MaximumSize = System::Drawing::Size(698, 578);
+			this->MinimumSize = System::Drawing::Size(698, 578);
 			this->Name = L"createOrderPrompt";
 			this->Text = L"createOrderPrompt";
-			this->Load += gcnew System::EventHandler(this, &createOrderPrompt::createOrderPrompt_Load);
+			this->Load += gcnew System::EventHandler(this, &editOrderPrompt::createOrderPrompt_Load);
 			this->groupBox_billing_address->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_billing_address))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_delivery_address))->EndInit();
@@ -285,6 +317,8 @@ namespace Projet {
 #pragma endregion
 
 private: System::Void createOrderPrompt_Load(System::Object^ sender, System::EventArgs^ e) {
+	this->Text = windowText;
+	
 	this->dataGridView_delivery_address->DataSource = this->currentCustomer->getDeliveryAddresses();
 	this->dataGridView_billing_address->DataSource = this->currentCustomer->getBillingAddresses();
 	

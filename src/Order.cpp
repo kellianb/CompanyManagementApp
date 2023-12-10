@@ -18,11 +18,17 @@ void Order::fetch_order_from_DB()
     this->reference = safe_cast<System::String^>(buffer->Rows[0]["order_reference"]);
     this->delivery_date = safe_cast<System::DateTime>(buffer->Rows[0]["delivery_date"]);
     this->order_date = safe_cast<System::DateTime>(buffer->Rows[0]["order_date"]);
-    this->discount_percentage = safe_cast<float>(buffer->Rows[0]["discount_percentage"]);
-    this->total_amount = safe_cast<float>(buffer->Rows[0]["total_amount"]);
-    this->id_customer = safe_cast<int>(buffer->Rows[0]["id_customer"]);
-    this->id_delivery_address = safe_cast<int>(buffer->Rows[0]["id_delivery_address"]);
-    this->id_billing_address = safe_cast<int>(buffer->Rows[0]["id_billing_address"]);
+    this->discount_percentage = System::Convert::ToDouble(buffer->Rows[0]["order_discount_percentage"]);
+
+    if (buffer->Rows[0]["total_amount"] != nullptr && buffer->Rows[0]["total_amount"] != System::DBNull::Value)
+    {
+        this->total_amount = System::Convert::ToDouble(buffer->Rows[0]["total_amount"]);
+    }
+    
+    
+    this->id_customer = System::Convert::ToInt32(buffer->Rows[0]["id_customer"]);
+    this->id_delivery_address = System::Convert::ToInt32(buffer->Rows[0]["id_delivery_address"]);
+    this->id_billing_address = System::Convert::ToInt32(buffer->Rows[0]["id_billing_address"]);
 }
 
 Order::Order(int id) : id(id)
@@ -44,6 +50,16 @@ int Order::getID()
 System::String^ Order::getReference()
 {
     return this->reference;
+}
+
+float Order::getDiscoutPercentage()
+{
+    return this->discount_percentage;
+}
+
+void Order::setDiscountPercentage(float discount_percentage_param)
+{
+    this->discount_percentage = discount_percentage_param;
 }
 
 System::DateTime Order::getOrderDate()
@@ -76,6 +92,11 @@ void Order::setDeliveryAddress(int id_adr)
     this->id_delivery_address = id_adr;
 }
 
+int Order::getBillingAddress()
+{
+    return this->id_billing_address;
+}
+
 void Order::setBillingAddress(int id_adr)
 {
     this->id_billing_address = id_adr;
@@ -88,5 +109,6 @@ void Order::modify_order_in_DB()
 
 void Order::delete_order_from_DB()
 {
+    this->SQLserv->SQL_removeAllProductsFromOrder(this->id);
     this->SQLserv->SQL_deleteOrder(this->id);
 }
