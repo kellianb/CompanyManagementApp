@@ -153,13 +153,13 @@ namespace Projet
     private: System::Windows::Forms::DataGridView^ dataGridView4;
     private: System::Windows::Forms::GroupBox^ groupBox_bestsellers;
     private: System::Windows::Forms::DataGridView^ dataGridView3;
-    private: System::Windows::Forms::Label^ label1;
-    private: System::Windows::Forms::Label^ label2;
-    private: System::Windows::Forms::TextBox^ textBox_fname_statistics;
-    private: System::Windows::Forms::TextBox^ textBox_lname_statistics;
 
 
-    private: System::Windows::Forms::Button^ button_search_customer;
+
+
+
+
+
     private: System::Windows::Forms::TextBox^ textBox_product_reorder_threshold;
 
     private: System::Windows::Forms::GroupBox^ groupBox_customer_currently_selected_order;
@@ -210,12 +210,23 @@ namespace Projet
     private: System::Windows::Forms::Button^ button_delete_product_prices;
     private: System::Windows::Forms::Button^ button_add_product_prices;
     private: System::Windows::Forms::Button^ button_modify_product_prices;
-private: System::Windows::Forms::Button^ button_customer_order_modify_items;
+    private: System::Windows::Forms::Button^ button_customer_order_modify_items;
+    private: System::Windows::Forms::ComboBox^ comboBox_markdown;
 
 
 
 
+private: System::Windows::Forms::ComboBox^ comboBox_discount;
 
+private: System::Windows::Forms::ComboBox^ comboBox_margin;
+
+
+private: System::Windows::Forms::ComboBox^ comboBox_vat;
+private: System::Windows::Forms::Label^ label_markdown;
+private: System::Windows::Forms::Label^ label_discount;
+private: System::Windows::Forms::Label^ label_margin;
+private: System::Windows::Forms::Label^ label_vat;
+private: System::Windows::Forms::Button^ button_stats_reload;
 
     private: System::Windows::Forms::Label^ label_employee_hiring_date;
 
@@ -376,13 +387,17 @@ private: System::Windows::Forms::Button^ button_customer_order_modify_items;
             this->groupBox_product_below_threshold = (gcnew System::Windows::Forms::GroupBox());
             this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
             this->groupBox_total_purchases_by_customers = (gcnew System::Windows::Forms::GroupBox());
-            this->button_search_customer = (gcnew System::Windows::Forms::Button());
-            this->label1 = (gcnew System::Windows::Forms::Label());
-            this->label2 = (gcnew System::Windows::Forms::Label());
-            this->textBox_fname_statistics = (gcnew System::Windows::Forms::TextBox());
-            this->textBox_lname_statistics = (gcnew System::Windows::Forms::TextBox());
             this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
             this->groupBox_general_stats = (gcnew System::Windows::Forms::GroupBox());
+            this->button_stats_reload = (gcnew System::Windows::Forms::Button());
+            this->label_markdown = (gcnew System::Windows::Forms::Label());
+            this->label_discount = (gcnew System::Windows::Forms::Label());
+            this->label_margin = (gcnew System::Windows::Forms::Label());
+            this->label_vat = (gcnew System::Windows::Forms::Label());
+            this->comboBox_markdown = (gcnew System::Windows::Forms::ComboBox());
+            this->comboBox_discount = (gcnew System::Windows::Forms::ComboBox());
+            this->comboBox_margin = (gcnew System::Windows::Forms::ComboBox());
+            this->comboBox_vat = (gcnew System::Windows::Forms::ComboBox());
             this->label_simulate_stock_value = (gcnew System::Windows::Forms::Label());
             this->label_purchase_stock_value = (gcnew System::Windows::Forms::Label());
             this->label_commercial_stock_value = (gcnew System::Windows::Forms::Label());
@@ -1462,7 +1477,7 @@ private: System::Windows::Forms::Button^ button_customer_order_modify_items;
             this->groupBox_product_below_threshold->Size = System::Drawing::Size(598, 168);
             this->groupBox_product_below_threshold->TabIndex = 10;
             this->groupBox_product_below_threshold->TabStop = false;
-            this->groupBox_product_below_threshold->Text = L"Total purchases by customers";
+            this->groupBox_product_below_threshold->Text = L"Product Below threshold";
             // 
             // dataGridView2
             // 
@@ -1480,11 +1495,6 @@ private: System::Windows::Forms::Button^ button_customer_order_modify_items;
             // 
             // groupBox_total_purchases_by_customers
             // 
-            this->groupBox_total_purchases_by_customers->Controls->Add(this->button_search_customer);
-            this->groupBox_total_purchases_by_customers->Controls->Add(this->label1);
-            this->groupBox_total_purchases_by_customers->Controls->Add(this->label2);
-            this->groupBox_total_purchases_by_customers->Controls->Add(this->textBox_fname_statistics);
-            this->groupBox_total_purchases_by_customers->Controls->Add(this->textBox_lname_statistics);
             this->groupBox_total_purchases_by_customers->Controls->Add(this->dataGridView1);
             this->groupBox_total_purchases_by_customers->Location = System::Drawing::Point(612, 178);
             this->groupBox_total_purchases_by_customers->Margin = System::Windows::Forms::Padding(2);
@@ -1541,6 +1551,7 @@ private: System::Windows::Forms::Button^ button_customer_order_modify_items;
             this->textBox_lname_statistics->Size = System::Drawing::Size(240, 27);
             this->textBox_lname_statistics->TabIndex = 6;
             // 
+
             // dataGridView1
             // 
             this->dataGridView1->AllowUserToAddRows = false;
@@ -1552,11 +1563,20 @@ private: System::Windows::Forms::Button^ button_customer_order_modify_items;
             this->dataGridView1->RowHeadersWidth = 62;
             this->dataGridView1->RowTemplate->Height = 28;
             this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView1->Size = System::Drawing::Size(620, 95);
+            this->dataGridView1->Size = System::Drawing::Size(620, 138);
             this->dataGridView1->TabIndex = 1;
             // 
             // groupBox_general_stats
             // 
+            this->groupBox_general_stats->Controls->Add(this->button_stats_reload);
+            this->groupBox_general_stats->Controls->Add(this->label_markdown);
+            this->groupBox_general_stats->Controls->Add(this->label_discount);
+            this->groupBox_general_stats->Controls->Add(this->label_margin);
+            this->groupBox_general_stats->Controls->Add(this->label_vat);
+            this->groupBox_general_stats->Controls->Add(this->comboBox_markdown);
+            this->groupBox_general_stats->Controls->Add(this->comboBox_discount);
+            this->groupBox_general_stats->Controls->Add(this->comboBox_margin);
+            this->groupBox_general_stats->Controls->Add(this->comboBox_vat);
             this->groupBox_general_stats->Controls->Add(this->label_simulate_stock_value);
             this->groupBox_general_stats->Controls->Add(this->label_purchase_stock_value);
             this->groupBox_general_stats->Controls->Add(this->label_commercial_stock_value);
@@ -1570,6 +1590,89 @@ private: System::Windows::Forms::Button^ button_customer_order_modify_items;
             this->groupBox_general_stats->TabIndex = 7;
             this->groupBox_general_stats->TabStop = false;
             this->groupBox_general_stats->Text = L"General statistics";
+            // 
+            // button_stats_reload
+            // 
+            this->button_stats_reload->Location = System::Drawing::Point(1133, 21);
+            this->button_stats_reload->Name = L"button_stats_reload";
+            this->button_stats_reload->Size = System::Drawing::Size(100, 37);
+            this->button_stats_reload->TabIndex = 15;
+            this->button_stats_reload->Text = L"Reload";
+            this->button_stats_reload->UseVisualStyleBackColor = true;
+            this->button_stats_reload->Click += gcnew System::EventHandler(this, &UserInterface::button_stats_reload_Click);
+            // 
+            // label_markdown
+            // 
+            this->label_markdown->AutoSize = true;
+            this->label_markdown->Location = System::Drawing::Point(1031, 138);
+            this->label_markdown->Name = L"label_markdown";
+            this->label_markdown->Size = System::Drawing::Size(75, 16);
+            this->label_markdown->TabIndex = 14;
+            this->label_markdown->Text = L"Markdown :";
+            // 
+            // label_discount
+            // 
+            this->label_discount->AutoSize = true;
+            this->label_discount->Location = System::Drawing::Point(833, 138);
+            this->label_discount->Name = L"label_discount";
+            this->label_discount->Size = System::Drawing::Size(65, 16);
+            this->label_discount->TabIndex = 13;
+            this->label_discount->Text = L"Discount :";
+            // 
+            // label_margin
+            // 
+            this->label_margin->AutoSize = true;
+            this->label_margin->Location = System::Drawing::Point(646, 138);
+            this->label_margin->Name = L"label_margin";
+            this->label_margin->Size = System::Drawing::Size(54, 16);
+            this->label_margin->TabIndex = 12;
+            this->label_margin->Text = L"Margin :";
+            // 
+            // label_vat
+            // 
+            this->label_vat->AutoSize = true;
+            this->label_vat->Location = System::Drawing::Point(473, 138);
+            this->label_vat->Name = L"label_vat";
+            this->label_vat->Size = System::Drawing::Size(40, 16);
+            this->label_vat->TabIndex = 11;
+            this->label_vat->Text = L"VAT :";
+            // 
+            // comboBox_markdown
+            // 
+            this->comboBox_markdown->FormattingEnabled = true;
+            this->comboBox_markdown->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"2%", L"3%", L"5%" });
+            this->comboBox_markdown->Location = System::Drawing::Point(1112, 135);
+            this->comboBox_markdown->Name = L"comboBox_markdown";
+            this->comboBox_markdown->Size = System::Drawing::Size(121, 24);
+            this->comboBox_markdown->TabIndex = 10;
+            // 
+            // comboBox_discount
+            // 
+            this->comboBox_discount->FormattingEnabled = true;
+            this->comboBox_discount->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"5%", L"6%" });
+            this->comboBox_discount->Location = System::Drawing::Point(904, 135);
+            this->comboBox_discount->Name = L"comboBox_discount";
+            this->comboBox_discount->Size = System::Drawing::Size(121, 24);
+            this->comboBox_discount->TabIndex = 9;
+            // 
+            // comboBox_margin
+            // 
+            this->comboBox_margin->FormattingEnabled = true;
+            this->comboBox_margin->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"5%", L"10%", L"15%" });
+            this->comboBox_margin->Location = System::Drawing::Point(706, 135);
+            this->comboBox_margin->Name = L"comboBox_margin";
+            this->comboBox_margin->Size = System::Drawing::Size(121, 24);
+            this->comboBox_margin->TabIndex = 8;
+            // 
+            // comboBox_vat
+            // 
+            this->comboBox_vat->AutoCompleteCustomSource->AddRange(gcnew cli::array< System::String^  >(3) { L"10", L"15", L"20" });
+            this->comboBox_vat->FormattingEnabled = true;
+            this->comboBox_vat->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"10%", L"15%", L"20%" });
+            this->comboBox_vat->Location = System::Drawing::Point(519, 135);
+            this->comboBox_vat->Name = L"comboBox_vat";
+            this->comboBox_vat->Size = System::Drawing::Size(121, 24);
+            this->comboBox_vat->TabIndex = 7;
             // 
             // label_simulate_stock_value
             // 
@@ -1680,7 +1783,6 @@ private: System::Windows::Forms::Button^ button_customer_order_modify_items;
             this->groupBox_product_below_threshold->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
             this->groupBox_total_purchases_by_customers->ResumeLayout(false);
-            this->groupBox_total_purchases_by_customers->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
             this->groupBox_general_stats->ResumeLayout(false);
             this->groupBox_general_stats->PerformLayout();
@@ -1692,8 +1794,8 @@ private: System::Windows::Forms::Button^ button_customer_order_modify_items;
         // General UserInterface functions
     private:
         System::Void UserInterface_Load(System::Object^ sender, System::EventArgs^ e)
-        {
-           
+        {            
+
             OnTabSelectedIndexChanged(sender, e);
         }
 
@@ -1713,6 +1815,7 @@ private: System::Windows::Forms::Button^ button_customer_order_modify_items;
                 refresh_employee_datagrid();
                 return;
             case 3: // Statistics
+                refresh_statistics();
                 return;
             default:
                 return;
@@ -2364,8 +2467,174 @@ private: System::Windows::Forms::Button^ button_customer_order_modify_items;
 
         this->selected_employee_address->modify_address_in_DB();
 
-        refresh_employee_address_information();
-}
+
+        refresh_employee_address_information();            
+        }
+    private:
+        System::Void refresh_statistics()
+        {
+            refresh_general_statistics();
+            refresh_total_purchases_by_customers();
+            refresh_product_below_threshold();
+            refresh_bestsellers();
+            refresh_worst_products();
+        }
+
+    private:
+        System::Void refresh_general_statistics()
+        {
+            System::DateTime currentDate = System::DateTime::Now;
+            int currentMonth = currentDate.Month;
+
+            System::Data::DataTable^ turnoverData = SQLserver->SQL_calculateMonthlyTurnover(currentMonth);
+
+            if (turnoverData != nullptr && turnoverData->Rows->Count > 0) {
+                System::String^ monthlyTurnover = turnoverData->Rows[0]["Month_sales"]->ToString();
+                this->label_monthly_turnover->Text = "Monthly turnover: " + monthlyTurnover;
+            } else {
+                this->label_monthly_turnover->Text = "Monthly turnover: No data";
+            }
+
+            System::Data::DataTable^ averageBasketSizeData = SQLserver->SQL_calculateAverageBasketSize();
+
+            System::String^ averageBasketSizeString;
+            if (averageBasketSizeData != nullptr && averageBasketSizeData->Rows->Count > 0) {
+                averageBasketSizeString = averageBasketSizeData->Rows[0]["Prix_moyen_panier"]->ToString();
+            } else {
+                averageBasketSizeString = "No data";
+            }
+
+            this->label_avg_basket->Text = "Average Basket Size: " + averageBasketSizeString;
+
+            System::Data::DataTable^ commercialStockValueData = SQLserver->SQL_calculateCommercialStockValue();
+
+            System::String^ commercialStockValueString;
+            if (commercialStockValueData != nullptr && commercialStockValueData->Rows->Count > 0) {
+                commercialStockValueString = commercialStockValueData->Rows[0]["stock_commercial_value"]->ToString();
+            } else {
+                commercialStockValueString = "No data";
+            }
+
+            this->label_commercial_stock_value->Text = "Commercial Stock Value: " + commercialStockValueString;
+
+            System::Data::DataTable^ purchaseStockValueData = SQLserver->SQL_calculatePurchaseStockValue();
+
+            System::String^ purchaseStockValueString;
+            if (purchaseStockValueData != nullptr && purchaseStockValueData->Rows->Count > 0) {
+                purchaseStockValueString = purchaseStockValueData->Rows[0]["stock_buying_value"]->ToString();
+            } else {
+                purchaseStockValueString = "No data";
+            }
+
+            this->label_purchase_stock_value->Text = "Purchase Stock Value: " + purchaseStockValueString;
+            
+            double vatVariation = comboBox_vat->SelectedIndex >= 0 ? parsePercentage(comboBox_vat->Items[comboBox_vat->SelectedIndex]->ToString()) : 0.0;
+            double marginVariation = comboBox_margin->SelectedIndex >= 0 ? parsePercentage(comboBox_margin->Items[comboBox_margin->SelectedIndex]->ToString()) : 0.0;
+            double discountVariation = comboBox_discount->SelectedIndex >= 0 ? parsePercentage(comboBox_discount->Items[comboBox_discount->SelectedIndex]->ToString()) : 0.0;
+            double markdownVariation = comboBox_markdown->SelectedIndex >= 0 ? parsePercentage(comboBox_markdown->Items[comboBox_markdown->SelectedIndex]->ToString()) : 0.0;
+
+            // Console::Write("VAT: " + vatVariation.ToString() + "\n");
+
+            System::Data::DataTable^ simulatedStockValueData = SQLserver->SQL_simulateStockValueVariation(vatVariation, marginVariation, discountVariation, markdownVariation);
+
+            if (simulatedStockValueData != nullptr && simulatedStockValueData->Rows->Count > 0) {
+                System::String^ simulatedStockValue = simulatedStockValueData->Rows[0]["simulated_stock_value"]->ToString();
+                this->label_simulate_stock_value->Text = "Simulated Stock Value: " + simulatedStockValue;
+            } else {
+                this->label_simulate_stock_value->Text = "Simulated Stock Value: No data";
+            }
+        }
+
+    private:
+        double parsePercentage(System::String^ percentageString) {
+            if (!String::IsNullOrEmpty(percentageString)) {
+                try {
+                    // Remove the '%' character and convert to double
+                    return Convert::ToDouble(percentageString->TrimEnd('%')) / 100.0;
+                } catch (System::FormatException^) {
+                    // Handle or log the format exception
+                    return 0.0; // Return a default value or handle it appropriately
+                }
+            }
+            return 0.0; // Return a default value for null or empty strings
+        }
+
+    private:
+        System::Void button_stats_reload_Click(System::Object^ sender, System::EventArgs^ e)
+        {
+            this->refresh_statistics();
+        }
+
+    private:
+        System::Void refresh_total_purchases_by_customers()
+        {
+            System::Data::DataTable^ totalPurchasesByCustomersData = SQLserver->SQL_calculateTotalPurchasesByCustomer();
+
+            
+            if (totalPurchasesByCustomersData != nullptr && totalPurchasesByCustomersData->Rows->Count > 0) {
+                this->dataGridView1->Refresh();
+                this->dataGridView1->DataSource = totalPurchasesByCustomersData;
+            } else {
+                this->dataGridView1->DataSource = nullptr;
+            }
+            
+            this->dataGridView1->Columns["id_person"]->Visible = false;
+            this->dataGridView1->Columns["first_name"]->HeaderText = "First name";
+            this->dataGridView1->Columns["last_name"]->HeaderText = "Last name";
+            this->dataGridView1->Columns["total_purchases"]->HeaderText = "Total purchases";
+        }
+
+    private:
+        System::Void refresh_product_below_threshold()
+        {
+            System::Data::DataTable^ productBelowThresholdData = SQLserver->SQL_identifyProductsBelowThreshold();
+
+            if (productBelowThresholdData != nullptr && productBelowThresholdData->Rows->Count > 0) {
+                this->dataGridView2->Refresh();
+                this->dataGridView2->DataSource = productBelowThresholdData;
+            } else {
+                this->dataGridView2->DataSource = nullptr;
+            }
+
+            this->dataGridView2->Columns["id_product"]->Visible = false;
+            this->dataGridView2->Columns["product_name"]->HeaderText = "Product name";
+            this->dataGridView2->Columns["amount_in_stock"]->HeaderText = "Amount in stock";
+            this->dataGridView2->Columns["reorder_threshold"]->HeaderText = "Reorder threshold";
+        }
+
+    private:
+        System::Void refresh_bestsellers()
+        {
+            System::Data::DataTable^ bestsellersData = SQLserver->SQL_identifyTop10BestSellingItems();
+
+            if (bestsellersData != nullptr && bestsellersData->Rows->Count > 0) {
+                this->dataGridView3->Refresh();
+                this->dataGridView3->DataSource = bestsellersData;
+            } else {
+                this->dataGridView3->DataSource = nullptr;
+            }
+
+            this->dataGridView3->Columns["id_product"]->Visible = false;
+            this->dataGridView3->Columns["product_name"]->HeaderText = "Product name";
+            this->dataGridView3->Columns["total_ordered_quantity"]->HeaderText = "Quantity Ordered";
+        }
+
+    private:
+        System::Void refresh_worst_products()
+        {
+            System::Data::DataTable^ worstProductsData = SQLserver->SQL_identifyTop10LeastSellingItems();
+
+            if (worstProductsData != nullptr && worstProductsData->Rows->Count > 0) {
+                this->dataGridView4->Refresh();
+                this->dataGridView4->DataSource = worstProductsData;
+            } else {
+                this->dataGridView4->DataSource = nullptr;
+            }
+
+            this->dataGridView4->Columns["id_product"]->Visible = false;
+            this->dataGridView4->Columns["product_name"]->HeaderText = "Product name";
+            this->dataGridView4->Columns["total_ordered_quantity"]->HeaderText = "Quantity Ordered";
+        }
 
 };
 }
