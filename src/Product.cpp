@@ -80,3 +80,10 @@ void Product::delete_product_from_DB()
 {
     this->SQLserv->SQL_deleteProduct(this->id);
 }
+
+System::Data::DataTable^ Product::getProductPrices()
+{
+    System::Data::DataTable^ myDataTable = this->SQLserv->SQL_getProductPrice(this->id);
+
+    return myDataTable;
+}

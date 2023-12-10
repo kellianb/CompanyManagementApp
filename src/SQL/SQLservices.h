@@ -106,11 +106,11 @@ public:
     // Statistics Queries
     System::Data::DataTable^ SQL_calculateAverageBasketSize();
 
-    System::Data::DataTable^ SQL_calculateMonthlyTurnover(System::DateTime month);
+    System::Data::DataTable^ SQL_calculateMonthlyTurnover(int month);
 
     System::Data::DataTable^ SQL_identifyProductsBelowThreshold();
 
-    System::Data::DataTable^ SQL_calculateTotalPurchasesByCustomer(int customerId);
+    System::Data::DataTable^ SQL_calculateTotalPurchasesByCustomer();
 
     System::Data::DataTable^ SQL_identifyTop10BestSellingItems();
 
@@ -120,7 +120,7 @@ public:
 
     System::Data::DataTable^ SQL_calculatePurchaseStockValue();
 
-    System::Data::DataTable^ SQL_simulateStockValueVariations(array<System::String^>^ modifications);
+    System::Data::DataTable^ SQL_simulateStockValueVariation(double, double, double, double);
 
     // Address Queries
     System::Data::DataTable^ SQL_addAddress(System::String^, System::String^, int postal_code, int street_number);
@@ -134,13 +134,13 @@ public:
     void SQL_deleteAddress(int id);
 
     // Product_price Queries
-    System::Data::DataTable^ SQL_addProductPrice(int, int, double, double, System::DateTime, int, int, int);
+    System::Data::DataTable^ SQL_addProductPrice(int, int, float, System::DateTime, int, int, int);
 
     System::Data::DataTable^ SQL_getProductPrice(int);
 
     System::Data::DataTable^ SQL_getProductPriceList();
 
-    System::Data::DataTable^ SQL_modifyProductPrice(int, int, int, double, double, System::DateTime, int, int, int);
+    System::Data::DataTable^ SQL_modifyProductPrice(int, int, float, System::DateTime, int, int, int);
 
     void SQL_deleteProductPrice(int);
 };
