@@ -276,6 +276,7 @@
     <ClCompile Include="src\UI\editOrderPrompt.cpp" />
     <ClCompile Include="src\UI\editAddressPrompt.cpp" />
     <ClCompile Include="src\UI\createCustomerPrompt.cpp" />
+    <ClCompile Include="src\UI\editProductPrices.cpp" />
     <ClCompile Include="src\UI\editProductPrompt.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -373,6 +374,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="src\UI\createCustomerPrompt.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="src\UI\editProductPrices.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="src\UI\editProductPrompt.h">
