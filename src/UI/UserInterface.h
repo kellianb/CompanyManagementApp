@@ -225,21 +225,6 @@ private: System::Windows::Forms::Label^ label_margin;
 private: System::Windows::Forms::Label^ label_vat;
 private: System::Windows::Forms::Button^ button_stats_reload;
 
-
-
-    private: System::Windows::Forms::Button^ button_create_product;
-    private: System::Windows::Forms::Button^ button_products_reload;
-    private: System::Windows::Forms::Label^ label_product_reorder;
-    private: System::Windows::Forms::GroupBox^ groupBox_product_prices;
-    private: System::Windows::Forms::DataGridView^ dataGridView_product_prices;
-    private: System::Windows::Forms::Button^ button_delete_product_prices;
-    private: System::Windows::Forms::Button^ button_add_product_prices;
-    private: System::Windows::Forms::Button^ button_modify_product_prices;
-
-
-
-
-
     private: System::Windows::Forms::Label^ label_employee_hiring_date;
 
     public:
@@ -1746,11 +1731,7 @@ private: System::Windows::Forms::Button^ button_stats_reload;
         // General UserInterface functions
     private:
         System::Void UserInterface_Load(System::Object^ sender, System::EventArgs^ e)
-        {
-            editProductsInOrder^ prompt = gcnew editProductsInOrder(3);
-
-            prompt->ShowDialog();
-            
+        {            
             OnTabSelectedIndexChanged(sender, e);
         }
 
