@@ -104,7 +104,7 @@ public:
         return price_date;
     }
 
-    void setPriceDate( System::DateTime& price_date)
+    void setPriceDate(System::DateTime price_date)
     {
         this->price_date = price_date;
     }
