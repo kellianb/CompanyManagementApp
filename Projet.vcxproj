@@ -273,6 +273,7 @@
       <CompileAsManaged>true</CompileAsManaged>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="src\UI\editProductsInOrder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src/UI/UserInterface.h">
@@ -300,9 +301,6 @@
     <ClInclude Include="src\UI\createCustomerPrompt.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="src\UI\editPaymentPrompt.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="src\UI\editProductPrices.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -310,9 +308,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="src\UI\editProductsInOrder.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="src\UI\managePaymentPrompt.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="src\UI\selectEmployeeManager.h">
@@ -323,9 +318,6 @@
     <EmbeddedResource Include="src\UI\editOrderPrompt.resx">
       <DependentUpon>src\UI\editOrderPrompt.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\UI\editPaymentPrompt.resx">
-      <DependentUpon>src\UI\editPaymentPrompt.h</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="src\UI\editProductPrices.resx">
       <DependentUpon>src\UI\editProductPrices.h</DependentUpon>
     </EmbeddedResource>
@@ -334,9 +326,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\UI\editProductsInOrder.resx">
       <DependentUpon>src\UI\editProductsInOrder.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\UI\managePaymentPrompt.resx">
-      <DependentUpon>src\UI\managePaymentPrompt.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\UI\UserInterface.resx">
       <DependentUpon>src\UI\UserInterface.h</DependentUpon>

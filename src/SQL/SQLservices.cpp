@@ -150,19 +150,7 @@ void SQLservices::SQL_removeProductFromOrder(int id_order, int id_product, int c
     this->SQLadapter->sendQuery(cmd);
 }
 
-int SQLservices::SQL_getOrderFromPayment(int paymentId) {
-    System::String^ cmdString = "SELECT id_order FROM Projet_POO_Livrable.Payments WHERE id_payment = @paymentId";
-    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
-    cmd->Parameters->AddWithValue("@paymentId", paymentId);
-
-    System::Data::DataTable^ resultTable = this->SQLadapter->sendQuery(cmd);
-    if (resultTable != nullptr && resultTable->Rows->Count > 0) {
-        return System::Convert::ToInt32(resultTable->Rows[0]["id_order"]);
-    }
-
-    return -1; // Return an invalid ID if not found or if there's no result
-}
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Inventory Queries

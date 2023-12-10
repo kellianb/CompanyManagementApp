@@ -35,7 +35,6 @@ public:
     void SQL_addProductToOrder(int, int, int, float, int, int, int);
 
     void SQL_removeProductFromOrder(int, int, int, int, int);
-    int SQL_getOrderFromPayment(int);
     
     // Inventory Queries
     System::Data::DataTable^ SQL_addProduct(System::String^, int, int, float);
