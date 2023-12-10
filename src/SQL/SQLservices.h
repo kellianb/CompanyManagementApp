@@ -118,11 +118,11 @@ public:
     // Statistics Queries
     System::Data::DataTable^ SQL_calculateAverageBasketSize();
 
-    System::Data::DataTable^ SQL_calculateMonthlyTurnover(System::DateTime month);
+    System::Data::DataTable^ SQL_calculateMonthlyTurnover(int month);
 
     System::Data::DataTable^ SQL_identifyProductsBelowThreshold();
 
-    System::Data::DataTable^ SQL_calculateTotalPurchasesByCustomer(int customerId);
+    System::Data::DataTable^ SQL_calculateTotalPurchasesByCustomer();
 
     System::Data::DataTable^ SQL_identifyTop10BestSellingItems();
 
@@ -132,7 +132,7 @@ public:
 
     System::Data::DataTable^ SQL_calculatePurchaseStockValue();
 
-    System::Data::DataTable^ SQL_simulateStockValueVariations(array<System::String^>^ modifications);
+    System::Data::DataTable^ SQL_simulateStockValueVariation(double, double, double, double);
 
     // Address Queries
     System::Data::DataTable^ SQL_addAddress(System::String^, System::String^, int postal_code, int street_number);

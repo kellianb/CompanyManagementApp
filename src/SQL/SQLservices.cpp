@@ -593,7 +593,7 @@ System::Data::DataTable^ SQLservices::SQL_calculateAverageBasketSize()
     return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_calculateMonthlyTurnover(System::DateTime month)
+System::Data::DataTable^ SQLservices::SQL_calculateMonthlyTurnover(int month)
 {
     System::String^ cmdString;
     cmdString = "SELECT MONTH(payment_date) AS Month, CAST(SUM(amount) AS decimal(10,2)) Month_sales FROM Projet_POO_Livrable.Payments WHERE MONTH(payment_date) = @month GROUP BY MONTH(payment_date)";
@@ -615,17 +615,20 @@ System::Data::DataTable^ SQLservices::SQL_identifyProductsBelowThreshold()
     return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_calculateTotalPurchasesByCustomer(int customerId)
+System::Data::DataTable^ SQLservices::SQL_calculateTotalPurchasesByCustomer()
 {
     System::String^ cmdString;
-    cmdString = "SELECT P.id_person ,P.last_name, P.first_name, SUM(O.total_amount) AS Total_amount FROM Projet_POO_Livrable.Customers JOIN Projet_POO_Livrable.People P on P.id_person = Customers.id_person JOIN Projet_POO_Livrable.Orders O on Customers.id_person = O.id_customer WHERE P.id_person = @customerId GROUP BY P.id_person, P.last_name, P.first_name";
+    cmdString = "SELECT P.id_person, P.last_name, P.first_name, COUNT(O.id_order) AS Total_purchases "
+                "FROM Projet_POO_Livrable.Customers "
+                "JOIN Projet_POO_Livrable.People P on P.id_person = Customers.id_person "
+                "JOIN Projet_POO_Livrable.Orders O on Customers.id_person = O.id_customer "
+                "GROUP BY P.id_person, P.last_name, P.first_name";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
-    cmd->Parameters->AddWithValue("@customerId", customerId);
-
     return this->SQLadapter->sendQuery(cmd);
 }
+
 
 System::Data::DataTable^ SQLservices::SQL_identifyTop10BestSellingItems()
 {
@@ -667,18 +670,17 @@ System::Data::DataTable^ SQLservices::SQL_calculatePurchaseStockValue()
     return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_simulateStockValueVariations(array<System::String^>^ modifications)
-{
-    return nullptr;
-}
+System::Data::DataTable^ SQLservices::SQL_simulateStockValueVariation(double vatVariation, double marginVariation, double discountVariation, double markdownVariation) {
+    System::String^ cmdString = "SELECT CAST(ROUND(SUM((amount_in_stock * (price_excl_tax + (price_excl_tax * @vatVariation))) * (1 + @marginVariation) * (1 - @discountVariation) * (1 - @markdownVariation)), 2) AS decimal(10,2)) AS simulated_stock_value FROM Projet_POO_Livrable.Products JOIN Projet_POO_Livrable.Product_prices ON Products.id_product = Product_prices.id_product";
 
-/*
-System::Data::DataTable^ SQLservices::SQL_simulateStockValueVariations(array<System::String^>^ modifications)
-{
-    return nullptr;
-}
-*/
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+    cmd->Parameters->AddWithValue("@vatVariation", vatVariation);
+    cmd->Parameters->AddWithValue("@marginVariation", marginVariation);
+    cmd->Parameters->AddWithValue("@discountVariation", discountVariation);
+    cmd->Parameters->AddWithValue("@markdownVariation", markdownVariation);
 
+    return this->SQLadapter->sendQuery(cmd);
+}
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Address Queries
