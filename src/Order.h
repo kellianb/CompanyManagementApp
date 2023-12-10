@@ -51,4 +51,6 @@ public:
 
     void modify_order_in_DB();
     void delete_order_from_DB();
+
+    System::Data::DataTable^ getProductsInOrderList();
 };

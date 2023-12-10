@@ -184,34 +184,38 @@ namespace Projet {
 			// 
 			// dateTimePicker_order_date
 			// 
-			this->dateTimePicker_order_date->Location = System::Drawing::Point(15, 41);
+			this->dateTimePicker_order_date->CalendarFont = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->dateTimePicker_order_date->Location = System::Drawing::Point(18, 43);
 			this->dateTimePicker_order_date->Name = L"dateTimePicker_order_date";
-			this->dateTimePicker_order_date->Size = System::Drawing::Size(200, 22);
+			this->dateTimePicker_order_date->Size = System::Drawing::Size(200, 23);
 			this->dateTimePicker_order_date->TabIndex = 10;
 			// 
 			// label_order_date
 			// 
 			this->label_order_date->AutoSize = true;
-			this->label_order_date->Location = System::Drawing::Point(12, 20);
+			this->label_order_date->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_order_date->Location = System::Drawing::Point(14, 20);
 			this->label_order_date->Name = L"label_order_date";
-			this->label_order_date->Size = System::Drawing::Size(71, 16);
+			this->label_order_date->Size = System::Drawing::Size(97, 20);
 			this->label_order_date->TabIndex = 11;
 			this->label_order_date->Text = L"Order date";
 			// 
 			// label_delivery_date
 			// 
 			this->label_delivery_date->AutoSize = true;
-			this->label_delivery_date->Location = System::Drawing::Point(12, 82);
+			this->label_delivery_date->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_delivery_date->Location = System::Drawing::Point(14, 82);
 			this->label_delivery_date->Name = L"label_delivery_date";
-			this->label_delivery_date->Size = System::Drawing::Size(87, 16);
+			this->label_delivery_date->Size = System::Drawing::Size(115, 20);
 			this->label_delivery_date->TabIndex = 13;
 			this->label_delivery_date->Text = L"Delivery date";
 			// 
 			// dateTimePicker_delivery_date
 			// 
-			this->dateTimePicker_delivery_date->Location = System::Drawing::Point(15, 101);
+			this->dateTimePicker_delivery_date->CalendarFont = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->dateTimePicker_delivery_date->Location = System::Drawing::Point(18, 105);
 			this->dateTimePicker_delivery_date->Name = L"dateTimePicker_delivery_date";
-			this->dateTimePicker_delivery_date->Size = System::Drawing::Size(200, 22);
+			this->dateTimePicker_delivery_date->Size = System::Drawing::Size(200, 23);
 			this->dateTimePicker_delivery_date->TabIndex = 12;
 			// 
 			// groupBox_billing_address
@@ -219,6 +223,7 @@ namespace Projet {
 			this->groupBox_billing_address->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->groupBox_billing_address->Controls->Add(this->dataGridView_billing_address);
+			this->groupBox_billing_address->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
 			this->groupBox_billing_address->Location = System::Drawing::Point(12, 309);
 			this->groupBox_billing_address->Name = L"groupBox_billing_address";
 			this->groupBox_billing_address->Size = System::Drawing::Size(656, 157);
@@ -263,6 +268,7 @@ namespace Projet {
 			this->groupBox_delivery_address->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->groupBox_delivery_address->Controls->Add(this->dataGridView_delivery_address);
+			this->groupBox_delivery_address->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
 			this->groupBox_delivery_address->Location = System::Drawing::Point(12, 146);
 			this->groupBox_delivery_address->Name = L"groupBox_delivery_address";
 			this->groupBox_delivery_address->Size = System::Drawing::Size(656, 157);
@@ -273,20 +279,22 @@ namespace Projet {
 			// label_discount_percentage
 			// 
 			this->label_discount_percentage->AutoSize = true;
-			this->label_discount_percentage->Location = System::Drawing::Point(288, 20);
+			this->label_discount_percentage->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_discount_percentage->Location = System::Drawing::Point(287, 20);
 			this->label_discount_percentage->Name = L"label_discount_percentage";
-			this->label_discount_percentage->Size = System::Drawing::Size(131, 16);
+			this->label_discount_percentage->Size = System::Drawing::Size(175, 20);
 			this->label_discount_percentage->TabIndex = 18;
 			this->label_discount_percentage->Text = L"Discount percentage";
 			// 
 			// textBox_discount_percentage
 			// 
+			this->textBox_discount_percentage->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
 			this->textBox_discount_percentage->Location = System::Drawing::Point(291, 43);
 			this->textBox_discount_percentage->Name = L"textBox_discount_percentage";
-			this->textBox_discount_percentage->Size = System::Drawing::Size(100, 22);
+			this->textBox_discount_percentage->Size = System::Drawing::Size(100, 27);
 			this->textBox_discount_percentage->TabIndex = 19;
 			// 
-			// createOrderPrompt
+			// editOrderPrompt
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -301,9 +309,10 @@ namespace Projet {
 			this->Controls->Add(this->dateTimePicker_order_date);
 			this->Controls->Add(this->button_cancel);
 			this->Controls->Add(this->button_create);
+			this->Font = (gcnew System::Drawing::Font(L"Inter", 7.8F));
 			this->MaximumSize = System::Drawing::Size(698, 578);
 			this->MinimumSize = System::Drawing::Size(698, 578);
-			this->Name = L"createOrderPrompt";
+			this->Name = L"editOrderPrompt";
 			this->Text = L"createOrderPrompt";
 			this->Load += gcnew System::EventHandler(this, &editOrderPrompt::createOrderPrompt_Load);
 			this->groupBox_billing_address->ResumeLayout(false);

@@ -29,7 +29,8 @@ public:
     void SQL_removeAllProductsFromOrder(int);
     
     void SQL_deleteOrder(int);
-    
+
+    System::Data::DataTable^ SQL_getProductsInOrderList(int);
     
     // Inventory Queries
     System::Data::DataTable^ SQL_addProduct(System::String^, int, int, float);
@@ -39,6 +40,8 @@ public:
     System::Data::DataTable^ SQL_getProductList();
 
     System::Data::DataTable^ SQL_modifyProduct(int id, System::String^, int amount, int reorder, float);
+
+    System::Data::DataTable^ SQL_getAvailableColors(int, int);
 
     void SQL_deleteProduct(int id);
 

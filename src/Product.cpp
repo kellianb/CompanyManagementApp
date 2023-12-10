@@ -87,3 +87,8 @@ System::Data::DataTable^ Product::getProductPrices()
 
     return myDataTable;
 }
+
+System::Data::DataTable^ Product::getAvailableColors(int amount)
+{
+    return SQLserv->SQL_getAvailableColors(this->id, amount);
+}
