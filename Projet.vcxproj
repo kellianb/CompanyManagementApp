@@ -125,6 +125,7 @@
     <ClCompile Include="src\Customer.cpp" />
     <ClCompile Include="src\Employee.cpp" />
     <ClCompile Include="src\Order.cpp" />
+    <ClCompile Include="src\Payments.cpp" />
     <ClCompile Include="src\Person.cpp" />
     <ClCompile Include="src\Product.cpp" />
     <ClCompile Include="src\Product_price.cpp" />
@@ -281,6 +282,7 @@
     <ClInclude Include="src\Customer.h" />
     <ClInclude Include="src\Employee.h" />
     <ClInclude Include="src\Order.h" />
+    <ClInclude Include="src\Payments.h" />
     <ClInclude Include="src\Person.h" />
     <ClInclude Include="src\Product_price.h" />
     <ClInclude Include="src\Product.h" />
