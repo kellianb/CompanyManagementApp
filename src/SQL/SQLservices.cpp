@@ -682,7 +682,7 @@ System::Data::DataTable^ SQLservices::SQL_addProductPrice(int id_product, int mi
 
 System::Data::DataTable^ SQLservices::SQL_getProductPrice(int id)
 {
-    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Product_prices WHERE id_product_price = @id";
+    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Product_prices WHERE id_product = @id";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
