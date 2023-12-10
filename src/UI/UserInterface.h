@@ -1406,47 +1406,6 @@ private: System::Windows::Forms::Button^ button_stats_reload;
             this->groupBox_total_purchases_by_customers->TabStop = false;
             this->groupBox_total_purchases_by_customers->Text = L"Total purchases by customers";
             // 
-            // button_search_customer
-            // 
-            this->button_search_customer->Location = System::Drawing::Point(525, 128);
-            this->button_search_customer->Name = L"button_search_customer";
-            this->button_search_customer->Size = System::Drawing::Size(88, 30);
-            this->button_search_customer->TabIndex = 9;
-            this->button_search_customer->Text = L"Search";
-            this->button_search_customer->UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this->label1->AutoSize = true;
-            this->label1->Location = System::Drawing::Point(260, 121);
-            this->label1->Name = L"label1";
-            this->label1->Size = System::Drawing::Size(91, 20);
-            this->label1->TabIndex = 8;
-            this->label1->Text = L"Last Name";
-            // 
-            // label2
-            // 
-            this->label2->AutoSize = true;
-            this->label2->Location = System::Drawing::Point(6, 121);
-            this->label2->Name = L"label2";
-            this->label2->Size = System::Drawing::Size(92, 20);
-            this->label2->TabIndex = 7;
-            this->label2->Text = L"First Name";
-            // 
-            // textBox_fname_statistics
-            // 
-            this->textBox_fname_statistics->Location = System::Drawing::Point(6, 136);
-            this->textBox_fname_statistics->Name = L"textBox_fname_statistics";
-            this->textBox_fname_statistics->Size = System::Drawing::Size(240, 26);
-            this->textBox_fname_statistics->TabIndex = 5;
-            // 
-            // textBox_lname_statistics
-            // 
-            this->textBox_lname_statistics->Location = System::Drawing::Point(263, 136);
-            this->textBox_lname_statistics->Name = L"textBox_lname_statistics";
-            this->textBox_lname_statistics->Size = System::Drawing::Size(240, 26);
-            this->textBox_lname_statistics->TabIndex = 6;
-            // 
             // dataGridView1
             // 
             this->dataGridView1->AllowUserToAddRows = false;
