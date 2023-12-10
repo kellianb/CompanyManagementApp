@@ -56,7 +56,7 @@ namespace Projet {
 
 		property float vat_percentage {
 			float get() {
-				return Convert::ToDouble(textBox_product_vat->Text);
+				return Convert::ToSingle(textBox_product_vat->Text);
 			}
 		}
 	
