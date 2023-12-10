@@ -127,6 +127,7 @@
     <ClCompile Include="src\Order.cpp" />
     <ClCompile Include="src\Person.cpp" />
     <ClCompile Include="src\Product.cpp" />
+    <ClCompile Include="src\Product_price.cpp" />
     <ClCompile Include="src\SQL\SQLdatabaseAdapter.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -358,6 +359,7 @@
     <ClInclude Include="src\Employee.h" />
     <ClInclude Include="src\Order.h" />
     <ClInclude Include="src\Person.h" />
+    <ClInclude Include="src\Product_price.h" />
     <ClInclude Include="src\Product.h" />
     <ClInclude Include="src\SQL\SQLdatabaseAdapter.h" />
     <ClInclude Include="src\SQL\SQLservices.h" />
