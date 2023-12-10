@@ -7,6 +7,7 @@
 #include "selectEmployeeManager.h"
 #include "createEmployeePrompt.h"
 #include "editOrderPrompt.h"
+#include "editProductPrompt.h"
 
 #include "../Customer.h"
 #include "../Employee.h"
@@ -194,6 +195,9 @@ namespace Projet
 
 
     private: System::Windows::Forms::TextBox^ textBox_product_vat;
+private: System::Windows::Forms::Button^ button_create_product;
+private: System::Windows::Forms::Button^ button_products_reload;
+private: System::Windows::Forms::Label^ label_product_reorder;
 
 
 
@@ -272,6 +276,8 @@ namespace Projet
         {
             this->tabController = (gcnew System::Windows::Forms::TabControl());
             this->tab_inventory = (gcnew System::Windows::Forms::TabPage());
+            this->button_create_product = (gcnew System::Windows::Forms::Button());
+            this->button_products_reload = (gcnew System::Windows::Forms::Button());
             this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
             this->label_product_vat = (gcnew System::Windows::Forms::Label());
             this->textBox_product_vat = (gcnew System::Windows::Forms::TextBox());
@@ -362,6 +368,7 @@ namespace Projet
             this->label_commercial_stock_value = (gcnew System::Windows::Forms::Label());
             this->label_monthly_turnover = (gcnew System::Windows::Forms::Label());
             this->label_avg_basket = (gcnew System::Windows::Forms::Label());
+            this->label_product_reorder = (gcnew System::Windows::Forms::Label());
             this->tabController->SuspendLayout();
             this->tab_inventory->SuspendLayout();
             this->groupBox1->SuspendLayout();
@@ -412,6 +419,8 @@ namespace Projet
             // 
             // tab_inventory
             // 
+            this->tab_inventory->Controls->Add(this->button_create_product);
+            this->tab_inventory->Controls->Add(this->button_products_reload);
             this->tab_inventory->Controls->Add(this->groupBox1);
             this->tab_inventory->Controls->Add(this->dataGridView_inventory);
             this->tab_inventory->Location = System::Drawing::Point(4, 29);
@@ -422,10 +431,31 @@ namespace Projet
             this->tab_inventory->Text = L"Inventory";
             this->tab_inventory->UseVisualStyleBackColor = true;
             // 
+            // button_create_product
+            // 
+            this->button_create_product->Location = System::Drawing::Point(907, 152);
+            this->button_create_product->Name = L"button_create_product";
+            this->button_create_product->Size = System::Drawing::Size(195, 37);
+            this->button_create_product->TabIndex = 16;
+            this->button_create_product->Text = L"Create a product";
+            this->button_create_product->UseVisualStyleBackColor = true;
+            this->button_create_product->Click += gcnew System::EventHandler(this, &UserInterface::button_create_product_Click);
+            // 
+            // button_products_reload
+            // 
+            this->button_products_reload->Location = System::Drawing::Point(1122, 152);
+            this->button_products_reload->Name = L"button_products_reload";
+            this->button_products_reload->Size = System::Drawing::Size(100, 37);
+            this->button_products_reload->TabIndex = 15;
+            this->button_products_reload->Text = L"Reload";
+            this->button_products_reload->UseVisualStyleBackColor = true;
+            this->button_products_reload->Click += gcnew System::EventHandler(this, &UserInterface::button_products_reload_Click);
+            // 
             // groupBox1
             // 
             this->groupBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
                 | System::Windows::Forms::AnchorStyles::Right));
+            this->groupBox1->Controls->Add(this->label_product_reorder);
             this->groupBox1->Controls->Add(this->label_product_vat);
             this->groupBox1->Controls->Add(this->textBox_product_vat);
             this->groupBox1->Controls->Add(this->label_reorder_threshold);
@@ -1383,6 +1413,17 @@ namespace Projet
             this->label_avg_basket->TabIndex = 2;
             this->label_avg_basket->Text = L"This text is for the average basket";
             // 
+            // label_product_reorder
+            // 
+            this->label_product_reorder->AutoSize = true;
+            this->label_product_reorder->Font = (gcnew System::Drawing::Font(L"Inter ExtraBold", 14, System::Drawing::FontStyle::Bold));
+            this->label_product_reorder->ForeColor = System::Drawing::Color::Red;
+            this->label_product_reorder->Location = System::Drawing::Point(23, 190);
+            this->label_product_reorder->Name = L"label_product_reorder";
+            this->label_product_reorder->Size = System::Drawing::Size(128, 29);
+            this->label_product_reorder->TabIndex = 16;
+            this->label_product_reorder->Text = L"REORDER";
+            // 
             // UserInterface
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(10, 20);
@@ -1443,7 +1484,7 @@ namespace Projet
     private:
         System::Void UserInterface_Load(System::Object^ sender, System::EventArgs^ e)
         {
-            refresh_products_datagrid();
+            OnTabSelectedIndexChanged(sender, e);
         }
 
         // Executes code when a specific tab is opened
@@ -1488,6 +1529,15 @@ namespace Projet
         void refresh_product_information()
         {
             this->groupBox1->Text = "Product " + selected_product->getID() + " Information";
+
+            if (selected_product->getAmountInStock() > selected_product->getReorderThreshold())
+            {
+                this->label_product_reorder->Visible = false;
+            }
+            else
+            {
+                this->label_product_reorder->Visible = true;
+            }
             
             this->textBox_product_name->Text = selected_product->getProductName();
             this->textBox_product_stock->Text = selected_product->getAmountInStock().ToString();
@@ -1511,6 +1561,21 @@ namespace Projet
             selected_product = gcnew Product(System::Convert::ToInt32(selectedIDstring));
 
             refresh_product_information();
+        }
+
+        private: System::Void button_create_product_Click(System::Object^ sender, System::EventArgs^ e) {
+            editProductPrompt^ prompt = gcnew editProductPrompt("Create a product");
+
+            if(prompt->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+            {
+                Product^ new_product = gcnew Product(prompt->product_name, prompt->amount_in_stock, prompt->reorder_threshold, prompt->vat_percentage);
+                
+                refresh_products_datagrid();
+            }
+            
+        }
+        private: System::Void button_products_reload_Click(System::Object^ sender, System::EventArgs^ e) {
+            refresh_products_datagrid();
         }
 
         
