@@ -144,5 +144,16 @@ public:
     System::Data::DataTable^ SQL_modifyAddress(int id, System::String^, System::String^, int postal_code, int street_number);
 
     void SQL_deleteAddress(int id);
+
+    // Payment Queries
+    System::Data::DataTable^ SQL_addPayment(System::DateTime, System::String^, double, int);
+
+    System::Data::DataTable^ SQL_getPayment(int id);
+
+    System::Data::DataTable^ SQL_getPaymentList();
+
+    System::Data::DataTable^ SQL_modifyPayment(int id, System::DateTime, System::String^, double, int);
+
+    void SQL_deletePayment(int id);
     
 };

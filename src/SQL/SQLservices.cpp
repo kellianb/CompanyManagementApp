@@ -745,3 +745,66 @@ void SQLservices::SQL_deleteAddress(int id)
 
     this->SQLadapter->sendQuery(cmd);
 }
+// ---------------------------------------------------------------------------------------------------------------------
+
+// Payment Queries
+System::Data::DataTable^ SQLservices::SQL_addPayment(System::DateTime payment_date, System::String^ payment_method, double amount, int id_order)
+{
+    System::String^ cmdString = "INSERT INTO Projet_POO_Livrable.Payments (payment_date, payment_method, amount, id_order) OUTPUT inserted.id_payment VALUES(@paymentDate, @paymentMethod, @amount, @idOrder)";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@paymentDate", payment_date);
+    cmd->Parameters->AddWithValue("@paymentMethod", payment_method);
+    cmd->Parameters->AddWithValue("@amount", amount);
+    cmd->Parameters->AddWithValue("@idOrder", id_order);
+
+    return this->SQLadapter->sendQuery(cmd);
+}
+
+System::Data::DataTable^ SQLservices::SQL_getPayment(int id)
+{
+    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Payments WHERE id_payment = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@id", id);
+
+    return this->SQLadapter->sendQuery(cmd);
+}
+
+System::Data::DataTable^ SQLservices::SQL_getPaymentList()
+{
+    System::String^ cmdString = "SELECT * FROM Projet_POO_Livrable.Payments";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    return this->SQLadapter->sendQuery(cmd);
+}
+
+System::Data::DataTable^ SQLservices::SQL_modifyPayment(int id, System::DateTime new_payment_date, System::String^ new_payment_method, double new_amount, int new_id_order)
+{
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Payments SET payment_date = @paymentDate, payment_method = @paymentMethod, amount = @amount, id_order = @idOrder WHERE id_payment = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@paymentDate", new_payment_date);
+    cmd->Parameters->AddWithValue("@paymentMethod", new_payment_method);
+    cmd->Parameters->AddWithValue("@amount", new_amount);
+    cmd->Parameters->AddWithValue("@idOrder", new_id_order);
+    cmd->Parameters->AddWithValue("@id", id);
+
+    return this->SQLadapter->sendQuery(cmd);
+}
+
+void SQLservices::SQL_deletePayment(int id)
+{
+    System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.Payments WHERE id_payment = @id";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+    
+    cmd->Parameters->AddWithValue("@id", id);
+
+    this->SQLadapter->sendQuery(cmd);
+}
+// ---------------------------------------------------------------------------------------------------------------------
