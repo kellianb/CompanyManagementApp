@@ -36,7 +36,8 @@ public:
 
     void SQL_removeProductFromOrder(int, int, int, int, int);
 
-    int SQL_getOrderFromPayment(int);
+    System::Data::DataTable^ SQL_getAmountAlreadyPaidForOrder(int);
+    
     
     // Inventory Queries
     System::Data::DataTable^ SQL_addProduct(System::String^, int, int, float);
@@ -161,7 +162,7 @@ public:
 
     System::Data::DataTable^ SQL_getPaymentList();
 
-    System::Data::DataTable^ SQL_modifyPayment(int id, System::DateTime, System::String^, double, int);
+    System::Data::DataTable^ SQL_modifyPayment(int id, System::DateTime new_payment_date, System::String^ new_payment_method, float new_amount);
 
     void SQL_deletePayment(int id);
     

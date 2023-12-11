@@ -18,11 +18,11 @@ void Order::fetch_order_from_DB()
     this->reference = safe_cast<System::String^>(buffer->Rows[0]["order_reference"]);
     this->delivery_date = safe_cast<System::DateTime>(buffer->Rows[0]["delivery_date"]);
     this->order_date = safe_cast<System::DateTime>(buffer->Rows[0]["order_date"]);
-    this->discount_percentage = System::Convert::ToDouble(buffer->Rows[0]["order_discount_percentage"]);
+    this->discount_percentage = System::Convert::ToSingle(buffer->Rows[0]["order_discount_percentage"]);
 
     if (buffer->Rows[0]["total_amount"] != nullptr && buffer->Rows[0]["total_amount"] != System::DBNull::Value)
     {
-        this->total_amount = System::Convert::ToDouble(buffer->Rows[0]["total_amount"]);
+        this->total_amount = System::Convert::ToSingle(buffer->Rows[0]["total_amount"]);
     }
     
     
@@ -130,4 +130,13 @@ void Order::addProductToOrder(int id_product, int amount, float discount, int co
 void Order::removeProductFromOrder(int id_product, int color_rgb_r, int color_rgb_g, int color_rgb_b)
 {
     this->SQLserv->SQL_removeProductFromOrder(this->id, id_product, color_rgb_r, color_rgb_g, color_rgb_b);
+}
+
+float Order::getAmountLeftToPay()
+{
+    System::Data::DataTable^ buffer = this->SQLserv->SQL_getAmountAlreadyPaidForOrder(this->id);
+
+    float already_paid_amount = System::Convert::ToSingle(buffer->Rows[0]["total_payment_sum"]->ToString());
+
+    return this->total_amount - already_paid_amount;
 }

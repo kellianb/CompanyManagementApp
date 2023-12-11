@@ -4,7 +4,7 @@ Payment::Payment(int id) : id_payment(id) {
     fetchPaymentFromDB();
 }
 
-Payment::Payment(System::DateTime date, System::String^ method, double amt, int orderId) : payment_date(date), payment_method(method), amount(amt), id_order(orderId) {
+Payment::Payment(System::DateTime date, System::String^ payment_method, float amount, int id_order) : payment_date(date), payment_method(payment_method), amount(amount), id_order(id_order) {
     createPaymentInDB();
 }
 
@@ -29,7 +29,7 @@ void Payment::fetchPaymentFromDB()
 
 void Payment::modifyPaymentInDB()
 {
-    this->SQLserv->SQL_modifyPayment(this->id_payment, this->payment_date, this->payment_method, this->amount, this->id_order);
+    this->SQLserv->SQL_modifyPayment(this->id_payment, this->payment_date, this->payment_method, this->amount);
 }
 
 void Payment::deletePaymentFromDB()
@@ -62,9 +62,9 @@ double Payment::getAmount()
     return this->amount;
 }
 
-void Payment::setAmount(double amt)
+void Payment::setAmount(float amount)
 {
-    this->amount = amt;
+    this->amount = amount;
 }
 
 int Payment::getOrderID()
@@ -72,7 +72,7 @@ int Payment::getOrderID()
     return this->id_order;
 }
 
-void Payment::setOrderID(int orderId)
+void Payment::setOrderID(int id_order)
 {
-    this->id_order = orderId;
+    this->id_order = id_order;
 }
