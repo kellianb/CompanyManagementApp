@@ -62,8 +62,25 @@ namespace Projet {
 				return Convert::ToInt32(textBox_address_street_number->Text);
 			}
 		}
-		
 
+		void textBox_employee_Name_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+			// Check if the sender is the street text box to allow spaces
+			if (sender == this->textBox_address_street && (Char::IsLetter(e->KeyChar) || Char::IsControl(e->KeyChar) || e->KeyChar == ' ')) {
+				return; // Do nothing, allow the key press
+			}
+			// For other text boxes, allow only letters and control keys
+			else if (!Char::IsLetter(e->KeyChar) && !Char::IsControl(e->KeyChar)) {
+				e->Handled = true; // Suppress the key press
+			}
+		}
+
+		void textBox_Numeric_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+			// Allow only digits and control keys
+			if (!Char::IsDigit(e->KeyChar) && !Char::IsControl(e->KeyChar) && !e->KeyChar != 0) {
+				e->Handled = true; // Suppress the key press
+			}
+		}
+	
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -145,6 +162,7 @@ namespace Projet {
 			this->textBox_employee_first_name->Name = L"textBox_employee_first_name";
 			this->textBox_employee_first_name->Size = System::Drawing::Size(265, 27);
 			this->textBox_employee_first_name->TabIndex = 0;
+			this->textBox_employee_first_name->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &createEmployeePrompt::textBox_employee_Name_KeyPress);
 			// 
 			// textBox_employee_last_name
 			// 
@@ -154,6 +172,7 @@ namespace Projet {
 			this->textBox_employee_last_name->Name = L"textBox_employee_last_name";
 			this->textBox_employee_last_name->Size = System::Drawing::Size(265, 27);
 			this->textBox_employee_last_name->TabIndex = 1;
+			this->textBox_employee_last_name->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &createEmployeePrompt::textBox_employee_Name_KeyPress);
 			// 
 			// label_first_name
 			// 
@@ -269,6 +288,7 @@ namespace Projet {
 			this->textBox_address_postal_code->Name = L"textBox_address_postal_code";
 			this->textBox_address_postal_code->Size = System::Drawing::Size(265, 27);
 			this->textBox_address_postal_code->TabIndex = 15;
+			this->textBox_address_postal_code->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &createEmployeePrompt::textBox_Numeric_KeyPress);
 			// 
 			// textBox_address_street_number
 			// 
@@ -278,6 +298,7 @@ namespace Projet {
 			this->textBox_address_street_number->Name = L"textBox_address_street_number";
 			this->textBox_address_street_number->Size = System::Drawing::Size(265, 27);
 			this->textBox_address_street_number->TabIndex = 14;
+			this->textBox_address_street_number->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &createEmployeePrompt::textBox_Numeric_KeyPress);
 			// 
 			// textBox_address_street
 			// 
@@ -287,6 +308,7 @@ namespace Projet {
 			this->textBox_address_street->Name = L"textBox_address_street";
 			this->textBox_address_street->Size = System::Drawing::Size(265, 27);
 			this->textBox_address_street->TabIndex = 13;
+			this->textBox_address_street->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &createEmployeePrompt::textBox_employee_Name_KeyPress);
 			// 
 			// textBox_address_city
 			// 
@@ -296,6 +318,7 @@ namespace Projet {
 			this->textBox_address_city->Name = L"textBox_address_city";
 			this->textBox_address_city->Size = System::Drawing::Size(265, 27);
 			this->textBox_address_city->TabIndex = 12;
+			this->textBox_address_city->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &createEmployeePrompt::textBox_employee_Name_KeyPress);
 			// 
 			// groupBox_address
 			// 

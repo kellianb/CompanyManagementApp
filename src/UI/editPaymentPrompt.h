@@ -51,7 +51,6 @@ namespace Projet {
 			System::DateTime paymentDate = this->dateTimePicker_payment_date->Value;
 			System::String^ paymentMethod = this->comboBox_payment_method->Text;
 			double amount = Convert::ToDouble(this->textBox_amount->Text);
-			orderId = sqlService->SQL_getOrderFromPayment(this->paymentId);
 
 			if (this->paymentId == -1) {
 				// Add new payment

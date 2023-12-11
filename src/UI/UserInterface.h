@@ -2338,12 +2338,35 @@ private: System::Windows::Forms::Button^ button_stats_reload;
         createEmployeePrompt^ prompt = gcnew createEmployeePrompt;
         if(prompt->ShowDialog() == System::Windows::Forms::DialogResult::OK)
         {
-            Address^ new_employee_address = gcnew Address(prompt->new_employee_address_city, prompt->new_employee_address_postal_code, prompt->new_employee_address_street, prompt->new_employee_address_street_number);
+            String^ postalCode = prompt->new_employee_address_postal_code.ToString();
+            String^ formattedCity = formatInput(prompt->new_employee_address_city);
+            String^ formattedStreet = formatInput(prompt->new_employee_address_street);
+            String^ formattedFirstName = formatInput(prompt->new_employee_first_name);
+            String^ formattedLastName = formatInput(prompt->new_employee_last_name);
+            int streetNumber = prompt->new_employee_address_street_number;
+            if (postalCode->Length != 5) {
+                MessageBox::Show("Postal code must be 5 digits long.");
+                return; // Do not proceed further
+            }
+
+            if (streetNumber == 0)
+            {
+                MessageBox::Show("Street number must be a number.");
+                return; // Do not proceed further
+            }
             
-            this->selected_employee = gcnew Employee(prompt->new_employee_first_name, prompt->new_employee_last_name, prompt->new_employee_hire_date, new_employee_address->getID());
+            Address^ new_employee_address = gcnew Address(formattedCity, prompt->new_employee_address_postal_code, formattedStreet, prompt->new_employee_address_street_number);
+            
+            this->selected_employee = gcnew Employee(formattedFirstName, formattedLastName, prompt->new_employee_hire_date, new_employee_address->getID());
 
             refresh_employee_datagrid();
         }
+    }
+        String^ formatInput(String^ input) {
+        if (String::IsNullOrWhiteSpace(input)) return input;
+
+        // Capitalize the first letter and make the rest lowercase
+        return Char::ToUpper(input[0]) + input->Substring(1)->ToLower();
     }
 
     private:
