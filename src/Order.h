@@ -57,4 +57,6 @@ public:
     void addProductToOrder(int, int, float, int, int, int);
 
     void removeProductFromOrder(int, int, int, int);
+
+    float getAmountLeftToPay();
 };

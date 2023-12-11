@@ -1,7 +1,5 @@
 ﻿#pragma once
 
-#include "../SQL/SQLservices.h"
-
 namespace Projet {
 
 	using namespace System;
@@ -16,36 +14,36 @@ namespace Projet {
 	/// </summary>
 	public ref class editPaymentPrompt : public System::Windows::Forms::Form
 	{
+	private:
+		String^ windowText;
+
+
+	// Create constructor
 	public:
-		editPaymentPrompt(void)
+		editPaymentPrompt(String^ windowText) : windowText(windowText)
 		{
 			InitializeComponent();
 		}
+
+	// Modify constructor
 	public:
-		editPaymentPrompt(int paymentId) : paymentId(paymentId)
+		editPaymentPrompt(String^ windowText, float amount, DateTime payment_date, String^ paymentMethod) : windowText(windowText)
 		{
 			InitializeComponent();
-			LoadPaymentData(paymentId);
+
+			this->numericUpDown_amount->Value = Convert::ToDecimal(amount);
+			this->dateTimePicker_payment_date->Value = payment_date;
+			this->textBox_payment_method->Text = paymentMethod;
+
+			this->button_create->Text = "Modify";
+
 		}
 
-		int paymentId = -1;
-		int orderId;
-
-
-		void LoadPaymentData(int paymentId) {
-			SQLservices^ sqlService = gcnew SQLservices();
-			DataTable^ paymentData = sqlService->SQL_getPayment(paymentId);
-
-			if (paymentData != nullptr && paymentData->Rows->Count > 0)
-			{
-				DataRow^ row = paymentData->Rows[0];
-				// Assuming these columns exist in your payment table
-				this->textBox_amount->Text = row["amount"]->ToString();
-				this->dateTimePicker_payment_date->Value = Convert::ToDateTime(row["payment_date"]);
-				this->comboBox_payment_method->SelectedItem = row["payment_method"]->ToString();
+		property  float amount {
+			float get() {
+				return Convert::ToSingle(numericUpDown_amount->Value);
 			}
-		}
-
+      
 		void button_save_Click(System::Object^ sender, System::EventArgs^ e) {
 			SQLservices^ sqlService = gcnew SQLservices();
 			System::DateTime paymentDate = this->dateTimePicker_payment_date->Value;
@@ -58,15 +56,19 @@ namespace Projet {
 			} else {
 				// Update existing payment
 				sqlService->SQL_modifyPayment(this->paymentId, paymentDate, paymentMethod, amount, orderId);
+
+		property System::DateTime payment_date {
+			DateTime get() {
+				return dateTimePicker_payment_date->Value;
 			}
-
-			this->Close();
 		}
 
-		void button_cancel_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->Close();
+		property String^ payment_method {
+			String^ get() {
+				return textBox_payment_method->Text;
+			}
 		}
-
+	
 	protected:
 		/// <summary>
 		/// Nettoyage des ressources utilisées.
@@ -87,13 +89,10 @@ namespace Projet {
 
 	private: System::Windows::Forms::Label^ label_method;
 	private: System::Windows::Forms::Label^ label_payment_date;
-	private: System::Windows::Forms::TextBox^ textBox_amount;
-	private: System::Windows::Forms::ComboBox^ comboBox_payment_method;
 
 
-
-
-
+	private: System::Windows::Forms::TextBox^ textBox_payment_method;
+	private: System::Windows::Forms::NumericUpDown^ numericUpDown_amount;
 
 	private:
 
@@ -116,108 +115,121 @@ namespace Projet {
 			this->dateTimePicker_payment_date = (gcnew System::Windows::Forms::DateTimePicker());
 			this->label_method = (gcnew System::Windows::Forms::Label());
 			this->label_payment_date = (gcnew System::Windows::Forms::Label());
-			this->textBox_amount = (gcnew System::Windows::Forms::TextBox());
-			this->comboBox_payment_method = (gcnew System::Windows::Forms::ComboBox());
+			this->textBox_payment_method = (gcnew System::Windows::Forms::TextBox());
+			this->numericUpDown_amount = (gcnew System::Windows::Forms::NumericUpDown());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown_amount))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button_cancel
 			// 
 			this->button_cancel->DialogResult = System::Windows::Forms::DialogResult::Cancel;
-			this->button_cancel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F));
-			this->button_cancel->Location = System::Drawing::Point(185, 146);
+			this->button_cancel->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->button_cancel->Location = System::Drawing::Point(278, 225);
+			this->button_cancel->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->button_cancel->Name = L"button_cancel";
-			this->button_cancel->Size = System::Drawing::Size(75, 23);
+			this->button_cancel->Size = System::Drawing::Size(112, 35);
 			this->button_cancel->TabIndex = 9;
 			this->button_cancel->Text = L"Cancel";
 			this->button_cancel->UseVisualStyleBackColor = true;
-			this->button_cancel->Click += gcnew System::EventHandler(this, &editPaymentPrompt::button_cancel_Click);
 			// 
 			// button_create
 			// 
 			this->button_create->DialogResult = System::Windows::Forms::DialogResult::OK;
-			this->button_create->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F));
-			this->button_create->Location = System::Drawing::Point(86, 146);
+			this->button_create->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->button_create->Location = System::Drawing::Point(129, 225);
+			this->button_create->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->button_create->Name = L"button_create";
-			this->button_create->Size = System::Drawing::Size(75, 23);
+			this->button_create->Size = System::Drawing::Size(112, 35);
 			this->button_create->TabIndex = 8;
 			this->button_create->Text = L"Create";
 			this->button_create->UseVisualStyleBackColor = true;
-			this->button_create->Click += gcnew System::EventHandler(this, &editPaymentPrompt::button_save_Click);
 			// 
 			// label_amount
 			// 
 			this->label_amount->AutoSize = true;
-			this->label_amount->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F));
-			this->label_amount->Location = System::Drawing::Point(12, 23);
+			this->label_amount->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_amount->Location = System::Drawing::Point(18, 35);
+			this->label_amount->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_amount->Name = L"label_amount";
-			this->label_amount->Size = System::Drawing::Size(52, 16);
+			this->label_amount->Size = System::Drawing::Size(84, 24);
 			this->label_amount->TabIndex = 11;
 			this->label_amount->Text = L"Amount";
 			// 
 			// dateTimePicker_payment_date
 			// 
-			this->dateTimePicker_payment_date->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F));
-			this->dateTimePicker_payment_date->Location = System::Drawing::Point(126, 58);
+			this->dateTimePicker_payment_date->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->dateTimePicker_payment_date->Location = System::Drawing::Point(189, 89);
+			this->dateTimePicker_payment_date->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->dateTimePicker_payment_date->Name = L"dateTimePicker_payment_date";
-			this->dateTimePicker_payment_date->Size = System::Drawing::Size(199, 22);
+			this->dateTimePicker_payment_date->Size = System::Drawing::Size(296, 31);
 			this->dateTimePicker_payment_date->TabIndex = 10;
 			// 
 			// label_method
 			// 
 			this->label_method->AutoSize = true;
-			this->label_method->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F));
-			this->label_method->Location = System::Drawing::Point(12, 103);
+			this->label_method->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_method->Location = System::Drawing::Point(18, 158);
+			this->label_method->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_method->Name = L"label_method";
-			this->label_method->Size = System::Drawing::Size(108, 16);
+			this->label_method->Size = System::Drawing::Size(171, 24);
 			this->label_method->TabIndex = 15;
 			this->label_method->Text = L"Payment method";
 			// 
 			// label_payment_date
 			// 
 			this->label_payment_date->AutoSize = true;
-			this->label_payment_date->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F));
-			this->label_payment_date->Location = System::Drawing::Point(12, 64);
+			this->label_payment_date->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->label_payment_date->Location = System::Drawing::Point(18, 98);
+			this->label_payment_date->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_payment_date->Name = L"label_payment_date";
-			this->label_payment_date->Size = System::Drawing::Size(92, 16);
+			this->label_payment_date->Size = System::Drawing::Size(143, 24);
 			this->label_payment_date->TabIndex = 14;
 			this->label_payment_date->Text = L"Payment Date";
 			// 
-			// textBox_amount
+			// textBox_payment_method
 			// 
-			this->textBox_amount->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F));
-			this->textBox_amount->Location = System::Drawing::Point(126, 20);
-			this->textBox_amount->Name = L"textBox_amount";
-			this->textBox_amount->Size = System::Drawing::Size(199, 22);
-			this->textBox_amount->TabIndex = 13;
+			this->textBox_payment_method->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->textBox_payment_method->Location = System::Drawing::Point(189, 151);
+			this->textBox_payment_method->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->textBox_payment_method->Name = L"textBox_payment_method";
+			this->textBox_payment_method->Size = System::Drawing::Size(296, 31);
+			this->textBox_payment_method->TabIndex = 17;
 			// 
-			// comboBox_payment_method
+			// numericUpDown_amount
 			// 
-			this->comboBox_payment_method->FormattingEnabled = true;
-			this->comboBox_payment_method->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Cash", L"Card", L"Crypto" });
-			this->comboBox_payment_method->Location = System::Drawing::Point(126, 98);
-			this->comboBox_payment_method->Name = L"comboBox_payment_method";
-			this->comboBox_payment_method->Size = System::Drawing::Size(199, 21);
-			this->comboBox_payment_method->TabIndex = 16;
+			this->numericUpDown_amount->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->numericUpDown_amount->Location = System::Drawing::Point(189, 35);
+			this->numericUpDown_amount->Name = L"numericUpDown_amount";
+			this->numericUpDown_amount->Size = System::Drawing::Size(296, 31);
+			this->numericUpDown_amount->TabIndex = 18;
 			// 
 			// editPaymentPrompt
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(337, 181);
-			this->Controls->Add(this->comboBox_payment_method);
+			this->ClientSize = System::Drawing::Size(506, 278);
+			this->Controls->Add(this->numericUpDown_amount);
+			this->Controls->Add(this->textBox_payment_method);
 			this->Controls->Add(this->label_method);
 			this->Controls->Add(this->label_payment_date);
-			this->Controls->Add(this->textBox_amount);
 			this->Controls->Add(this->label_amount);
 			this->Controls->Add(this->dateTimePicker_payment_date);
 			this->Controls->Add(this->button_cancel);
 			this->Controls->Add(this->button_create);
+			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"editPaymentPrompt";
 			this->Text = L"editPaymentPrompt";
+			this->Load += gcnew System::EventHandler(this, &editPaymentPrompt::editPaymentPrompt_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown_amount))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	};
+
+		
+	private: System::Void editPaymentPrompt_Load(System::Object^ sender, System::EventArgs^ e) {
+		this->Text = windowText;
+	}
+};
 }

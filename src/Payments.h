@@ -8,13 +8,13 @@ private:
     int id_payment;
     System::DateTime payment_date;
     System::String^ payment_method;
-    double amount;
+    float amount;
     int id_order;
     SQLservices^ SQLserv = gcnew SQLservices;
 
 public:
     Payment(int id);
-    Payment(System::DateTime date, System::String^ method, double amt, int orderId);
+    Payment(System::DateTime, System::String^, float, int);
 
     // Getters and setters
     int getID();
@@ -23,9 +23,9 @@ public:
     System::String^ getPaymentMethod();
     void setPaymentMethod(System::String^ method);
     double getAmount();
-    void setAmount(double amt);
+    void setAmount(float);
     int getOrderID();
-    void setOrderID(int orderId);
+    void setOrderID(int);
 
     // Database interaction methods
     void createPaymentInDB();
