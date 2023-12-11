@@ -150,19 +150,17 @@ void SQLservices::SQL_removeProductFromOrder(int id_order, int id_product, int c
     this->SQLadapter->sendQuery(cmd);
 }
 
-int SQLservices::SQL_getOrderFromPayment(int paymentId) {
-    System::String^ cmdString = "SELECT id_order FROM Projet_POO_Livrable.Payments WHERE id_payment = @paymentId";
+System::Data::DataTable^ SQLservices::SQL_getAmountAlreadyPaidForOrder(int id_order)
+{
+    System::String^ cmdString = "SELECT SUM(amount) AS total_payment_sum FROM Projet_POO_Livrable.Payments WHERE Payments.id_order = @idOrder;";
+
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
-    cmd->Parameters->AddWithValue("@paymentId", paymentId);
+    cmd->Parameters->AddWithValue("@idOrder", id_order);
 
-    System::Data::DataTable^ resultTable = this->SQLadapter->sendQuery(cmd);
-    if (resultTable != nullptr && resultTable->Rows->Count > 0) {
-        return System::Convert::ToInt32(resultTable->Rows[0]["id_order"]);
-    }
-
-    return -1; // Return an invalid ID if not found or if there's no result
+    return this->SQLadapter->sendQuery(cmd);
 }
+
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Inventory Queries
@@ -849,16 +847,15 @@ System::Data::DataTable^ SQLservices::SQL_getPaymentList()
     return this->SQLadapter->sendQuery(cmd);
 }
 
-System::Data::DataTable^ SQLservices::SQL_modifyPayment(int id, System::DateTime new_payment_date, System::String^ new_payment_method, double new_amount, int new_id_order)
+System::Data::DataTable^ SQLservices::SQL_modifyPayment(int id, System::DateTime new_payment_date, System::String^ new_payment_method, float new_amount)
 {
-    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Payments SET payment_date = @paymentDate, payment_method = @paymentMethod, amount = @amount, id_order = @idOrder WHERE id_payment = @id";
+    System::String^ cmdString = "UPDATE Projet_POO_Livrable.Payments SET payment_date = @paymentDate, payment_method = @paymentMethod, amount = @amount WHERE id_payment = @id";
 
     System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
 
     cmd->Parameters->AddWithValue("@paymentDate", new_payment_date);
     cmd->Parameters->AddWithValue("@paymentMethod", new_payment_method);
     cmd->Parameters->AddWithValue("@amount", new_amount);
-    cmd->Parameters->AddWithValue("@idOrder", new_id_order);
     cmd->Parameters->AddWithValue("@id", id);
 
     return this->SQLadapter->sendQuery(cmd);

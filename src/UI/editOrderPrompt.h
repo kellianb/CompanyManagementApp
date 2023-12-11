@@ -18,7 +18,9 @@ namespace Projet {
 	{
 	private:
 		Customer^ currentCustomer;
-		System::String^ windowText;
+		
+		
+		   System::String^ windowText;
 		
 	public:
 		editOrderPrompt(int id_customer, String^ windowText) : windowText(windowText)
@@ -36,7 +38,7 @@ namespace Projet {
 
 			this->dateTimePicker_order_date->Value = order_date;
 			this->dateTimePicker_delivery_date->Value = delivery_date;
-			this->textBox_discount_percentage->Text = discount_percentage.ToString();
+			this->numericUpDown_discount_percentage->Value = Convert::ToDecimal(discount_percentage);
 
 			for (int i = 0; i < this->dataGridView_delivery_address->Rows->Count; i++)
 			{
@@ -71,11 +73,7 @@ namespace Projet {
 
 		property  float new_order_discount_percentage {
 			float get() {
-				if(textBox_discount_percentage->Text == "")
-				{
-					return 0;
-				}
-				return Convert::ToSingle(textBox_discount_percentage->Text);
+				return Convert::ToSingle(numericUpDown_discount_percentage->Value);
 			}
 		}
 
@@ -103,6 +101,9 @@ namespace Projet {
 				delete components;
 			}
 		}
+
+		
+	private: System::Windows::Forms::NumericUpDown^ numericUpDown_discount_percentage;
 	private: System::Windows::Forms::Button^ button_cancel;
 	protected:
 	private: System::Windows::Forms::Button^ button_create;
@@ -125,7 +126,7 @@ namespace Projet {
 
 
 	private: System::Windows::Forms::Label^ label_discount_percentage;
-	private: System::Windows::Forms::TextBox^ textBox_discount_percentage;
+
 
 	private:
 		/// <summary>
@@ -151,17 +152,19 @@ namespace Projet {
 			this->dataGridView_delivery_address = (gcnew System::Windows::Forms::DataGridView());
 			this->groupBox_delivery_address = (gcnew System::Windows::Forms::GroupBox());
 			this->label_discount_percentage = (gcnew System::Windows::Forms::Label());
-			this->textBox_discount_percentage = (gcnew System::Windows::Forms::TextBox());
+			this->numericUpDown_discount_percentage = (gcnew System::Windows::Forms::NumericUpDown());
 			this->groupBox_billing_address->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_billing_address))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_delivery_address))->BeginInit();
 			this->groupBox_delivery_address->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown_discount_percentage))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button_cancel
 			// 
 			this->button_cancel->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 			this->button_cancel->DialogResult = System::Windows::Forms::DialogResult::Cancel;
+			this->button_cancel->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
 			this->button_cancel->Location = System::Drawing::Point(340, 490);
 			this->button_cancel->Margin = System::Windows::Forms::Padding(4);
 			this->button_cancel->Name = L"button_cancel";
@@ -174,6 +177,7 @@ namespace Projet {
 			// 
 			this->button_create->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 			this->button_create->DialogResult = System::Windows::Forms::DialogResult::OK;
+			this->button_create->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
 			this->button_create->Location = System::Drawing::Point(205, 490);
 			this->button_create->Margin = System::Windows::Forms::Padding(4);
 			this->button_create->Name = L"button_create";
@@ -185,9 +189,10 @@ namespace Projet {
 			// dateTimePicker_order_date
 			// 
 			this->dateTimePicker_order_date->CalendarFont = (gcnew System::Drawing::Font(L"Inter", 9.75F));
-			this->dateTimePicker_order_date->Location = System::Drawing::Point(18, 43);
+			this->dateTimePicker_order_date->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->dateTimePicker_order_date->Location = System::Drawing::Point(18, 47);
 			this->dateTimePicker_order_date->Name = L"dateTimePicker_order_date";
-			this->dateTimePicker_order_date->Size = System::Drawing::Size(200, 23);
+			this->dateTimePicker_order_date->Size = System::Drawing::Size(200, 31);
 			this->dateTimePicker_order_date->TabIndex = 10;
 			// 
 			// label_order_date
@@ -196,7 +201,7 @@ namespace Projet {
 			this->label_order_date->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
 			this->label_order_date->Location = System::Drawing::Point(14, 20);
 			this->label_order_date->Name = L"label_order_date";
-			this->label_order_date->Size = System::Drawing::Size(97, 20);
+			this->label_order_date->Size = System::Drawing::Size(111, 24);
 			this->label_order_date->TabIndex = 11;
 			this->label_order_date->Text = L"Order date";
 			// 
@@ -206,16 +211,17 @@ namespace Projet {
 			this->label_delivery_date->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
 			this->label_delivery_date->Location = System::Drawing::Point(14, 82);
 			this->label_delivery_date->Name = L"label_delivery_date";
-			this->label_delivery_date->Size = System::Drawing::Size(115, 20);
+			this->label_delivery_date->Size = System::Drawing::Size(135, 24);
 			this->label_delivery_date->TabIndex = 13;
 			this->label_delivery_date->Text = L"Delivery date";
 			// 
 			// dateTimePicker_delivery_date
 			// 
 			this->dateTimePicker_delivery_date->CalendarFont = (gcnew System::Drawing::Font(L"Inter", 9.75F));
-			this->dateTimePicker_delivery_date->Location = System::Drawing::Point(18, 105);
+			this->dateTimePicker_delivery_date->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->dateTimePicker_delivery_date->Location = System::Drawing::Point(18, 109);
 			this->dateTimePicker_delivery_date->Name = L"dateTimePicker_delivery_date";
-			this->dateTimePicker_delivery_date->Size = System::Drawing::Size(200, 23);
+			this->dateTimePicker_delivery_date->Size = System::Drawing::Size(200, 31);
 			this->dateTimePicker_delivery_date->TabIndex = 12;
 			// 
 			// groupBox_billing_address
@@ -282,24 +288,25 @@ namespace Projet {
 			this->label_discount_percentage->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
 			this->label_discount_percentage->Location = System::Drawing::Point(287, 20);
 			this->label_discount_percentage->Name = L"label_discount_percentage";
-			this->label_discount_percentage->Size = System::Drawing::Size(175, 20);
+			this->label_discount_percentage->Size = System::Drawing::Size(207, 24);
 			this->label_discount_percentage->TabIndex = 18;
 			this->label_discount_percentage->Text = L"Discount percentage";
 			// 
-			// textBox_discount_percentage
+			// numericUpDown_discount_percentage
 			// 
-			this->textBox_discount_percentage->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
-			this->textBox_discount_percentage->Location = System::Drawing::Point(291, 43);
-			this->textBox_discount_percentage->Name = L"textBox_discount_percentage";
-			this->textBox_discount_percentage->Size = System::Drawing::Size(100, 27);
-			this->textBox_discount_percentage->TabIndex = 19;
+			this->numericUpDown_discount_percentage->DecimalPlaces = 2;
+			this->numericUpDown_discount_percentage->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
+			this->numericUpDown_discount_percentage->Location = System::Drawing::Point(291, 47);
+			this->numericUpDown_discount_percentage->Name = L"numericUpDown_discount_percentage";
+			this->numericUpDown_discount_percentage->Size = System::Drawing::Size(120, 31);
+			this->numericUpDown_discount_percentage->TabIndex = 20;
 			// 
 			// editOrderPrompt
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(10, 19);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(680, 531);
-			this->Controls->Add(this->textBox_discount_percentage);
+			this->ClientSize = System::Drawing::Size(676, 522);
+			this->Controls->Add(this->numericUpDown_discount_percentage);
 			this->Controls->Add(this->label_discount_percentage);
 			this->Controls->Add(this->groupBox_delivery_address);
 			this->Controls->Add(this->groupBox_billing_address);
@@ -319,6 +326,7 @@ namespace Projet {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_billing_address))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_delivery_address))->EndInit();
 			this->groupBox_delivery_address->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown_discount_percentage))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

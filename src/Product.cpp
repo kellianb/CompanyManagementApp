@@ -12,7 +12,7 @@ void Product::fetch_product_from_DB()
     this->product_name = buffer->Rows[0]["product_name"]->ToString();
     this->amount_in_stock = System::Convert::ToInt32(buffer->Rows[0]["amount_in_stock"]);
     this->reorder_threshold = System::Convert::ToInt32(buffer->Rows[0]["reorder_threshold"]);
-    this->vat_percentage = System::Convert::ToDouble(buffer->Rows[0]["vat_percentage"]);
+    this->vat_percentage = System::Convert::ToSingle(buffer->Rows[0]["vat_percentage"]);
 }
 
 Product::Product(int id) : id(id)
