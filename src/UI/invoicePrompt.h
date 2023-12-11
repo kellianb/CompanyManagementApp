@@ -197,6 +197,8 @@ namespace Projet {
 			this->Font = (gcnew System::Drawing::Font(L"Inter", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Margin = System::Windows::Forms::Padding(4);
+			this->MaximumSize = System::Drawing::Size(827, 972);
+			this->MinimumSize = System::Drawing::Size(827, 972);
 			this->Name = L"invoicePrompt";
 			this->Text = L"invoicePrompt";
 			this->Load += gcnew System::EventHandler(this, &invoicePrompt::invoicePrompt_Load);
