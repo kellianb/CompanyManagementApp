@@ -50,6 +50,8 @@ public:
 
     System::Data::DataTable^ SQL_getAvailableColors(int, int);
 
+    float SQL_getPriceForProduct(int, int, int, int, int, float);
+
     void SQL_deleteProduct(int id);
 
     // Product_price Queries

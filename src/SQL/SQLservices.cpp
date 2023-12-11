@@ -225,6 +225,22 @@ System::Data::DataTable^ SQLservices::SQL_getAvailableColors(int id_product, int
     return this->SQLadapter->sendQuery(cmd);
 }
 
+float SQLservices::SQL_getPriceForProduct(int id_product, int color_rgb_r, int color_rgb_g, int color_rgb_b, int amount, float discount)
+{
+    System::String^ cmdString = "SELECT TOP 1 price_excl_tax * (1 + vat_percentage / 100) * @amount * (1 - @discount/100) AS total_payment_sum FROM Projet_POO_Livrable.Product_prices pp JOIN Projet_POO_Livrable.Products p ON pp.id_product = p.id_product WHERE p.id_product = @p_product_id AND color_rgb_r = @p_color_rgb_r AND color_rgb_g = @p_color_rgb_g AND color_rgb_b = @p_color_rgb_b AND @amount >= pp.min_order_amount ORDER BY pp.min_order_amount DESC, pp.price_date DESC";
+
+    System::Data::SqlClient::SqlCommand^ cmd = gcnew System::Data::SqlClient::SqlCommand(cmdString);
+
+    cmd->Parameters->AddWithValue("@p_product_id", id_product);
+    cmd->Parameters->AddWithValue("@p_color_rgb_r", color_rgb_r);
+    cmd->Parameters->AddWithValue("@p_color_rgb_g", color_rgb_g);
+    cmd->Parameters->AddWithValue("@p_color_rgb_b", color_rgb_b);
+    cmd->Parameters->AddWithValue("@amount", amount);
+    cmd->Parameters->AddWithValue("@discount", discount);
+    
+    return System::Convert::ToSingle(this->SQLadapter->sendQuery(cmd)->Rows[0]["total_payment_sum"]->ToString());
+}
+
 void SQLservices::SQL_deleteProduct(int id)
 {
     System::String^ cmdString = "DELETE FROM Projet_POO_Livrable.Products WHERE id_product = @id";

@@ -72,3 +72,5 @@ void Person::delete_in_DB()
 {
     delete_person_from_DB();
 }
+
+

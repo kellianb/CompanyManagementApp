@@ -41,4 +41,7 @@ public:
     System::Data::DataTable^ getProductPrices();
 
     System::Data::DataTable^ getAvailableColors(int);
+
+    float get_price_for_product(int, int, int, int, float);
+
 };
