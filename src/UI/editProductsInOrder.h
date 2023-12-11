@@ -43,36 +43,21 @@ namespace Projet {
 				delete components;
 			}
 		}
+
+	private: System::Windows::Forms::Label^ label_product_price;
 	private: System::Windows::Forms::DataGridView^ dataGridView_inventory;
 	private: System::Windows::Forms::GroupBox^ groupBox_inventory;
-	protected:
-
-	protected:
-
 	private: System::Windows::Forms::GroupBox^ groupBox_variants;
-
 	private: System::Windows::Forms::DataGridView^ dataGridView_product_variants;
 	private: System::Windows::Forms::GroupBox^ groupBox_products_in_order;
-
-
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown_product_discount;
 	private: System::Windows::Forms::Button^ button_remove_item_to_order;
-
-
-
-
 	private: System::Windows::Forms::Button^ button_add_item_to_order;
-
 	private: System::Windows::Forms::DataGridView^ dataGridView_products_in_order;
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown_product_amount;
 	private: System::Windows::Forms::Label^ label__product_amount;
 	private: System::Windows::Forms::Label^ label_product_discount;
-
-
-
-
-
-
+	
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -98,6 +83,7 @@ namespace Projet {
 			this->numericUpDown_product_amount = (gcnew System::Windows::Forms::NumericUpDown());
 			this->label__product_amount = (gcnew System::Windows::Forms::Label());
 			this->label_product_discount = (gcnew System::Windows::Forms::Label());
+			this->label_product_price = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView_inventory))->BeginInit();
 			this->groupBox_inventory->SuspendLayout();
 			this->groupBox_variants->SuspendLayout();
@@ -199,8 +185,9 @@ namespace Projet {
 			this->numericUpDown_product_discount->DecimalPlaces = 2;
 			this->numericUpDown_product_discount->Location = System::Drawing::Point(579, 550);
 			this->numericUpDown_product_discount->Name = L"numericUpDown_product_discount";
-			this->numericUpDown_product_discount->Size = System::Drawing::Size(120, 27);
+			this->numericUpDown_product_discount->Size = System::Drawing::Size(120, 31);
 			this->numericUpDown_product_discount->TabIndex = 3;
+			this->numericUpDown_product_discount->ValueChanged += gcnew System::EventHandler(this, &editProductsInOrder::numericUpDown_product_discount_ValueChanged);
 			// 
 			// button_remove_item_to_order
 			// 
@@ -214,7 +201,7 @@ namespace Projet {
 			// 
 			// button_add_item_to_order
 			// 
-			this->button_add_item_to_order->Location = System::Drawing::Point(579, 596);
+			this->button_add_item_to_order->Location = System::Drawing::Point(579, 614);
 			this->button_add_item_to_order->Name = L"button_add_item_to_order";
 			this->button_add_item_to_order->Size = System::Drawing::Size(120, 30);
 			this->button_add_item_to_order->TabIndex = 5;
@@ -228,7 +215,7 @@ namespace Projet {
 			this->numericUpDown_product_amount->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10000, 0, 0, 0 });
 			this->numericUpDown_product_amount->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			this->numericUpDown_product_amount->Name = L"numericUpDown_product_amount";
-			this->numericUpDown_product_amount->Size = System::Drawing::Size(120, 27);
+			this->numericUpDown_product_amount->Size = System::Drawing::Size(120, 31);
 			this->numericUpDown_product_amount->TabIndex = 6;
 			this->numericUpDown_product_amount->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			this->numericUpDown_product_amount->ValueChanged += gcnew System::EventHandler(this, &editProductsInOrder::numericUpDown_product_amount_ValueChanged);
@@ -238,7 +225,7 @@ namespace Projet {
 			this->label__product_amount->AutoSize = true;
 			this->label__product_amount->Location = System::Drawing::Point(579, 464);
 			this->label__product_amount->Name = L"label__product_amount";
-			this->label__product_amount->Size = System::Drawing::Size(72, 20);
+			this->label__product_amount->Size = System::Drawing::Size(84, 24);
 			this->label__product_amount->TabIndex = 7;
 			this->label__product_amount->Text = L"Amount";
 			// 
@@ -247,15 +234,25 @@ namespace Projet {
 			this->label_product_discount->AutoSize = true;
 			this->label_product_discount->Location = System::Drawing::Point(579, 527);
 			this->label_product_discount->Name = L"label_product_discount";
-			this->label_product_discount->Size = System::Drawing::Size(79, 20);
+			this->label_product_discount->Size = System::Drawing::Size(93, 24);
 			this->label_product_discount->TabIndex = 8;
 			this->label_product_discount->Text = L"Discount";
 			// 
+			// label_product_price
+			// 
+			this->label_product_price->AutoSize = true;
+			this->label_product_price->Location = System::Drawing::Point(579, 587);
+			this->label_product_price->Name = L"label_product_price";
+			this->label_product_price->Size = System::Drawing::Size(58, 24);
+			this->label_product_price->TabIndex = 9;
+			this->label_product_price->Text = L"Price";
+			// 
 			// editProductsInOrder
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(10, 19);
+			this->AutoScaleDimensions = System::Drawing::SizeF(12, 24);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1439, 673);
+			this->Controls->Add(this->label_product_price);
 			this->Controls->Add(this->label_product_discount);
 			this->Controls->Add(this->label__product_amount);
 			this->Controls->Add(this->numericUpDown_product_amount);
@@ -353,6 +350,21 @@ namespace Projet {
 
 	}
 
+	private: void refresh_product_price()
+	{
+		int r = Convert::ToInt32(this->dataGridView_product_variants->SelectedRows[0]->Cells["color_rgb_r"]->Value->ToString());
+		int g = Convert::ToInt32(this->dataGridView_product_variants->SelectedRows[0]->Cells["color_rgb_g"]->Value->ToString());
+		int b = Convert::ToInt32(this->dataGridView_product_variants->SelectedRows[0]->Cells["color_rgb_b"]->Value->ToString());
+
+		int amount = Convert::ToInt32(this->numericUpDown_product_amount->Value);
+
+		float discount = Convert::ToSingle(this->numericUpDown_product_discount->Value);
+
+		float price = this->selectedProduct->get_price_for_product(r, g, b, amount, discount);
+		
+		this->label_product_price->Text = "Price : " + price.ToString();
+	}
+
 	private: void dataGridView_inventory_selectionChanged(Object^ sender, EventArgs^ event_args)
 	{
 		if (dataGridView_inventory->SelectedRows->Count == 0)
@@ -369,10 +381,13 @@ namespace Projet {
 		if(dataGridView_product_variants->SelectedRows->Count == 0)
 		{
 			this->button_add_item_to_order->Enabled = false;
+			this->label_product_price->Visible = false;
 		}
 		else
 		{
 			this->button_add_item_to_order->Enabled = true;
+			this->label_product_price->Visible = true;
+			refresh_product_price();
 		}
 	}
 		
@@ -397,6 +412,18 @@ namespace Projet {
 		
 	private: System::Void numericUpDown_product_amount_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
 		refresh_dataGridView_product_variants();
+
+		if (label_product_price->Visible == true)
+		{
+			refresh_product_price();
+		}
+	}
+
+	private: System::Void numericUpDown_product_discount_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
+		if (label_product_price->Visible == true)
+		{
+			refresh_product_price();
+		}
 	}
 		
 
@@ -420,6 +447,5 @@ namespace Projet {
 
 		refresh_dataGridView_products_in_order();
 	}
-
 };
 }

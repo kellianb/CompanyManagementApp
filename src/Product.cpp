@@ -92,3 +92,11 @@ System::Data::DataTable^ Product::getAvailableColors(int amount)
 {
     return SQLserv->SQL_getAvailableColors(this->id, amount);
 }
+
+
+float Product::get_price_for_product(int color_rgb_r, int color_rgb_g, int color_rgb_b, int amount, float discount)
+{
+    return this->SQLserv->SQL_getPriceForProduct(this->id, color_rgb_r, color_rgb_g, color_rgb_b, amount, discount);
+}
+
+

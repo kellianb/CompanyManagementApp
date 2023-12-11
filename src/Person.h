@@ -36,5 +36,6 @@ public:
     // DB modification methods
     virtual void modify_in_DB();
     virtual void delete_in_DB();
+
     
 };

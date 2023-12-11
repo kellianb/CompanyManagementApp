@@ -274,6 +274,7 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="src\UI\editProductsInOrder.cpp" />
+    <ClCompile Include="src\UI\invoicePrompt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src/UI/UserInterface.h">
@@ -313,6 +314,9 @@
     <ClInclude Include="src\UI\editProductsInOrder.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="src\UI\invoicePrompt.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="src\UI\managePaymentsPrompt.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -335,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\UI\editProductsInOrder.resx">
       <DependentUpon>src\UI\editProductsInOrder.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\UI\invoicePrompt.resx">
+      <DependentUpon>src\UI\invoicePrompt.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\UI\managePaymentsPrompt.resx">
       <DependentUpon>src\UI\managePaymentPrompt.h</DependentUpon>
