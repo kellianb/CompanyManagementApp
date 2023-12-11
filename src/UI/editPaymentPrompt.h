@@ -188,6 +188,7 @@ namespace Projet {
 			// 
 			this->numericUpDown_amount->Font = (gcnew System::Drawing::Font(L"Inter", 9.75F));
 			this->numericUpDown_amount->Location = System::Drawing::Point(189, 35);
+			this->numericUpDown_amount->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000, 0, 0, 0 });
 			this->numericUpDown_amount->Name = L"numericUpDown_amount";
 			this->numericUpDown_amount->Size = System::Drawing::Size(296, 31);
 			this->numericUpDown_amount->TabIndex = 18;
