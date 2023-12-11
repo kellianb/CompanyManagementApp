@@ -1505,7 +1505,6 @@ private: System::Windows::Forms::Button^ button_stats_reload;
             this->groupBox_total_purchases_by_customers->TabStop = false;
             this->groupBox_total_purchases_by_customers->Text = L"Total purchases by customers";
             // 
-
             // dataGridView1
             // 
             this->dataGridView1->AllowUserToAddRows = false;
@@ -1749,7 +1748,7 @@ private: System::Windows::Forms::Button^ button_stats_reload;
     private:
         System::Void UserInterface_Load(System::Object^ sender, System::EventArgs^ e)
         {            
-
+            
             OnTabSelectedIndexChanged(sender, e);
         }
 
@@ -2049,6 +2048,8 @@ private: System::Windows::Forms::Button^ button_stats_reload;
             refresh_customer_orders_datagrid();
             refresh_customer_billing_addresses_datagrid();
             refresh_customer_delivery_addresses_datagrid();
+
+            dataGridView_customer_orders_selectionChanged(sender, e);
         }
     
     private:
@@ -2110,6 +2111,7 @@ private: System::Windows::Forms::Button^ button_stats_reload;
         {
             this->groupBox_customer_currently_selected_order->Visible = false;
         }
+        
     }
 
     private: System::Void button_customer_add_order_Click(System::Object^ sender, System::EventArgs^ e) {

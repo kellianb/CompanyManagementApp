@@ -301,6 +301,9 @@
     <ClInclude Include="src\UI\createCustomerPrompt.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="src\UI\editPaymentPrompt.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="src\UI\editProductPrices.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -308,6 +311,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="src\UI\editProductsInOrder.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="src\UI\managePaymentPrompt.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="src\UI\selectEmployeeManager.h">
