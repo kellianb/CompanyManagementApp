@@ -52,6 +52,11 @@ System::String^ Order::getReference()
     return this->reference;
 }
 
+float Order::getTotalAmount()
+{
+    return this->total_amount;
+}
+
 float Order::getDiscoutPercentage()
 {
     return this->discount_percentage;
@@ -135,6 +140,11 @@ void Order::removeProductFromOrder(int id_product, int color_rgb_r, int color_rg
 float Order::getAmountLeftToPay()
 {
     System::Data::DataTable^ buffer = this->SQLserv->SQL_getAmountAlreadyPaidForOrder(this->id);
+
+    if (buffer->Rows[0]["total_payment_sum"]->ToString() == "")
+    {
+        return this->total_amount;
+    }
 
     float already_paid_amount = System::Convert::ToSingle(buffer->Rows[0]["total_payment_sum"]->ToString());
 

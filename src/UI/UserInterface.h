@@ -11,6 +11,7 @@
 #include "editProductPrices.h"
 #include "editProductsInOrder.h"
 #include "managePaymentsPrompt.h"
+#include "invoicePrompt.h"
 
 #include "../Customer.h"
 #include "../Employee.h"
@@ -230,6 +231,8 @@ private: System::Windows::Forms::Label^ label_vat;
 private: System::Windows::Forms::Button^ button_stats_reload;
 private: System::Windows::Forms::Button^ button_customer_order_payments;
 private: System::Windows::Forms::Label^ label_customers_current_order_left_to_pay;
+private: System::Windows::Forms::Button^ button_customer_order_invoice;
+
 
 
     private: System::Windows::Forms::Label^ label_employee_hiring_date;
@@ -339,6 +342,7 @@ private: System::Windows::Forms::Label^ label_customers_current_order_left_to_pa
             this->dataGridView_customer_billing_addresses = (gcnew System::Windows::Forms::DataGridView());
             this->groupBox_customer_orders = (gcnew System::Windows::Forms::GroupBox());
             this->groupBox_customer_currently_selected_order = (gcnew System::Windows::Forms::GroupBox());
+            this->button_customer_order_invoice = (gcnew System::Windows::Forms::Button());
             this->label_customers_current_order_left_to_pay = (gcnew System::Windows::Forms::Label());
             this->button_customer_order_payments = (gcnew System::Windows::Forms::Button());
             this->button_customer_order_modify_items = (gcnew System::Windows::Forms::Button());
@@ -886,6 +890,7 @@ private: System::Windows::Forms::Label^ label_customers_current_order_left_to_pa
             // 
             // groupBox_customer_currently_selected_order
             // 
+            this->groupBox_customer_currently_selected_order->Controls->Add(this->button_customer_order_invoice);
             this->groupBox_customer_currently_selected_order->Controls->Add(this->label_customers_current_order_left_to_pay);
             this->groupBox_customer_currently_selected_order->Controls->Add(this->button_customer_order_payments);
             this->groupBox_customer_currently_selected_order->Controls->Add(this->button_customer_order_modify_items);
@@ -901,6 +906,17 @@ private: System::Windows::Forms::Label^ label_customers_current_order_left_to_pa
             this->groupBox_customer_currently_selected_order->TabIndex = 10;
             this->groupBox_customer_currently_selected_order->TabStop = false;
             this->groupBox_customer_currently_selected_order->Text = L"Order";
+            // 
+            // button_customer_order_invoice
+            // 
+            this->button_customer_order_invoice->Location = System::Drawing::Point(385, 119);
+            this->button_customer_order_invoice->Margin = System::Windows::Forms::Padding(2);
+            this->button_customer_order_invoice->Name = L"button_customer_order_invoice";
+            this->button_customer_order_invoice->Size = System::Drawing::Size(97, 30);
+            this->button_customer_order_invoice->TabIndex = 13;
+            this->button_customer_order_invoice->Text = L"Invoice";
+            this->button_customer_order_invoice->UseVisualStyleBackColor = true;
+            this->button_customer_order_invoice->Click += gcnew System::EventHandler(this, &UserInterface::button_customer_order_invoice_Click);
             // 
             // label_customers_current_order_left_to_pay
             // 
@@ -1281,7 +1297,7 @@ private: System::Windows::Forms::Label^ label_customers_current_order_left_to_pa
             this->groupBox_employee_manager->Controls->Add(this->button_employee_remove_manager);
             this->groupBox_employee_manager->Controls->Add(this->button_employee_select_manager);
             this->groupBox_employee_manager->Controls->Add(this->label_employee_manager_name);
-            this->groupBox_employee_manager->Location = System::Drawing::Point(561, 201);
+            this->groupBox_employee_manager->Location = System::Drawing::Point(562, 201);
             this->groupBox_employee_manager->Margin = System::Windows::Forms::Padding(2);
             this->groupBox_employee_manager->Name = L"groupBox_employee_manager";
             this->groupBox_employee_manager->Padding = System::Windows::Forms::Padding(2);
@@ -1783,8 +1799,8 @@ private: System::Windows::Forms::Label^ label_customers_current_order_left_to_pa
         // General UserInterface functions
     private:
         System::Void UserInterface_Load(System::Object^ sender, System::EventArgs^ e)
-        {            
-            
+        {
+           
             OnTabSelectedIndexChanged(sender, e);
         }
 
@@ -2204,6 +2220,12 @@ private: System::Windows::Forms::Label^ label_customers_current_order_left_to_pa
         prompt->ShowDialog();
 
         refresh_customer_orders_datagrid();
+    }
+
+    private: System::Void button_customer_order_invoice_Click(System::Object^ sender, System::EventArgs^ e) {
+        invoicePrompt^ prompt = gcnew invoicePrompt(this->selected_customer_order->getID(), this->selected_customer->getID());
+
+        prompt->ShowDialog();
     }
 
 
@@ -2639,7 +2661,6 @@ private: System::Windows::Forms::Label^ label_customers_current_order_left_to_pa
             this->dataGridView4->Columns["product_name"]->HeaderText = "Product name";
             this->dataGridView4->Columns["total_ordered_quantity"]->HeaderText = "Quantity Ordered";
         }
-
-
+        
 };
 }

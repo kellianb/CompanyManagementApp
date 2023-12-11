@@ -33,6 +33,8 @@ public:
     int getID();
 
     System::String^ getReference();
+
+    float getTotalAmount();
     
     float getDiscoutPercentage();
     void setDiscountPercentage(float);
