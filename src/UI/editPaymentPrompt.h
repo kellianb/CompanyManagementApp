@@ -39,23 +39,12 @@ namespace Projet {
 
 		}
 
-		property  float amount {
+		property  float amount
+		{
 			float get() {
 				return Convert::ToSingle(numericUpDown_amount->Value);
 			}
-      
-		void button_save_Click(System::Object^ sender, System::EventArgs^ e) {
-			SQLservices^ sqlService = gcnew SQLservices();
-			System::DateTime paymentDate = this->dateTimePicker_payment_date->Value;
-			System::String^ paymentMethod = this->comboBox_payment_method->Text;
-			double amount = Convert::ToDouble(this->textBox_amount->Text);
-
-			if (this->paymentId == -1) {
-				// Add new payment
-				sqlService->SQL_addPayment(paymentDate, paymentMethod, amount, orderId);
-			} else {
-				// Update existing payment
-				sqlService->SQL_modifyPayment(this->paymentId, paymentDate, paymentMethod, amount, orderId);
+		}
 
 		property System::DateTime payment_date {
 			DateTime get() {
